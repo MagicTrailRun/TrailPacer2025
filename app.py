@@ -3,24 +3,7 @@ from config.styles import apply_custom_css
 from core.session import SessionManager
 from core.page_router import PageRouter
 import os
-import re
-
-import csv 
-
-def is_valid_email(email):
-    pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
-    return re.match(pattern, email)
-
-def save_email(email,name, file_path="emails.csv"):
-    file_exists = os.path.isfile(file_path)
-    with open(file_path, mode="a", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        if not file_exists:
-            # Écrire les en-têtes si le fichier n'existe pas encore
-            writer.writerow(["email,name"])
-        writer.writerow([email,name])
-
-
+from config.airtableapi import email_form
 class TSXApplication:
     """Application principale TSX Trail"""
     
@@ -66,22 +49,10 @@ class TSXApplication:
     def _show_sidebar(self):
         """Affichage de la barre latérale"""
         with st.sidebar:
-            st.markdown("### ✉️ Restez informés")
-            st.write("Pour vous tenir au courant de la suite, laissez-nous votre adresse mail :")
-            nom= st.text_input("Prénom Nom")
-            email = st.text_input("Votre email", placeholder="exemple@domaine.com")
-
-            if st.button("📩 Envoyer"):
-                if email and is_valid_email(email):
-                    # Ici tu pourrais stocker l'email en DB / fichier / API
-                    save_email(email,nom)  
-
-                    st.success("Merci ! Vous serez tenu(e) informé(e) 😉")
-                else:
-                    st.warning("Veuillez entrer une adresse email valide.")
-
-
-                        
+            st.markdown("### Envie d'en savoir plus?")
+            st.write("Laissez-nous votre adresse mail")
+            email_form()
+            
                         
 if __name__ == "__main__":
     app = TSXApplication()
