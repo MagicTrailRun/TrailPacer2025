@@ -1,0 +1,49 @@
+{
+    "courses":{
+        "UTMB":{
+            "margin_of_error": 0.07,
+            "start": "Départ",
+            "finish": "Chamonix",
+            "start_datetime": "08-29-2025 17:45:00",
+            "start_day_hour": "Ve. 17:45",
+            "temps_cible": [20, 40],
+            "step": 1,
+            "ref_group_delay": 1.2,
+            "drop_ckpts":[
+                 "Chapieux.1",
+                "Courmayeur entrée",
+                "Courmayeur Entrée",
+                "Champex entrée",
+                "Trient entrée",
+                "Vallorcine entrée",
+                "Vallorcine Entrée",
+                "Courmayeur - Mountain Sport Center Entrée",
+                "Les Houches"
+
+            ]
+        }
+    },
+    "mapping_ckpt":{
+        "Col Voza": "Col de Voza",
+        "Saint-Gervais": "St-Gervais",
+        "Les Contamines Montjoie": "Contamines",
+        "Fly zone": "ND la Gorge",
+        "Fly zone - Notre Dame de la Gorge": "ND la Gorge",
+        "Refuge de la Croix du Bonhomme": "Bonhomme",
+        "Les Chapieux": "Chapieux",
+        "Col de la Seigne": "Col Seigne",
+        "Arête du Mont-Favre": "Mt-Favre",
+        "Checrouit - Maison Vieille": "Checrouit",
+        "Courmayeur - Mountain Sport Center Sortie": "Courmayeur sortie",
+        "Refuge Bertone": "Bertone",
+        "Refuge Bonatti": "Bonatti",
+        "Grand Col Ferret": "Col Ferret",
+        "Champex sortie": "Champex-Lac",
+        "Trient sortie": "Trient",
+        "Les Tseppes": "Tseppes",
+        "Vallorcine sortie": "Vallorcine",
+        "Vallorcine Sortie": "Vallorcine"   
+    }
+    
+
+}
