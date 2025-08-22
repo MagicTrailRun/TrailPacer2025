@@ -25,7 +25,6 @@ def save_email(email,last_name, table_name="email"):
     }
     
     response = requests.post(url, json=data, headers=headers)
-    st.markdown(response)
     if response.status_code == 200:
         return True
     else:
