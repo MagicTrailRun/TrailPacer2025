@@ -18,14 +18,14 @@ def save_email(email,last_name, table_name="email"):
     }
     data = {
         "fields": {
-            
-            "Name": last_name,
-            "email": email
+            "email": email,
+            "Name": last_name
+
         }
     }
     
     response = requests.post(url, json=data, headers=headers)
-    print(response)
+    st.markdown(response)
     if response.status_code == 200:
         return True
     else:
