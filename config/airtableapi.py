@@ -53,7 +53,7 @@ def email_form():
                 return
 
             # Sauvegarde dans Airtable ou autre
-            success = save_email(last_name, email)
+            success = save_email( email,last_name,)
             if success:
                 st.success("Merci ! Vos informations ont été enregistrées ✅")
                 st.info("Vous serez tenu(e) informé(e) 😉")
