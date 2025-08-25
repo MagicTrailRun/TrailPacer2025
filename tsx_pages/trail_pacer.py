@@ -182,7 +182,7 @@ Un pacing efficace repose sur un équilibre subtil :
 
 Le pacing n’est donc pas seulement une question de vitesse moyenne : c’est une dynamique d’ajustement continu, influencée par les sensations, la connaissance de son corps, l’expérience, mais aussi par des facteurs objectifs (dénivelé, conditions météo, technicité du oarcours, concurrence"""
     
-    st.markdown(txt)
+        st.markdown(txt)
     with tab3 : 
                 
         # Charger les données
