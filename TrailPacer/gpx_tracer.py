@@ -24,7 +24,7 @@ def plot_altitude_profile_area(df_gpx, df,  mapping_ckpts, config,affichages=Non
         plot_bgcolor="white",
         paper_bgcolor="white",
         font=dict(color="black"),
-        title="Profil d'élévation course avec checkpoints et heures de passage" if show_title else "",
+        title=f"Profil d'élévation course avec plan pour {target_time}h " if show_title else "",
         autosize=True,
         margin=dict(l=20, r=20, t=50, b=40),
         yaxis=dict(range=[min_alt , df_gpx["altitude"].max() + 200])  # marge haute

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import json
 
-def load_data(race="UTMB",version="pred_v0_UTMB"):
+def load_data(race="UTMB",version="pred_v2_UTMB"):
     """Charge les données CSV"""
     try:
         csv1_path = f"data/TrailPacer/{race}/{version}.csv"

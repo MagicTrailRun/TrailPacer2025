@@ -1,5 +1,5 @@
 import streamlit as st
-
+import pandas as pd
 def format_time_input_to_seconds(time_str):
     """Convertit une entrée HH:MM en secondes"""
     try:
@@ -14,6 +14,13 @@ def seconds_to_time_str(seconds):
     """Convertit des secondes en HHhMM"""
     h, m = divmod(seconds // 60, 60)
     return f"{h:02d}h{m:02d}"
+
+def decimal_to_hhmm(x):
+    if pd.isna(x):
+        return ""
+    heures = int(x)
+    minutes = int(round((x - heures) * 60))
+    return f"{heures}h{minutes:02d}"
 
 
 def format_dataframe(df,target_time):
@@ -36,10 +43,11 @@ def format_dataframe(df,target_time):
             col_temps_secteur,
             "Allure secteur",
             col_temps_total,
-            col_heure_passage
+            col_heure_passage,
+            'barriere_horaire'
         ]]
 
-            
+        df_display['barriere_horaire'] = df_display['barriere_horaire'].apply(lambda x : decimal_to_hhmm(x))      
 
         column_config={
                     "dist_total": st.column_config.NumberColumn("km total", format="%.1f"),
@@ -50,6 +58,7 @@ def format_dataframe(df,target_time):
                     "Allure secteur": st.column_config.TextColumn("Allure secteur"),
                     col_temps_total: st.column_config.TextColumn("Temps cumulé"),
                     col_heure_passage: st.column_config.TextColumn("Heure passage"),
+                    "barriere_horaire" : st.column_config.TextColumn('Barrière horaire')
                 }
         
     return(df_display, column_config)

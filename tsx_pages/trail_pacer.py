@@ -7,7 +7,8 @@ from TrailPacer.gpx_tracer import plot_altitude_profile_area,plot_altitude_profi
 from TrailPacer.formatting import format_dataframe
 from TrailPacer.race_id import color_pente, plot_col_profile_tour_gradient,altitude_metrics, load_gpx, plot_slope_histogram, process_data, load_data_checkpoints, plot_segment_analysis
 from TrailPacer.presentation import text_presentation
-
+from TrailPacer.quisommesnous import quisommesnous
+from TrailPacer.votreavis import votreavis
 import base64
 
 st.set_page_config(page_title="TrailPacer", page_icon="🏃‍♂️", layout="wide")
@@ -109,19 +110,24 @@ def show():
         unsafe_allow_html=True
     )
 
-    tab1, tab2, tab3 = st.tabs([
-        "⏱️ Tableau des temps de passage",
-        "📄 Fiche identité de la course",
-        "💡 Méthode & conseils"
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+        "⏱️ Plan de course",
+        "💡 Le pacing selon TrailPacer",
+        "EXPLORER LES COURSES",
+        "ANALYSE POST-COURSE",
+        "VOTRE AVIS NOUS INTERESSE",
+        "Qui sommes-nous?"
+
     ])
      
     st.markdown("------------")
     with tab1:
-        st.markdown("### Préparer sa course")
+        st.markdown("### Choisissez votre temps objectif → Trail Pacer calcule vos temps de passage optimisés → téléchargez votre plan ou visualisez-le directement sur le profil de la course.")
         col1, col2, col3 = st.columns([2,1,2])
+        
         with col1:
             target_time = st.slider(
-                "Nombre d'heures prévues pour finir",
+                "Fixez votre objectif de temps pour l’arrivée, Trail Pacer calcule vos temps de passage.",
                 config['temps_cible_start'],
                 config['temps_cible_end'],
                 config['temps_cible_middle']
@@ -129,7 +135,7 @@ def show():
         if not df.empty:
            
             # Tableau principal
-            st.subheader(f"📋 Conseil de temps de passage pour {target_time} h")
+            st.subheader(f"📋Plan de course généré pour {target_time} h")
             df_display, column_config=format_dataframe(df,target_time)
 
             st.dataframe(
@@ -159,8 +165,25 @@ def show():
         df_gpx=load_gpx(f"data/TrailPacer/{course}/tracks/gpx_{year}.json")
         st.plotly_chart(plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config,affichages,target_time), use_container_width=False)
         
+    with tab2 :
+        st.header("Qu'est ce que le pacing?"
+                  )
+        
+        txt="""
+1. Qu’est-ce que le pacing ?
 
-    with tab2 : 
+Le pacing désigne l’art de gérer son effort et son allure au cours d’une performance sportive. Autrement dit, c’est la stratégie par laquelle un athlète répartit son énergie et ses ressources physiologiques pour atteindre un objectif (performance, régularité, finisher…), en tenant compte de la durée, de l’intensité et des contraintes environnementales et techniques de l’épreuve.
+
+Un pacing efficace repose sur un équilibre subtil :
+
+· Trop rapide au départ, le coureur risque l’épuisement prématuré, une baisse de performance, voire l’abandon.
+
+· Trop prudent, il termine avec des réserves inutilisées et un résultat en deçà de ses capacités.
+
+Le pacing n’est donc pas seulement une question de vitesse moyenne : c’est une dynamique d’ajustement continu, influencée par les sensations, la connaissance de son corps, l’expérience, mais aussi par des facteurs objectifs (dénivelé, conditions météo, technicité du oarcours, concurrence"""
+    
+    st.markdown(txt)
+    with tab3 : 
                 
         # Charger les données
         df_track = load_data_checkpoints(f"data/TrailPacer/{course}/tracks/{course}_checkpoints_2025.csv")
@@ -229,10 +252,19 @@ def show():
         
 
 
-    with tab3:
-        st.header("📚 Méthode et conseils d'utilisation")
+    with tab4:
+       
         
-        st.markdown(text_presentation())
+        st.markdown("### Visualiser son pacing par rapport au plan Trail Pacer et au peloton. Comparaison entre coureurs")
+        st.write("A venir...")
+
+
+    with tab5 :
+        st.header("Votre avis nous intéresse")
+        st.markdown(votreavis())
+    with tab6 :
+        st.header("Qui sommes-nous?")
+        st.markdown(quisommesnous())
 
 if __name__ == "__main__":
     show()

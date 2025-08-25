@@ -6,7 +6,7 @@
             "finish": "Chamonix",
             "start_datetime": "08-29-2025 17:45:00",
             "start_day_hour": "Ve. 17:45",
-            "temps_cible": [20, 40],
+            "temps_cible": [20, 45],
             "step": 1,
             "ref_group_delay": 1.2,
             "drop_ckpts":[

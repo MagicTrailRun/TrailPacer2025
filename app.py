@@ -49,7 +49,7 @@ class TSXApplication:
     def _show_sidebar(self):
         """Affichage de la barre latérale"""
         with st.sidebar:
-            st.markdown("### Envie d'en savoir plus?")
+            st.write("Trail Pacer n’est qu’un début d’une initiative plus ambitieuse… Entrez votre email pour découvrir nos nouveautés et être parmi les premiers informés de la suite du projet.")
             st.write("Laissez-nous votre adresse mail")
             email_form()
             

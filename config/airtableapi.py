@@ -10,7 +10,7 @@ AIRTABLE_BASE_ID = os.getenv("AIRTABLE_BASE_ID")
 
 import requests
 
-def save_email(email,last_name, table_name="email"):
+def save_email(email, table_name="email"):
     url = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{table_name}"
     headers = {
         "Authorization": f"Bearer {AIRTABLE_API_KEY}",
@@ -19,8 +19,6 @@ def save_email(email,last_name, table_name="email"):
     data = {
         "fields": {
             "email": email,
-            "Name": last_name
-
         }
     }
     
@@ -37,13 +35,12 @@ def is_valid_email(email):
 
 def email_form():
     with st.form("user_form"):
-        last_name = st.text_input("Prénom Nom")
         email = st.text_input("Adresse e-mail")
         submitted = st.form_submit_button("Envoyer")
         
         if submitted:
             # Vérification que tous les champs sont remplis
-            if not last_name or not email:
+            if not email:
                 st.error("Veuillez remplir tous les champs.")
                 return
 
@@ -53,7 +50,7 @@ def email_form():
                 return
 
             # Sauvegarde dans Airtable ou autre
-            success = save_email( email,last_name,)
+            success = save_email( email)
             if success:
                 st.success("Merci ! Vos informations ont été enregistrées ✅")
                 st.info("Vous serez tenu(e) informé(e) 😉")
