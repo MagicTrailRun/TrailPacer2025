@@ -33,11 +33,10 @@ def is_valid_email(email):
     pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
     return re.match(pattern, email)
 
-def email_form():
-    with st.form("user_form"):
+def email_form(key="user_form"):
+    with st.form(key=key):
         email = st.text_input("Adresse e-mail")
         submitted = st.form_submit_button("Envoyer")
-        
         if submitted:
             # Vérification que tous les champs sont remplis
             if not email:
@@ -52,7 +51,8 @@ def email_form():
             # Sauvegarde dans Airtable ou autre
             success = save_email( email)
             if success:
-                st.success("Merci ! Vos informations ont été enregistrées ✅")
-                st.info("Vous serez tenu(e) informé(e) 😉")
+                st.success("Merci ! Vos informations ont été enregistrées")
             else:
                 st.error("Erreur lors de l'enregistrement.")
+    
+  

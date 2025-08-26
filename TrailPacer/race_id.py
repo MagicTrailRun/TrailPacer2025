@@ -79,7 +79,7 @@ def plot_segment_analysis(df):
     ))
 
     fig.update_layout(
-        title="Analyse segmentaire UTMB (D+/km et D-/km)",
+        title="Répartition du dénivelé par km (D+/km et D-/km)",
         xaxis_title="Segments",
         yaxis_title="Dénivelé par km (m/km)",
         barmode="relative",
