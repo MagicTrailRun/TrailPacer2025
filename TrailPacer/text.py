@@ -314,7 +314,7 @@ def votreavis():
 import streamlit as st
 
 def cnil():
-    st.header("🔒 Politique de confidentialité – Trail Pacer")
+    st.header("Politique de confidentialité – Trail Pacer")
 
     st.subheader(" Responsable du traitement")
     st.markdown(
