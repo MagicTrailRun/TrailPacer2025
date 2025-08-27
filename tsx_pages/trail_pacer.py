@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from TrailPacer.data_loader import load_data, get_config
-from TrailPacer.gpx_tracer import plot_altitude_profile_area,plot_altitude_profile_area
+from TrailPacer.gpx_tracer import plot_altitude_profile_area
 from TrailPacer.formatting import format_dataframe,get_base64_image
 from TrailPacer.race_id import color_pente, plot_col_profile_tour_gradient,altitude_metrics, load_gpx, plot_slope_histogram, process_data, load_data_checkpoints, plot_segment_analysis
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
@@ -12,7 +12,8 @@ from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
 st.set_page_config(page_title="TrailPacer", page_icon="🏃‍♂️", layout="wide")
 
 def show():
-  
+    st.info('Plans de course à venir : Sainté Lyon, Grand Trail des templiers et Grand Raid Réunion...')
+
     img_base64 = get_base64_image("TrailPacer/image/utmb.png")
     
     st.set_page_config(
@@ -157,12 +158,16 @@ def show():
 )
         affichages = st.multiselect(
             "Choisissez les éléments à afficher",
-            ["Heure de passage", "Temps de passage", "D+", "D-"],
-            default=["Heure de passage"]
+            ["Heure de passage", "Temps de passage", "D+ Secteur", "D- Secteur","Distance Secteur"],
+            default=["Heure de passage","D+ Secteur", "D- Secteur"]
 )       
+        title=f"🏃‍♂️ Profil d'élévation - Objectif {target_time}h"
+        st.header(title)
         year=2025
         df_gpx=load_gpx(f"data/TrailPacer/{course}/tracks/gpx_{year}.json")
-        st.plotly_chart(plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config,affichages,target_time), use_container_width=False)
+        st.plotly_chart(plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config,affichages,target_time), use_container_width=True)
+       
+        
         
     with pacing2 :
         pacing()
@@ -225,19 +230,19 @@ def show():
             cols_slope[i].markdown(f"<div style='text-align:left; font-size:20px; color:{color}'>{label}<br>{val:.1f}%</div>", unsafe_allow_html=True)
         st.plotly_chart(fig)
         
-        st.divider()
+        # st.divider()
 
-        st.markdown("## Profil de la course")
-        st.plotly_chart(plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, show_title=False))
-        st.divider()
-        st.plotly_chart(plot_slope_histogram(df_gpx), use_container_width=True)
+        # st.markdown("## Profil de la course")
+        # st.plotly_chart(plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, show_title=False))
+        # st.divider()
+        # st.plotly_chart(plot_slope_histogram(df_gpx), use_container_width=True)
 
-        st.divider()
-        # -----------------------------
-        # 3️⃣ Analyse segmentaire
-        # -----------------------------
+        # st.divider()
+        # # -----------------------------
+        # # 3️⃣ Analyse segmentaire
+        # # -----------------------------
        
-        st.plotly_chart(plot_segment_analysis(df_track), use_container_width=True)
+        # st.plotly_chart(plot_segment_analysis(df_track), use_container_width=True)
 
 
 

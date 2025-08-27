@@ -26,3 +26,6 @@ def get_config(path, course):
     config['temps_cible_middle'] = int(np.round((config['temps_cible_start'] + config['temps_cible_end'])/2))
 
     return config, dic_config['mapping_ckpt']
+
+
+

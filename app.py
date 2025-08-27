@@ -3,7 +3,7 @@ from config.styles import apply_custom_css
 from core.session import SessionManager
 from core.page_router import PageRouter
 import os
-from config.airtableapi import email_form
+from config.airtableapi import email_form,commentaire_form
 class TSXApplication:
     """Application principale TSX Trail"""
     
@@ -47,11 +47,17 @@ class TSXApplication:
         current_page = self.session_manager.get_current_page()
         self.page_router.render_page(current_page)
     def _show_sidebar(self):
+        
         """Affichage de la barre latérale"""
         with st.sidebar:
+            
+
             st.write("Trail Pacer n’est qu’un début d’une initiative plus ambitieuse… \n " \
             "Entrez votre email pour découvrir nos nouveautés et être parmi les premiers informés de la suite du projet.")
             email_form()
+            st.divider()
+            st.write("Votre avis nous intéresse, n'hésitez pas à nous laissez un commentaire")
+            commentaire_form()
             
                         
 if __name__ == "__main__":

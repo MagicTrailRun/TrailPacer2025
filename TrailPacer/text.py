@@ -1,5 +1,5 @@
 
-from config.airtableapi import email_form
+from config.airtableapi import email_form, commentaire_form
 import streamlit as st
 import streamlit as st
 from TrailPacer.formatting import get_base64_image
@@ -90,9 +90,10 @@ def pacing():
 
 
     ralentissementUTMB = "TrailPacer/image/ralentissement_utmb.png"
-    ralentissementDDf="TrailPacer/image/ralentissement_ddf.png"
     st.image(ralentissementUTMB, caption="Ralentissement UTMB", use_container_width=False)
-    st.image(ralentissementDDf, caption="Ralentissement Diagonale des Fous", use_container_width=False)
+    #ralentissementDDf="TrailPacer/image/ralentissement_ddf.png"
+    
+    #st.image(ralentissementDDf, caption="Ralentissement Diagonale des Fous", use_container_width=False)
     
     st.divider()
 
@@ -111,7 +112,7 @@ def pacing():
 
         """
     )
-    ralentissementUTMB = "TrailPacer/image/utmb_juste_allure.png"
+    ralentissementUTMB = "TrailPacer/image/ralentissement_utmb_allure_trail_pacer.png"
     st.image(ralentissementUTMB, use_container_width=False)
     st.markdown(
         """
@@ -124,89 +125,88 @@ def pacing():
     )
     st.divider()
 
-    # Exemple graphique
-    st.subheader("Exemple : pacing médian – UTMB 2024")
-    medUTMB = "TrailPacer/image/med_pacing_utmb_2024.png"
-    st.image(medUTMB, use_container_width=False)
-    st.markdown(
-        """
-Ce graphique illustre le pacing médian des coureurs sur l'UTMB 2024 :
+#     # Exemple graphique
+#     st.subheader("Exemple : pacing médian – UTMB 2024")
+#     medUTMB = "TrailPacer/image/med_pacing_utmb_2024.png"
+#     st.image(medUTMB, use_container_width=False)
+#     st.markdown(
+#         """
+# Ce graphique illustre le pacing médian des coureurs sur l'UTMB 2024 :
 
-•	La ligne horizontale violette correspond au plan de course proposé (ici pour 40h30).
+# •	La ligne horizontale violette correspond au plan de course proposé (ici pour 40h30).
 
-•	La courbe jaune représente le pacing du coureur médian, avec les écarts au pacing de référence Trail Pacer.
+# •	La courbe jaune représente le pacing du coureur médian, avec les écarts au pacing de référence Trail Pacer.
 
-•	La zone bleue montre la dispersion (=où se situent les coureurs) du peloton autour du temps médian.
+# •	La zone bleue montre la dispersion (=où se situent les coureurs) du peloton autour du temps médian.
 
-On observe un schéma classique de pacing :
+# On observe un schéma classique de pacing :
 
-•	Début de course trop rapide : les coureurs passent en avance par rapport au plan.
+# •	Début de course trop rapide : les coureurs passent en avance par rapport au plan.
 
-•	Milieu de course : ralentissement progressif, accumulation de retard et perte de places.
+# •	Milieu de course : ralentissement progressif, accumulation de retard et perte de places.
 
-•	Fin de course : arrivée autour de 40 h, soit plus lent que l’objectif initial de 38 h.
+# •	Fin de course : arrivée autour de 40 h, soit plus lent que l’objectif initial de 38 h.
 
-➡️ Cette courbe illustre un constat fondamental : la plupart des coureurs partent trop vite et subissent ensuite un ralentissement marqué.
+# ➡️ Cette courbe illustre un constat fondamental : la plupart des coureurs partent trop vite et subissent ensuite un ralentissement marqué.
 
-Trail Pacer propose au contraire un plan de course plus régulier et réaliste, afin de limiter les variations d’intensité et d’augmenter les chances de terminer proche de l’objectif fixé.
+# Trail Pacer propose au contraire un plan de course plus régulier et réaliste, afin de limiter les variations d’intensité et d’augmenter les chances de terminer proche de l’objectif fixé.
 
-        """
-    )
+#         """
+#     )
 
 
-    st.divider()
+#     st.divider()
 
-    # Exemples concrets
-    st.subheader("Exemples concrets de pacing")
-    st.markdown("""
+#     # Exemples concrets
+#     st.subheader("Exemples concrets de pacing")
+#     st.markdown("""
                 
-Dans la suite, nous présentons deux exemples parlants de pacing : les très belles performances d’Émilie Maroteaux et d’Alexandre Boucheix sur les dernières éditions de la Diagonale des Fous.
+# Dans la suite, nous présentons deux exemples parlants de pacing : les très belles performances d’Émilie Maroteaux et d’Alexandre Boucheix sur les dernières éditions de la Diagonale des Fous.
                 
-Vous pouvez d’ailleurs explorer vous-même les analyses post-course dans l’onglet « Analyse post-course » TrailPacer.""")
+# Vous pouvez d’ailleurs explorer vous-même les analyses post-course dans l’onglet « Analyse post-course » TrailPacer.""")
     
-    st.markdown("""**2021 – Émilie Maroteaux** :
+#     st.markdown("""**2021 – Émilie Maroteaux** :
                 
-Lors de sa victoire, elle a montré un pacing remarquable : elle est restée très proche du plan de course optimal proposé par TrailPacer, toujours à moins de 20 minutes d’écart sur l’ensemble de la course. L’aire bleue représente les coureurs ayant terminé autour de 30 h. On voit qu’elle est partie plus prudemment que les coureurs qui finissent dans le même temps, ce qui illustre parfaitement l’efficacité de sa stratégie.
-""")
-    em2021 = "TrailPacer/image/EM_DDF_2021.png"
-    st.image(em2021, use_container_width=False)
+# Lors de sa victoire, elle a montré un pacing remarquable : elle est restée très proche du plan de course optimal proposé par TrailPacer, toujours à moins de 20 minutes d’écart sur l’ensemble de la course. L’aire bleue représente les coureurs ayant terminé autour de 30 h. On voit qu’elle est partie plus prudemment que les coureurs qui finissent dans le même temps, ce qui illustre parfaitement l’efficacité de sa stratégie.
+# """)
+#     em2021 = "TrailPacer/image/EM_DDF_2021.png"
+#     st.image(em2021, use_container_width=False)
 
-    st.markdown("""**2023 – Émilie Maroteaux** : départ un peu trop rapide, finit 30h30.
+#     st.markdown("""**2023 – Émilie Maroteaux** : départ un peu trop rapide, finit 30h30.
 
-Sur cette édition, elle a probablement commencé un peu vite, avec une première partie de course alignée sur un plan de 29 h 30, pour finalement terminer en 30 h 30. L’aire bleue montre que dans la première moitié de course, elle était plus rapide que les autres coureurs ayant terminé autour de 30 h 30.
-""")
-    em2023 = "TrailPacer/image/EM_DDF_2023.png"
-    st.image(em2023, use_container_width=False)
+# Sur cette édition, elle a probablement commencé un peu vite, avec une première partie de course alignée sur un plan de 29 h 30, pour finalement terminer en 30 h 30. L’aire bleue montre que dans la première moitié de course, elle était plus rapide que les autres coureurs ayant terminé autour de 30 h 30.
+# """)
+#     em2023 = "TrailPacer/image/EM_DDF_2023.png"
+#     st.image(em2023, use_container_width=False)
 
-    st.markdown("Alexandre Boucheix (Casquette Verte) a montré une nette progression sur lors des éditions 2021, 2022 et 2023 de la Diagonale des Fous.")
+#     st.markdown("Alexandre Boucheix (Casquette Verte) a montré une nette progression sur lors des éditions 2021, 2022 et 2023 de la Diagonale des Fous.")
     
-    st.markdown("""**2021 – Casquette Verte** :2021 – Alexandre Boucheix (Casquette Verte)
-Il parcourt les 50 premiers kilomètres sur les allures correspondant à un plan de moins de 25 h. Il ralentit ensuite progressivement jusqu’au km 140 et termine finalement en 28 h
-                """)
-    ab2021 = "TrailPacer/image/AB_DDF_2021.png"
-    st.image(ab2021, use_container_width=False)
+#     st.markdown("""**2021 – Casquette Verte** :2021 – Alexandre Boucheix (Casquette Verte)
+# Il parcourt les 50 premiers kilomètres sur les allures correspondant à un plan de moins de 25 h. Il ralentit ensuite progressivement jusqu’au km 140 et termine finalement en 28 h
+#                 """)
+#     ab2021 = "TrailPacer/image/AB_DDF_2021.png"
+#     st.image(ab2021, use_container_width=False)
 
-    st.markdown("""**2022 – Casquette Verte** :
-    Il part sur un plan de 26 h jusqu’au km 50, mais une chute entraîne un ralentissement brutal. Il effectue une grande partie de la course sur des allures proches d’un plan de 35 h. 
-Son pacing général est totalement décorrélé de celui proposé par TrailPacer ou du pacing des autres coureurs ayant fini autour de 35 h. C’est un exemple typique d’un pacing perturbé par une défaillance majeure.
-                """)
+#     st.markdown("""**2022 – Casquette Verte** :
+#     Il part sur un plan de 26 h jusqu’au km 50, mais une chute entraîne un ralentissement brutal. Il effectue une grande partie de la course sur des allures proches d’un plan de 35 h. 
+# Son pacing général est totalement décorrélé de celui proposé par TrailPacer ou du pacing des autres coureurs ayant fini autour de 35 h. C’est un exemple typique d’un pacing perturbé par une défaillance majeure.
+#                 """)
     
-    ab2022 = "TrailPacer/image/AB_DDF_2022.png"
-    st.image(ab2022, use_container_width=False)
+#     ab2022 = "TrailPacer/image/AB_DDF_2022.png"
+#     st.image(ab2022, use_container_width=False)
 
-    st.markdown("""**2023 – Casquette Verte** : 
-    Il réalise une course exemplaire en suivant quasiment à la perfection l’allure optimale proposée par TrailPacer pour un objectif de 27 h. L’écart est resté inférieur à 10 minutes tout au long de la course… au point qu’Alexandre n’a presque plus besoin de notre appli !
-                """)
-    ab2023 = "TrailPacer/image/AB_DDF_2023.png"
-    st.image(ab2023, use_container_width=False)
+#     st.markdown("""**2023 – Casquette Verte** : 
+#     Il réalise une course exemplaire en suivant quasiment à la perfection l’allure optimale proposée par TrailPacer pour un objectif de 27 h. L’écart est resté inférieur à 10 minutes tout au long de la course… au point qu’Alexandre n’a presque plus besoin de notre appli !
+#                 """)
+#     ab2023 = "TrailPacer/image/AB_DDF_2023.png"
+#     st.image(ab2023, use_container_width=False)
 
-    st.divider()
+#     st.divider()
 
     # Importance
     st.subheader(" Importance du pacing")
     st.markdown(
         """
-       Importance du pacing
 
 •	Optimisation des ressources énergétiques : un pacing adapté permet de mieux utiliser vos réserves de glycogène et de lipides, pour maintenir un effort efficace sur la durée.
 
@@ -255,7 +255,6 @@ def quisommesnous():
 
 
 def votreavis():
-    st.info('Les plans de course à venir : Sainte Lyon, Grand Trail des templiers et Grand Raid Réunion, ...')
 
     st.header("📢 Votre avis nous intéresse !")
 
@@ -273,17 +272,21 @@ def votreavis():
     st.divider()
 
     st.markdown(
-        "📩 Vous pouvez nous écrire directement à **trailpacer.ia@gmail.com**. "
         "Votre retour est précieux pour faire évoluer Trail Pacer et construire, ensemble, "
         "l’outil le plus utile possible pour la communauté des traileurs."
     )
 
+    col1, col2 = st.columns(2)
+    with col1 : 
+        commentaire_form(key="commentaire_projet")
+
+    st.markdown("📩 Vous pouvez aussi nous écrire directement à **trailpacer.ia@gmail.com**. ")
+    st.divider()
     st.markdown(
         "🚀 Trail Pacer n’est qu’une première étape : le projet s’intégrera bientôt dans une initiative "
         "scientifique et communautaire beaucoup plus large... restez connectés !"
     )
 
-    st.divider()
     st.markdown(
         """
         Vous souhaitez suivre nos actualités et découvrir en avant-première les nouveautés de **Trail Pacer** ?  
@@ -309,7 +312,9 @@ def votreavis():
     unsafe_allow_html=True
 )
 
-
+    
+    
+  
 
 import streamlit as st
 

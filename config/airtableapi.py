@@ -35,7 +35,7 @@ def is_valid_email(email):
 
 def email_form(key="user_form"):
     with st.form(key=key):
-        email = st.text_input("Adresse e-mail")
+        email = st.text_input("Adresse mail")
         submitted = st.form_submit_button("Envoyer")
         if submitted:
             # Vérification que tous les champs sont remplis
@@ -54,5 +54,34 @@ def email_form(key="user_form"):
                 st.success("Merci ! Vos informations ont été enregistrées")
             else:
                 st.error("Erreur lors de l'enregistrement.")
+
+
+def save_comment(comment, table_name="commentaires"):
+    url = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{table_name}"
+    headers = {
+        "Authorization": f"Bearer {AIRTABLE_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "fields": {
+            "commentaire": comment,
+        }
+    }
     
-  
+    response = requests.post(url, json=data, headers=headers)
+    if response.status_code == 200:
+        return True
+    else:
+        print(response.text)
+        return False
+     
+def commentaire_form(key='commentaires'):
+    with st.form(key=key):
+        comm = st.text_area("Commentaire")
+        submitted = st.form_submit_button("Envoyer")
+        if submitted:
+            success = save_comment( comm)
+            if success:
+                st.success("Merci ! ")
+            else:
+                st.error("Erreur.")
