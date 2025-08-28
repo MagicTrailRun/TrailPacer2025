@@ -399,7 +399,7 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
     hovermode='x unified',
     title=dict(
         text=f"Profil d'élévation - Objectif {target_time}h" if show_title else '',
-        font=dict(color='white', size=15)  # couleur et taille du titre
+        font=dict(color='black', size=15)  # couleur et taille du titre
     )
 )
  
