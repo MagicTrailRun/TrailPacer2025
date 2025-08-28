@@ -7,11 +7,13 @@ from TrailPacer.gpx_tracer import plot_altitude_profile_area
 from TrailPacer.formatting import format_dataframe,get_base64_image
 from TrailPacer.race_id import color_pente, plot_col_profile_tour_gradient,altitude_metrics, load_gpx, plot_slope_histogram, process_data, load_data_checkpoints, plot_segment_analysis
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
+from config.styles import apply_custom_css
 
 
 st.set_page_config(page_title="TrailPacer", page_icon="🏃‍♂️", layout="wide")
 
 def show():
+    st.set_page_config(layout="wide")
     st.info('Plans de course à venir : Sainté Lyon, Grand Trail des templiers et Grand Raid Réunion...')
 
     img_base64 = get_base64_image("TrailPacer/image/utmb.png")
@@ -86,23 +88,7 @@ def show():
     if df.empty:
         st.error("Impossible de charger les données")
         return
-    st.markdown(
-        """
-        <style>
-        /* Taille et style des labels de tabs */
-        div[data-baseweb="tab"] > button p {
-            font-size: 18px !important;
-            font-weight: 600 !important;
-        }
 
-        /* Espace entre les onglets */
-        div[data-baseweb="tab-list"] {
-            gap: 2rem !important;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
     plan_course1, pacing2, explorer3, postcourse4, avis5, qui6 , cnil7= st.tabs([
         "Plan de course",
