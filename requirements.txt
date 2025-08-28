@@ -45,3 +45,5 @@ matplotlib==3.10.5
 seaborn
 gpxpy
 python-dotenv
+openpyxl
+kaleido
