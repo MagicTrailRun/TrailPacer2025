@@ -290,7 +290,7 @@ def create_col_profile(df_segments, df_track, col_name="Col Ferret"):
                         "T":"Sentier","T2":"Sentier montagne"}
 
     fig = go.Figure()
-    fig.add_traces(get_segments_by_terrain(df_col, terrain_colors, description_type))
+    fig.add_traces(get_segments_by_terrain(df_col, terrain_colors, description_type),)
 
     # Ligne principale
     fig.add_trace(go.Scatter(
@@ -327,7 +327,7 @@ def create_col_profile(df_segments, df_track, col_name="Col Ferret"):
                    range=[altitude_min-20, df_col["altitude"].max()+20]),
         height=None, width=None,
         margin=dict(l=60,r=60,t=80,b=60),
-        legend=dict(font=dict(color='white')), hovermode='x unified'
+        legend=dict(font=dict(color='black')), hovermode='x unified'
     )
     
     # Points pour hover
@@ -342,10 +342,10 @@ def create_col_profile(df_segments, df_track, col_name="Col Ferret"):
         x=1.02, y=0.4,
         xanchor="left", yanchor="top",
         showarrow=False,
-        font=dict(size=10, color='white'),
-        bordercolor="white",
+        font=dict(size=10, color='black'),
+        bordercolor="black",
         borderwidth=1,
-        bgcolor="rgba(27,27,27,0.9)"
+        bgcolor="#D1D4D8"
     )
     alt_metrics = {
     "Altitude min": f"{int(df_col['altitude'].min())} m 🏔️",
