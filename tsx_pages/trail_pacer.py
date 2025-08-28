@@ -138,29 +138,27 @@ def show():
                 
             )
 
+        format = st.radio("Télécharger au format :", ["CSV", "Excel"], horizontal=True)
 
-            bouton1, bouton2 , _ ,_,_,_,_= st.columns(7)
-            with bouton1 :
-                csv = df_display.to_csv(index=False).encode("utf-8")
+        if format == "CSV":
+            data = df_display.to_csv(index=False).encode("utf-8")
+            mime = "text/csv"
+            fname = "temps_de_passage.csv"
+        else:
+            output = io.BytesIO()
+            with pd.ExcelWriter(output, engine="openpyxl") as writer:
+                df_display.to_excel(writer, index=False, sheet_name="Temps_de_passage")
+            data = output.getvalue()
+            mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            fname = "temps_de_passage.xlsx"
 
-                st.download_button(
-                label="📥 Télécharger en CSV",
-                data=csv,
-                file_name="temps_de_passage.csv",
-                mime="text/csv",
-)
-            with bouton2 : 
-            # --- Excel ---
-                output = io.BytesIO()
-                with pd.ExcelWriter(output, engine="openpyxl") as writer:
-                    df_display.to_excel(writer, index=False, sheet_name="Temps_de_passage")
-                excel_data = output.getvalue()
-                st.download_button(
-                        label="📊 Télécharger en Excel",
-                        data=excel_data,
-                        file_name="temps_de_passage.xlsx",
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    )
+        st.download_button(
+            label=f"⬇️ Télécharger ({format})",
+            data=data,
+            file_name=fname,
+            mime=mime,
+        )
+
         st.divider()
         title=f"🏃‍♂️ Profil d'élévation - Objectif {target_time}h"
         st.subheader(title)
