@@ -175,14 +175,14 @@ def show():
         fig=plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config,affichages,target_time)
         st.plotly_chart(fig, use_container_width=True)
        
-        img_bytes = fig.to_image(format="png", width=2000, height=800,scale=2)  
+        # img_bytes = fig.to_image(format="png", width=2000, height=800,scale=2)  
 
-        st.download_button(
-            label="📸 Télécharger en PNG",
-            data=img_bytes,
-            file_name=f"profil_altitude_{year}_{target_time}h.png",
-            mime="image/png",
-        )
+        # st.download_button(
+        #     label="📸 Télécharger en PNG",
+        #     data=img_bytes,
+        #     file_name=f"profil_altitude_{year}_{target_time}h.png",
+        #     mime="image/png",
+        # )
         
     with pacing2 :
         pacing()
