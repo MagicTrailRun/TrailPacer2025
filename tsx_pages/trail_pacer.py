@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 from TrailPacer.data_loader import load_data, get_config
 from TrailPacer.gpx_tracer import plot_altitude_profile_area
 from TrailPacer.formatting import format_dataframe,get_base64_image
-from TrailPacer.race_id import color_pente, plot_col_profile_tour_gradient,altitude_metrics, load_gpx, plot_slope_histogram, process_data, load_data_checkpoints, plot_segment_analysis
+from TrailPacer.race_id import color_pente,altitude_metrics, load_gpx, process_data, load_data_checkpoints, create_col_profile
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
 from config.styles import apply_custom_css
 
@@ -234,8 +234,9 @@ def show():
 
         st.markdown("## Profil par segment")
         option = st.selectbox("Choisis un segment :", [s for s in df_track.shortName.unique() if s != "Départ"])
-        fig, metrics = plot_col_profile_tour_gradient(df_gpx, df_track, col_name=option)
+        fig, metrics = create_col_profile(df_gpx, df_track, col_name=option)
         cols_alt = st.columns(len(metrics[0]))
+        
         
         for i, (label, val) in enumerate(metrics[0].items()):
             cols_alt[i].metric(label, val)
@@ -243,8 +244,7 @@ def show():
         for i, (label, val) in enumerate(metrics[1].items()):
             color = color_pente(val)
             cols_slope[i].markdown(f"<div style='text-align:left; font-size:20px; color:{color}'>{label}<br>{val:.1f}%</div>", unsafe_allow_html=True)
-        st.plotly_chart(fig)
-        
+        st.plotly_chart(fig, use_container_width=True)
         # st.divider()
 
         # st.markdown("## Profil de la course")

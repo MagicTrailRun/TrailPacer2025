@@ -134,9 +134,9 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
         'accent': '#10B981',       # Emeraude
         'warning': '#F59E0B',      # Ambre
         'success': '#059669',      # Vert
-        'background': "#ABB0B6",   # Slate sombre
-        'surface': "#ABB0B6",      # Slate moyen
-        'text': '#F8FAFC'          # Blanc cassé
+        'background': "#D1D4D8",   # Slate sombre
+        'surface': "#D1D4D8",      # Slate moyen
+        'text': "#0C0C0C"          # Blanc cassé
     }
     
     # Création du graphique avec subplot pour plus de contrôle
