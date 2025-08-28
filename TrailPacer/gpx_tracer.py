@@ -123,7 +123,7 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
     """
     Profil d'altitude avec checkpoints, D+/D- par secteur et design moderne
     """
-    min_alt = df_gpx["altitude"].min() - 50
+    min_alt = df_gpx["altitude"].min() - 300
     max_alt = df_gpx["altitude"].max() + 100
     df_gpx['distance_km'] = df_gpx['distance'] / 1000
     
@@ -160,7 +160,8 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
                 smoothing=0.3
             ),
             name='Profil d\'altitude',
-            hovertemplate='<b>Distance:</b> %{x:.1f} km<br><b>Altitude:</b> %{y:.0f} m<extra></extra>'
+            hovertemplate='<b>Distance:</b> %{x:.1f} km<br><b>Altitude:</b> %{y:.0f} m<extra></extra>',
+            showlegend=False,
         ),
 
     )
@@ -173,7 +174,8 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
             mode='lines',
             line=dict(width=0),
             showlegend=False,
-            hoverinfo='skip'
+            hoverinfo='skip',
+            
         ),
 
     )
@@ -262,11 +264,17 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
     start_texts = []
     if affichages:
         if "Heure de passage" in affichages:
-            start_texts.append(f'{config.get("start_day_hour")}')
+            start_texts.append(f'🕐{config.get("start_day_hour")}')
         if "Temps de passage" in affichages:
-            start_texts.append('0h00')
+            start_texts.append('⏱️ 0h00')
+        if "D+ Secteur" in affichages:
+            start_texts.append(f'↗️ 0 m')
+        if "D- Secteur" in affichages:
+            start_texts.append(f'↘️ 0 m')
+        if "Distance Secteur" in affichages :
+            start_texts.append(f'📏0km')
     
-    start_label = "<br>".join(start_texts) if start_texts else f'{config["start"]}'
+    start_label =f"<b>{name}</b><br>" +  "<br>".join(start_texts) if start_texts else f'{config["start"]}'
     
     fig.add_trace(
         go.Scatter(
@@ -289,15 +297,17 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
     )
     
     # Checkpoints avec design moderne
+    idx_high=[]
+    altitude=2000
     for idx, row in df.iterrows():
         name = mapping_ckpts.get(row["Point de passage"], row["Point de passage"])
         dist = row.get("dist_total", None)
-        
         if pd.isna(dist):
             continue
             
         ele = np.interp(dist, df_gpx["distance_km"], df_gpx["altitude"])
-        
+        if ele>altitude :
+            idx_high.append(idx)
         # Construction du texte avec emojis
         texts_h = []
         if affichages:
@@ -320,8 +330,9 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
         label_h = f"<b>{name}</b><br>" + "<br>".join(texts_h) if texts_h else f'📍 {name}'
         
         # Marqueur stylé avec couleur alternée
-        marker_color = colors['warning'] if idx % 2 == 0  else colors['secondary']
-        
+        marker_color = colors['secondary'] if idx in idx_high  else colors['warning']
+        idx_up=[18,4,2,20,22]
+        idx_down=[3,11]
         fig.add_trace(
             go.Scatter(
                 x=[dist],
@@ -329,19 +340,34 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
                 mode="markers+text",
                 marker=dict(
                     color=marker_color,
-                    size=12,
+                    size=10,
                     symbol="circle",
-                    line=dict(width=3, color='white')
+                    line=dict(width=1, color='grey')
                 ),
                 text=[label_h],
-                textposition="top center" if idx%2==1 or idx==4  else "bottom center",
+                textposition="top center" if (idx%2==1 and not idx in idx_down) or idx in idx_up  else "bottom center",
                 textfont=dict(size=10, color=colors['text']),
                 name=name,
                 showlegend=False,
                 #hovertemplate=f'<b>{name}</b><br>Distance: {dist:.1f}km<br>Altitude: {ele:.0f}m<extra></extra>'
             ),
         )
-        
+        # Crée un Scatter invisible avec le même style rouge pour légende
+        if idx==1 :
+            fig.add_trace(
+                go.Scatter(
+                    x=[None],  # aucun point visible
+                    y=[None],
+                    mode="markers",
+                    marker=dict(
+                        color=marker_color,
+                        size=10,
+                        symbol="circle",
+                        line=dict(width=1, color='grey')
+                    ),
+                    name=f"Checkpoints > {altitude} m d'altitude"  # apparaît dans la légende
+                )
+            )
         # Ligne de connexion élégante
         fig.add_shape(
             type="line",
@@ -358,21 +384,26 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
     # === STYLING ULTRA-MODERNE ===
     
     fig.update_layout(
-        height=None,
-        width=None,
-        plot_bgcolor=colors['background'],
-        paper_bgcolor=colors['surface'],
-        font=dict(
-            family="Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-            color=colors['text'],
-            size=12
-        ),
-        autosize=True,
-        margin=dict(l=0, r=0, t=0, b=0),
-        legend=dict(x=0.01, y=0.99, xanchor="left", yanchor="top"),
-        hovermode='x unified',
- 
+        height=None,              # format dossard
+    width=None,              # format dossard
+    autosize=False,
+    margin=dict(l=80, r=20, t=50, b=50),  # marge suffisante pour axes/ticks
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['surface'],
+    font=dict(
+        family="Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+        color=colors['text'], 
+        size=10
+    ),
+    legend=dict(x=0.01, y=0.99, xanchor="left", yanchor="top"),
+    hovermode='x unified',
+    title=dict(
+        text=f"Profil d'élévation - Objectif {target_time}h" if show_title else '',
+        font=dict(color='white', size=15)  # couleur et taille du titre
     )
+)
+ 
+    
 
 
     # Axes du profil principal

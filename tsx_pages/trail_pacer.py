@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+import io
+import openpyxl
+import kaleido
 import plotly.express as px
 import plotly.graph_objects as go
 from TrailPacer.data_loader import load_data, get_config
@@ -10,12 +13,14 @@ from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
 from config.styles import apply_custom_css
 
 
+
 st.set_page_config(page_title="TrailPacer", page_icon="🏃‍♂️", layout="wide")
 
 def show():
+
     st.set_page_config(layout="wide")
     st.info('Plans de course à venir : Sainté Lyon, Grand Trail des templiers et Grand Raid Réunion...')
-
+    apply_custom_css()
     img_base64 = get_base64_image("TrailPacer/image/utmb.png")
     
     st.set_page_config(
@@ -133,27 +138,51 @@ def show():
                 
             )
 
-            # Convertir en CSV
-            csv = df_display.to_csv(index=False).encode("utf-8")
 
-            st.download_button(
+            bouton1, bouton2 , _ ,_,_,_,_= st.columns(7)
+            with bouton1 :
+                csv = df_display.to_csv(index=False).encode("utf-8")
+
+                st.download_button(
                 label="📥 Télécharger en CSV",
                 data=csv,
                 file_name="temps_de_passage.csv",
                 mime="text/csv",
 )
+            with bouton2 : 
+            # --- Excel ---
+                output = io.BytesIO()
+                with pd.ExcelWriter(output, engine="openpyxl") as writer:
+                    df_display.to_excel(writer, index=False, sheet_name="Temps_de_passage")
+                excel_data = output.getvalue()
+                st.download_button(
+                        label="📊 Télécharger en Excel",
+                        data=excel_data,
+                        file_name="temps_de_passage.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    )
+        st.divider()
+        title=f"🏃‍♂️ Profil d'élévation - Objectif {target_time}h"
+        st.subheader(title)
         affichages = st.multiselect(
             "Choisissez les éléments à afficher",
             ["Heure de passage", "Temps de passage", "D+ Secteur", "D- Secteur","Distance Secteur"],
             default=["Heure de passage","D+ Secteur", "D- Secteur"]
 )       
-        title=f"🏃‍♂️ Profil d'élévation - Objectif {target_time}h"
-        st.header(title)
+
         year=2025
         df_gpx=load_gpx(f"data/TrailPacer/{course}/tracks/gpx_{year}.json")
-        st.plotly_chart(plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config,affichages,target_time), use_container_width=True)
+        fig=plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config,affichages,target_time)
+        st.plotly_chart(fig, use_container_width=True)
        
-        
+        img_bytes = fig.to_image(format="png", width=2000, height=800,scale=2)  
+
+        st.download_button(
+            label="📸 Télécharger en PNG",
+            data=img_bytes,
+            file_name=f"profil_altitude_{year}_{target_time}h.png",
+            mime="image/png",
+        )
         
     with pacing2 :
         pacing()
@@ -250,8 +279,7 @@ def show():
         votreavis()
 
     with qui6 :
-        st.header("Qui sommes-nous?")
-        st.markdown(quisommesnous())
+        quisommesnous()
 
     with cnil7 :
         cnil()
