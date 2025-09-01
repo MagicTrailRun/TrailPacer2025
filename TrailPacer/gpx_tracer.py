@@ -245,7 +245,7 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
                     y=[None],
                     mode="markers",
                     marker=dict(
-                        color=marker_color,
+                        color=colors['secondary'],
                         size=10,
                         symbol="circle",
                         line=dict(width=1, color='grey')

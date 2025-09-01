@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import io
 import openpyxl
-import kaleido
 import plotly.express as px
 import plotly.graph_objects as go
 from TrailPacer.data_loader import load_data, get_config
@@ -10,6 +9,7 @@ from TrailPacer.gpx_tracer import plot_altitude_profile_area
 from TrailPacer.formatting import format_dataframe,get_base64_image
 from TrailPacer.race_id import color_pente,altitude_metrics, load_gpx, process_data, load_data_checkpoints, create_col_profile
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
+from TrailPacer.post_course import show_post_course
 from config.styles import apply_custom_css
 
 
@@ -160,7 +160,7 @@ def show():
         )
 
         st.divider()
-        title=f"🏃‍♂️ Profil d'élévation - Objectif {target_time}h"
+        title=f"⛰️ Profil d'élévation - Objectif {target_time}h"
         st.subheader(title)
         affichages = st.multiselect(
             "Choisissez les éléments à afficher",
@@ -263,11 +263,7 @@ def show():
     with postcourse4:
        
         st.info("Page en cours de construction...")
-        st.markdown(
-        """ Visualiser son pacing par rapport au plan Trail Pacer et au peloton.
-        Comparaison entre coureurs
-        """
-        )
+        show_post_course()
 
 
 
