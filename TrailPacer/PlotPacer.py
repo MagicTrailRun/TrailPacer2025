@@ -9,11 +9,13 @@ import json
 import os
 class PacingPlotter():
 
-    def __init__(self, year, event, course, offline=True,drop_ckpt=None, loadconfig=True):
+    def __init__(self, year, event, course, is_elite=False,offline=True,drop_ckpt=None, loadconfig=True,reduction=0.95):
         self.event = event
         self.course = course
         self.year = year
         self.offline = offline
+        self.is_elite=is_elite
+        self.reduction=reduction
         self.root_data = os.path.join(f"data/TrailPacer/", event or "")
         #self.root_data = os.path.join("/data/TrailPacer", event or "")
         self.output_pth = f"data/TrailPacer/{course}/"
@@ -45,36 +47,29 @@ class PacingPlotter():
             self.temps_cible_h = self.config["temps_cible"]
             self.ref_group_delay = self.config["ref_group_delay"]
     def load_ranks(self, year, event, course):
-        if self.offline:
-            pth = f"{self.output_pth}/ranks/{course}_{year}.csv"
-            return pd.read_csv(pth, index_col=self._idx_runner)
-        doc = self._find_one(self.collection_ranks, year=year, event=event, course=course)
-        return pd.DataFrame(doc['data']).set_index(self._idx_runner)
+
+        pth = f"{self.output_pth}/ranks/{course}_{year}.csv"
+        return pd.read_csv(pth, index_col=self._idx_runner)
+    
 
     def load_ref_pacing(self, year, event, course):
-        if self.offline:
-            pth = f"{self.output_pth}/ref_pacing/{course}_{year}.csv"
-            df = pd.read_csv(pth, index_col='pk')
-            return df
-        doc = self._find_one(self.collection_ref_pacing, year=year, event=event, course=course)
-        df = pd.DataFrame(doc['data']).set_index(['pk']).drop(columns='year')
+        pth = f"{self.output_pth}/ref_pacing/{course}_{year}.csv"
+        df = pd.read_csv(pth, index_col='pk')
         return df
+       
     def load_altitude_profile(self, year, course):
-        if self.offline:
-            pth = f"{self.output_pth}/profile/{course}_{year}.csv"
-            return pd.read_csv(pth, sep=';').rename(columns={'km': 'dist_total'})
-        doc = self._find_one(self.collection_altitude_profiles, year=year, course=course)
-        return pd.DataFrame(doc['data']).rename(columns={'km': 'dist_total'})
+
+        pth = f"{self.output_pth}/profile/{course}_{year}.csv"
+        return pd.read_csv(pth, sep=';').rename(columns={'km': 'dist_total'})
+       
     
     def load_times(self, year, event, course):
-        if self.offline:
-            pth = f"{self.output_pth}/times/{course}_{year}.csv"
-            return pd.read_csv(pth, index_col=self._idx_runner, parse_dates=True)
-        doc = self._find_one(self.collection_times, year=year, event=event, course=course)
-        df = (pd.DataFrame(doc['data'])
-              .set_index(self._idx_runner)
-              .apply(lambda x: pd.to_timedelta(x)))
-        return df  
+
+        pth = f"{self.output_pth}/times/{course}_{year}.csv"
+        df=pd.read_csv(pth, index_col=self._idx_runner)
+        return df.apply(pd.to_timedelta, errors="coerce")
+    
+        
     def hstring_to_hours(self,t):
         if t==0 :
             return 0
@@ -100,10 +95,10 @@ class PacingPlotter():
         
     def get_df_splits(self, bibs, df_abs, names):
         col_split_ref =  self._get_split_reference(df_abs, names)
-
         df = df_abs[[*names, 'ref_pacing']]
+
         df = (df
-              .apply(lambda x: x - df[col_split_ref])
+              .apply(lambda x: x - (df[col_split_ref])*self.reduction)
               .drop(columns=[col_split_ref])
               .apply(lambda x: x.apply(lambda x: self.printable_hours(x, print_0=False)))
               )
@@ -156,20 +151,37 @@ class PacingPlotter():
                        if temps_cible is None
                        else temps_cible)
         
-        ref_pacing = self.get_ref_pacing(temps_cible=temps_cible)
+        
+        ref_pacing = self.get_ref_pacing(temps_cible=(temps_cible))
         df = runner_pacings.join(ref_pacing)
         return df, temps_cible, names
     
 
     @staticmethod
     def printable_hours(hr, print_0=True):
+        """
+        Convertit une durée (en heures, float) en format lisible : 1h05, 3', etc.
+        Gère aussi les valeurs négatives.
+        """
+        if pd.isna(hr):
+            return ""
+
+        sign = "-" if hr < 0 else ""
+        hr = abs(hr)
+
         HH = int(hr)
-        MM = int((hr-HH)*60)
+        MM = int(round((hr - HH) * 60))
+
+        # Ajustement si arrondi à 60 minutes
+        if MM == 60:
+            HH += 1
+            MM = 0
+
         if MM == 0 and (not print_0):
-            return f'{HH}h'
+            return f"{sign}{HH}h"
         if HH == 0:
-            return f"{MM}'" 
-        return f'{HH}h{MM:02}'
+            return f"{sign}{MM}'"
+        return f"{sign}{HH}h{MM:02d}"
     
     @staticmethod
     def format_hr_to_time(x):
@@ -191,12 +203,13 @@ class PacingPlotter():
         df = (df
               .set_index('dist_total', append=True)
               .sort_values('dist_total'))
-        self.dffff = df
+        #self.df = df
         reference_pacing = df.ref_pacing
         
         df_plotted_relative_pacings = (df
                                        .apply(lambda x: x.div(reference_pacing))
                                        .mul(finish_time))
+       
         return (df_plotted_relative_pacings,
                 df.droplevel('dist_total'),
                 finish_time,
@@ -256,23 +269,24 @@ class PacingPlotter():
                       textcoords='offset points',
                       color=self.color_hlines,
                       weight='bold',
-                      fontsize=13)
+                      fontsize=10)
         
         ax.axhline(y=yr_finish,
                     alpha=0.8,
-                    linewidth=4,
+                    linewidth=2,
                     
-                    **line_kwargs)
+                    **line_kwargs,
+                label='Plan de course TrailPacer')
                 
         ax.annotate(xy=(0, yr_finish),
-                    text='Plan de course proposé pour ' +self.printable_hours(yr_finish),
-                    xytext=(5, 20),
+                    text=self.printable_hours(yr_finish),
+                    xytext=(5, 5),
                     **kwargs)
         for y in hlines:
             if abs(y-yr_finish)>gap/2:
                 ax.axhline(y=y,
                            alpha=0.5,
-                           linewidth=3,
+                           linewidth=1,
                            
                            **line_kwargs)
                 
@@ -290,13 +304,14 @@ class PacingPlotter():
                          alpha=0.1)
         return ax
     
-    def _draw_splits(self, ax, df_relative, df_splits, splits_reference, names, yr_spread, yr_min, yr_max):
+    def _draw_splits(self, ax, df_relative, df_splits, splits_reference, names, yr_spread, yr_min, yr_max,y_finish):
         
         plotted_elevation = self._get_plotted_elevation(self.df_checkpoints.elevation,
                                                         yr_spread,
                                                         yr_min)
         self.df_checkpoints['plotted_elevation'] = plotted_elevation
         
+
         col_ref = 'ref_pacing' if splits_reference is None else splits_reference
         col_splits = df_splits.columns[0]
         for i, (ckpt, row) in enumerate(self.df_checkpoints.iterrows()):
@@ -305,12 +320,14 @@ class PacingPlotter():
             
             y_ref = df_relative.loc[ckpt, col_ref]
             y_splits = df_relative.loc[ckpt, col_splits]
-            y_finish = df_relative.loc[ckpt, 'ref_pacing']
+            ecarts=y_splits-y_finish
+            #y_finish = df_relative.loc[ckpt, 'ref_pacing']
             ax.vlines(x=row['dist_total'],
                        linestyle='--',
                        color='tab:gray',
-                       ymin=y_ref,
+                       #ymin=y_ref,
                        ymax=y_splits,
+                       ymin=y_finish,
                        alpha=0.5)
             ax.annotate(xy=(row['dist_total'], yr_max),
                         text=' '+ckpt,
@@ -330,7 +347,8 @@ class PacingPlotter():
                                   edgecolor='none',
                                   linewidth=0.8,
                                   facecolor=self.color_hlines,),
-                        label='Ecarts')
+                        #label='Ecarts'
+                        )
             
         return ax
     
@@ -353,7 +371,8 @@ class PacingPlotter():
                     df_pace[name],
                     color=color,
                     linewidth=3,
-                    label=name)
+                    label=name,
+                    )
         
             for ckpt, row in df_pace.iterrows():
                 if ckpt in self.drop_ckpt:
@@ -414,21 +433,25 @@ class PacingPlotter():
                           boxstyle="round,pad=0.3",)
 
 
-
-        patch_splits = mpatches.FancyBboxPatch((0, 0),
+        patch_peloton = mpatches.Patch(color=self.color_cofinishers,
+                                       label=f'Peloton {self.printable_hours(temps_cible)}')
+       
+        handles.append(patch_peloton) 
+ 
+        if not self.is_elite :
+            patch_splits = mpatches.FancyBboxPatch((0, 0),
                                             color=self.color_hlines,
                                             label='Écart cumulé',
                                             **kwargs_box)
+            handles.append(patch_splits)
         
-        patch_peloton = mpatches.Patch(color=self.color_cofinishers,
-                                       label=f'Peloton {self.printable_hours(temps_cible)}')
-        
-        handles.append(patch_peloton) 
-        handles.append(patch_splits) 
+
+
 
         axr.legend(handles=handles,
                    loc='lower left',
                    ncol=4)
+        
         return axr
     
     def _get_split_reference(self, df, names):
@@ -466,8 +489,7 @@ class PacingPlotter():
         df_runners_rank = self._get_ranks(bibs)
         #TODO : integrate split ref into df_splits.
         df_splits, splits_reference = self.get_df_splits(bibs, df_absolute, names)
-        yr_finish = temps_cible
-        
+        yr_finish = round(temps_cible*self.reduction)
         x_max = df_relative.index.get_level_values('dist_total').max()
 
         yr_min  = df_relative[names].min().min()*0.9
@@ -476,7 +498,8 @@ class PacingPlotter():
         
         fig, axl = plt.subplots(figsize=(17,7))
         axr = axl.twinx()
-        axr = self._draw_splits(axr, df_relative, df_splits, splits_reference, names, yr_spread, yr_min, yr_max)
+        if not self.is_elite : 
+            axr = self._draw_splits(axr, df_relative, df_splits, splits_reference, names, yr_spread, yr_min, yr_max,yr_finish)
         axr = self._draw_altitude_profile(axr, yr_spread, yr_min)
         axr = self._draw_copacing(axr, df_relative, names)
         axr = self._draw_runner_pacing(axr, df_relative, df_runners_rank, names)

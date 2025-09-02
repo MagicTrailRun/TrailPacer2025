@@ -12,7 +12,7 @@ from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
 from TrailPacer.post_course import show_post_course
 from config.styles import apply_custom_css
 
-
+print("___________________________________________")
 
 st.set_page_config(page_title="TrailPacer", page_icon="🏃‍♂️", layout="wide")
 
@@ -118,10 +118,12 @@ def show():
         st.markdown(" ### Fixez votre objectif de temps pour l’arrivée,  Trail Pacer calcule vos temps de passage.")
         col1, col2, col3 = st.columns([2,1,2])
         with col1:
-            target_time = st.slider("",
-                config['temps_cible_start'],
-                config['temps_cible_end'],
-                config['temps_cible_middle']
+            target_time = st.slider("Sélectionnez le temps cible",
+                min_value=config['temps_cible_start'],
+                max_value=config['temps_cible_end'],
+                value=config['temps_cible_middle'],
+                label_visibility="collapsed"
+
             )
         if not df.empty:
            
@@ -190,13 +192,13 @@ def show():
         # Charger les données
         df_track = load_data_checkpoints(f"data/TrailPacer/{course}/tracks/{course}_checkpoints_2025.csv")
         df_track=process_data(df_track)
-        df_track_runners=df_track[['name','dateFirstRunners', 'dateLastRunners', 'distCum_km']]
+        df_track_runners=df_track[['name','dateFirstRunners', 'dateLastRunners', 'distCum_km']].copy()
         df_track_runners.loc[df_track.index[0], "name"] = "Départ"
         df_track_runners["name"] = df_track_runners["name"].replace(mapping_ckpts)
         df_track_runners = df_track_runners[~df_track_runners['name'].isin(config['drop_ckpts'])]
 
 
-        df_timing = df_display[['Point de passage', f'temps_cumule_med_{target_time}']]
+        df_timing = df_display[['Point de passage', f'temps_cumule_med_{target_time}']].copy()
         
         df_timing.rename(columns={f'temps_cumule_med_{target_time}': 'Temps cumulé'}, inplace=True)
 
@@ -262,7 +264,6 @@ def show():
 
     with postcourse4:
        
-        st.info("Page en cours de construction...")
         show_post_course()
 
 

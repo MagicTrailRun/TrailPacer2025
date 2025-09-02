@@ -396,3 +396,35 @@ def cnil():
         vous pouvez adresser une réclamation à la CNIL : [www.cnil.fr](https://www.cnil.fr)
         """
     )
+
+
+
+
+def explication_tab_post_course():
+    
+    st.subheader("Pour mieux comprendre comment lire ce graphique, voici quelques repères : ")
+    st.markdown("""
+        **Légende** :
+                    
+    - Courbe rouge : votre rythme en course (pacing réel).
+
+    - Tirets horizontaux : plans de course optimaux TrailPacer (repères servant de comparaison avec votre pacing). L’un d’entre eux est **mis en évidence (gras)** : il correspond à un temps cible ~5% plus rapide que votre résultat final, arrondi à l’heure. Les écarts affichés sont calculés par rapport à ce plan.
+
+    - Zone bleue : zone de performance des coureurs proches (temps final similaire au vôtre).
+        
+    **Clés de lecture :**
+
+   - Si la courbe rouge est sous une ligne horizontale → vous êtes plus rapide sur ce secteur.
+
+    - Si elle est au-dessus → vous êtes plus lent sur ce secteur.
+
+    - Si la courbe rouge est parallèle à une ligne horizontale en pointillés (plan TrailPacer) → cela signifie que, sur ces secteurs, votre pacing est comparable à celui recommandé par TrailPacer pour terminer dans le temps de course correspondant.
+
+    """)
+
+    st.success('NB : la comparaison peut se faire par rapport au plan de course optimal TrailPacer, mais aussi à la zone de performance des coureurs proches.')
+    st.markdown("""                       
+    **Constat TrailPacer :**
+
+    La majorité des coureurs partent trop vite en début de course, ce qui entraîne un ralentissement marqué par la suite. Suivre un pacing plus progressif, tel que suggéré par TrailPacer, permet généralement de préserver l’allure et la régularité jusqu’à l’arrivée.
+    """ )

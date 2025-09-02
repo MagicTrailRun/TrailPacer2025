@@ -54,8 +54,8 @@ def format_dataframe(df,target_time):
             col_heure_passage,
             'barriere_horaire'
         ]]
-
-        df_display['barriere_horaire'] = df_display['barriere_horaire'].apply(lambda x : decimal_to_hhmm(x))      
+        df_display = df_display.copy()
+        df_display['barriere_horaire_hhmm'] = df_display['barriere_horaire'].map(decimal_to_hhmm)     
 
         column_config={
                     "dist_total": st.column_config.NumberColumn("km total", format="%.1f"),
