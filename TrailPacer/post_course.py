@@ -303,9 +303,10 @@ def show_runner_info(info_runner):
 
     st.subheader(f"{runner['name']} | Doss. {runner['bib']} | {runner['country']} | FINISHER")
     st.write(f"**Sexe :** {runner['sex']} | **Catégorie :** {runner['category']} | **Club :** {runner['club']}")
-    st.markdown(f"#### Temps final: { runner["final_time"]}")
     if runner["diff_to_first"] and  runner["rank"]!=1:
-        st.write(f"Écart avec 1er : {runner['diff_to_first'] }")
+        st.markdown(f"#### Temps final: { runner["final_time"]} | Écart avec 1er : {runner['diff_to_first']}")
+    else :
+        st.markdown(f"#### Temps final: { runner["final_time"]}")
  
 
     col1, col2, col3 = st.columns(3)
@@ -326,11 +327,11 @@ def show_post_course():
 
     try:
         # Construire liste mixte nom + dossard
-        options = [f"{info['name']} (Doss. {bib})" for bib, info in results.items()]
-        choice = st.selectbox("Rechercher un coureur", options)
+        options =["--"]+ [f"{info['name']} (Doss. {bib})" for bib, info in results.items()]
+        choice = st.selectbox("Choisissez un coureur pour lancer l’analyse", options)
 
-        if not choice:
-            st.info("Sélectionnez un coureur pour voir l'analyse.")
+        if not choice or choice =='--' :
+            st.info("Sélectionnez un coureur pour lancer l'analyse.")
             return
 
         # Extraire le dossard

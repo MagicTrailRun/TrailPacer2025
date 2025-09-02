@@ -100,7 +100,7 @@ class PacingPlotter():
         df = (df
               .apply(lambda x: x - (df[col_split_ref])*self.reduction)
               .drop(columns=[col_split_ref])
-              .apply(lambda x: x.apply(lambda x: self.printable_hours(x, print_0=False)))
+              .apply(lambda x: x.apply(lambda x: self.printable_hms(x, print_0=False)))
               )
         return df, col_split_ref
         
@@ -183,6 +183,36 @@ class PacingPlotter():
             return f"{sign}{MM}'"
         return f"{sign}{HH}h{MM:02d}"
     
+
+    @staticmethod
+    def printable_hms(hr, print_0=True):
+        """
+        Convertit une durée en heures (float) en format hh:mm:ss.
+        Gère les valeurs négatives et les NaN.
+        """
+        if pd.isna(hr):
+            return ""
+        
+        sign = "-" if hr < 0 else "+"
+        hr = abs(hr)
+        
+        HH = int(hr)
+        MM = int((hr - HH) * 60)
+        SS = int(round(((hr - HH) * 60 - MM) * 60))
+        
+        # Ajustement si arrondi à 60 secondes
+        if SS == 60:
+            MM += 1
+            SS = 0
+        if MM == 60:
+            HH += 1
+            MM = 0
+        
+        # if not print_0 and HH == 0 and MM == 0:
+        #     return f"{sign}{SS}s"
+        
+        return f"{sign}{HH:02d}:{MM:02d}:{SS:02d}"
+
     @staticmethod
     def format_hr_to_time(x):
         x = int(x*60)
@@ -341,6 +371,7 @@ class PacingPlotter():
                         verticalalignment='center', 
                         horizontalalignment='center',
                         rotation=90,
+                        fontsize=8,
                         color='w',
                         zorder=6,
                         bbox=dict(boxstyle="round,pad=0.3",
@@ -370,7 +401,7 @@ class PacingPlotter():
             ax.plot(df_pace['dist_total'],
                     df_pace[name],
                     color=color,
-                    linewidth=3,
+                    linewidth=2,
                     label=name,
                     )
         
@@ -514,7 +545,8 @@ class PacingPlotter():
     
     def _init_color_cycle(self):
         self.color_cycle = it.cycle({u'#ff6b6c',
-                                    u'#ffc145',})
+                                   # u'#ffc145',
+                                   })
         
     def plot(self, bib, temps_cible=None):
         self._init_color_cycle()

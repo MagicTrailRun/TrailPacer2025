@@ -418,7 +418,7 @@ def explication_tab_post_course():
 
     - Si elle est au-dessus → vous êtes plus lent sur ce secteur.
 
-    - Si la courbe rouge est parallèle à une ligne horizontale en pointillés (plan TrailPacer) → cela signifie que, sur ces secteurs, votre pacing est comparable à celui recommandé par TrailPacer pour terminer dans le temps de course correspondant.
+    - Si la courbe rouge suite une ligne horizontale en pointillés (plan TrailPacer) → cela signifie que, sur ces secteurs, votre pacing est comparable à celui recommandé par TrailPacer pour terminer dans le temps de course correspondant.
 
     """)
 
