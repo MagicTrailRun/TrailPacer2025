@@ -94,11 +94,11 @@ class PacingPlotter():
         return df
         
     def get_df_splits(self, bibs, df_abs, names):
-        col_split_ref =  self._get_split_reference(df_abs, names)
+        split_ref,col_split_ref =  self._get_split_reference(df_abs, names)
         df = df_abs[[*names, 'ref_pacing']]
 
         df = (df
-              .apply(lambda x: x - (df[col_split_ref])*self.reduction)
+              .apply(lambda x: x - (split_ref))
               .drop(columns=[col_split_ref])
               .apply(lambda x: x.apply(lambda x: self.printable_hms(x, print_0=False)))
               )
@@ -341,45 +341,47 @@ class PacingPlotter():
                                                         yr_min)
         self.df_checkpoints['plotted_elevation'] = plotted_elevation
         
-
-        col_ref = 'ref_pacing' if splits_reference is None else splits_reference
+    
+        #col_ref = 'ref_pacing' if splits_reference is None else splits_reference
         col_splits = df_splits.columns[0]
         for i, (ckpt, row) in enumerate(self.df_checkpoints.iterrows()):
             if i==0:
                 continue
             
-            y_ref = df_relative.loc[ckpt, col_ref]
+            y_ref = df_relative.loc[ckpt, splits_reference]  if splits_reference!="ref_pacing" else y_finish
             y_splits = df_relative.loc[ckpt, col_splits]
-            ecarts=y_splits-y_finish
+
             #y_finish = df_relative.loc[ckpt, 'ref_pacing']
-            ax.vlines(x=row['dist_total'],
-                       linestyle='--',
-                       color='tab:gray',
-                       #ymin=y_ref,
-                       ymax=y_splits,
-                       ymin=y_finish,
-                       alpha=0.5)
+
             ax.annotate(xy=(row['dist_total'], yr_max),
                         text=' '+ckpt,
                         verticalalignment='top', 
                         horizontalalignment='right',
                         rotation=90,
                         color='k',)
-
-            ax.annotate(xy=(row['dist_total'], y_finish),
-                        text=df_splits.loc[ckpt, col_splits],
-                        verticalalignment='center', 
-                        horizontalalignment='center',
-                        rotation=90,
-                        fontsize=8,
-                        color='w',
-                        zorder=6,
-                        bbox=dict(boxstyle="round,pad=0.3",
-                                  edgecolor='none',
-                                  linewidth=0.8,
-                                  facecolor=self.color_hlines,),
-                        #label='Ecarts'
-                        )
+            
+            if not self.is_elite : 
+                ax.vlines(x=row['dist_total'],
+                        linestyle='--',
+                        color='tab:gray',
+                        #ymin=y_ref,
+                        ymax=y_splits,
+                        ymin=y_ref,
+                        alpha=0.5)
+                ax.annotate(xy=(row['dist_total'], y_ref),
+                            text=df_splits.loc[ckpt, col_splits],
+                            verticalalignment='center', 
+                            horizontalalignment='center',
+                            rotation=90,
+                            fontsize=8,
+                            color='w',
+                            zorder=6,
+                            bbox=dict(boxstyle="round,pad=0.3",
+                                    edgecolor='none',
+                                    linewidth=0.8,
+                                    facecolor=self.color_hlines,),
+                            #label='Ecarts'
+                            )
             
         return ax
     
@@ -487,8 +489,9 @@ class PacingPlotter():
     
     def _get_split_reference(self, df, names):
         if len(names) == 1:
-            return 'ref_pacing'
-        return df[names].loc[self.finish].idxmin()
+            return (round(df['ref_pacing']*self.reduction), 'ref_pacing')
+        col=df[names].loc[self.finish].idxmin()
+        return (df[col], col)
         
     def _format_axes(self, axr, axl, yr_min, yr_max, xmax, names):
         axr.set_ylim(yr_min, yr_max)
@@ -529,8 +532,8 @@ class PacingPlotter():
         
         fig, axl = plt.subplots(figsize=(17,7))
         axr = axl.twinx()
-        if not self.is_elite : 
-            axr = self._draw_splits(axr, df_relative, df_splits, splits_reference, names, yr_spread, yr_min, yr_max,yr_finish)
+         
+        axr = self._draw_splits(axr, df_relative, df_splits, splits_reference, names, yr_spread, yr_min, yr_max,yr_finish)
         axr = self._draw_altitude_profile(axr, yr_spread, yr_min)
         axr = self._draw_copacing(axr, df_relative, names)
         axr = self._draw_runner_pacing(axr, df_relative, df_runners_rank, names)
@@ -545,7 +548,7 @@ class PacingPlotter():
     
     def _init_color_cycle(self):
         self.color_cycle = it.cycle({u'#ff6b6c',
-                                   # u'#ffc145',
+                                   u'#ffc145',
                                    })
         
     def plot(self, bib, temps_cible=None):
