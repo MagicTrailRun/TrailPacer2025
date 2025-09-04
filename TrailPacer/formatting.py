@@ -48,25 +48,25 @@ def format_dataframe(df,target_time):
             "dist_secteur",
             "dp_tot_secteur",
             "dm_tot_secteur",
+            col_temps_total,
             col_temps_secteur,
             "Allure secteur",
-            col_temps_total,
-            col_heure_passage,
-            'barriere_horaire'
+
+            col_heure_passage
         ]]
         df_display = df_display.copy()
-        df_display['barriere_horaire_hhmm'] = df_display['barriere_horaire'].map(decimal_to_hhmm)     
+        df_display['barriere_horaire_hhmm'] = df['barriere_horaire'].map(decimal_to_hhmm)     
 
         column_config={
-                    "dist_total": st.column_config.NumberColumn("km total", format="%.1f"),
-                    "dist_secteur": st.column_config.NumberColumn("km secteur", format="%.1f"),
+                    "dist_total": st.column_config.NumberColumn("Km total", format="%.1f"),
+                    "dist_secteur": st.column_config.NumberColumn("Km secteur", format="%.1f"),
                     "dp_tot_secteur": st.column_config.NumberColumn("D+ secteur", format="%d"),
                     "dm_tot_secteur": st.column_config.NumberColumn("D- secteur", format="%d"),
                     col_temps_secteur: st.column_config.TextColumn("Temps secteur"),
                     "Allure secteur": st.column_config.TextColumn("Allure secteur"),
-                    col_temps_total: st.column_config.TextColumn("Temps cumulé"),
+                    col_temps_total: st.column_config.TextColumn("Temps cumulé cible"),
                     col_heure_passage: st.column_config.TextColumn("Heure passage"),
-                    "barriere_horaire" : st.column_config.TextColumn('Barrière horaire')
+                    "barriere_horaire_hhmm" : st.column_config.TextColumn('Barrière horaire')
                 }
         
     return(df_display, column_config)

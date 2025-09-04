@@ -9,13 +9,14 @@ import json
 import os
 class PacingPlotter():
 
-    def __init__(self, year, event, course, is_elite=False,offline=True,drop_ckpt=None, loadconfig=True,reduction=0.95):
+    def __init__(self, year, event, course, is_elite=False,offline=True,drop_ckpt=None, loadconfig=True,reduction=0.95,show_peloton=True):
         self.event = event
         self.course = course
         self.year = year
         self.offline = offline
         self.is_elite=is_elite
         self.reduction=reduction
+        self.show_peloton=show_peloton
         self.root_data = os.path.join(f"data/TrailPacer/", event or "")
         #self.root_data = os.path.join("/data/TrailPacer", event or "")
         self.output_pth = f"data/TrailPacer/{course}/"
@@ -466,10 +467,11 @@ class PacingPlotter():
                           boxstyle="round,pad=0.3",)
 
 
-        patch_peloton = mpatches.Patch(color=self.color_cofinishers,
-                                       label=f'Peloton {self.printable_hours(temps_cible)}')
-       
-        handles.append(patch_peloton) 
+        if self.show_peloton : 
+            patch_peloton = mpatches.Patch(color=self.color_cofinishers,
+                                        label=f'Peloton {self.printable_hours(temps_cible)}')
+        
+            handles.append(patch_peloton) 
  
         if not self.is_elite :
             patch_splits = mpatches.FancyBboxPatch((0, 0),
@@ -535,7 +537,8 @@ class PacingPlotter():
          
         axr = self._draw_splits(axr, df_relative, df_splits, splits_reference, names, yr_spread, yr_min, yr_max,yr_finish)
         axr = self._draw_altitude_profile(axr, yr_spread, yr_min)
-        axr = self._draw_copacing(axr, df_relative, names)
+        if self.show_peloton:
+            axr = self._draw_copacing(axr, df_relative, names)
         axr = self._draw_runner_pacing(axr, df_relative, df_runners_rank, names)
         axr = self._draw_uniform_background(axr, yr_min, yr_max, x_max, )
         axr = self._draw_hlines(axr, yr_finish, yr_min, yr_max)

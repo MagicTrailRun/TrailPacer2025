@@ -8,7 +8,6 @@ import traceback
 
 
 
-
 # -----------------------
 # CONFIG
 # -----------------------
@@ -135,15 +134,22 @@ def post_course_detail(df_splits,df_best) :
     })
     
    
-   
-    st.dataframe(
+    styled = (
         df_table.style
             .map(color_ecart, subset=["Ecart peloton", "Ecart élite","Ecart peloton %","Ecart élite %"])
             .map(color_troncon, subset=["Tronçon"])
-            .set_table_attributes('style="width:100%"'),
-        height=(35*len(df_table))+50,
-        hide_index=True,
+            .set_properties(**{"text-align": "center"})   # centrage
+            .set_table_attributes('style="width:100%"')   # largeur tableau
     )
+
+    st.dataframe(
+        styled,
+        height=(35*len(df_table))+50,
+        hide_index=True
+    )
+
+    
+    
 
 
 def post_course_pente(df_splits):
@@ -174,7 +180,8 @@ def post_course_pente(df_splits):
         recap_pente_df.style
             .map(color_ecart, subset=["Ecart peloton", "Ecart élite","Ecart peloton %","Ecart élite %"])
             .map(lambda v: "background-color: #ffcccc" if "⬆" in v else "background-color: #ccffcc" if "⬇" in v else "", subset=["Catégorie"])
-            .set_table_attributes('style="width:100%"'),
+            .set_table_attributes('style="width:100%"')
+            .set_properties(**{"text-align": "center"}).hide(axis="index"),
         height=(35*len(recap_pente_df))+50,
         hide_index=True,
     )
@@ -226,7 +233,6 @@ def post_course_quarts(df_splits):
 def show_coefficient_variation(df_cv, bib):
     # Sélection du coureur
     df_cv_runner = df_cv[df_cv["Doss."] == bib].copy()
-    
     # Renommer les colonnes avec des labels clairs
     rename_dict = {
         "variation_coefficient": "Coeff. variation",
@@ -242,19 +248,20 @@ def show_coefficient_variation(df_cv, bib):
 
     # Configuration des colonnes pour Streamlit
     column_config = {
-        "Coeff. variation": st.column_config.NumberColumn("Coeff. variation (%)", format="%.2f"),
-        "Vitesse moy. (km/h)": st.column_config.NumberColumn("Vitesse moy. (km/h)", format="%.2f"),
-        "Coeff. médian (peloton)": st.column_config.NumberColumn("Coeff. peloton médian (%)", format="%.2f"),
-        "Écart peloton": st.column_config.NumberColumn("Écart peloton", format="%.2f"),
-        "Coeff. médian (élite)": st.column_config.NumberColumn("Coeff. élite médian (%)", format="%.2f"),
-        "Écart élite": st.column_config.NumberColumn("Écart élite", format="%.2f"),
+        "Coeff. variation": st.column_config.NumberColumn("Coeff. variation (%)", format="%.1f"),
+        "Vitesse moy. (km/h)": st.column_config.NumberColumn("Vitesse moy. (km/h)", format="%.1f"),
+        "Coeff. médian (peloton)": st.column_config.NumberColumn("Coeff. peloton médian (%)", format="%.1f"),
+        "Écart peloton": st.column_config.NumberColumn("Écart peloton", format="%.1f"),
+        "Coeff. médian (élite)": st.column_config.NumberColumn("Coeff. élite médian (%)", format="%.1f"),
+        "Écart élite": st.column_config.NumberColumn("Écart élite", format="%.1f"),
     }
 
     # Affichage Streamlit
     st.dataframe(
         df_cv_runner.style
             .map(color_ecart, subset=["Écart peloton", "Écart élite"])
-            .set_table_attributes('style="width:100%"'),
+            .set_table_attributes('style="width:100%"')
+            .set_properties(**{"text-align": "center"}).hide(axis="index"),
         #height=(35 * len(df_cv_runner)) + 50,
         hide_index=True,
         column_config=column_config
@@ -266,38 +273,39 @@ def show_coefficient_variation(df_cv, bib):
 def show_post_course_table(info,df_best,df_cv,bib):
     
     st.header("Temps de passage et écarts : où avez-vous gagné ou perdu du temps?")
-    st.markdown(
-    """
-    **Les différents tableaux ci-dessous comparent vos performances :**
+    with st.expander("📘 Cliquez pour plus d'infos sur les données"):
+        st.markdown(
+        """
+        **Les différents tableaux ci-dessous comparent vos performances :**
 
-    - aux coureurs ayant terminé dans un temps similaire au votre (+/- 5 %),  c'est-à-dire le peloton autour de vous,
+        - aux coureurs ayant terminé dans un temps similaire au votre (+/- 5 %),  c'est-à-dire le peloton autour de vous,
 
-    - et aux coureurs élites (temps de référence des meilleurs ~ top 30 au classement).
+        - et aux coureurs élites (temps de référence des meilleurs ~ top 30 au classement).
 
-    Le meilleur temps par secteur est également présenté.
+        Le meilleur temps par secteur est également présenté.
+            
+
+        **Les écarts sont exprimés :**
+
+        - en valeur absolue (heures : minutes : secondes , avance ou retard),
+
+        - et en valeur relative (écart en %).
+
+    """)
+        st.success('La comparaison avec les coureurs d’un temps similaire illustre votre gestion de course par rapport à vos pairs, tandis que la comparaison avec les élites sert de repère de performance maximale.')
         
+        st.markdown(
+        """
 
-    **Les écarts sont exprimés :**
+        **Trois tableaux sont à dispositions pour analyser vos performances selon :**
 
-    - en valeur absolue (heures : minutes : secondes , avance ou retard),
+        1) le profil du terrain (montées / descentes),
 
-    - et en valeur relative (écart en %).
- 
-""")
-    st.success('La comparaison avec les coureurs d’un temps similaire illustre votre gestion de course par rapport à vos pairs, tandis que la comparaison avec les élites sert de repère de performance maximale.')
-    
-    st.markdown(
-    """
- 
-    **Trois tableaux sont à dispositions pour analyser vos performances selon :**
+        2) la dynamique de course (par quart),
 
-    1) le profil du terrain (montées / descentes),
-
-    2) la dynamique de course (par quart),
-
-    3) le détail complet (secteur par secteur).
-    """
-    )
+        3) le détail complet (secteur par secteur).
+        """
+        )
 
     df_splits = pd.DataFrame(info['splits'])
     df_splits["runner_h"] = pd.to_numeric(df_splits["runner_h"], errors="coerce")
@@ -348,21 +356,69 @@ def show_post_course_table(info,df_best,df_cv,bib):
 
 
 
-def show_runner_info(info_runner):
+import streamlit as st
+import streamlit.components.v1 as components
+import pandas as pd
+
+def show_runner_info(info_runner, height=230):
     runner = info_runner.iloc[0]
 
-    st.subheader(f"{runner['name']} | Doss. {runner['bib']} | {runner['country']} | FINISHER")
-    st.write(f"**Sexe :** {runner['sex']} | **Catégorie :** {runner['category']} | **Club :** {runner['club']}")
-    if runner["diff_to_first"] and  runner["rank"]!=1:
-        st.markdown(f"#### Temps final: { runner["final_time"]} | Écart avec 1er : {runner['diff_to_first']}")
-    else :
-        st.markdown(f"#### Temps final: { runner["final_time"]}")
- 
+    # sécuriser les valeurs
+    name = runner.get("name","?")
+    bib = runner.get("bib","?")
+    country = runner.get("country","?")
+    sex = runner.get("sex","?")
+    category = runner.get("category","?")
+    club = runner.get("club","?")
+    diff = runner.get("diff_to_first","")
+    final_time = runner.get("final_time","-")
+    rank = int(runner.get("rank") or 0)
+    category_rank = int(runner.get("category_rank") or 0)
+    sex_rank = int(runner.get("sex_rank") or 0)
 
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Classement général", runner["rank"])
-    col2.metric("Classement catégorie", runner["category_rank"])
-    col3.metric("Classement sexe", runner['sex_rank'])
+    # HTML de la carte (tu peux ajuster couleurs/tailles ici)
+    html = f"""
+    <div style="
+        background:#f5f5f5;
+        border-radius:12px;
+        padding:16px;
+        margin:6px 0;
+        border:1px solid rgba(49,51,63,0.10);
+        font-family: Inter, sans-serif;
+    ">
+      <div style="margin-bottom:8px;">
+        <h3 style="margin:0;font-weight:600;">{name} &nbsp;|&nbsp; Doss. {bib} &nbsp;|&nbsp; {country} &nbsp;|&nbsp; FINISHER</h3>
+        <div style="color:#444;margin-top:6px;">
+          <strong>Sexe :</strong> {sex} &nbsp;|&nbsp;
+          <strong>Catégorie :</strong> {category} &nbsp;|&nbsp;
+          <strong>Club :</strong> {club}
+        </div>
+      </div>
+
+      <div style="margin-top:8px;">
+        {"<h4 style='margin:6px 0;'>Temps final : " + str(final_time) + " | Écart avec 1er : " + str(diff) + "</h4>" if diff and rank != 1 else "<h4 style='margin:6px 0;'>Temps final : " + str(final_time) + "</h4>"}
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:12px;">
+        <div style="flex:1;padding:10px;background:#ffffff;border-radius:8px;text-align:center;">
+          <div style="font-size:12px;color:#666;">Classement général</div>
+          <div style="font-size:20px;font-weight:700;margin-top:6px;">{rank}</div>
+        </div>
+        <div style="flex:1;padding:10px;background:#ffffff;border-radius:8px;text-align:center;">
+          <div style="font-size:12px;color:#666;">Classement catégorie</div>
+          <div style="font-size:20px;font-weight:700;margin-top:6px;">{category_rank}</div>
+        </div>
+        <div style="flex:1;padding:10px;background:#ffffff;border-radius:8px;text-align:center;">
+          <div style="font-size:12px;color:#666;">Classement sexe</div>
+          <div style="font-size:20px;font-weight:700;margin-top:6px;">{sex_rank}</div>
+        </div>
+      </div>
+    </div>
+    """
+
+    # render dans Streamlit — ajuster height si nécessaire
+    components.html(html, height=height, scrolling=False)
+
 
 
 
@@ -471,7 +527,7 @@ def compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2):
     runner2 = df_cv.loc[df_cv["Doss."] == bib2, ["variation_coefficient", "vitesse_moy"]].values
 
     if len(runner1) == 0 or len(runner2) == 0:
-        st.warning("Impossible de trouver les données pour un ou les deux coureurs.")
+        st.warning("Impossible de trouver les données pour un ou les deux dossards.")
         return
 
     cv1, speed1 = runner1[0]
@@ -489,12 +545,12 @@ def compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2):
 
     # Configuration colonnes Streamlit (optionnel mais pour un rendu pro)
     column_config = {
-        f"Coeff. variation {nom1}": st.column_config.NumberColumn(f"Coeff. variation {nom1} (%)", format="%.2f"),
-        f"Coeff. variation {nom2}": st.column_config.NumberColumn(f"Coeff. variation {nom2} (%)", format="%.2f"),
-        f"Vitesse moy. {nom1} (km/h)": st.column_config.NumberColumn(f"Vitesse moy. {nom1} (km/h)", format="%.2f"),
-        f"Vitesse moy. {nom2} (km/h)": st.column_config.NumberColumn(f"Vitesse moy. {nom2} (km/h)", format="%.2f"),
-        "Écart coeff.": st.column_config.NumberColumn("Écart coeff. (%)", format="%.2f"),
-        "Écart vitesse (km/h)": st.column_config.NumberColumn("Écart vitesse (km/h)", format="%.2f")
+        f"Coeff. variation {nom1}": st.column_config.NumberColumn(f"Coeff. variation {nom1} (%)", format="%.1f"),
+        f"Coeff. variation {nom2}": st.column_config.NumberColumn(f"Coeff. variation {nom2} (%)", format="%.1f"),
+        f"Vitesse moy. {nom1} (km/h)": st.column_config.NumberColumn(f"Vitesse moy. {nom1} (km/h)", format="%.1f"),
+        f"Vitesse moy. {nom2} (km/h)": st.column_config.NumberColumn(f"Vitesse moy. {nom2} (km/h)", format="%.1f"),
+        "Écart coeff.": st.column_config.NumberColumn("Écart coeff. (%)", format="%.1f"),
+        "Écart vitesse (km/h)": st.column_config.NumberColumn("Écart vitesse (km/h)", format="%.1f")
     }
 
     # Affichage
@@ -505,15 +561,17 @@ def compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2):
         hide_index=True,
         column_config=column_config
     )
+
+
 def compare_runners():
     try : 
-        st.header('Comparaison de deux coureurs')
-
+        st.header('Comparaison de deux finishers')
+        st.info("Veuillez sélectionner exactement deux dossards pour la comparaison.")
         options = [f"{info['name']} (Doss. {bib})" for bib, info in results.items()]
-        selected = st.multiselect("Sélectionnez deux coureurs", options, max_selections=2)
+        selected = st.multiselect("Sélection", options, max_selections=3)
 
         if len(selected) != 2:
-            st.info("Veuillez sélectionner exactement deux coureurs pour la comparaison.")
+            
             return
 
         bib1 = int(selected[0].split("(Doss. ")[1].split(")")[0])
@@ -522,7 +580,7 @@ def compare_runners():
         info1 = results[str(bib1)]
         info2 = results[str(bib2)]
         if not info1 or not info2:
-            st.warning("Coureur non trouvé")
+            st.warning("Dossard non trouvé")
             return
 
         # Affichage infos générales
@@ -543,18 +601,20 @@ def compare_runners():
                     st.warning("Infos détaillées introuvables")
                 else:
                     show_runner_info(info_runner)
-
+           
         # Ajout d'une ligne verticale de séparation
+
         with col_sep:
-            st.markdown(" ")
             st.markdown(
-                "### VS")
+        "<h3 style='text-align: center;'>VS</h3>",
+        unsafe_allow_html=True
+    )
 
 
         st.divider()
         nom1=info1['name']
         nom2=info2['name']
-        plotter = PacingPlotter(2025, "UTMB", "UTMB", is_elite=False, offline=True)
+        plotter = PacingPlotter(2025, "UTMB", "UTMB", is_elite=False, offline=True, show_peloton=False)
         fig, df_relative = plotter.plot([bib1,bib2])
         st.pyplot(fig)
         # Afficher tableau de variation de coefficient côte à côte
@@ -604,13 +664,12 @@ def post_course_indiv():
    
     st.header('Analyse détaillée')
     try:
-        
+        st.info("Selectionez ou saisissez une personne pour lancer l’analyse :")
         # Construire liste mixte nom + dossard
         options =["--"]+ [f"{info['name']} (Doss. {bib})" for bib, info in results.items()]
-        choice = st.selectbox("Choisissez un coureur pour lancer l’analyse", options)
+        choice = st.selectbox("", options)
 
         if not choice or choice =='--' :
-            st.info("Sélectionnez un coureur pour lancer l'analyse.")
             return
 
         # Extraire le dossard
@@ -647,9 +706,9 @@ def post_course_indiv():
             first_time_sec = time_to_seconds(first_time)
             is_elite = runner_time_sec <= 1.2 * first_time_sec
 
-       
-            show_runner_info(info_runner)
-            st.divider()
+            col1, _ = st.columns(2)
+            with col1 : 
+                show_runner_info(info_runner)
             # Graphique pacing
 
             plotter = PacingPlotter(2025, "UTMB", "UTMB", is_elite=is_elite, offline=True)
@@ -674,28 +733,28 @@ def post_course_indiv():
 def show_post_course():
     st.title("Analyse post-course UTMB 2025")
 
-    st.markdown(
-        """
-        <div style="padding:12px; border-radius:12px; background-color:#f0f2f6; margin-bottom:20px;">
-            Sélectionnez le mode d'analyse souhaité ci-dessous pour explorer les performances :
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # st.markdown(
+    #     """
+    #     <div style="padding:12px; border-radius:12px; background-color:#f0f2f6; margin-bottom:20px;">
+    #          Sélectionnez le mode d'analyse souhaité ci-dessous pour explorer les performances :
+    #     </div>
+    #     """,
+    #     unsafe_allow_html=True
+    # )
+    st.info("👉 Sélectionnez le mode d'analyse souhaité ci-dessous pour explorer les performances :")
 
     col1, col2 = st.columns(2)
 
     with col1:
-        if st.button(" Analyse individuelle", use_container_width=True):
+        if st.button("Analyse individuelle", use_container_width=True):
             st.session_state["analyse_type"] = "individuelle"
 
     with col2:
-        if st.button(" Comparer 2 coureurs", use_container_width=True):
+        if st.button("Analyse comparée", use_container_width=True):
             st.session_state["analyse_type"] = "comparaison"
 
 
     if "analyse_type" not in st.session_state:
-        st.info("👉 Veuillez choisir un mode d'analyse ci-dessus pour commencer.")
         return
     
     # Affichage en fonction du choix
