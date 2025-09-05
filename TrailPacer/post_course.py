@@ -602,8 +602,7 @@ def compare_runners():
                 else:
                     show_runner_info(info_runner)
            
-        # Ajout d'une ligne verticale de séparation
-
+        
         with col_sep:
             st.markdown(
         "<h3 style='text-align: center;'>VS</h3>",

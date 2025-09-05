@@ -95,14 +95,22 @@ class PacingPlotter():
         return df
         
     def get_df_splits(self, bibs, df_abs, names):
-        split_ref,col_split_ref =  self._get_split_reference(df_abs, names)
-        df = df_abs[[*names, 'ref_pacing']]
+        if len(names) == 1:
+            split_ref,col_split_ref= (round(df_abs['ref_pacing']*self.reduction), 'ref_pacing')
+            df = (df_abs
+                .apply(lambda x: x - (split_ref))
+                .drop(columns=[col_split_ref])
+                .apply(lambda x: x.apply(lambda x: self.printable_hms(x, print_0=False)))
+                )
+        else :
+            col=names[0]
+            split_ref,col_split_ref= df_abs[col], col
+            df = (df_abs
+                    .apply(lambda x:  (split_ref)-x)
+                    .drop(columns=[col_split_ref])
+                    .apply(lambda x: x.apply(lambda x: self.printable_hms(x, print_0=False)))
+                    )
 
-        df = (df
-              .apply(lambda x: x - (split_ref))
-              .drop(columns=[col_split_ref])
-              .apply(lambda x: x.apply(lambda x: self.printable_hms(x, print_0=False)))
-              )
         return df, col_split_ref
         
     def get_ref_pacing_(self, temps_cible):
@@ -138,12 +146,16 @@ class PacingPlotter():
         
         return config, dic_config['mapping_ckpt']
     def get_runners_pacing(self, year, event, course, bibs, temps_cible):
-        msk = self.df_times.index.get_level_values('Doss.').isin(bibs)
-        df_times_bibs = self.df_times.loc[msk].droplevel(['genre', 'Doss.'])
-        self.df_times_bibs = df_times_bibs
-        
-        names = df_times_bibs.index
+        msk = self.df_times.index.get_level_values("Doss.").isin(bibs)
 
+        # garder l'ordre des bibs avant de droplevel
+        df_times_bibs = (
+            self.df_times.loc[pd.Index(bibs, name="Doss.")]
+            .droplevel(["genre", "Doss."])
+        )
+
+        self.df_times_bibs = df_times_bibs
+        names = df_times_bibs.index
         runner_pacings = (self.df_times_bibs
                          .T
                         / pd.Timedelta(hours=1))
@@ -160,10 +172,6 @@ class PacingPlotter():
 
     @staticmethod
     def printable_hours(hr, print_0=True):
-        """
-        Convertit une durée (en heures, float) en format lisible : 1h05, 3', etc.
-        Gère aussi les valeurs négatives.
-        """
         if pd.isna(hr):
             return ""
 
@@ -187,10 +195,6 @@ class PacingPlotter():
 
     @staticmethod
     def printable_hms(hr, print_0=True):
-        """
-        Convertit une durée en heures (float) en format hh:mm:ss.
-        Gère les valeurs négatives et les NaN.
-        """
         if pd.isna(hr):
             return ""
         
@@ -236,7 +240,6 @@ class PacingPlotter():
               .sort_values('dist_total'))
         #self.df = df
         reference_pacing = df.ref_pacing
-        
         df_plotted_relative_pacings = (df
                                        .apply(lambda x: x.div(reference_pacing))
                                        .mul(finish_time))
@@ -343,7 +346,6 @@ class PacingPlotter():
         self.df_checkpoints['plotted_elevation'] = plotted_elevation
         
     
-        #col_ref = 'ref_pacing' if splits_reference is None else splits_reference
         col_splits = df_splits.columns[0]
         for i, (ckpt, row) in enumerate(self.df_checkpoints.iterrows()):
             if i==0:
@@ -360,7 +362,7 @@ class PacingPlotter():
                         horizontalalignment='right',
                         rotation=90,
                         color='k',)
-            
+
             if not self.is_elite : 
                 ax.vlines(x=row['dist_total'],
                         linestyle='--',
@@ -369,20 +371,31 @@ class PacingPlotter():
                         ymax=y_splits,
                         ymin=y_ref,
                         alpha=0.5)
-                ax.annotate(xy=(row['dist_total'], y_ref),
-                            text=df_splits.loc[ckpt, col_splits],
-                            verticalalignment='center', 
-                            horizontalalignment='center',
-                            rotation=90,
-                            fontsize=8,
-                            color='w',
-                            zorder=6,
-                            bbox=dict(boxstyle="round,pad=0.3",
-                                    edgecolor='none',
-                                    linewidth=0.8,
-                                    facecolor=self.color_hlines,),
-                            #label='Ecarts'
-                            )
+                                
+                value = df_splits.loc[ckpt, col_splits]
+                # Couleur conditionnelle
+                if len(names) > 1:
+                    facecolor = "green" if value.startswith("-")  else "red"
+                else:
+                    facecolor = self.color_hlines
+
+                ax.annotate(
+                    xy=(row['dist_total'], y_ref),
+                    text=value,
+                    verticalalignment='center', 
+                    horizontalalignment='center',
+                    rotation=90,
+                    fontsize=8,
+                    color="w",
+                    zorder=6,
+                    bbox=dict(
+                        boxstyle="round,pad=0.3",
+                        edgecolor='none',
+                        linewidth=0.8,
+                        facecolor=facecolor
+                    ),
+                    #label='Ecarts'
+                )
             
         return ax
     
@@ -489,11 +502,7 @@ class PacingPlotter():
         
         return axr
     
-    def _get_split_reference(self, df, names):
-        if len(names) == 1:
-            return (round(df['ref_pacing']*self.reduction), 'ref_pacing')
-        col=df[names].loc[self.finish].idxmin()
-        return (df[col], col)
+
         
     def _format_axes(self, axr, axl, yr_min, yr_max, xmax, names):
         axr.set_ylim(yr_min, yr_max)
@@ -518,7 +527,7 @@ class PacingPlotter():
         """
         TODO : Comparer le ref prédit et le ref réel.
         """
-        
+
         df_relative, df_absolute, temps_cible, names = self._get_pacings(bibs,
                                                                          temps_cible)
 
