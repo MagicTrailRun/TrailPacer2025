@@ -44,7 +44,6 @@ class TSXApplication:
         self._show_sidebar()
 
         self._display_waning_if_beta()
-        st.divider()
         # Routage et affichage de la page courante
         current_page = self.session_manager.get_current_page()
         self.page_router.render_page(current_page)
