@@ -42,7 +42,9 @@ class TSXApplication:
         """Interface principale pour utilisateurs authentifiés"""
         # Affichage de la sidebar
         self._show_sidebar()
-        
+
+        self._display_waning_if_beta()
+        st.divider()
         # Routage et affichage de la page courante
         current_page = self.session_manager.get_current_page()
         self.page_router.render_page(current_page)
@@ -58,8 +60,34 @@ class TSXApplication:
             st.divider()
             st.write("Votre avis nous intéresse, n'hésitez pas à nous laissez un commentaire")
             commentaire_form()
+    
+
+    def _display_waning_if_beta(self):
+        # Récupérer l'environnement
+        app_env = os.getenv("APP_ENV", "prod")
+
+        # Afficher bannière si on est en beta
+        if app_env == "beta":
+            st.markdown(
+                """
+                <div style="
+                    background-color:#FFA500;
+                    padding:15px;
+                    border-radius:10px;
+                    text-align:center;
+                    color:white;
+                    font-size:18px;
+                    font-weight:bold;
+                ">
+                    🚧 ATTENTION : Vous êtes sur la version BETA de TrailPacer.<br>
+                    Certaines fonctionnalités peuvent être instables ou incomplètes.
+                </div>
+
+                """,
+                unsafe_allow_html=True
+        )
             
-                        
+             
 if __name__ == "__main__":
     app = TSXApplication()
     app.run()
