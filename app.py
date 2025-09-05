@@ -57,7 +57,7 @@ class TSXApplication:
             st.write("Trail Pacer n’est qu’un début d’une initiative plus ambitieuse… \n " \
             "Entrez votre email pour découvrir nos nouveautés et être parmi les premiers informés de la suite du projet.")
             email_form()
-            st.divider()
+
             st.write("Votre avis nous intéresse, n'hésitez pas à nous laissez un commentaire")
             commentaire_form()
     
@@ -65,13 +65,16 @@ class TSXApplication:
     def _display_waning_if_beta(self):
         # Récupérer l'environnement
         app_env = os.getenv("APP_ENV", "prod")
-
+        txt_beta=""" Merci de participer à la version <span style="color:#FFD700;">BETA</span> de TrailPacer ! <br><br>
+                    Si vous avez des remarques, des suggestions, des retours , envoyez-nous un mail à 
+                    <a href="mailto: trailpacer.ia@gmail.com" style="color:#FFD700;">trailpacer.ia@gmail.com</a> <br>
+                    ou utilisez directement l'espace commentaire."""
         # Afficher bannière si on est en beta
         if app_env == "beta":
             st.markdown(
-                """
+                f"""
                 <div style="
-                    background-color:#FFA500;
+                    background-color:#4CAF50;
                     padding:15px;
                     border-radius:10px;
                     text-align:center;
@@ -79,15 +82,14 @@ class TSXApplication:
                     font-size:18px;
                     font-weight:bold;
                 ">
-                    🚧 ATTENTION : Vous êtes sur la version BETA de TrailPacer.<br>
-                    Certaines fonctionnalités peuvent être instables ou incomplètes.
+                    {txt_beta}
                 </div>
-
                 """,
                 unsafe_allow_html=True
-        )
-            
-             
+            )
+            st.divider()
+                    
+                    
 if __name__ == "__main__":
     app = TSXApplication()
     app.run()
