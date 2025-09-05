@@ -496,12 +496,12 @@ class PacingPlotter():
         if not self.show_peloton:
             patch_splits_green = mpatches.FancyBboxPatch((0, 0),
                                             color='green',
-                                            label='Écart positif (avance)',
+                                            label='En avance ',
                                             **kwargs_box)
             handles.append(patch_splits_green)
             patch_splits_red = mpatches.FancyBboxPatch((0, 0),
                                             color='red',
-                                            label='Écart négatif (retard)',
+                                            label='En retard',
                                             **kwargs_box)
             handles.append(patch_splits_red)
         
