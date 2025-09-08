@@ -233,13 +233,14 @@ def quisommesnous():
 
 <h2 style="font-size:22px; color:#222;">Qui sommes-nous ?</h2>
 
-<p><b>Trail Pacer</b>,c'est une équipe de passionnés de trail et de science, réunissant des compétences en data science, médecine et recherche. 
-Plus spécifiquement derrière cet outil Trail Pacer se cache :
+<p><b>Trail Pacer</b>, c'est une équipe passionnée de trail et de science, réunissant des compétences en data science, médecine et recherche. 
+Cet outil a vu le jour grâce à l’expertise complémentaire de  :
 <hr style="border:0; border-top:1px solid #ccc;">
 
 <h3 style="font-size:18px; color:#222;">Matthieu Oliver</h3>
 <p><b>Ingénieur en science des données | Passionné de trail</b></p>
-<p>Matthieu a commencé à créer ses propres tableaux de temps de passage pour le <b>Trail de Bourbon</b> en 2022 et 2023 (Grand Raid), pour mieux gérer ses courses. Fpour sa propre gestion de course. Face à l’intérêt des autres coureurs, il a décidé de mettre ses outils en forme pour les partager à la communauté.</p>
+<p>Matthieu a commencé à créer ses propres tableaux de temps de passage pour le <b>Trail de Bourbon</b> (Grand Raid) en 2022 et 2023 afin de mieux gérer ses courses. 
+Devant l’intérêt suscité auprès d’autres coureurs, il a choisi de transformer ses outils personnels en une ressource partagée avec la communauté.</p>
 <hr style="border:0; border-top:1px solid #ccc;">
 
 <h3 style="font-size:18px; color:#222;">Nicolas Bouscaren</h3>
