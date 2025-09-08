@@ -233,7 +233,7 @@ def quisommesnous():
 
 <h2 style="font-size:22px; color:#222;">Qui sommes-nous ?</h2>
 
-<p>Derrière <b>Trail Pacer</b>,Derrière Trail Pacer, il y a une équipe de passionnés de trail et de science, réunissant des compétences en data science, médecine et recherche. 
+<p><b>Trail Pacer</b>,c'est une équipe de passionnés de trail et de science, réunissant des compétences en data science, médecine et recherche. 
 Plus spécifiquement derrière cet outil Trail Pacer se cache :
 <hr style="border:0; border-top:1px solid #ccc;">
 
