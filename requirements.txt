@@ -66,3 +66,4 @@ urllib3==2.5.0
 watchdog==6.0.0
 websocket-client==1.8.0
 wsproto==1.2.0
+PyYAML==6.0.2

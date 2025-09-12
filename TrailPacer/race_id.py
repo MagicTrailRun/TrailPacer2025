@@ -267,9 +267,8 @@ def add_gradient_segments(fig, df_col):
 
 # --- Fonction principale ---
 def create_col_profile(df_segments, df_track, col_name="Col Ferret"):
-    mask = df_track["shortName"] == col_name
+    mask = df_track["checkpoint"] == col_name
     if not mask.any(): return go.Figure(), {}
-
     distance_end = df_track.loc[mask, "distance"].values[0]
     idx_end = df_track.index[df_track["distance"] == distance_end][0]
     distance_start = 0 if idx_end == 0 else df_track.loc[idx_end-1, "distance"]

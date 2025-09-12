@@ -1,0 +1,52 @@
+{
+    "category": "",
+    "color": "#0c991f",
+    "distance": 70000,
+    "elevationGain": 3829,
+    "finishPlace": "Saint Denis - Stade de la Redoute",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 25,
+        "placeName": "Saint-Denis"
+    },
+    "fullName": "Mascareignes",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "MAS",
+    "shortName": "Mascareignes",
+    "startDate": "2024-10-17T01:00:00.000+04:00",
+    "startPlace": "Hell-Bourg",
+    "startWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 18,
+        "placeName": "Mare à Vieille Place"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion-oxybol_2024/tracks/2e9c5998-e0e7-4b29-9bd7-d5fee88c509a.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "M7 H",
+        "SE F",
+        "SE H"
+    ],
+    "temps_cible": [7, 19]
+}

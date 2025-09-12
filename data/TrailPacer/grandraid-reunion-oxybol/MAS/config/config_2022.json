@@ -1,0 +1,40 @@
+{
+    "color": "#0c991f",
+    "distance": 72000,
+    "elevationGain": 3880,
+    "finishPlace": "",
+    "fullName": "Mascareignes",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "MAS",
+    "shortName": "Mascareignes",
+    "startDate": "2022-10-21T01:00:01.000+00:00",
+    "startPlace": "",
+    "status": "FINISHED",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES F",
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "M7 H",
+        "SE F",
+        "SE H"
+    ]
+}

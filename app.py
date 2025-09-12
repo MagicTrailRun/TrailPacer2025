@@ -4,16 +4,20 @@ from core.session import SessionManager
 from core.page_router import PageRouter
 import os
 from config.airtableapi import email_form,commentaire_form
+from tsx_pages.trail_pacer import select_event
+import yaml
+
+ 
 class TSXApplication:
     """Application principale TSX Trail"""
     
     def __init__(self):
         self.session_manager = SessionManager()
         self.page_router = PageRouter()
-        
+        self.EVENT_CONFIG_PATH= "config/event_config.yml"
         # Configuration Streamlit
         self._configure_streamlit()
-        
+        self._configure_event(self.EVENT_CONFIG_PATH)
     def _configure_streamlit(self):
         """Configuration initiale de Streamlit"""
         try:
@@ -29,7 +33,13 @@ class TSXApplication:
         # Application des styles CSS
         apply_custom_css()
     
-    def run(self):
+
+    def _configure_event(self, path):
+        with open(path, "r", encoding="utf-8") as f:
+            EVENT_CONFIG= yaml.safe_load(f)
+        st.session_state['EVENT_CONFIG']=EVENT_CONFIG
+
+    def run(self): 
         """Point d'entrée principal de l'application"""
         # Initialisation de la session
         self.session_manager.initialize_session()
@@ -47,20 +57,28 @@ class TSXApplication:
         # Routage et affichage de la page courante
         current_page = self.session_manager.get_current_page()
         self.page_router.render_page(current_page)
+    
+    def _show_user_message(self) :
+
+        with st.sidebar:
+
+            with st.expander("ℹ️ En savoir plus") : 
+
+                st.write("Trail Pacer n’est qu’un début d’une initiative plus ambitieuse… \n " \
+                "Entrez votre email pour découvrir nos nouveautés et être parmi les premiers informés de la suite du projet. \n " \
+                "Votre avis nous intéresse, n'hésitez pas à nous laissez un commentaire")
+                email_form()
+                commentaire_form()
+
+            #st.info('Plans de course à venir : Sainté Lyon, Grand Trail des templiers et Grand Raid Réunion...')
     def _show_sidebar(self):
         
         """Affichage de la barre latérale"""
-        with st.sidebar:
-            
+        select_event()
+        self._show_user_message()
 
-            st.write("Trail Pacer n’est qu’un début d’une initiative plus ambitieuse… \n " \
-            "Entrez votre email pour découvrir nos nouveautés et être parmi les premiers informés de la suite du projet.")
-            email_form()
 
-            st.write("Votre avis nous intéresse, n'hésitez pas à nous laissez un commentaire")
-            commentaire_form()
-    
-
+ 
     def _display_waning_if_beta(self):
         # Récupérer l'environnement
         app_env = os.getenv("APP_ENV", "prod")

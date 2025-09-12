@@ -5,6 +5,7 @@ from matplotlib.ticker import FuncFormatter
 import matplotlib.patches as mpatches
 import matplotlib.colors as mcolors
 import pandas as pd
+import streamlit as st
 import json
 import os
 class PacingPlotter():
@@ -17,12 +18,12 @@ class PacingPlotter():
         self.is_elite=is_elite
         self.reduction=reduction
         self.show_peloton=show_peloton
-        self.root_data = os.path.join(f"data/TrailPacer/", event or "")
+        self.root_data = os.path.join(f"data/TrailPacer/", event,course or "")
         #self.root_data = os.path.join("/data/TrailPacer", event or "")
-        self.output_pth = f"data/TrailPacer/{course}/"
+        self.output_pth = f"data/TrailPacer/{event}/{course}/"
         self.color_cofinishers = u'#48d1cc'
         self.color_hlines = u'#5b5f97'
-        self._idx_runner = ['Doss.', 'Prénom Nom', 'genre',]
+        self._idx_runner = ['bib', 'name', 'sex',]
         self.drop_ckpt = [] if drop_ckpt is None else drop_ckpt
         self.race_query = {'year': year, 'event': event, 'course': course}
         
@@ -31,44 +32,47 @@ class PacingPlotter():
         self.df_times = self.load_times(**self.race_query)
         self.df_gpx = self.load_altitude_profile(year, course)
         self.df_checkpoints = self._get_df_checkpoints()
-        
-        self.mapping_bib = self.df_times.reset_index('Doss.')['Doss.'].droplevel('genre')
-        self.df_ranks = self.load_ranks(**self.race_query)
-        self.max_altitude = self.df_gpx.elevation.max()
+        self.finish=self.df_times.columns[-1]
+        self.mapping_bib = self.df_times.reset_index('bib')['bib'].droplevel('sex')
+        #self.df_ranks = self.load_ranks(**self.race_query)
+        self.max_altitude = self.df_gpx.altitude.max()
         self.ymin = 0.93
-        self._idx_runner = ['Doss.', 'Prénom Nom', 'genre',]
-        if (event is not None) and loadconfig:
-            self.config, self.mapping_ckpts = self.get_config()
-            
-            self.margin_of_error = self.config["margin_of_error"]
-            self.drop_ckpts = self.config['drop_ckpts']
-            self.start = self.config["start"]
-            self.finish = self.config["finish"] 
-            self.start_datetime = self.config["start_datetime"]
-            self.temps_cible_h = self.config["temps_cible"]
-            self.ref_group_delay = self.config["ref_group_delay"]
-    def load_ranks(self, year, event, course):
+        self._idx_runner = ['bib', 'name', 'sex']
+       
+    # def load_ranks(self, year, event, course):
 
-        pth = f"{self.output_pth}/ranks/{course}_{year}.csv"
-        return pd.read_csv(pth, index_col=self._idx_runner)
+    #     pth = f"{self.output_pth}/ranks/{course}_{year}.csv"
+    #     return pd.read_csv(pth, index_col=self._idx_runner)
     
 
     def load_ref_pacing(self, year, event, course):
-        pth = f"{self.output_pth}/ref_pacing/{course}_{year}.csv"
-        df = pd.read_csv(pth, index_col='pk')
+        pth = f"{self.output_pth}/ref_pacing/ref_{year}.csv"
+        df = pd.read_csv(pth, index_col='checkpoint')
         return df
        
     def load_altitude_profile(self, year, course):
+        pth = f"{self.output_pth}/profile/profile_{year}.csv"
+        df = pd.read_csv(pth)
 
-        pth = f"{self.output_pth}/profile/{course}_{year}.csv"
-        return pd.read_csv(pth, sep=';').rename(columns={'km': 'dist_total'})
-       
-    
+        # convertir en km
+        df["dist_total"] = df["distance_cum"] / 1000
+
+        # supprimer la colonne
+        df = df.drop(columns=["distance_cum"])
+
+        return df 
+        
     def load_times(self, year, event, course):
 
-        pth = f"{self.output_pth}/times/{course}_{year}.csv"
+        pth = f"{self.output_pth}/times/times_{year}.csv"
         df=pd.read_csv(pth, index_col=self._idx_runner)
+        df=df.drop(columns=['status','category','country'])
+        df = df.apply(lambda col: pd.to_datetime(col, errors='coerce').dt.tz_localize(None))
+        start_col = df.iloc[:, 0]
+        # Soustraire l'heure de départ à toutes les colonnes
+        df = df.apply(lambda col: col - start_col)
         return df.apply(pd.to_timedelta, errors="coerce")
+        
     
         
     def hstring_to_hours(self,t):
@@ -89,9 +93,9 @@ class PacingPlotter():
                      on='dist_total',
                      how='outer')
               .sort_values('dist_total')
-              .assign(elevation=lambda x: x.elevation.ffill())
-              .dropna(subset=['pk'])
-              .set_index('pk'))
+              .assign(altitude=lambda x: x.altitude.ffill())
+              .dropna(subset=['checkpoint'])
+              .set_index('checkpoint'))
         return df
         
     def get_df_splits(self, bibs, df_abs, names):
@@ -136,22 +140,14 @@ class PacingPlotter():
         
         return df[['ref_pacing', 'dist_total']]
 
-    def get_config(self):
-        dic_config = json.load(open(f'{self.root_data}/config.json', encoding='utf-8'))
 
-        config = dic_config['courses'][self.course]
-        config['start_datetime'] = pd.to_datetime(config['start_datetime'])
-        temps_cible = np.arange(config['temps_cible'][0], config['temps_cible'][1], config['step'])
-        config['temps_cible'] = [int(t) if int(t)==t else t for t in temps_cible]
-        
-        return config, dic_config['mapping_ckpt']
     def get_runners_pacing(self, year, event, course, bibs, temps_cible):
-        msk = self.df_times.index.get_level_values("Doss.").isin(bibs)
+        msk = self.df_times.index.get_level_values("bib").isin(bibs)
 
         # garder l'ordre des bibs avant de droplevel
         df_times_bibs = (
-            self.df_times.loc[pd.Index(bibs, name="Doss.")]
-            .droplevel(["genre", "Doss."])
+            self.df_times.loc[pd.Index(bibs, name="bib")]
+            .droplevel(["sex", "bib"])
         )
 
         self.df_times_bibs = df_times_bibs
@@ -259,7 +255,7 @@ class PacingPlotter():
         msk = (finish_times - finish_time).div(finish_time).abs() < 0.05
 
         df_cofinishers = (df
-                          .drop(bibs, level='Doss.')
+                          .drop(bibs, level='bib')
                           .loc[msk]
                           .droplevel([0,2])
                           .T)
@@ -273,9 +269,9 @@ class PacingPlotter():
                              .mul(yr_spread*height_scale)
                              .add(yr_min))
         return plotted_elevation
-    
+     
     def _draw_altitude_profile(self, ax, yr_spread, yr_min):
-        plotted_elevation = self._get_plotted_elevation(self.df_gpx.elevation,
+        plotted_elevation = self._get_plotted_elevation(self.df_gpx.altitude,
                                                         yr_spread,
                                                         yr_min)
             
@@ -328,7 +324,7 @@ class PacingPlotter():
                             text=self.printable_hours(y),
                             xytext=(5, 5),
                             **kwargs)
-        return ax
+        return ax 
     
     def _draw_uniform_background(self, ax, yr_min, yr_max, xmax):
         ax.fill_between([0, xmax],
@@ -340,7 +336,7 @@ class PacingPlotter():
     
     def _draw_splits(self, ax, df_relative, df_splits, splits_reference, names, yr_spread, yr_min, yr_max,y_finish):
         
-        plotted_elevation = self._get_plotted_elevation(self.df_checkpoints.elevation,
+        plotted_elevation = self._get_plotted_elevation(self.df_checkpoints.altitude,
                                                         yr_spread,
                                                         yr_min)
         self.df_checkpoints['plotted_elevation'] = plotted_elevation
@@ -406,11 +402,12 @@ class PacingPlotter():
         luminance = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]
         return luminance < 0.5
     
-    def _draw_runner_pacing(self, ax, df, df_ranks, names):
+    def _draw_runner_pacing(self, ax, df, names, df_ranks=None):
         df = df.reset_index('dist_total')
         df_pace = (df
                    .loc[df.dist_total>0]
-                   .join(df_ranks, how='left'))
+                   #.join(df_ranks, how='left')
+                   )
 
         for name in names:
             color = next(self.color_cycle)
@@ -466,10 +463,10 @@ class PacingPlotter():
         
         return ax
     
-    def _get_ranks(self, bibs):
-        msk = self.df_ranks.index.get_level_values('Doss.').isin(bibs)
-        df = self.df_ranks.loc[msk].droplevel(['Doss.', 'genre']).T.add_suffix('_rank')
-        return df
+    # def _get_ranks(self, bibs):
+    #     msk = self.df_ranks.index.get_level_values('bib').isin(bibs)
+    #     df = self.df_ranks.loc[msk].droplevel(['bib', 'sex']).T.add_suffix('_rank')
+    #     return df
     
     def _draw_legend(self, axr, temps_cible):
         self._init_color_cycle()
@@ -544,7 +541,7 @@ class PacingPlotter():
         df_relative, df_absolute, temps_cible, names = self._get_pacings(bibs,
                                                                          temps_cible)
 
-        df_runners_rank = self._get_ranks(bibs)
+        #df_runners_rank = self._get_ranks(bibs)
         #TODO : integrate split ref into df_splits.
         df_splits, splits_reference = self.get_df_splits(bibs, df_absolute, names)
         yr_finish = round(temps_cible*self.reduction)
@@ -561,7 +558,7 @@ class PacingPlotter():
         axr = self._draw_altitude_profile(axr, yr_spread, yr_min)
         if self.show_peloton:
             axr = self._draw_copacing(axr, df_relative, names)
-        axr = self._draw_runner_pacing(axr, df_relative, df_runners_rank, names)
+        axr = self._draw_runner_pacing(axr, df_relative, names)
         axr = self._draw_uniform_background(axr, yr_min, yr_max, x_max, )
         axr = self._draw_hlines(axr, yr_finish, yr_min, yr_max)
         
@@ -580,7 +577,7 @@ class PacingPlotter():
         self._init_color_cycle()
         if not isinstance(bib, list):
             return self.plot([bib], temps_cible)
-        bibs = [i if isinstance(i, int) else self.mapping_bib.loc[i] for i in bib]
+        bibs = [i if isinstance(i, int) else self.mapping_bibloc[i] for i in bib]
 
         return self._plot(bibs, temps_cible)
     

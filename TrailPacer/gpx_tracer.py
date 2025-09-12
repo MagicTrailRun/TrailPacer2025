@@ -4,7 +4,7 @@ import plotly.express as px
 import numpy as np
 import pandas as pd
 
-def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=None, target_time=None, show_title=True):
+def plot_altitude_profile_area(df_gpx, df, config, affichages=None, target_time=None, show_title=True):
     """
     Profil d'altitude avec checkpoints, D+/D- par secteur et design moderne
     """
@@ -69,20 +69,12 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
     secteurs_d_plus = [0]
     secteurs_d_moins = [0]
     distances_secteur=[0]
-    fig.add_annotation(
-                x=0,
-                y=0,
-                text="Départ",
-                showarrow=False,
-                font=dict(size=10, color="white"),
-                textangle= -45,
-                xanchor="center",
-                yanchor="bottom",
-            )
+
 
     # Calcul par secteur
     for idx, row in df.iterrows():
-        name = mapping_ckpts.get(row["Point de passage"], row["Point de passage"])
+        #name = mapping_ckpts.get(row["checkpoint"], row["checkpoint"])
+        name = row["checkpoint"]
         dist = row.get("dist_total", 0)
         
         if pd.isna(dist):
@@ -90,102 +82,38 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
             
         # D+/D- pour ce secteur (différence avec le précédent)
         if idx == 0:
-            d_plus_secteur = row.get('d_plus_total', 0)
-            d_moins_secteur = row.get('d_moins_total', 0)
+            d_plus_secteur = row.get('dplus_cum_m', 0)
+            d_moins_secteur = row.get('dmoins_cum_m', 0)
 
         else:
-            d_plus_secteur = row.get('d_plus_total')
-            d_moins_secteur = row.get('d_moins_total')
+            d_plus_secteur = row.get('dplus_cum_m')
+            d_moins_secteur = row.get('dmoins_cum_m')
         secteurs_d_plus.append(d_plus_secteur)
         secteurs_d_moins.append(-d_moins_secteur)  # Négatif pour l'affichage
         distances_secteur.append(dist)
     
 
-        fig.add_annotation(
-                x=dist,
-                y=0,
-                text= name,
-                showarrow=False,
-                font=dict(size=10, color="white"),
-                textangle= -45,
-                xanchor="center",
-                yanchor="bottom",
+        # fig.add_annotation(
+        #         x=dist,
+        #         y=0,
+        #         text= name,
+        #         showarrow=False,
+        #         font=dict(size=10, color="white"),
+        #         textangle= -45,
+        #         xanchor="center",
+        #         yanchor="bottom",
 
-            )
+        #     )
 
 
-    # fig.add_trace(
-    #     go.Scatter(
-    #         x=distances_secteur,
-    #         y=secteurs_d_plus,
-    #         mode="lines+markers",
-    #         line=dict(color=colors["accent"], width=2, shape="spline", smoothing=0.5),
-    #         fill="tozeroy",
-    #         fillcolor="rgba(16,185,129,0.3)",  # accent en transparent
-    #         name="D+ Secteur",
-    #         hovertemplate="Distance: %{x:.1f} km<br>D+ secteur: %{y:.0f} m<extra></extra>"
-    #     ),
-    #     row=2, col=1
-    # )
-
-    # # D- secteur (ligne + area remplie)
-    # fig.add_trace(
-    #     go.Scatter(
-    #         x=distances_secteur,
-    #         y=secteurs_d_moins,
-    #         mode="lines+markers",
-    #         line=dict(color=colors["secondary"], width=2, shape="spline", smoothing=0.5),
-    #         fill="tozeroy",
-    #         fillcolor="rgba(230,47,56,0.3)",  # secondary en transparent
-    #         name="D- Secteur",
-    #         hovertemplate="D- secteur: %{y:.0f} m<extra></extra>"
-    #     ),
-    #     row=2, col=1
-    # )
     
-    # === CHECKPOINTS ULTRA-STYLÉS ===
-    
-    # Point de départ avec style
-    start_texts = []
-    if affichages:
-        if "Heure de passage" in affichages:
-            start_texts.append(f'🕐{config.get("start_day_hour")}')
-        if "Temps de passage" in affichages:
-            start_texts.append('⏱️ 0h00')
-        if "D+ Secteur" in affichages:
-            start_texts.append(f'↗️ 0 m')
-        if "D- Secteur" in affichages:
-            start_texts.append(f'↘️ 0 m')
-        if "Distance Secteur" in affichages :
-            start_texts.append(f'📏0km')
-    
-    start_label =f"<b>{name}</b><br>" +  "<br>".join(start_texts) if start_texts else f'{config["start"]}'
-    
-    fig.add_trace(
-        go.Scatter(
-            x=[0],
-            y=[np.interp(0, df_gpx["distance_km"], df_gpx["altitude"])],
-            mode="markers+text",
-            marker=dict(
-                color=colors['success'],
-                size=15,
-                symbol="triangle-up",
-                line=dict(width=3, color='white')
-            ),
-            text=[start_label],
-            textposition="top center",
-            textfont=dict(size=11, color=colors['text']),
-            name=config["start"],
-            showlegend=False,
-            hovertemplate=f'<b>{config["start"]}</b><extra></extra>'
-        ),
-    )
-    
-    # Checkpoints avec design moderne
+    # Checkpoints 
     idx_high=[]
     altitude=2000
     for idx, row in df.iterrows():
-        name = mapping_ckpts.get(row["Point de passage"], row["Point de passage"])
+        #name = mapping_ckpts.get(row["checkpoint"], row["checkpoint"])
+        name = row["checkpoint"] if pd.notna(row["checkpoint"]) else "Départ"
+
         dist = row.get("dist_total", None)
         if pd.isna(dist):
             continue
@@ -203,10 +131,10 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
                 temps_passage_col = f'temps_cumule_med_{target_time}'
                 texts_h.append(f'⏱️ {row[temps_passage_col]}')
             if "D+ Secteur" in affichages:
-                d_plus_secteur = row['dp_tot_secteur'] 
+                d_plus_secteur = row['dplus_secteur'] 
                 texts_h.append(f'↗️ {d_plus_secteur:.0f}m')
             if "D- Secteur" in affichages:
-                d_moins_secteur = row['dm_tot_secteur'] 
+                d_moins_secteur = row['dmoins_secteur'] 
                 texts_h.append(f'↘️ {d_moins_secteur:.0f}m')
             if "Distance Secteur" in affichages :
                 dist_secteur= row['dist_secteur']
@@ -232,7 +160,7 @@ def plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, affichages=Non
                 text=[label_h],
                 textposition="top center" if (idx%2==1 and not idx in idx_down) or idx in idx_up  else "bottom center",
                 textfont=dict(size=10, color=colors['text']),
-                name=name,
+                #name=name,
                 showlegend=False,
                 #hovertemplate=f'<b>{name}</b><br>Distance: {dist:.1f}km<br>Altitude: {ele:.0f}m<extra></extra>'
             ),

@@ -1,0 +1,51 @@
+{
+    "color": "#e41f25",
+    "distance": 174000,
+    "elevationGain": 10000,
+    "finishPlace": "Chamonix",
+    "finishWeather": {
+        "icon": "CLEAR_SKY_DAY",
+        "temperature": 10,
+        "placeName": "Chamonix"
+    },
+    "fullName": "UTMB®",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "utmb",
+    "shortName": "UTMB®",
+    "startDate": "2025-08-29T17:45:00.000+02:00",
+    "startPlace": "Chamonix",
+    "startWeather": {
+        "icon": "CLEAR_SKY_DAY",
+        "temperature": 10,
+        "placeName": "Chamonix"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/utmb_2025/tracks/7eed88ce-5013-4794-afea-7cf76b8c0b2c.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "20-34M",
+        "20-34W",
+        "35-39M",
+        "35-39W",
+        "40-44M",
+        "40-44W",
+        "45-49M",
+        "45-49W",
+        "50-54M",
+        "50-54W",
+        "55-59M",
+        "55-59W",
+        "60-64M",
+        "60-64W",
+        "65-69M",
+        "65-69W",
+        "70-74M",
+        "75-79M"
+    ],
+    "temps_cible": [20, 47]
+}

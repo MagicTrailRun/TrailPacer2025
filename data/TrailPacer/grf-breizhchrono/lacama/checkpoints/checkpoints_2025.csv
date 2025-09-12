@@ -1,0 +1,8 @@
+access,altitude,distance,elevationGain,pointId,isAssistance,isMeet,lat,lon,name,raceId,services,shortName,type,livecams,dateFirstRunners,dateLastRunners
+[],4,0,0,0,False,True,48.27593,-4.58947,Départ Camaret,lacama,[],Départ Cam,SIMPLE,[],2025-09-20T12:30:00.000+02:00,2025-09-20T12:30:00.000+02:00
+[],53,4370,102,38,False,True,48.27902,-4.62226,Pointe du Toulinguet,lacama,[],Pointe du ,SIMPLE,[],2025-09-20T12:43:00.000+02:00,2025-09-20T13:00:00.000+02:00
+[],5,16930,386,42,False,True,48.24036,-4.54544,Plage de Goulien,lacama,[],Plage de G,SIMPLE,[],2025-09-20T13:26:00.000+02:00,2025-09-20T14:43:00.000+02:00
+[],96,29900,806,48,False,True,48.17128,-4.55115,Cap de la Chèvre,lacama,[],Cap de la ,SIMPLE,[],2025-09-20T14:19:00.000+02:00,2025-09-20T16:43:00.000+02:00
+[],6,39760,1165,52,False,True,48.22353,-4.5001,Port de Morgat,lacama,[],Port de Mo,SIMPLE,[],2025-09-20T15:05:00.000+02:00,2025-09-20T18:28:00.000+02:00
+[],3,47980,1408,54,False,True,48.23498,-4.42824,Estuaire de l'Aber,lacama,[],Estuaire d,SIMPLE,[],2025-09-20T15:43:00.000+02:00,2025-09-20T19:55:00.000+02:00
+[],15,55940,1798,60,False,True,48.20999,-4.36817,Arrivée,lacama,[],Arrivée,SIMPLE,[],2025-09-20T16:29:00.000+02:00,2025-09-20T21:30:00.000+02:00

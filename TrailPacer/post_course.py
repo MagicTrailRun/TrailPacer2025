@@ -11,13 +11,15 @@ import traceback
 # -----------------------
 # CONFIG
 # -----------------------
-race = "UTMB"
-year = 2025
-json_file = f"data/TrailPacer/{race}/post_course/{race}_{year}_all.json"
-config_df = pd.read_csv(f"data/TrailPacer/{race}/post_course//config_analysis.csv") 
-df_ranks=pd.read_csv(f"data/TrailPacer/{race}/post_course/ranks_{race}_{year}.csv")
-df_best=pd.read_csv(f'data/TrailPacer/{race}/post_course/best_perf.csv')
-df_cv=pd.read_csv(f"data/TrailPacer/{race}/post_course/variation_coefficient_{race}_{year}.csv")
+event=st.session_state.get("event", "UTMB")
+course=st.session_state.get("course", "UTMB")
+year =st.session_state.get("year", "2025")
+
+json_file = f"data/TrailPacer/{event}/{course}/post_course/{course}_{year}_all.json"
+config_df = pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course//config_analysis.csv") 
+df_ranks=pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course/ranks_{course}_{year}.csv")
+df_best=pd.read_csv(f'data/TrailPacer/{event}/{course}/post_course/best_perf.csv')
+df_cv=pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course/variation_coefficient_{course}_{year}.csv")
 # -----------------------
 # CHARGEMENT DES DONNÉES
 # -----------------------

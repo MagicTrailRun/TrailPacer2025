@@ -1,0 +1,17 @@
+{
+    "category": "100k",
+    "color": "#347aaa",
+    "distance": 92000,
+    "elevationGain": 2100,
+    "finishPlace": "",
+    "fullName": "GRF92",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "lalanv",
+    "shortName": "GRF92",
+    "startDate": "2025-09-20T06:30:00.000+02:00",
+    "startPlace": "Départ Lanvéoc",
+    "status": "NOT_LAUNCHED",
+     "temps_cible": [7, 17]
+}

@@ -29,6 +29,18 @@ def decimal_to_hhmm(x):
     heures = int(x)
     minutes = int(round((x - heures) * 60))
     return f"{heures}h{minutes:02d}"
+def format_pace(time_h, dist_km):
+    """
+    time_h : temps en heures (float)
+    dist_km : distance en km (float)
+    Retourne une string du type "m'ss/km" ou "" si dist=0
+    """
+    if dist_km == 0 or pd.isna(dist_km) or pd.isna(time_h):
+        return ""
+    pace_min = (time_h * 60) / dist_km
+    minutes = int(pace_min)
+    seconds = int((pace_min - minutes) * 60)
+    return f"{minutes}'{seconds:02d}/km"
 
 
 def format_dataframe(df,target_time):
@@ -38,37 +50,35 @@ def format_dataframe(df,target_time):
     col_heure_passage = f"heure_passage_{target_time}"
 
     if col_temps_secteur_med in df.columns:
-        df['Allure secteur'] = (
-            df[col_temps_secteur_med].mul(60) / df["dist_secteur"]
-        ).apply(lambda x: f"{int(x)}'{int((x-int(x))*60):02d}/km")
-
+        df["Allure secteur"] = df.apply(
+            lambda row: format_pace(row[col_temps_secteur_med], row["dist_secteur"]),
+            axis=1
+        )
         df_display = df[[
-            "Point de passage",
+            "checkpoint",
             "dist_total",
             "dist_secteur",
-            "dp_tot_secteur",
-            "dm_tot_secteur",
+            "dplus_secteur",
+            "dmoins_secteur",
             col_temps_total,
             col_temps_secteur,
             "Allure secteur",
-
             col_heure_passage
         ]]
-        df_display = df_display.copy()
-        df_display['barriere_horaire_hhmm'] = df['barriere_horaire'].map(decimal_to_hhmm)     
-
         column_config={
                     "dist_total": st.column_config.NumberColumn("Km total", format="%.1f"),
                     "dist_secteur": st.column_config.NumberColumn("Km secteur", format="%.1f"),
-                    "dp_tot_secteur": st.column_config.NumberColumn("D+ secteur", format="%d"),
-                    "dm_tot_secteur": st.column_config.NumberColumn("D- secteur", format="%d"),
+                    "dplus_secteur": st.column_config.NumberColumn("D+ secteur", format="%d"),
+                    "dmoins_secteur": st.column_config.NumberColumn("D- secteur", format="%d"),
                     col_temps_secteur: st.column_config.TextColumn("Temps secteur"),
                     "Allure secteur": st.column_config.TextColumn("Allure secteur"),
                     col_temps_total: st.column_config.TextColumn("Temps cumulé cible"),
                     col_heure_passage: st.column_config.TextColumn("Heure passage"),
                     "barriere_horaire_hhmm" : st.column_config.TextColumn('Barrière horaire')
                 }
-        
+        if "barriere_horaire" in df.columns:
+            df_display["barriere_horaire_hhmm"] = df["barriere_horaire"].dropna().map(decimal_to_hhmm)
+            column_config["barriere_horaire_hhmm"] = st.column_config.TextColumn("Barrière horaire")
     return(df_display, column_config)
 
 def normalize_ckpts(df, col, mapping, drop_ckpts=None):
