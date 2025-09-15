@@ -78,7 +78,7 @@ def plot_segment_analysis(df):
 
 
 
-def load_gpx(pth):
+def load_json(pth):
 
     with open(pth, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -100,6 +100,50 @@ def load_gpx(pth):
     for seg in segments
     ])
     return(df_segments)
+
+
+
+
+
+import xml.etree.ElementTree as ET
+import pandas as pd
+import numpy as np
+from math import radians, cos, sin, sqrt, atan2
+
+def haversine(lat1, lon1, lat2, lon2):
+    """Distance en mètres entre 2 lat/lon."""
+    R = 6371000  # rayon Terre en m
+    dlat = radians(lat2 - lat1)
+    dlon = radians(lon2 - lon1)
+    a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1-a))
+    return R * c
+
+def gpx_to_df(gpx_file):
+    """Lit un GPX et retourne un DataFrame avec lat, lon, altitude, temps, distance cumulée."""
+    ns = {"default": "http://www.topografix.com/GPX/1/1"}
+    tree = ET.parse(gpx_file)
+    root = tree.getroot()
+
+    pts = []
+    for trkpt in root.findall(".//default:trkpt", ns):
+        lat = float(trkpt.attrib["lat"])
+        lon = float(trkpt.attrib["lon"])
+        ele = float(trkpt.find("default:ele", ns).text)
+        t = trkpt.find("default:time", ns).text if trkpt.find("default:time", ns) is not None else None
+        pts.append((lat, lon, ele, t))
+
+    df = pd.DataFrame(pts, columns=["lat", "lon", "altitude", "time"])
+
+    # Calcul distance cumulée
+    dists = [0.0]
+    for i in range(1, len(df)):
+        d = haversine(df.loc[i-1,"lat"], df.loc[i-1,"lon"],
+                      df.loc[i,"lat"], df.loc[i,"lon"])
+        dists.append(dists[-1] + d)
+    df["distance"] = dists  # en m
+
+    return df
 
 
 def plot_slope_histogram(df_gpx):

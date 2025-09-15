@@ -7,24 +7,10 @@ import traceback
 
 
 
+import streamlit as st
+import streamlit.components.v1 as components
+import pandas as pd
 
-# -----------------------
-# CONFIG
-# -----------------------
-event=st.session_state.get("event", "UTMB")
-course=st.session_state.get("course", "UTMB")
-year =st.session_state.get("year", "2025")
-
-json_file = f"data/TrailPacer/{event}/{course}/post_course/{course}_{year}_all.json"
-config_df = pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course//config_analysis.csv") 
-df_ranks=pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course/ranks_{course}_{year}.csv")
-df_best=pd.read_csv(f'data/TrailPacer/{event}/{course}/post_course/best_perf.csv')
-df_cv=pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course/variation_coefficient_{course}_{year}.csv")
-# -----------------------
-# CHARGEMENT DES DONNÉES
-# -----------------------
-with open(json_file, "r", encoding="utf-8") as f:
-    results = json.load(f)
 
 # -----------------------------
 # Conversion heures float -> hh:mm
@@ -45,18 +31,6 @@ def float_hours_to_hm(val):
     s = int(round((val - h - m/60) * 3600))
 
     return f"{'-' if neg else ''}{h:02d}:{m:02d}:{s:02d}"
-
-
-# -----------------------
-# COLLECT GLOBAL INFO
-
-first_female_time = df_ranks[
-    (df_ranks['sex'] == 'FEMALE') & (df_ranks['sex_rank'] == 1)
-]['final_time'].iloc[0]
-first_male_time = df_ranks[
-    (df_ranks['sex'] == 'MALE') & (df_ranks['sex_rank'] == 1)
-]['final_time'].iloc[0]
-
 # best_by_sector = {}
 
 # for runner_id, runner_info in results.items():
@@ -358,9 +332,6 @@ def show_post_course_table(info,df_best,df_cv,bib):
 
 
 
-import streamlit as st
-import streamlit.components.v1 as components
-import pandas as pd
 
 def show_runner_info(info_runner, height=230):
     runner = info_runner.iloc[0]
@@ -731,8 +702,37 @@ def post_course_indiv():
 
 
 
-def show_post_course():
+def show_post_course(event, course,year):
     st.title("Analyse post-course UTMB 2025")
+    try :
+        json_file = f"data/TrailPacer/{event}/{course}/post_course/{course}_{year}_all.json"
+        config_df = pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course//config_analysis.csv") 
+        df_ranks=pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course/ranks_{course}_{year}.csv")
+        df_best=pd.read_csv(f'data/TrailPacer/{event}/{course}/post_course/best_perf.csv')
+        df_cv=pd.read_csv(f"data/TrailPacer/{event}/{course}/post_course/variation_coefficient_{course}_{year}.csv")
+        # -----------------------
+        # CHARGEMENT DES DONNÉES
+        # -----------------------
+        with open(json_file, "r", encoding="utf-8") as f:
+            results = json.load(f)
+
+
+
+
+        # -----------------------
+        # COLLECT GLOBAL INFO
+
+        first_female_time = df_ranks[
+            (df_ranks['sex'] == 'FEMALE') & (df_ranks['sex_rank'] == 1)
+        ]['final_time'].iloc[0]
+        first_male_time = df_ranks[
+            (df_ranks['sex'] == 'MALE') & (df_ranks['sex_rank'] == 1)
+        ]['final_time'].iloc[0]
+    except :
+        st.error("Page non disponible pour cette course")
+
+
+
 
     # st.markdown(
     #     """

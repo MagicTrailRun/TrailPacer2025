@@ -144,8 +144,7 @@ def plot_altitude_profile_area(df_gpx, df, config, affichages=None, target_time=
         
         # Marqueur stylé avec couleur alternée
         marker_color = colors['secondary'] if idx in idx_high  else colors['warning']
-        idx_up=[18,4,2,20,22]
-        idx_down=[3,11]
+
         fig.add_trace(
             go.Scatter(
                 x=[dist],
@@ -158,7 +157,7 @@ def plot_altitude_profile_area(df_gpx, df, config, affichages=None, target_time=
                     line=dict(width=1, color='grey')
                 ),
                 text=[label_h],
-                textposition="top center" if (idx%2==1 and not idx in idx_down) or idx in idx_up  else "bottom center",
+                textposition="top center" if idx%2==1  else "bottom center",
                 textfont=dict(size=10, color=colors['text']),
                 #name=name,
                 showlegend=False,
