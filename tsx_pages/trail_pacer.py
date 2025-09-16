@@ -91,70 +91,132 @@ def show():
     event_name=st.session_state["event_name"]
     course_name=st.session_state["course_name"]
     apply_custom_css()
-    img_base64 = get_base64_image(f"TrailPacer/image/{event}.png")
+
+    img_base64 = get_base64_image(f"TrailPacer/image/{event.lower()}.png")
+
     
     st.set_page_config(
         page_title="TrailPacer: Planificateur de temps de passage & Analyses course",
         page_icon="🏃‍♂️",
         layout="wide"
     )
-    st.markdown(
-    f"""
-    <style>
-    .hero {{
-        position: relative;
-        width: 100%;
-        height: 300px;
-        background-image: url("data:image/png;base64,{img_base64}");
-        background-size: cover;
-        background-position: top;
-        border-radius: 15px;
-    }}
-     .hero h1 {{
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 3em;
-        font-weight: bold;
-        text-shadow: 2px 2px 8px #000;
-        margin: 0;
-    }}
-    .hero h2 {{
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 2em;
-        font-weight: 500;
-        text-shadow: 2px 2px 6px #000;
-        margin: 0;
-    }}
-    .hero h3 {{
-        position: absolute;
-        top: 70%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 2em;
-        font-weight: 500;
-        text-shadow: 2px 2px 6px #000;
-        margin: 0;
-    }}
-    </style>
 
-    <div class="hero">
-        <h1>TrailPacer</h1>
-        <h2>{event_name}  </h2>
-         <h3> {course_name}</h3>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    if img_base64:
+
+        st.markdown(
+        f"""
+        <style>
+        .hero {{
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-image: url("data:image/png;base64,{img_base64}");
+            background-size: cover;
+            background-position: top;
+            border-radius: 15px;
+        }}
+        .hero h1 {{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px #000;
+            margin: 0;
+        }}
+        .hero h2 {{
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2em;
+            font-weight: 500;
+            text-shadow: 2px 2px 6px #000;
+            margin: 0;
+        }}
+        .hero h3 {{
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2em;
+            font-weight: 500;
+            text-shadow: 2px 2px 6px #000;
+            margin: 0;
+        }}
+        </style>
+
+        <div class="hero">
+            <h1>TrailPacer</h1>
+            <h2>{event_name}  </h2>
+            <h3> {course_name}</h3>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
  
- 
+    
+    else :
+         st.markdown(
+        f"""
+        <style>
+        .hero {{
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            background-size: cover;
+            background-position: top;
+            border-radius: 15px;
+        }}
+        .hero h1 {{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px #000;
+            margin: 0;
+        }}
+        .hero h2 {{
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2em;
+            font-weight: 500;
+            text-shadow: 2px 2px 6px #000;
+            margin: 0;
+        }}
+        .hero h3 {{
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2em;
+            font-weight: 500;
+            text-shadow: 2px 2px 6px #000;
+            margin: 0;
+        }}
+        </style>
+
+        <div class="hero">
+            <h1>TrailPacer</h1>
+            <h2>{event_name}  </h2>
+            <h3> {course_name}</h3>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 
     #onfig, mapping_ckpts = get_config(f"data/TrailPacer/{event}/{course}/config/config_{year}.json", course)
     

@@ -4,13 +4,13 @@ Grand Raid de la Réunion:
   races:
     "Diagonale des Fous":
       code: "GRR"
-      year: [2024, 2025]
+      year: [ 2025,2024]
     "Trail de Bourbon":
       code: "TDB"
-      year: [2024, 2025]
+      year: [ 2025,2024]
     "Mascareignes":
       code: "MAS"
-      year: [2024, 2025]
+      year: [ 2025,2024]
       
 UTMB:
   tenant: "UTMB"
