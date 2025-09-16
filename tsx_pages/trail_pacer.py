@@ -168,7 +168,7 @@ def show():
             position: relative;
             width: 100%;
             height: 300px;
-            background-color: white;
+              background-color: white;
             background-size: cover;
             background-position: top;
             border-radius: 15px;
@@ -325,7 +325,7 @@ def show():
         pacing()
  
     with explorer3 : 
-        if course == 'GRR':
+        if course == 'GRR' and year==2025 :
             path_to_html = Path("data/TrailPacer/grandraid-reunion-oxybol/GRR/gpx_comparaison/comparaison_GRR_2024_2025.html")
 
             if path_to_html.exists():
@@ -351,8 +351,15 @@ def show():
 
                 # df_track_runners=df_track_runners.merge(df_timing, left_on="name", right_on='checkpoint',how='left')
 
-                df_gpx=load_json(f"data/TrailPacer/{event}/{course}/tracks/track_{year}.json")
+                track_file_gpx = Path(f"data/TrailPacer/{event}/{course}/tracks/gpx_{year}.gpx")
+                track_file_json = Path(f"data/TrailPacer/{event}/{course}/tracks/track_{year}.json")
 
+                if track_file_json.exists():
+                    df_gpx = load_json(track_file_json) 
+                    
+                elif track_file_gpx.exists():
+                    df_gpx = gpx_to_df(track_file_gpx)
+                   
                 st.info("Page en cours de construction...")
                 st.markdown("### Fiche identité")
                 st.markdown(f"#### 📅 Edition du {config['startDate'].strftime('%d/%m/%Y %H:%M')}")

@@ -110,6 +110,48 @@ import pandas as pd
 import numpy as np
 from math import radians, cos, sin, sqrt, atan2
 
+# def haversine(lat1, lon1, lat2, lon2):
+#     """Distance en mètres entre 2 lat/lon."""
+#     R = 6371000  # rayon Terre en m
+#     dlat = radians(lat2 - lat1)
+#     dlon = radians(lon2 - lon1)
+#     a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
+#     c = 2 * atan2(sqrt(a), sqrt(1-a))
+#     return R * c
+
+# def gpx_to_df(gpx_file):
+#     """Lit un GPX et retourne un DataFrame avec lat, lon, altitude, temps, distance cumulée."""
+#     ns = {"default": "http://www.topografix.com/GPX/1/1"}
+#     tree = ET.parse(gpx_file)
+#     root = tree.getroot()
+
+#     pts = []
+#     for trkpt in root.findall(".//default:trkpt", ns):
+#         lat = float(trkpt.attrib["lat"])
+#         lon = float(trkpt.attrib["lon"])
+#         ele = float(trkpt.find("default:ele", ns).text)
+#         t = trkpt.find("default:time", ns).text if trkpt.find("default:time", ns) is not None else None
+#         pts.append((lat, lon, ele, t))
+
+#     df = pd.DataFrame(pts, columns=["lat", "lon", "altitude", "time"])
+
+#     # Calcul distance cumulée
+#     dists = [0.0]
+#     for i in range(1, len(df)):
+#         d = haversine(df.loc[i-1,"lat"], df.loc[i-1,"lon"],
+#                       df.loc[i,"lat"], df.loc[i,"lon"])
+#         dists.append(dists[-1] + d)
+#     df["distance"] = dists  # en m
+
+#     return df
+
+
+
+import xml.etree.ElementTree as ET
+import pandas as pd
+import numpy as np
+from math import radians, cos, sin, sqrt, atan2
+
 def haversine(lat1, lon1, lat2, lon2):
     """Distance en mètres entre 2 lat/lon."""
     R = 6371000  # rayon Terre en m
@@ -120,7 +162,7 @@ def haversine(lat1, lon1, lat2, lon2):
     return R * c
 
 def gpx_to_df(gpx_file):
-    """Lit un GPX et retourne un DataFrame avec lat, lon, altitude, temps, distance cumulée."""
+    """Lit un GPX et retourne un DataFrame avec lat, lon, altitude, temps, distance cumulée et pente en %."""
     ns = {"default": "http://www.topografix.com/GPX/1/1"}
     tree = ET.parse(gpx_file)
     root = tree.getroot()
@@ -135,15 +177,30 @@ def gpx_to_df(gpx_file):
 
     df = pd.DataFrame(pts, columns=["lat", "lon", "altitude", "time"])
 
-    # Calcul distance cumulée
-    dists = [0.0]
+    # Distances successives
+    dist = [0]
     for i in range(1, len(df)):
-        d = haversine(df.loc[i-1,"lat"], df.loc[i-1,"lon"],
-                      df.loc[i,"lat"], df.loc[i,"lon"])
-        dists.append(dists[-1] + d)
-    df["distance"] = dists  # en m
+        d = haversine(df.loc[i-1, "lat"], df.loc[i-1, "lon"],
+                      df.loc[i, "lat"], df.loc[i, "lon"])
+        dist.append(d)
+    df["dist_m"] = dist
+    df["distance"] = df["dist_m"].cumsum()
+
+    # Pente en % entre deux points successifs
+    pente = [np.nan]
+    for i in range(1, len(df)):
+        delta_h = df.loc[i, "altitude"] - df.loc[i-1, "altitude"]
+        d = df.loc[i, "dist_m"]
+        if d > 0:
+            pente.append(100 * delta_h / d)
+        else:
+            pente.append(np.nan)
+    df["pente"] = pente
 
     return df
+
+
+
 
 
 def plot_slope_histogram(df_gpx):
