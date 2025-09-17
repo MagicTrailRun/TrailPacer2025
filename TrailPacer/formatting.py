@@ -49,7 +49,6 @@ def format_pace(time_h, dist_km):
 
 
 def format_dataframe(df,target_time):
-    print(df.columns[:10])
     col_temps_secteur = f"temps_secteur_{target_time}"
     col_temps_secteur_med = f"temps_secteur_med_{target_time}"
     col_temps_total = f"temps_cumule_med_{target_time}"
@@ -83,11 +82,10 @@ def format_dataframe(df,target_time):
                     "barriere_horaire_hhmm" : st.column_config.TextColumn('Barrière horaire')
                 }
         if "barriere_horaire" in df.columns:
-            print(df["barriere_horaire"])
             df_display["barriere_horaire_hhmm"] = df["barriere_horaire"].dropna().map(decimal_to_hhmm)
             column_config["barriere_horaire_hhmm"] = st.column_config.TextColumn("Barrière horaire")
         elif "fermeture" in df.columns:
-            print(df["fermeture"])
+
             df_display["barriere_horaire_hhmm"] = df["fermeture"].dropna()
             column_config["barriere_horaire_hhmm"] = st.column_config.TextColumn("Barrière horaire")     
     return(df_display, column_config)

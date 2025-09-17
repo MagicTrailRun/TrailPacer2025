@@ -4,7 +4,9 @@ import plotly.express as px
 import numpy as np
 import pandas as pd
 
-def plot_altitude_profile_area(df_gpx, df, config, affichages=None, target_time=None, show_title=True):
+
+
+def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, show_title=True):
     """
     Profil d'altitude avec checkpoints, D+/D- par secteur et design moderne
     """
@@ -27,8 +29,7 @@ def plot_altitude_profile_area(df_gpx, df, config, affichages=None, target_time=
     # Création du graphique avec subplot pour plus de contrôle
     fig =go.Figure()
     
-    
-    # === PROFIL PRINCIPAL AVEC GRADIENT SEXY ===
+
     
     # Gradient fill moderne
     fig.add_trace(

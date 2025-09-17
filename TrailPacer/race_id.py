@@ -5,6 +5,7 @@ import numpy as np
 import json
 import plotly.graph_objects as go
 import numpy as np
+from pathlib import Path
 
 def load_data_checkpoints(csv_file="utmb_checkpoints.csv"):
     """Charge le CSV et parse les dates"""
@@ -160,9 +161,9 @@ def haversine(lat1, lon1, lat2, lon2):
     a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
     c = 2 * atan2(sqrt(a), sqrt(1-a))
     return R * c
-
 def gpx_to_df(gpx_file):
-    """Lit un GPX et retourne un DataFrame avec lat, lon, altitude, temps, distance cumulée et pente en %."""
+    """Lit un GPX et retourne un DataFrame avec lat, lon, altitude, temps, 
+    distance cumulée (3D), pente en %, D+ et D- cumulés."""
     ns = {"default": "http://www.topografix.com/GPX/1/1"}
     tree = ET.parse(gpx_file)
     root = tree.getroot()
@@ -171,36 +172,73 @@ def gpx_to_df(gpx_file):
     for trkpt in root.findall(".//default:trkpt", ns):
         lat = float(trkpt.attrib["lat"])
         lon = float(trkpt.attrib["lon"])
-        ele = float(trkpt.find("default:ele", ns).text)
-        t = trkpt.find("default:time", ns).text if trkpt.find("default:time", ns) is not None else None
-        pts.append((lat, lon, ele, t))
+        ele = float(trkpt.find("default:ele", ns).text or 0)
+        pts.append((lat, lon, ele))
 
-    df = pd.DataFrame(pts, columns=["lat", "lon", "altitude", "time"])
+    df = pd.DataFrame(pts, columns=["lat", "lon", "altitude"])
 
     # Distances successives
-    dist = [0]
-    for i in range(1, len(df)):
-        d = haversine(df.loc[i-1, "lat"], df.loc[i-1, "lon"],
-                      df.loc[i, "lat"], df.loc[i, "lon"])
-        dist.append(d)
-    df["dist_m"] = dist
-    df["distance"] = df["dist_m"].cumsum()
+    dist_2d = [0]
+    dist_3d = [0]
+    dplus = [0]
+    dmoins = [0]
+    pente = [0]
 
-    # Pente en % entre deux points successifs
-    pente = [np.nan]
     for i in range(1, len(df)):
-        delta_h = df.loc[i, "altitude"] - df.loc[i-1, "altitude"]
-        d = df.loc[i, "dist_m"]
-        if d > 0:
-            pente.append(100 * delta_h / d)
-        else:
-            pente.append(np.nan)
+        d2d = haversine(df.loc[i-1, "lat"], df.loc[i-1, "lon"],
+                        df.loc[i, "lat"], df.loc[i, "lon"])
+        dh = df.loc[i, "altitude"] - df.loc[i-1, "altitude"]
+
+        d3d = np.sqrt(d2d**2 + dh**2)
+
+        dist_2d.append(d2d)
+        dist_3d.append(d3d)
+
+        # pente % sur distance horizontale
+        pente.append(100 * dh / d2d if d2d > 0 else np.nan)
+
+        # D+ et D-
+        dplus.append(dh if dh > 0 else 0)
+        dmoins.append(-dh if dh < 0 else 0)
+
+    df["dist_2d_m"] = dist_2d
+    df["dist_3d_m"] = dist_3d
+    df["distance"] = df["dist_3d_m"].cumsum()
     df["pente"] = pente
+    df["dplus"] = dplus
+    df["dmoins"] = dmoins
+    df["dplus_cum"] = df["dplus"].cumsum()
+    df["dmoins_cum"] = df["dmoins"].cumsum()
 
     return df
 
 
 
+
+
+
+def get_df_for_gpx(event, course,year):
+    track_tile_csv=Path(f"data/TrailPacer/{event}/{course}/tracks/track_{year}.csv")
+    track_file_gpx = Path(f"data/TrailPacer/{event}/{course}/tracks/gpx_{year}.gpx")
+    track_file_json = Path(f"data/TrailPacer/{event}/{course}/tracks/track_{year}.json")
+    if track_file_json.exists():
+        df_gpx = load_json(track_file_json) 
+        has_terrain_type=True
+    elif track_tile_csv.exists():
+        df_gpx = pd.read_csv(track_tile_csv) 
+        has_terrain_type=False
+    elif track_file_gpx.exists():
+        df_gpx = gpx_to_df(track_file_gpx)
+        has_terrain_type=False
+    return(df_gpx, has_terrain_type)
+
+
+
+
+
+
+import pandas as pd
+import numpy as np
 
 
 def plot_slope_histogram(df_gpx):
@@ -258,20 +296,30 @@ def altitude_metrics(df_gpx, seuil=2000):
 
     return pct_above, pct_below
 
-def color_pente(val):
-        if val < -5:
-            return '#00AA00'  # Vert foncé pour forte descente
-        elif val < 0:
-            return '#66FF66'  # Vert clair pour descente légère
-        elif val < 5:
-           return "#6E6E40"  # Jaune pour plat/montée légère
-        elif val < 10:
-            return '#FF6600'  # Orange pour montée modérée
-        else:
-            return '#CC0000'  # Rouge foncé pour forte montée
-        
-
-
+def color_pente(val: float) -> str:
+    """Retourne une couleur hex en fonction de la pente (%)"""
+    if val < -30:
+        return '#000000'  # Noir - descente extrême
+    elif val < -20:
+        return '#8B0000'  # Rouge foncé descente
+    elif val < -15:
+        return '#FF6347'  # Rouge clair descente
+    elif val < -10:
+        return "#67DAE9"
+    elif val < -5:
+        return '#006400'  # Vert foncé descente
+    elif val < 5:
+        return '#90EE90'  # Jaune plat / légère montée
+    elif val < 10:
+        return '#006400' # Orange montée modérée
+    elif val < 15:
+        return "#67DAE9"
+    elif val < 20:
+        return '#FF6347'  # Rouge forte montée
+    elif val < 30:
+        return '#8B0000'  # Rouge très forte montée
+    else:
+        return '#000000'  # Noir mur infranchissable
 
 
 
@@ -285,33 +333,41 @@ def clean_terrain_types(df, known_types=None, default_type='default'):
     df.loc[~df['type'].isin(known_types), 'type'] = default_type
     return df
 
-def make_segment_polygon(seg, terrain, terrain_colors, description_type, altitude_min, terrain_added):
+def make_segment_polygon(seg, terrain,  altitude_min,mode,terrain_colors= None, description_type=None,terrain_added=None):
     """
     Construit un polygone (Scatter plotly) pour un segment de terrain donné.
     """
-    color = terrain_colors.get(terrain, terrain_colors['default'])
-    description = description_type.get(terrain, terrain)
+    if mode == "terrain":
+        color = terrain_colors.get(terrain, terrain_colors["default"])
+        description = description_type.get(terrain, terrain)
+        show_legend = terrain not in terrain_added
+        if show_legend:
+            terrain_added.add(terrain)
+
+    elif mode == "slope":
+       
+        color = terrain
+        description=''
+        show_legend=False
+
 
     x_coords = seg["distance_km"].tolist()
     y_coords = seg["altitude"].tolist()
     x_poly = x_coords + x_coords[::-1]
     y_poly = y_coords + [altitude_min] * len(x_coords)
 
-    show_legend = terrain not in terrain_added
-    if show_legend:
-        terrain_added.add(terrain)
-
+    
     return go.Scatter(
         x=x_poly, y=y_poly,
         fill='toself', fillcolor=color,
         line=dict(width=0),
         name=f'{description}',
         showlegend=show_legend,
-        legendgroup=terrain,
+        #legendgroup=terrain,
         hoverinfo='skip',
         mode='none'
     )
-def get_segments_by_terrain(df_col, terrain_colors, description_type, min_length=50):
+def get_segments_by_terrain(df_col, terrain_colors, description_type, min_length=60):
     """
     Découpe le tracé GPX par type de terrain et crée les polygones de remplissage.
     Les segments trop courts (< min_length) sont considérés comme parasites
@@ -334,12 +390,12 @@ def get_segments_by_terrain(df_col, terrain_colors, description_type, min_length
                 if seg_length >= min_length:
                     # vrai segment → on le garde
                     traces.append(
-                        make_segment_polygon(seg, current_terrain, terrain_colors, description_type, altitude_min, terrain_added)
+                        make_segment_polygon(seg, current_terrain, altitude_min, mode='terrain', terrain_colors=terrain_colors, description_type=description_type,terrain_added=terrain_added)
                     )
                     # on passe au prochain type
                     if i < len(df_col):
                         current_terrain = df_col.iloc[i]['type']
-                        segment_start_idx = i
+                        segment_start_idx = i 
                 else:
                     # parasite → on l’ignore et on reste dans le terrain précédent
                     if i < len(df_col):
@@ -352,112 +408,212 @@ def get_segments_by_terrain(df_col, terrain_colors, description_type, min_length
                     segment_start_idx = i
 
     return traces
+
+
+def get_segments_by_slope(df_col, min_length=100):
+    """
+    Découpe le tracé GPX par type de terrain et crée les polygones de remplissage.
+    Les segments trop courts (< min_length) sont considérés comme parasites
+    et fusionnés avec le terrain précédent.
+    """
+    current_color = None
+    segment_start_idx = 0
+    traces = []
+    unused_index=[]
+    altitude_min = df_col['altitude'].min()
+    df_col["pente_col"]=df_col['pente'].apply(color_pente)
+    for i in range(len(df_col) + 1):
+        if i == len(df_col) or df_col.iloc[i]['pente_col'] != current_color:
+            # Fin de segment
+            if current_color is not None and i > segment_start_idx:
+                seg = df_col.iloc[segment_start_idx:i+1]
+                seg_length = seg['distance'].iloc[-1] - seg['distance'].iloc[0]
+
+                if seg_length >= min_length:
+                    # vrai segment → on le garde
+                    traces.append(
+                        make_segment_polygon(seg, current_color, altitude_min, mode='slope')
+                    )
+                    # on passe au prochain type
+                    if i < len(df_col):
+                        current_color = df_col.iloc[i]['pente_col']
+                        segment_start_idx = i
+                else:
+                    # parasite → on l’ignore et on reste dans le terrain précédent
+
+
+                    if i < len(df_col):
+                        unused_index.append(i)
+                        # on ne change pas de terrain, on recule le "curseur"
+                        continue
+            else:
+                # tout début du premier segment
+                if i < len(df_col):
+                    current_color = df_col.iloc[i]['pente_col']
+                    segment_start_idx = i
+
+    return traces,unused_index 
 # --- Ajouter les segments colorés selon la pente ---
-def add_gradient_segments(fig, df_col):
+
+
+def add_gradient_segments(fig, df_col,terrain_colors,description_type,terrain_added = set()):
     for i in range(len(df_col)-1):
         x_start, x_end = df_col.iloc[i]["distance_km"], df_col.iloc[i+1]["distance_km"]
         y_start, y_end = df_col.iloc[i]["altitude"], df_col.iloc[i+1]["altitude"]
-        pente = df_col.iloc[i]["pente"]
-        color=color_pente(pente)
+        terrain = df_col.iloc[i]["type"]
+        color=color = terrain_colors.get(terrain, terrain_colors["default"])
+        description = description_type.get(terrain, terrain)
+        show_legend = terrain not in terrain_added
+        if show_legend:
+            terrain_added.add(terrain)
         fig.add_trace(go.Scatter(
             x=[x_start, x_end], y=[y_start, y_end],
             mode='lines', line=dict(color=color, width=4),
-            showlegend=False,
+            showlegend=show_legend,
             hoverinfo='skip',
+            name=f'{description}',
+            legendgroup=terrain
         ))
 
-# --- Fonction principale ---
-def create_col_profile(df_segments, df_track, col_name="Col Ferret"):
-    mask = df_track["checkpoint"] == col_name
-    if not mask.any(): return go.Figure(), {}
-    distance_end = df_track.loc[mask, "distance"].values[0]
-    idx_end = df_track.index[df_track["distance"] == distance_end][0]
-    distance_start = 0 if idx_end == 0 else df_track.loc[idx_end-1, "distance"]
 
-    df_col = df_segments[(df_segments["distance"] >= distance_start) & 
-                         (df_segments["distance"] <= distance_end)].copy()
-    if df_col.empty: return go.Figure(), {}
+def create_col_profile(df_track,df_segments, col_name, has_terrain_type=False):
+    mask = df_segments["checkpoint"] == col_name
+    if not mask.any():
+        return go.Figure(), {}
+    distance_end = df_segments.loc[mask, "distance"].values[0]
+    idx_end = df_segments.index[df_segments["distance"] == distance_end][0]
+    distance_start = 0 if idx_end == 0 else df_segments.loc[idx_end-1, "distance"]
+    df_col = df_track[(df_track["distance"] >= distance_start) & 
+                         (df_track["distance"] <= distance_end)].copy().reset_index()
+    
+    if df_col.empty:
+        return go.Figure(), {}
 
     df_col['distance_km'] = df_col["distance"] / 1000
-    df_col = clean_terrain_types(df_col)
 
+
+    # Couleurs terrains
     terrain_colors = {
-        'T1': 'rgba(34, 139, 34, 0.6)', 'R': 'rgba(128, 128, 128, 0.6)',
-        'F': 'rgba(139, 69, 19, 0.6)', 'T': 'rgba(255, 140, 0, 0.6)',
-        'T2': 'rgba(178, 34, 34, 0.6)', 'default': 'rgba(255, 223, 0, 0.5)'
+        'T1': 'rgba(34, 139, 34, 1)', 'R': 'rgba(128, 128, 128, 1)',
+        'F': 'rgba(139, 69, 19, 1)', 'T': 'rgba(255, 140, 0, 1)',
+        'T2': 'rgba(178, 34, 34, 1)', 'default': 'rgba(255, 223, 0, 1)'
     }
-    description_type = {'T1': "Sentier randonnée","R":"Route","F":"Chemin forestier",
-                        "T":"Sentier","T2":"Sentier montagne"}
+    description_type = {
+        'T1': "Sentier randonnée","R":"Route","F":"Chemin forestier",
+        "T":"Sentier","T2":"Sentier montagne"
+    }
+
+    
+
 
     fig = go.Figure()
-    fig.add_traces(get_segments_by_terrain(df_col, terrain_colors, description_type),)
-
-    # Ligne principale
-    fig.add_trace(go.Scatter(
-        x=df_col["distance_km"], y=df_col["altitude"],
-        mode='lines', line=dict(color='white', width=4, shape='spline', smoothing=0.5),
-        name='Profil altimétrique',
-        showlegend=False,
-        hoverinfo='skip'
-    ))
-
-    add_gradient_segments(fig, df_col)
-
-    # Points pour hover
-    fig.add_trace(go.Scatter(
-        x=df_col["distance_km"], y=df_col["altitude"], mode='markers',
-        marker=dict(size=4, color='black', opacity=0),
-        name='Points', showlegend=False,
-        hovertemplate='<b>Distance:</b> %{x:.1f} km<br>'
-                      '<b>Altitude:</b> %{y:.0f} m<br>'
-                      '<b>Pente:</b> %{customdata[0]:.1f}%<br>'
-                      '<b>Terrain:</b> %{customdata[1]}<extra></extra>',
-        customdata=[
-        [p, description_type.get(t, t)] 
-        for p, t in zip(df_col["pente"], df_col["type"])
+    traces,unused_index=get_segments_by_slope(df_col)
+    df_clean = df_col.drop(unused_index)
+    fig.add_traces(traces)
+    # Intervalles et couleurs correspondant à color_pente
+    pente_intervals = [
+        ("pente < -30%", "#000000"),
+        ("-30% <= pente < -20%", "#8B0000"),
+        ("-20% <= pente < -15%", "#FF6347"),
+        ("-15% <= pente < -10%", "#67DAE9"),
+        ("-10% <= pente < -5%", "#006400"),
+        ("-5% <= pente < 5%", "#90EE90"),
+        ("5% <= pente < 10%", "#006400"),
+        ("10% <= pente < 15%","#67DAE9"),
+        ("15% <= pente < 20%", "#FF6600"),
+        ("20% <= pente < 25%", "#CC0000"),
+        ("25% <= pente < 30%", "#8B0000"),
+        ("pente >= 30%", "#000000")
     ]
-    ))
 
+    # Ajouter des traces invisibles juste pour la légende
+    for label, color in pente_intervals:
+        fig.add_trace(go.Scatter(
+            x=[None],
+            y=[None],
+            mode="markers",
+            marker=dict(size=10, color=color),
+            showlegend=True,
+            name=label
+        ))
+
+
+
+    # Ajuster layout pour que le graphe laisse de la place
+    fig.update_layout(margin=dict(r=120))  # marges droite pour la légende
+
+
+    if has_terrain_type:
+        df_col = clean_terrain_types(df_col)
+        add_gradient_segments(fig, df_col,terrain_colors,description_type)
+         # === Points pour hover ===
+        fig.add_trace(go.Scatter(
+            x=df_col["distance_km"], y=df_col["altitude"], mode='markers',
+            marker=dict(size=4, color='black', opacity=0),
+            name='Points', showlegend=False,
+            hovertemplate='<b>Distance:</b> %{x:.1f} km<br>'
+                        '<b>Altitude:</b> %{y:.0f} m<br>'
+                        '<b>Pente:</b> %{customdata[0]:.1f}%<br>'
+                        '<b>Terrain:</b> %{customdata[1]}<extra></extra>',
+            customdata=[
+                [p, description_type.get(t, t)] 
+                for p, t in zip(df_col["pente"], df_col["type"])
+            ]
+        ))
+
+        # Colorée par terrain
+       
+    else:
+        # Ligne blanche uniforme
+        fig.add_trace(go.Scatter(
+            x=df_col["distance_km"], y=df_col["altitude"],
+            mode='lines', line=dict(color='black', width=1, shape='spline', smoothing=0.5),
+            name='Profil altimétrique',
+            showlegend=False,
+            hoverinfo='skip'
+        ))
+         # === Points pour hover ===
+        fig.add_trace(go.Scatter(
+            x=df_clean["distance_km"], y=df_clean["altitude"], mode='markers',
+            marker=dict(size=4, color='black', opacity=0),
+            name='Points', showlegend=False,
+            hovertemplate='<b>Distance:</b> %{x:.1f} km<br>'
+                        '<b>Altitude:</b> %{y:.0f} m<br>'
+                        '<b>Pente:</b> %{customdata[0]:.1f}%<br>',
+            customdata=[
+                [p] 
+                for p in (df_clean["pente"])
+            ]
+        ))
+
+        
+   
+    # === Mise en forme ===
     altitude_min = df_col['altitude'].min()
     fig.update_layout(
         plot_bgcolor= "#D1D4D8", paper_bgcolor= "#D1D4D8",
-        title=dict(text=f"Profil altimétrique - <b>{col_name}</b> ", x=0.5, font=dict(size=24,color='black'),  xanchor="center"),
+        title=dict(text=f"Profil altimétrique - <b>{col_name}</b> ", x=0.5,
+                   font=dict(size=24,color='black'), xanchor="center"),
         xaxis=dict(title="Distance (km)", color='black', showgrid=True, gridcolor="rgba(255,255,255,0.1)"),
         yaxis=dict(title="Altitude (m)", color='black', showgrid=True, gridcolor="rgba(255,255,255,0.1)",
                    range=[altitude_min-20, df_col["altitude"].max()+20]),
-        height=None, width=None,
         margin=dict(l=60,r=60,t=80,b=60),
-        legend=dict(font=dict(color='black')), hovermode='x unified'
+        legend=dict(font=dict(color='black')),
+        hovermode='x unified'
     )
-    
-    # Points pour hover
-    fig.add_annotation(
-        text="<b>Description pente:</b><br>"
-             "<span style='color:#00AA00'>■</span> Forte descente (&lt;-5%)<br>"
-             "<span style='color:#66FF66'>■</span> Descente (-5% à 0%)<br>"
-             "<span style='color:#FFFF00'>■</span> Plat/montée légère (0-5%)<br>"
-             "<span style='color:#FF6600'>■</span> Montée modérée (5-10%)<br>"
-             "<span style='color:#CC0000'>■</span> Forte montée (&gt;10%)",
-        xref="paper", yref="paper",
-        x=1.02, y=0.4,
-        xanchor="left", yanchor="top",
-        showarrow=False,
-        font=dict(size=10, color='black'),
-        bordercolor="black",
-        borderwidth=1,
-        bgcolor="#D1D4D8"
-    )
-    alt_metrics = {
-    "Altitude min": f"{int(df_col['altitude'].min())} m 🏔️",
-    "Altitude médiane": f"{int(df_col['altitude'].median())} m 🏞️",
-    "Altitude max": f"{int(df_col['altitude'].max())} m ⛰️",
 
-}
+    # === Métriques ===
+    alt_metrics = {
+        "Altitude min": f"{int(df_col['altitude'].min())} m 🏔️",
+        "Altitude médiane": f"{int(df_col['altitude'].median())} m 🏞️",
+        "Altitude max": f"{int(df_col['altitude'].max())} m ⛰️",
+    }
 
     pente_metrics = {
         "Pente min": df_col['pente'].min(),
         "Pente médiane": df_col['pente'].median(),
         "Pente max": df_col['pente'].max()
     }
-    metrics = [alt_metrics,pente_metrics]
+
+    metrics = [alt_metrics, pente_metrics]
     return fig, metrics
