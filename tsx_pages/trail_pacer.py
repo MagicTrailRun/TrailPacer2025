@@ -7,7 +7,8 @@ import plotly.graph_objects as go
 from TrailPacer.data_loader import load_data, get_config
 from TrailPacer.gpx_tracer import plot_altitude_profile_area
 from TrailPacer.formatting import format_dataframe,get_base64_image
-from TrailPacer.race_id import color_pente,altitude_metrics, process_data, load_data_checkpoints, create_col_profile, load_json,gpx_to_df, get_df_for_gpx
+from TrailPacer.race_id import  get_df_for_gpx
+from TrailPacer.explore_race import explore_race
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
 #from TrailPacer.post_course import show_post_course
 from config.styles import apply_custom_css
@@ -19,9 +20,12 @@ import streamlit.components.v1 as components
 
 print("___________________________________________")
 
-st.set_page_config(page_title="TrailPacer", page_icon="🏃‍♂️", layout="wide")
+st.set_page_config(
+        page_title="TrailPacer",
+        page_icon= "TrailPacer\image\icon.png",
+        layout="wide"
+    )
 
-import streamlit.components.v1 as components
 
 def select_event():
 
@@ -62,6 +66,9 @@ def select_event():
 
     # --- Définition des events/courses
     EVENT_CONFIG = st.session_state.get("EVENT_CONFIG", {})
+    if not EVENT_CONFIG:
+        st.error("Aucune configuration d'événement trouvée")
+        st.stop()
 
     with st.sidebar:
 
@@ -74,25 +81,37 @@ def select_event():
         st.success(f"Vous avez choisi **{event} – {course} – {year}**")
 
         # Sauvegarde en session_state
-        st.session_state["event_name"] = event
-        st.session_state["course_name"] = course
+        st.session_state["event"] = event
+        st.session_state["course"] = course
         st.session_state["year"] = year
-        st.session_state["event"] = EVENT_CONFIG[event]['tenant']
-        st.session_state["course"] = EVENT_CONFIG[event]['races'][course]["code"]
+        st.session_state["event_code"] = EVENT_CONFIG[event]['tenant']
+        st.session_state["course_code"] = EVENT_CONFIG[event]['races'][course]["code"]
+        event_code=st.session_state["event_code"]
+        course_code=st.session_state["course_code"]
+        
+        config = get_config(f"data/TrailPacer/{event_code}/{course_code}/config/config_{year}.json")
+        st.session_state["config"]=config
+        df = load_data(event=event_code,race=course_code, year=year)
+        st.session_state['df']=df
+        st.session_state["df_gpx"], st.session_state["has_terrain_type"] =get_df_for_gpx()
 
 def show():
 
-    st.set_page_config(layout="wide")
 
    
     year=st.session_state.get("year",2025)
+    event_code=st.session_state["event_code"]
+    course_code=st.session_state["course_code"]
     event=st.session_state["event"]
     course=st.session_state["course"]
-    event_name=st.session_state["event_name"]
-    course_name=st.session_state["course_name"]
+    config=st.session_state["config"]
+    df=st.session_state["df"]
+    if not all(k in st.session_state for k in ["event", "course", "year", "df", "config"]):
+        st.warning("⚠️ Merci de sélectionner un événement et une course dans le menu de gauche")
+        st.stop()
     apply_custom_css()
 
-    img_base64 = get_base64_image(f"TrailPacer/image/{event.lower()}.png")
+    img_base64 = get_base64_image(f"TrailPacer/image/{event_code.lower()}.png")
 
     
     st.set_page_config(
@@ -152,8 +171,8 @@ def show():
 
         <div class="hero">
             <h1>TrailPacer</h1>
-            <h2>{event_name}  </h2>
-            <h3> {course_name}</h3>
+            <h2>{event}  </h2>
+            <h3> {course}</h3>
         </div>
         """,
         unsafe_allow_html=True
@@ -210,20 +229,18 @@ def show():
 
         <div class="hero">
             <h1>TrailPacer</h1>
-            <h2>{event_name}  </h2>
-            <h3> {course_name}</h3>
+            <h2>{event}  </h2>
+            <h3> {course}</h3>
         </div>
         """,
         unsafe_allow_html=True
     )
 
 
-    #onfig, mapping_ckpts = get_config(f"data/TrailPacer/{event}/{course}/config/config_{year}.json", course)
-    
-    config = get_config(f"data/TrailPacer/{event}/{course}/config/config_{year}.json", course)
-    
 
-    df = load_data(event=event,race=course, year=year)
+
+
+   
 
     if df.empty:
         st.error("Impossible de charger les données")
@@ -283,7 +300,7 @@ def show():
         else:
             output = io.BytesIO()
             with pd.ExcelWriter(output, engine="openpyxl") as writer:
-                df_display.to_excel(writer, index=False, sheet_name="Temps_de_passage")
+                df_display.to_excel(writer, index=False, sheet_name="temps_de_passage")
             data = output.getvalue()
             mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             fname = "temps_de_passage.xlsx"
@@ -308,8 +325,8 @@ def show():
         
 
         try :
-            df_gpx, has_terrain_type =get_df_for_gpx(event, course, year)
 
+            df_gpx=st.session_state.get('df_gpx', pd.DataFrame())
             if not df_gpx.empty:
                 fig = plot_altitude_profile_area(df_gpx, df, affichages, target_time)
                 st.plotly_chart(fig, use_container_width=True)
@@ -322,81 +339,12 @@ def show():
         pacing()
  
     with explorer3 : 
-        # if course == 'GRR' and year==2025 :
-        #     path_to_html = Path("data/TrailPacer/grandraid-reunion-oxybol/GRR/gpx_comparaison/comparaison_GRR_2024_2025.html")
+        explore_race()
 
-        #     if path_to_html.exists():
-        #         with open(path_to_html, 'r', encoding="utf-8") as f:
-        #             html_data = f.read()
-
-        #         st.header("Différence de parcours entre 2024 et 2025")
-        #         st.components.v1.html(html_data, height=600, scrolling=True)
-       
-        try :
-            df_gpx, has_terrain_type =get_df_for_gpx(event, course, year)
-
-
-            st.info("Page en cours de construction...")
-            st.markdown("### Fiche identité")
-            st.markdown(f"#### 📅 Edition du {config['startDate'].strftime('%d/%m/%Y %H:%M')}")
-            col1, col2, col3, col4 = st.columns(4)
-
-            with col1:  
-                st.metric("Distance totale", f"{df['dist_total'].max():.1f} km")
-            with col2:
-                st.metric("D+ total", f"{df.dplus_cum_m.max():.0f} m")
-            with col3:
-                st.metric("D- total", f"{df.dmoins_cum_m.max():.0f} m")
-            with col4:
-                st.metric("Points de passage", len(df))
-            seuil=1500
-            pct_above, pct_below = altitude_metrics(df_gpx, seuil=seuil)
-
-            col1, col2,_,_ = st.columns(4)
-            with col1 :
-                st.metric(f"Parcours au-dessus de {seuil} m", f"{pct_above:.1f} %")
-            # with col2 :
-            #     st.metric(f"Nombre de participants", 2603)
-                
-            st.divider()
-            st.markdown("## Profil par segment")
-            option_seg = st.selectbox(
-                    "Choisis un segment :",
-                    [
-                        s for s in df.loc[df["dist_secteur"] > 0, "checkpoint"].unique()
-                    
-                    ]
-                )
-            if option_seg : 
-                df['distance']=df['distance_cum_m']
-                fig, metrics = create_col_profile(df_gpx, df, option_seg,has_terrain_type)
-                cols_alt = st.columns(len(metrics[0]))
-
-                for i, (label, val) in enumerate(metrics[0].items()):
-                    cols_alt[i].metric(label, val)
-                cols_slope = st.columns(len(metrics[1]))            
-                for i, (label, val) in enumerate(metrics[1].items()):
-                    color = color_pente(val)
-                    cols_slope[i].markdown(f"<div style='text-align:left; font-size:20px; color:{color}'>{label}<br>{val:.1f}%</div>", unsafe_allow_html=True)
-                st.plotly_chart(fig, use_container_width=True)
-            # st.divider()
-
-            # st.markdown("## Profil de la course")
-            # st.plotly_chart(plot_altitude_profile_area(df_gpx, df, mapping_ckpts, config, show_title=False))
-            # st.divider()
-            # st.plotly_chart(plot_slope_histogram(df_gpx), use_container_width=True)
-
-            # st.divider()
-            # # -----------------------------
-            # # 3️⃣ Analyse segmentaire
-            # # -----------------------------
         
-            # st.plotly_chart(plot_segment_analysis(df_track), use_container_width=True)
-        except Exception as e:
-            st.error("Cette page n'est pas encore disponible pour la course selectionnée !")
-            # Optionnel : log dans la console pour debug
-            print(f"[DEBUG] Erreur explorer_course: {e}")
-            traceback.print_exc()
+       
+
+        
 
 
 

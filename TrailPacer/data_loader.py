@@ -14,11 +14,9 @@ def load_data(event,race="UTMB",year=2025, version="vf"):
     except Exception as e:
         return pd.DataFrame()
 
-def get_config(path, course):
+def get_config(path):
     with open(path, "r", encoding="utf-8") as f:
         config = json.load(f)
-
-    #config = dic_config['courses'][course]
     config['startDate'] = pd.to_datetime(config['startDate'])
 
     temps_cible = np.arange(config['temps_cible'][0], config['temps_cible'][1], config.get('step',1))

@@ -11,6 +11,9 @@ Grand Raid de la Réunion:
     "Mascareignes":
       code: "MAS"
       year: [ 2025,2024]
+    "Metis Trail":
+      code: "MTR"
+      year: [ 2025]
       
 UTMB:
   tenant: "UTMB"

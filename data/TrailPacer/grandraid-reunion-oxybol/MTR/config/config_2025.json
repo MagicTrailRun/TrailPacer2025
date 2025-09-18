@@ -1,0 +1,54 @@
+{
+    "category": "",
+    "color": "#fc8230",
+    "distance": 50000,
+    "elevationGain": 2598,
+    "finishPlace": "Saint Denis - Stade de la Redoute",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 24,
+        "placeName": "Petite Île"
+    },
+    "fullName": "Metis Trail",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "MTR",
+    "shortName": "Metis Trail",
+    "startDate": "2025-10-18T06:30:00.000+04:00",
+    "startPlace": "Saint Paul",
+    "startWeather": {
+        "icon": "FEW_CLOUDS_DAY",
+        "temperature": 23,
+        "placeName": "Saint-Paul"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion-oxybol_2025/tracks/a680c3d0-985a-444f-b9a6-059d0f757809.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES F",
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "M7 F",
+        "M7 H",
+        "SE F",
+        "SE H"
+    ],
+    "temps_cible" : [6,13]
+}

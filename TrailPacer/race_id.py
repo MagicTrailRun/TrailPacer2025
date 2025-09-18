@@ -6,6 +6,7 @@ import json
 import plotly.graph_objects as go
 import numpy as np
 from pathlib import Path
+import streamlit as st
 
 def load_data_checkpoints(csv_file="utmb_checkpoints.csv"):
     """Charge le CSV et parse les dates"""
@@ -217,22 +218,40 @@ def gpx_to_df(gpx_file):
 
 
 
-def get_df_for_gpx(event, course,year):
-    track_tile_csv=Path(f"data/TrailPacer/{event}/{course}/tracks/track_{year}.csv")
-    track_file_gpx = Path(f"data/TrailPacer/{event}/{course}/tracks/gpx_{year}.gpx")
-    track_file_json = Path(f"data/TrailPacer/{event}/{course}/tracks/track_{year}.json")
+from pathlib import Path
+import pandas as pd
+
+from pathlib import Path
+import pandas as pd
+from pathlib import Path
+import pandas as pd
+
+def get_df_for_gpx():
+    event_code = st.session_state["event_code"]
+    course_code = st.session_state["course_code"]
+    year = st.session_state["year"]
+
+    tracks_dir = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/")
+    track_tile_csv = tracks_dir / f"track_{year}.csv"
+    track_file_gpx = tracks_dir / f"gpx_{year}.gpx"
+    track_file_json = tracks_dir / f"track_{year}.json"
+
     if track_file_json.exists():
-        df_gpx = load_json(track_file_json) 
-        has_terrain_type=True
+        df_gpx = load_json(track_file_json)
+        has_terrain_type = True
     elif track_tile_csv.exists():
-        df_gpx = pd.read_csv(track_tile_csv) 
-        has_terrain_type=False
+        df_gpx = pd.read_csv(track_tile_csv)
+        has_terrain_type = False
     elif track_file_gpx.exists():
         df_gpx = gpx_to_df(track_file_gpx)
-        has_terrain_type=False
-    return(df_gpx, has_terrain_type)
+        has_terrain_type = False
+    else:
+        df_gpx = pd.DataFrame()
+        has_terrain_type = False
+    st.session_state["df_gpx"] = df_gpx
+    st.session_state["has_terrain_type"] = has_terrain_type
 
-
+    return df_gpx, has_terrain_type
 
 
 
@@ -241,41 +260,6 @@ import pandas as pd
 import numpy as np
 
 
-def plot_slope_histogram(df_gpx):
-
-    
-    # Histogramme avec couleurs selon pente positive ou négative
-    df_gpx['slope_type'] = np.where(df_gpx['pente'] >= 0, 'Montée', 'Descente')
-    df_gpx['segment_km'] = df_gpx['distance'].diff().fillna(0) / 1000  
-
-    # Histogramme pondéré par la distance des segments
-    fig = px.histogram(
-        df_gpx,
-        x='pente',
-        nbins=50,
-        color='slope_type',
-        color_discrete_map={'Montée': 'green', 'Descente': 'blue'},
-        title="Répartition des pentes sur tout le parcours",
-        labels={'pente': 'Pente (%)', 'y': 'Distance (km)'},
-        histfunc="sum",              # somme des valeurs pondérées
-        barnorm=None,
-        opacity=0.9,
-        marginal=None,
-        facet_row=None,
-        facet_col=None,
-        facet_col_wrap=None,
-        barmode="overlay",
-        height=500,
-        hover_data=['segment_km']
-    )
-
-    fig.update_layout(
-        xaxis_title="Pente (%)",
-        yaxis_title="Distance (km)",
-        bargap=0.05
-    )
-
-    return fig
 
 
 
@@ -440,8 +424,6 @@ def get_segments_by_slope(df_col, min_length=100):
                         segment_start_idx = i
                 else:
                     # parasite → on l’ignore et on reste dans le terrain précédent
-
-
                     if i < len(df_col):
                         unused_index.append(i)
                         # on ne change pas de terrain, on recule le "curseur"
