@@ -1,0 +1,32 @@
+{
+    "color": "#ad6421",
+    "distance": 80600,
+    "elevationGain": 3530,
+    "finishPlace": "",
+    "fullName": "Grand Trail des Templiers",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "Templi",
+    "shortName": "Grand Trail des Templiers",
+    "startDate": "2022-10-23T05:18:49.000+00:00",
+    "startPlace": "",
+    "status": "FINISHED",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES F",
+        "ES H",
+        "M1-M2F",
+        "M1-M2H",
+        "M3-M4F",
+        "M3-M4H",
+        "M5-M6F",
+        "M5-M6H",
+        "M7-M8H",
+        "SE F",
+        "SE H"
+    ]
+}

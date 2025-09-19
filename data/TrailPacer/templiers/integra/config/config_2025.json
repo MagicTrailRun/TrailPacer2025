@@ -1,0 +1,43 @@
+{
+    "color": "#700a70",
+    "distance": 61800,
+    "elevationGain": 2661,
+    "finishPlace": "",
+    "finishWeather": {
+        "icon": "SCATTERED_CLOUDS_DAY",
+        "temperature": 15,
+        "placeName": "Millau"
+    },
+    "fullName": "Intégrale des Causses",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "integra",
+    "shortName": "Intégrale des Causses",
+    "startDate": "2025-10-17T06:50:00.000+02:00",
+    "startPlace": "Peyreleau",
+    "startWeather": {
+        "icon": "SCATTERED_CLOUDS_DAY",
+        "temperature": 15,
+        "placeName": "Paulhe"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/templiers_2024/tracks/b9908f0b-2ae3-4892-b9ec-232b9c71ed2b.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M1-M2F",
+        "M1-M2H",
+        "M3-M4F",
+        "M3-M4H",
+        "M5-M6F",
+        "M5-M6H",
+        "M7-M8H",
+        "S-M0F",
+        "S-M0H"
+    ],
+    "temps_cible" : [5,23]
+}

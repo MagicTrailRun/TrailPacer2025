@@ -1,0 +1,43 @@
+{
+    "color": "#ad6411",
+    "distance": 80400,
+    "elevationGain": 3428,
+    "finishPlace": "",
+    "finishWeather": {
+        "icon": "SCATTERED_CLOUDS_DAY",
+        "temperature": 15,
+        "placeName": "Millau"
+    },
+    "fullName": "Grand Trail des Templiers",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "Templi",
+    "shortName": "Grand Trail des Templiers",
+    "startDate": "2024-10-20T05:18:05.000+02:00",
+    "startPlace": "Millau",
+    "startWeather": {
+        "icon": "SCATTERED_CLOUDS_DAY",
+        "temperature": 15,
+        "placeName": "Millau"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/templiers_2024/tracks/32c51ab6-6793-45e2-88c0-a11b065f3624.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M1-M2F",
+        "M1-M2H",
+        "M3-M4F",
+        "M3-M4H",
+        "M5-M6F",
+        "M5-M6H",
+        "M7-M8H",
+        "S-M0F",
+        "S-M0H"
+    ],
+    "temps_cible" : [7,18]
+}

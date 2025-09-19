@@ -1,0 +1,30 @@
+{
+    "color": "#899948",
+    "distance": 104600,
+    "elevationGain": 4550,
+    "finishPlace": "",
+    "fullName": "Endurance Trail",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "endur",
+    "shortName": "Endurance Trail",
+    "startDate": "2022-10-21T04:01:39.000+00:00",
+    "startPlace": "",
+    "status": "FINISHED",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M1-M2F",
+        "M1-M2H",
+        "M3-M4F",
+        "M3-M4H",
+        "M5-M6H",
+        "M7-M8H",
+        "SE F",
+        "SE H"
+    ]
+}

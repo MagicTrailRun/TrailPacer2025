@@ -14,15 +14,25 @@ Grand Raid de la Réunion:
     "Metis Trail":
       code: "MTR"
       year: [ 2025]
-      
+HOKA LES TEMPLIERS:
+  tenant: 'templiers'
+  races: 
+    "Grand Trail des Templiers" :
+      code: "Templi"
+      year: [ 2025]
+    "Endurance Trail" :
+      code: "endur"
+      year: [ 2025]
+    "Intégrale des Causses":
+      code : "integra"
+      year: [ 2025]
+
 UTMB:
   tenant: "UTMB"
   races:
     "UTMB®":
       code: "UTMB"
       year: [ 2025]
-
-
 
 Graid Raid du Finistere:
   tenant :  'grf-breizhchrono'
