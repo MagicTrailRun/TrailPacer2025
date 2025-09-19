@@ -1,0 +1,51 @@
+{
+    "category": "",
+    "color": "#a7c9bb",
+    "distance": 56000,
+    "elevationGain": 1200,
+    "finishPlace": "",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 17,
+        "placeName": "Telgruc-sur-Mer"
+    },
+    "fullName": "La Camaret",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "lacama",
+    "shortName": "La Camaret",
+    "startDate": "2024-09-14T12:32:00.000+02:00",
+    "startPlace": "Départ Camaret",
+    "startWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 18,
+        "placeName": "Camaret-sur-Mer"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grf-breizhchrono_2024/tracks/51420725-72bb-4bf3-9829-8b3249836bc2.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "SE F",
+        "SE H"
+    ],
+        "temps_cible": [5, 11]
+}

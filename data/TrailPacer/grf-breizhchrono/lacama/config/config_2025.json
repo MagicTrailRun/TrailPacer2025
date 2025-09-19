@@ -1,0 +1,29 @@
+{
+    "category": "50k",
+    "color": "#35a863",
+    "distance": 56000,
+    "elevationGain": 1200,
+    "finishPlace": "",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 17,
+        "placeName": "Telgruc-sur-Mer"
+    },
+    "fullName": "GRF56",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "lacama",
+    "shortName": "GRF56",
+    "startDate": "2025-09-20T12:30:00.000+02:00",
+    "startPlace": "Départ Camaret",
+    "startWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 18,
+        "placeName": "Camaret-sur-Mer"
+    },
+    "status": "NOT_LAUNCHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grf-breizhchrono_2025/tracks/cba46d5b-b329-4679-8bf5-7d3193c4fdfd.json",
+           "temps_cible": [5, 11]
+        
+        }

@@ -1,0 +1,41 @@
+{
+    "color": "#ffcd00",
+    "distance": 165000,
+    "elevationGain": 9985,
+    "finishPlace": "",
+    "fullName": "Diagonale des fous",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "GRR",
+    "shortName": "Diagonale des fous",
+    "startDate": "2023-10-19T21:00:00.000+00:00",
+    "startPlace": "St Pierre Ravine Blanche",
+    "status": "FINISHED",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "M7 H",
+        "M8 F",
+        "M8 H",
+        "SE F",
+        "SE H"
+    ]
+}

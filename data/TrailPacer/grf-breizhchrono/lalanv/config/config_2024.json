@@ -1,0 +1,48 @@
+{
+    "category": "",
+    "color": "#70b335",
+    "distance": 92000,
+    "elevationGain": 2100,
+    "finishPlace": "",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 17,
+        "placeName": "Telgruc-sur-Mer"
+    },
+    "fullName": "La Lanvéoc",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "lalanv",
+    "shortName": "La Lanvéoc",
+    "startDate": "2024-09-14T06:33:02.000+02:00",
+    "startPlace": "Départ Lanvéoc",
+    "startWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 17,
+        "placeName": "Lanvéoc"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grf-breizhchrono_2024/tracks/93f39d38-6506-40b8-9754-766c49fd96ef.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 H",
+        "M6 H",
+        "SE F",
+        "SE H"
+    ],
+         "temps_cible": [7, 17]
+}

@@ -1,0 +1,8 @@
+access,altitude,distance,elevationGain,pointId,isAssistance,isMeet,lat,lon,name,raceId,services,shortName,type,livecams,dateFirstRunners,dateLastRunners
+[],4,0,0,0,False,True,48.2759,-4.58946,Départ Camaret,lacama,[],Départ Cam,SIMPLE,[],2024-09-14T12:32:00.000+02:00,2024-09-14T12:32:00.000+02:00
+[],58,7570,144,40,False,True,48.25621,-4.62176,Pointe de Pen Hir,lacama,[],Pointe de ,SIMPLE,[],2024-09-14T12:59:00.000+02:00,2024-09-14T13:33:00.000+02:00
+[],6,16920,244,42,False,True,48.24036,-4.54544,Plage de Goulien,lacama,[],Plage de G,SIMPLE,[],2024-09-14T13:32:00.000+02:00,2024-09-14T14:46:00.000+02:00
+[],94,29920,587,48,False,True,48.1713,-4.551,Cap de la Chèvre,lacama,[],Cap de la ,SIMPLE,[],2024-09-14T14:28:00.000+02:00,2024-09-14T16:50:00.000+02:00
+[],7,39830,847,52,False,True,48.22357,-4.50009,Port de Morgat,lacama,[],Port de Mo,SIMPLE,[],2024-09-14T15:12:00.000+02:00,2024-09-14T18:30:00.000+02:00
+[],10,54830,1151,56,False,True,48.21726,-4.37408,Le Ped Retour,lacama,[],Le Ped Ret,SIMPLE,[],2024-09-14T16:20:00.000+02:00,2024-09-14T21:03:00.000+02:00
+[],92,57140,1234,60,False,True,48.23153,-4.35665,Arrivée,lacama,[],Arrivée,SIMPLE,[],2024-09-14T16:32:00.000+02:00,2024-09-14T21:31:00.000+02:00

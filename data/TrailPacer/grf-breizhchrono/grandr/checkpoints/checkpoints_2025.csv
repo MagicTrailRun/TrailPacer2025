@@ -1,0 +1,17 @@
+access,altitude,distance,elevationGain,pointId,isAssistance,isMeet,lat,lon,name,raceId,services,shortName,type,livecams,dateFirstRunners,dateLastRunners
+[],15,0,0,0,False,True,48.21003,-4.3681,Départ,grandr,[],,SIMPLE,[],2025-09-19T17:00:00.000+02:00,2025-09-19T17:00:00.000+02:00
+[],1,12490,351,6,False,True,48.17195,-4.2933,Plomodiern,grandr,[],Plomodiern,SIMPLE,[],2025-09-19T17:46:00.000+02:00,2025-09-19T18:39:00.000+02:00
+[],153,26460,815,10,False,True,48.20683,-4.22672,Kergaoc,grandr,[],Kergaoc,SIMPLE,[],2025-09-19T18:47:00.000+02:00,2025-09-19T20:44:00.000+02:00
+[],328,29240,990,12,False,True,48.22001,-4.23397,Menez Hom,grandr,[],Menez Hom,SIMPLE,[],2025-09-19T19:03:00.000+02:00,2025-09-19T21:19:00.000+02:00
+[],20,38640,1056,16,False,True,48.25064,-4.22702,Tregarvan,grandr,[],Tregarvan,SIMPLE,[],2025-09-19T19:38:00.000+02:00,2025-09-19T22:36:00.000+02:00
+[],11,53490,1387,20,False,True,48.2943,-4.26883,Landévennec,grandr,[],Landévenne,SIMPLE,[],2025-09-19T20:46:00.000+02:00,2025-09-20T01:08:00.000+02:00
+[],5,75230,1858,25,False,True,48.29221,-4.45235,Espace Nautique - Lanvéoc,grandr,[],Espace Nau,SIMPLE,[],2025-09-19T22:40:00.000+02:00,2025-09-20T04:49:00.000+02:00
+[],5,75230,1858,26,False,True,48.29221,-4.45235,Espace Nautique - Lanvéoc,grandr,[],Espace Nau,SIMPLE,[],2025-09-19T22:40:00.000+02:00,2025-09-20T04:49:00.000+02:00
+[],59,91370,2208,30,False,True,48.31301,-4.5582,Roscanvel,grandr,[],Roscanvel,SIMPLE,[],2025-09-20T00:07:00.000+02:00,2025-09-20T07:59:00.000+02:00
+[],41,112650,2641,36,False,True,48.27782,-4.60541,Camaret,grandr,[],Camaret,SIMPLE,[],2025-09-20T01:59:00.000+02:00,2025-09-20T12:06:00.000+02:00
+[],53,114310,2697,38,False,True,48.27895,-4.62223,Pointe du Toulinguet,grandr,[],Pointe du ,SIMPLE,[],2025-09-20T02:09:00.000+02:00,2025-09-20T12:28:00.000+02:00
+[],4,126880,2969,42,False,True,48.24036,-4.54544,Plage de Goulien,grandr,[],Plage de G,SIMPLE,[],2025-09-20T03:17:00.000+02:00,2025-09-20T15:01:00.000+02:00
+[],96,139920,3407,48,False,True,48.17129,-4.55145,Cap de la Chèvre,grandr,[],Cap de la ,SIMPLE,[],2025-09-20T04:36:00.000+02:00,2025-09-20T17:56:00.000+02:00
+[],6,149960,3828,52,False,True,48.22357,-4.50009,Port de Morgat,grandr,[],Port de Mo,SIMPLE,[],2025-09-20T05:43:00.000+02:00,2025-09-20T20:17:00.000+02:00
+[],3,158180,4073,54,False,True,48.23497,-4.42824,Estuaire de l'Aber,grandr,[],Estuaire d,SIMPLE,[],2025-09-20T06:34:00.000+02:00,2025-09-20T22:03:00.000+02:00
+[],15,166200,4494,60,False,True,48.21003,-4.3681,Arrivée,grandr,[],Arrivée,SIMPLE,[],2025-09-20T07:31:00.000+02:00,2025-09-21T00:01:00.000+02:00

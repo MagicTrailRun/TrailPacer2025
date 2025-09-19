@@ -1,0 +1,30 @@
+{
+    "category": "100m",
+    "color": "#caa343",
+    "distance": 163490,
+    "elevationGain": 3700,
+    "finishPlace": "",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 16,
+        "placeName": "Telgruc-sur-Mer"
+    },
+    "fullName": "GRF 166 Solo",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "grandr",
+    "shortName": "GRF 166",
+    "startDate": "2025-09-19T17:00:00.000+02:00",
+    "startPlace": "Départ",
+    "startWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 16,
+        "placeName": "Telgruc-sur-Mer"
+    },
+    "status": "NOT_LAUNCHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grf-breizhchrono_2025/tracks/4c76f022-633d-425d-a5b1-34730fdd135c.json",
+
+    "temps_cible": [19, 30]
+
+}

@@ -1,0 +1,52 @@
+{
+    "category": "",
+    "color": "#2825cf",
+    "distance": 101000,
+    "elevationGain": 5835,
+    "finishPlace": "Saint Denis - Stade de la Redoute",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 25,
+        "placeName": "Petite Île"
+    },
+    "fullName": "Trail de Bourbon",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "TDB",
+    "shortName": "Trail de Bourbon",
+    "startDate": "2025-10-17T21:00:00.000+04:00",
+    "startPlace": "Cilaos (Stade)",
+    "startWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 17,
+        "placeName": "Cilaos"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion-oxybol_2024/tracks/b64123b1-ec20-4b4f-abc9-970b478d1126.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 H",
+        "M7 H",
+        "M8 H",
+        "SE F",
+        "SE H"
+    ],
+    "temps_cible": [16, 37]
+}

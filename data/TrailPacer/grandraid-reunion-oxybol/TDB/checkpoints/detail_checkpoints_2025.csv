@@ -1,0 +1,18 @@
+
+checkpoint,distance_cum_m,altitude_m,dplus_cum_m,dmoins_cum_m,ouverture,fermeture,partiel_km,pointage_electronique,assistance_personnelle,ravitaillement,eau,repas_chaud,medecin,infirmier,kine,podologue,secouriste,osteopathe
+Cilaos,0,1207,0,0,Vendredi 18h00,Vendredi 21h00,0.0,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Début Sentier Taibit,6800,1263,258,205,Vendredi 21h00,Vendredi 22h35,6.8,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non
+Marla,12700,1614,1093,679,Vendredi 22h00,Samedi 02h00,5.9,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Plaine des Merles,19200,1808,1591,990,Vendredi 23h00,Samedi 05h20,6.5,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non
+Départ Sentier Scout,21400,1632,1610,1205,Vendredi 23h00,Samedi 06h20,2.2,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Aurère,30000,915,1914,2207,Samedi 00h00,,8.6,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Ilet des Orangers - Ecole,39300,977,2796,3026,Samedi 01h30,Samedi 14h30,9.3,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Maïdo/Ti Col,45700,2029,3958,3138,,,6.4,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Maïdo - Tête Dure,47200,1950,3965,3221,Samedi 02h30,Samedi 19h50,1.6,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non
+Ilet Savannah,64100,126,4028,5108,Samedi 04h00,Samedi 23h20,16.9,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Chemin Ratinaud,71500,440,4661,5428,Samedi 05h00,Dimanche 02h00,7.4,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non
+Ecole Evariste de Parny Possession,79700,3,4841,6045,Samedi 06h00,Dimanche 05h10,8.2,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Grande Chaloupe,87000,10,5198,6397,Samedi 07h00,Dimanche 07h30,7.3,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Colorado,96400,682,6024,6546,Samedi 08h00,Dimanche 12h30,9.4,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non
+Belvédère de La Vigie,100400,347,6032,6892,,,4.0,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non
+La Redoute,103400,49,6059,7217,Samedi 09h00,Dimanche 15h00,3.0,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non

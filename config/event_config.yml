@@ -1,0 +1,36 @@
+
+Grand Raid de la Réunion:
+  tenant: "grandraid-reunion-oxybol"
+  races:
+    "Diagonale des Fous":
+      code: "GRR"
+      year: [ 2025,2024]
+    "Trail de Bourbon":
+      code: "TDB"
+      year: [ 2025,2024] 
+    "Mascareignes":
+      code: "MAS"
+      year: [ 2025,2024]
+    "Metis Trail":
+      code: "MTR"
+      year: [ 2025]
+      
+UTMB:
+  tenant: "UTMB"
+  races:
+    "UTMB®":
+      code: "UTMB"
+      year: [ 2025]
+
+
+
+Graid Raid du Finistere:
+  tenant :  'grf-breizhchrono'
+  races:
+    "Grand Raid du Finistère solo" :
+      code : "grandr"
+      year : [2025]
+    "La Camaret" :
+      code : "lacama"
+      year : [2025]
+

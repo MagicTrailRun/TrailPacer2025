@@ -1,0 +1,54 @@
+{
+    "category": "",
+    "color": "#ffcd00",
+    "distance": 175000,
+    "elevationGain": 10107,
+    "finishPlace": "Saint Denis - Stade de la Redoute",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 25,
+        "placeName": "Petite Île"
+    },
+    "fullName": "Diagonale des fous",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "GRR",
+    "shortName": "Diagonale des fous",
+    "startDate": "2025-10-16T22:00:00.000+04:00",
+    "startPlace": "St Pierre Ravine Blanche",
+    "startWeather": {
+        "icon": "CLEAR_SKY_DAY",
+        "temperature": 26,
+        "placeName": "Saint-Pierre"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion-oxybol_2024/tracks/cb16f2ed-c8ea-4bd0-b489-3b4da1a8bbb8.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "M7 F",
+        "M7 H",
+        "M8 H",
+        "SE F",
+        "SE H"
+    ],
+    "temps_cible": [27, 61]
+}

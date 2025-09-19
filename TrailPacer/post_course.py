@@ -1,98 +1,369 @@
 import streamlit as st
 import json
 import pandas as pd
+from pathlib import Path
+import traceback
 from TrailPacer.PlotPacer import PacingPlotter
 from TrailPacer.text import explication_tab_post_course
-import traceback
+import streamlit.components.v1 as components
+
+import base64
+from pathlib import Path
+
+def image_to_base64(path):
+    """Convertit une image locale en base64 pour affichage inline"""
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode("utf-8")
 
 
-
-
-# -----------------------
-# CONFIG
-# -----------------------
-race = "UTMB"
-year = 2025
-json_file = f"data/TrailPacer/{race}/post_course/{race}_{year}_all.json"
-config_df = pd.read_csv(f"data/TrailPacer/{race}/post_course//config_analysis.csv") 
-df_ranks=pd.read_csv(f"data/TrailPacer/{race}/post_course/ranks_{race}_{year}.csv")
-df_best=pd.read_csv(f'data/TrailPacer/{race}/post_course/best_perf.csv')
-df_cv=pd.read_csv(f"data/TrailPacer/{race}/post_course/variation_coefficient_{race}_{year}.csv")
-# -----------------------
-# CHARGEMENT DES DONNÉES
-# -----------------------
-with open(json_file, "r", encoding="utf-8") as f:
-    results = json.load(f)
-
-# -----------------------------
-# Conversion heures float -> hh:mm
-
-def float_hours_to_hm(val):
-    if pd.isna(val):
-        return None
+def show_post_course(event_code, course_code, year):
+    """
+    Affiche l'analyse post-course pour un événement donné.
+    
+    Args:
+        event_code (str): Code de l'événement (ex: "UTMB")
+        course_code (str): Code de la course (ex: "UTMB") 
+        year (int ou str): Année de l'événement
+    """
+    st.title(f"Analyse post-course {event_code} {year}")
+    
+    # Conversion en string si nécessaire
+    year = str(year)
+    
     try:
-        val = float(val)
-    except (ValueError, TypeError):
-        return str(val)  # ou None si tu préfères
-
-    neg = val < 0
-    val = abs(val)
-
-    h = int(val)
-    m = int((val - h) * 60)
-    s = int(round((val - h - m/60) * 3600))
-
-    return f"{'-' if neg else ''}{h:02d}:{m:02d}:{s:02d}"
+        # Chargement des données
+        data = _load_post_course_data(event_code, course_code, year)
+        # Prépare les icônes
 
 
-# -----------------------
-# COLLECT GLOBAL INFO
+        
+        if data is None:
+            st.error("❌ Page non disponible pour cette course")
+            st.info("Les données d'analyse post-course ne sont pas encore disponibles.")
+            return
+            
+        # Extraction des données
+        results = data['results']
+        config_df = data['config_df']
+        df_ranks = data['df_ranks']
+        df_best = data['df_best']
+        df_cv = data['df_cv']
+        first_female_time = data['first_female_time']
+        first_male_time = data['first_male_time']
+        
+        # Interface utilisateur
+        _show_analysis_interface(
+            results, config_df, df_ranks, df_best, df_cv, 
+            first_female_time, first_male_time, event_code, course_code, year
+        )
+        
+    except Exception as e:
+        st.error("❌ Erreur lors du chargement des données")
+        st.exception(e)
 
-first_female_time = df_ranks[
-    (df_ranks['sex'] == 'FEMALE') & (df_ranks['sex_rank'] == 1)
-]['final_time'].iloc[0]
-first_male_time = df_ranks[
-    (df_ranks['sex'] == 'MALE') & (df_ranks['sex_rank'] == 1)
-]['final_time'].iloc[0]
+def _load_post_course_data(event_code, course_code, year):
+    """
+    Charge toutes les données nécessaires pour l'analyse post-course.
+    
+    Returns:
+        dict: Dictionnaire contenant toutes les données ou None si erreur
+    """
+    try:
+        base_path = Path(f"data/TrailPacer/{event_code}/{course_code}/post_course")
+        
+        # Vérification de l'existence du dossier
+        if not base_path.exists():
+            st.warning(f"📁 Dossier non trouvé: {base_path}")
+            return None
+        
+        # Définition des fichiers requis
+        files = {
+            'results': base_path / f"{course_code}_{year}_all.json",
+            'config': base_path / "config_analysis.csv",
+            'ranks': base_path / f"ranks_{course_code}_{year}.csv",
+            'best': base_path / "best_perf.csv",
+            'cv': base_path / f"variation_coefficient_{course_code}_{year}.csv"
+        }
+        
+        # Vérification de l'existence des fichiers
+        missing_files = []
+        for name, file_path in files.items():
+            if not file_path.exists():
+                missing_files.append(str(file_path))
+        
+        if missing_files:
+            st.warning("📄 Fichiers manquants:")
+            for file in missing_files:
+                st.write(f"- {file}")
+            return None
+        
+        # Chargement des données
+        with open(files['results'], "r", encoding="utf-8") as f:
+            results = json.load(f)
+        
+        config_df = pd.read_csv(files['config'])
+        df_ranks = pd.read_csv(files['ranks'])
+        df_best = pd.read_csv(files['best'])
+        df_cv = pd.read_csv(files['cv'])
+        
+        # Validation des données
+        if not results:
+            st.warning("⚠️ Aucun résultat trouvé dans les données")
+            return None
+            
+        if df_ranks.empty:
+            st.warning("⚠️ Données de classement vides")
+            return None
+        
+        # Calcul des temps de référence
+        first_female_time = _get_first_time(df_ranks, 'FEMALE')
+        first_male_time = _get_first_time(df_ranks, 'MALE')
+        
+        return {
+            'results': results,
+            'config_df': config_df,
+            'df_ranks': df_ranks,
+            'df_best': df_best,
+            'df_cv': df_cv,
+            'first_female_time': first_female_time,
+            'first_male_time': first_male_time
+        }
+        
+    except Exception as e:
+        st.error(f"Erreur lors du chargement des données: {str(e)}")
+        return None
 
-# best_by_sector = {}
 
-# for runner_id, runner_info in results.items():
-#     for split in runner_info["splits"]:
-#         portion = split["portion_name"]
-#         time_h = split["runner_h"]
-#         if  time_h =='temps non enregistré':
-#             continue
-#         # Si on n'a pas encore ce secteur, on l'initialise
-#         elif  portion not in best_by_sector:
-#             best_by_sector[portion] = {"time_h": time_h, "name": runner_info["name"]}
-#         else:
-#             # On garde le meilleur temps (le plus petit)
-#             if float(time_h) < float(best_by_sector[portion]["time_h"]):
-#                 best_by_sector[portion] = {"time_h": time_h, "name": runner_info["name"]}
-# df_best = pd.DataFrame([
-#         {"portion_name": k, "Meilleure perf": f"{v['name']} ({float_hours_to_hm(v['time_h'])})"}
-#         for k, v in best_by_sector.items()
-#     ])
+def _get_first_time(df_ranks, sex):
+    """
+    Récupère le temps du premier coureur/coureuse.
+    
+    Args:
+        df_ranks (pd.DataFrame): DataFrame des classements
+        sex (str): 'FEMALE' ou 'MALE'
+        
+    Returns:
+        str: Temps du premier ou None si non trouvé
+    """
+    try:
+        first_time = df_ranks[
+            (df_ranks['sex'] == sex) & (df_ranks['sex_rank'] == 1)
+        ]['final_time'].iloc[0]
+        return first_time
+    except (IndexError, KeyError):
+        st.warning(f"⚠️ Impossible de trouver le temps de référence pour {sex}")
+        return None
 
-# df_best.to_csv(f'data/TrailPacer/{race}/post_course//best_perf.csv', index=False)
 
- #     # Sépare les hommes et les femmes
-        #     df_ranks['final_time_sec'] = df_ranks['final_time'].apply(time_to_seconds)
-        #     first_female_time_sec=time_to_seconds(first_female_time)
-        #     first_male_time_sec=time_to_seconds(first_male_time)
+def _show_analysis_interface(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year):
+    """
+    Affiche l'interface d'analyse post-course.
+    """
 
-        #    # Détermine les élites
-        #     df_ranks['is_elite'] = df_ranks.apply(
-        #         lambda row: row['final_time_sec'] <= 1.2 * (first_female_time_sec if row['sex'] == 'FEMALE' else first_male_time_sec),
-        #         axis=1
-        #     )
+    
+    # Statistiques générales
+    total_runners = len(results)
+    finishers = len([r for r in results.values() if r.get('status') != 'DNF'])
+    dnf_rate = ((total_runners - finishers) / total_runners * 100) if total_runners > 0 else 0
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Total coureurs", total_runners)
+    with col2:
+        st.metric("Finishers", finishers)
+    with col3:
+        st.metric("Taux d'abandon", f"{dnf_rate:.1f}%")
+    
+    st.divider()
+    
+    # Interface de sélection du mode d'analyse
+    st.info("👉 Sélectionnez le mode d'analyse souhaité ci-dessous pour explorer les performances :")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        if st.button("🏃 Analyse individuelle", use_container_width=True):
+            st.session_state["analyse_type"] = "individuelle"
+    
+    with col2:
+        if st.button("⚖️ Analyse comparée", use_container_width=True):
+            st.session_state["analyse_type"] = "comparaison"
+    
+    # Affichage en fonction du choix
+    if st.session_state.get("analyse_type") == "individuelle":
+        _show_individual_analysis(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year)
+    elif st.session_state.get("analyse_type") == "comparaison":
+        _show_comparison_analysis(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year)
 
-        #     # Nombre d’élites
-        #     num_elites = df_ranks.groupby("sex")['is_elite'].sum()
-        #     print(f"Nombre de coureurs élites : {num_elites}")
+def compare_runners(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year):
+    try: 
+        st.header('Comparaison de deux finishers')
+        st.info("Veuillez sélectionner exactement deux dossards pour la comparaison.")
 
-# -----------------------------
+        # Options robustes
+        options = ["--"] + [
+            f"{info.get('name','Inconnu')} (Doss. {bib})" 
+            for bib, info in results.items()
+        ]
+        selected = st.multiselect("Sélection", options, max_selections=2)
+
+        if len(selected) != 2 or "--" in selected:
+            return
+
+        # Extraction des dossards
+        def extract_bib(option):
+            return int(option.split("(Doss. ")[1].split(")")[0])
+
+        bib1, bib2 = [extract_bib(opt) for opt in selected]
+
+        info1 = results.get(str(bib1))
+        info2 = results.get(str(bib2))
+
+        if not info1 or not info2:
+            st.warning("❌ Dossard non trouvé")
+            return
+
+        # Vérifier statut
+        for info in [info1, info2]:
+            if info.get('status') != "FINISHER":
+                st.subheader(f"{info.get('name','Inconnu')} - {info['status']}")
+                st.write(f"Abandon au checkpoint : {info.get('last_checkpoint','inconnu')}")
+                st.error('⚠️ La comparaison n’est possible que pour les finishers')
+                return
+
+        col1, col_sep, col2 = st.columns([3,1,3])
+        for (bib, info, col) in [(bib1, info1, col1), (bib2, info2, col2)]:
+            with col:
+                info_runner = df_ranks[df_ranks["bib"] == bib]
+                if info_runner.empty:
+                    st.warning("⚠️ Infos détaillées introuvables")
+                else:
+                    show_runner_info(info_runner)
+
+        with col_sep:
+            st.markdown("<h3 style='text-align: center;'>VS</h3>", unsafe_allow_html=True)
+
+        # Graphique pacing
+        # st.divider()
+        # plotter = PacingPlotter(year, event_code, course_code, is_elite=False, offline=True, show_peloton=False)
+        # fig, df_relative = plotter.plot([bib1, bib2])
+        # st.pyplot(fig)
+
+        # Analyse course
+        df1 = pd.DataFrame(info1["splits"])
+        df1["runner_h"] = pd.to_numeric(df1["runner_h"], errors="coerce")
+        df1 = df1.merge(config_df, left_on="checkpoint", right_on="Checkpoint", how="left")
+
+        df2 = pd.DataFrame(info2["splits"])
+        df2["runner_h"] = pd.to_numeric(df2["runner_h"], errors="coerce")
+        df2 = df2.merge(config_df, left_on="checkpoint", right_on="Checkpoint", how="left")
+
+        nom1, nom2 = info1.get('name','?'), info2.get('name','?')
+
+        st.subheader('Récapitulatif montée / descente')
+        compare_course_pente(df1, df2, nom1, nom2)
+
+        st.subheader('Analyse par quart de course')
+        compare_course_quarts(df1, df2, nom1, nom2)
+
+        st.subheader('Coefficient de variation')
+        compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2)
+
+        st.subheader('Analyse secteur par secteur')
+        compare_course_detail(df1, df2, nom1, nom2)
+
+    except Exception as e:
+        st.error("Oups, une erreur est survenue !")
+        print(f"[DEBUG] Erreur compare_runners: {e}")
+        traceback.print_exc()
+
+
+def post_course_indiv(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year):
+    st.header('Analyse détaillée')
+    try:
+        st.info("Sélectionnez un coureur pour lancer l’analyse :")
+
+        options = ["--"] + [
+            f"{info.get('name','Inconnu')} (Doss. {bib})" 
+            for bib, info in results.items()
+        ]
+        choice = st.selectbox("", options)
+
+        if not choice or choice == "--":
+            return
+
+        bib = int(choice.split("(Doss. ")[1].split(")")[0])
+        info = results.get(str(bib))
+
+        if not info:
+            st.warning("❌ Coureur non trouvé")
+            return
+
+        if info.get('status') == "DNF":
+            st.subheader(f"{info.get('name','Inconnu')} (Doss. {bib}) - DNF")
+            st.write(f"Abandon au checkpoint : {info.get('last_checkpoint','inconnu')}")
+            return
+
+        info_runner = df_ranks[df_ranks["bib"] == bib]
+        if info_runner.empty:
+            st.warning("⚠️ Infos détaillées introuvables")
+            return
+
+        runner = info_runner.iloc[0]
+        first_time = first_female_time if runner['sex']=="FEMALE" else first_male_time
+
+        runner_time_sec = time_to_seconds(runner['final_time'])
+        first_time_sec = time_to_seconds(first_time) if first_time else runner_time_sec
+        is_elite = runner_time_sec <= 1.2 * first_time_sec
+
+        col1, _ = st.columns(2)
+        with col1: 
+            show_runner_info(info_runner)
+
+        # plotter = PacingPlotter(year, event_code, course_code, is_elite=is_elite, offline=True)
+        # fig, df_relative = plotter.plot(bib)
+        # st.pyplot(fig)
+
+        # explication_tab_post_course()
+        # st.divider()
+        show_post_course_table(info, df_best, df_cv, bib, config_df)
+
+    except Exception as e:
+        st.error("Oups, une erreur est survenue !")
+        print(f"[DEBUG] Erreur post_course_indiv: {e}")
+        traceback.print_exc()
+
+def _show_individual_analysis(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year):
+    """
+    Affiche l'interface d'analyse individuelle.
+    """
+    try:
+        post_course_indiv(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year)
+    except Exception as e:
+        st.error("❌ Erreur lors de l'analyse individuelle")
+        st.exception(e)
+
+
+def _show_comparison_analysis(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year):
+    """
+    Affiche l'interface d'analyse comparative.
+    """
+    try:
+        compare_runners(results, config_df, df_ranks, df_best, df_cv, 
+                           first_female_time, first_male_time, event_code, course_code, year)
+    except Exception as e:
+        st.error("❌ Erreur lors de l'analyse comparative")
+        st.exception(e)
+
+
 # Fonction pour colorer écarts
 def color_ecart(val):
     if val == "temps non enregistré":
@@ -105,55 +376,66 @@ def color_ecart(val):
 # -----------------------------
 # Fonction pour colorer type de tronçon
 def color_troncon(val):
-    if "⬆" in val:
-        return "background-color: #ffcccc"  # montée
-    elif "⬇" in val:
-        return "background-color: #ccffcc"  # descente
+    # Orange clair = montée
+    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
+    # Bleu clair = descente
+    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
+
+    if icon_montee in str(val):
+        return "background-color: #ffe5b4"  # orange pâle
+    elif icon_descente in str(val):
+        return "background-color: #cce5ff"  # bleu clair
     else:
         return ""
 
+def post_course_detail(df_splits, df_best):
+    # Icônes
+    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
+    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
 
-def post_course_detail(df_splits,df_best) :
-# Colonnes principales
-    df_splits["Tronçon"] = df_splits.apply(
-        lambda row: ("⬆ " if row["Type de tronçon"]=="Montée" else
-                     "⬇ " if row["Type de tronçon"]=="Descente" else "") + row["portion_name"], axis=1
+    # Ajout de deux colonnes séparées : "Profil" (icône) + "Tronçon" (nom)
+    df_splits["Profil"] = df_splits["Type de tronçon"].map(
+        lambda t: icon_montee if t == "Montée" else icon_descente if t == "Descente" else ""
     )
+    df_splits["Tronçon"] = df_splits["portion_name"]
+
     df_splits = df_splits.merge(df_best, on="portion_name", how="left")
+
     df_table = pd.DataFrame({
+        "Profil": df_splits["Profil"],
         "Tronçon": df_splits["Tronçon"],
         "Temps coureur": df_splits["runner_h"].apply(float_hours_to_hm),
         "Temps peloton autour du coureur": df_splits["median_local_h"].apply(float_hours_to_hm),
         "Ecart peloton": df_splits["écart_local_h"].apply(float_hours_to_hm),
-       "Ecart peloton %": df_splits["écart_local_%"].apply(
-    lambda x: f"{x:.1f}%" if isinstance(x, (int, float)) and pd.notna(x) else "N/A"),
+        "Ecart peloton %": df_splits["écart_local_%"].apply(
+            lambda x: f"{x:.1f}%" if isinstance(x, (int, float)) and pd.notna(x) else "N/A"
+        ),
         "Temps élite": df_splits["median_elite_h"].apply(float_hours_to_hm),
         "Ecart élite": df_splits["écart_elite_h"].apply(float_hours_to_hm),
-        "Ecart élite %": df_splits["écart_elite_%"].apply( lambda x: f"{x:.1f}%" if isinstance(x, (int, float)) and pd.notna(x) else "N/A"),
-    "Meilleure perf" : df_splits['Meilleure perf']
+        "Ecart élite %": df_splits["écart_elite_%"].apply(
+            lambda x: f"{x:.1f}%" if isinstance(x, (int, float)) and pd.notna(x) else "N/A"
+        ),
+        "Meilleure perf": df_splits["Meilleure perf"]
     })
-    
-   
+
+    # Styling
     styled = (
         df_table.style
-            .map(color_ecart, subset=["Ecart peloton", "Ecart élite","Ecart peloton %","Ecart élite %"])
-            .map(color_troncon, subset=["Tronçon"])
-            .set_properties(**{"text-align": "center"})   # centrage
-            .set_table_attributes('style="width:100%"')   # largeur tableau
+            .map(color_ecart, subset=["Ecart peloton", "Ecart élite", "Ecart peloton %", "Ecart élite %"])
+            .map(color_troncon, subset=["Profil"])   # <-- profil coloré
+            .set_properties(**{"text-align": "center"})
+            .set_table_attributes('style="width:100%"')
+            .hide(axis="index")
     )
 
-    st.dataframe(
-        styled,
-        height=(35*len(df_table))+50,
-        hide_index=True
-    )
-
-    
-    
+    st.write(styled.to_html(escape=False), unsafe_allow_html=True)
 
 
 def post_course_pente(df_splits):
     recap_pente = []
+    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
+    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
+
     # Totaux Montée/Descente
     for ttype in ["Montée", "Descente"]:
         mask = df_splits["Type de tronçon"] == ttype
@@ -161,12 +443,15 @@ def post_course_pente(df_splits):
             runner_sum = df_splits.loc[mask, "runner_h"].sum()
             median_local_sum = df_splits.loc[mask, "median_local_h"].sum()
             median_elite_sum = df_splits.loc[mask, "median_elite_h"].sum()
+
             ecart_local = runner_sum - median_local_sum
             ecart_elite = runner_sum - median_elite_sum
             ecart_local_pct = (ecart_local / median_local_sum * 100) if median_local_sum != 0 else None
             ecart_elite_pct = (ecart_elite / median_elite_sum * 100) if median_elite_sum != 0 else None
+
             recap_pente.append({
-                "Catégorie": f"{'⬆ ' if ttype=='Montée' else '⬇ '} {ttype}",
+                " ": icon_montee if ttype == "Montée" else icon_descente,
+                "Catégorie": ttype,
                 "Temps coureur": float_hours_to_hm(runner_sum),
                 "Temps peloton": float_hours_to_hm(median_local_sum),
                 "Ecart peloton": float_hours_to_hm(ecart_local),
@@ -175,16 +460,23 @@ def post_course_pente(df_splits):
                 "Ecart élite": float_hours_to_hm(ecart_elite),
                 "Ecart élite %": f"{ecart_elite_pct:.1f}%" if ecart_elite_pct is not None else "N/A",
             })
-    recap_pente_df = pd.DataFrame(recap_pente)
-    st.dataframe(
-        recap_pente_df.style
-            .map(color_ecart, subset=["Ecart peloton", "Ecart élite","Ecart peloton %","Ecart élite %"])
-            .map(lambda v: "background-color: #ffcccc" if "⬆" in v else "background-color: #ccffcc" if "⬇" in v else "", subset=["Catégorie"])
+
+    df_recap = pd.DataFrame(recap_pente)
+
+    # Styling avec couleurs douces
+    styled = (
+        df_recap.style
+            .map(color_ecart, subset=["Ecart peloton", "Ecart élite", "Ecart peloton %", "Ecart élite %"])
+            .map(color_troncon, subset=[" "])   # <-- applique les couleurs aux icônes
+            .set_properties(**{"text-align": "center"})
             .set_table_attributes('style="width:100%"')
-            .set_properties(**{"text-align": "center"}).hide(axis="index"),
-        height=(35*len(recap_pente_df))+50,
-        hide_index=True,
+            .hide(axis="index")
     )
+
+    st.write(styled.to_html(escape=False), unsafe_allow_html=True)
+
+
+
 
 def post_course_quarts(df_splits):
     recap_quart = []
@@ -270,7 +562,7 @@ def show_coefficient_variation(df_cv, bib):
 
 # -----------------------------
 # Fonction tableau post-course
-def show_post_course_table(info,df_best,df_cv,bib):
+def show_post_course_table(info,df_best,df_cv,bib,config_df):
     
     st.header("Temps de passage et écarts : où avez-vous gagné ou perdu du temps?")
     with st.expander("📘 Cliquez pour plus d'infos sur les données"):
@@ -356,9 +648,6 @@ def show_post_course_table(info,df_best,df_cv,bib):
 
 
 
-import streamlit as st
-import streamlit.components.v1 as components
-import pandas as pd
 
 def show_runner_info(info_runner, height=230):
     runner = info_runner.iloc[0]
@@ -422,22 +711,85 @@ def show_runner_info(info_runner, height=230):
 
 
 
+
+# Fonction utilitaire pour valider les paramètres d'entrée
+def validate_post_course_params(event_code, course_code, year):
+    """
+    Valide les paramètres d'entrée pour show_post_course.
+    
+    Returns:
+        tuple: (bool, str) - (is_valid, error_message)
+    """
+    if not event_code or not isinstance(event_code, str):
+        return False, "event_code doit être une chaîne non vide"
+    
+    if not course_code or not isinstance(course_code, str):
+        return False, "course_code doit être une chaîne non vide"
+    
+    try:
+        year_int = int(year)
+        if year_int < 2000 or year_int > 2030:
+            return False, "year doit être entre 2000 et 2030"
+    except (ValueError, TypeError):
+        return False, "year doit être un nombre valide"
+    
+    return True, ""
+
+
+# Exemple d'utilisation avec validation
+def safe_show_post_course(event_code, course_code, year):
+    """
+    Version sécurisée de show_post_course avec validation des paramètres.
+    """
+    is_valid, error_msg = validate_post_course_params(event_code, course_code, year)
+    
+    if not is_valid:
+        st.error(f"❌ Paramètres invalides: {error_msg}")
+        return
+    
+    show_post_course(event_code, course_code, year)
+
+
+
+
+def float_hours_to_hm(val):
+    if pd.isna(val):
+        return None
+    try:
+        val = float(val)
+    except (ValueError, TypeError):
+        return str(val)  # ou None si tu préfères
+
+    neg = val < 0
+    val = abs(val)
+
+    h = int(val)
+    m = int((val - h) * 60)
+    s = int(round((val - h - m/60) * 3600))
+
+    return f"{'-' if neg else ''}{h:02d}:{m:02d}:{s:02d}"
+
+
+
 def time_to_seconds(t):
     h, m, s = map(int, t.split(':'))
     return h*3600 + m*60 + s
 
 
 
-def compare_course_detail(df1, df2,nom1,nom2):
+def compare_course_detail(df1, df2, nom1, nom2):
+    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
+    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
 
     df = df1.merge(df2, on="portion_name", suffixes=("_c1", "_c2"))
 
-    df["Tronçon"] = df.apply(
-        lambda row: ("⬆ " if row["Type de tronçon_c1"]=="Montée" else
-                     "⬇ " if row["Type de tronçon_c1"]=="Descente" else "") + row["portion_name"], axis=1
+    df["Profil"] = df["Type de tronçon_c1"].map(
+        lambda t: icon_montee if t == "Montée" else icon_descente if t == "Descente" else ""
     )
+    df["Tronçon"] = df["portion_name"]
 
     df_table = pd.DataFrame({
+        " ": df["Profil"],
         "Tronçon": df["Tronçon"],
         f"{nom1}": df["runner_h_c1"].apply(float_hours_to_hm),
         f"{nom2}": df["runner_h_c2"].apply(float_hours_to_hm),
@@ -447,42 +799,51 @@ def compare_course_detail(df1, df2,nom1,nom2):
         )
     })
 
-    st.dataframe(
+    styled = (
         df_table.style
-            .map(color_troncon, subset=["Tronçon"])
-            .map(color_ecart, subset=["Écart","Écart %"])
-            .set_table_attributes('style="width:100%"'),
-        height=(35*len(df_table))+50,
-        hide_index=True,
+            .map(color_troncon, subset=[" "])
+            .map(color_ecart, subset=["Écart", "Écart %"])
+            .hide(axis="index")
+            .set_table_attributes('style="width:100%"')
     )
 
+    st.write(styled.to_html(escape=False), unsafe_allow_html=True)
 
-def compare_course_pente(df1, df2,nom1,nom2):
+
+def compare_course_pente(df1, df2, nom1, nom2):
     recap_pente = []
+    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
+    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
+
     for ttype in ["Montée", "Descente"]:
         mask1 = df1["Type de tronçon"] == ttype
         mask2 = df2["Type de tronçon"] == ttype
         if mask1.any() and mask2.any():
             sum1 = df1.loc[mask1, "runner_h"].sum()
             sum2 = df2.loc[mask2, "runner_h"].sum()
-            ecart = sum1-sum2
+            ecart = sum1 - sum2
             ecart_pct = (ecart / sum1 * 100) if sum1 != 0 else None
+
             recap_pente.append({
-                "Catégorie": f"{'⬆ ' if ttype=='Montée' else '⬇ '} {ttype}",
-                 f"{nom1}": float_hours_to_hm(sum1),
-                 f"{nom2}": float_hours_to_hm(sum2),
+                " ": icon_montee if ttype == "Montée" else icon_descente,
+                "Catégorie": ttype,
+                f"{nom1}": float_hours_to_hm(sum1),
+                f"{nom2}": float_hours_to_hm(sum2),
                 "Écart": float_hours_to_hm(ecart),
                 "Écart %": f"{ecart_pct:.1f}%" if ecart_pct is not None else "N/A"
             })
+
     recap_pente_df = pd.DataFrame(recap_pente)
-    st.dataframe(
+
+    styled = (
         recap_pente_df.style
-            .map(lambda v: "background-color: #ffcccc" if "⬆" in v else "background-color: #ccffcc" if "⬇" in v else "", subset=["Catégorie"])
-            .map(color_ecart, subset=["Écart","Écart %"])
-            .set_table_attributes('style="width:100%"'),
-        height=(35*len(recap_pente_df))+50,
-        hide_index=True,
+            .map(color_troncon, subset=[" "])
+            .map(color_ecart, subset=["Écart", "Écart %"])
+            .hide(axis="index")
+            .set_table_attributes('style="width:100%"')
     )
+
+    st.write(styled.to_html(escape=False), unsafe_allow_html=True)
 
 
 def compare_course_quarts(df1, df2,nom1,nom2):
@@ -562,205 +923,3 @@ def compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2):
         column_config=column_config
     )
 
-
-def compare_runners():
-    try : 
-        st.header('Comparaison de deux finishers')
-        st.info("Veuillez sélectionner exactement deux dossards pour la comparaison.")
-        options = [f"{info['name']} (Doss. {bib})" for bib, info in results.items()]
-        selected = st.multiselect("Sélection", options, max_selections=3)
-
-        if len(selected) != 2:
-            
-            return
-
-        bib1 = int(selected[0].split("(Doss. ")[1].split(")")[0])
-        bib2 = int(selected[1].split("(Doss. ")[1].split(")")[0])
-
-        info1 = results[str(bib1)]
-        info2 = results[str(bib2)]
-        if not info1 or not info2:
-            st.warning("Dossard non trouvé")
-            return
-
-        # Affichage infos générales
-        for info in [info1, info2]: 
-            if info['status'] == "DNF":
-                st.subheader(f"{info['name']} - {info['status']}")
-                st.write(f"Abandon au checkpoint : {info.get('last_checkpoint','inconnu')}")
-                st.error('La comparaison ne se fait que pour les finishers')
-                return
-
-
-        col1, col_sep, col2 = st.columns([3,1,3])  # la colonne du milieu est très fine
-
-        for (bib, info, col) in [(bib1, info1, col1), (bib2, info2, col2)]:
-            with col:
-                info_runner = df_ranks[df_ranks["bib"] == bib]
-                if info_runner.empty:
-                    st.warning("Infos détaillées introuvables")
-                else:
-                    show_runner_info(info_runner)
-           
-        
-        with col_sep:
-            st.markdown(
-        "<h3 style='text-align: center;'>VS</h3>",
-        unsafe_allow_html=True
-    )
-
-
-        st.divider()
-        nom1=info1['name']
-        nom2=info2['name']
-        plotter = PacingPlotter(2025, "UTMB", "UTMB", is_elite=False, offline=True, show_peloton=False)
-        fig, df_relative = plotter.plot([bib1,bib2])
-        st.pyplot(fig)
-        # Afficher tableau de variation de coefficient côte à côte
-        df1 = pd.DataFrame(info1["splits"])
-        
-        df1["runner_h"] = pd.to_numeric(df1["runner_h"], errors="coerce")
-        df1 = df1.merge(config_df, left_on="checkpoint", right_on="Checkpoint", how="left")
-
-        df2 = pd.DataFrame(info2["splits"])
-        df2["runner_h"] = pd.to_numeric(df2["runner_h"], errors="coerce")
-        df2 = df2.merge(config_df, left_on="checkpoint", right_on="Checkpoint", how="left")
-
-        st.subheader('Récapitulatif montée / descente : où avez-vous fait la différence ? ')
-
-        compare_course_pente(df1, df2,nom1, nom2)
-
-        st.subheader('Analyse par quart de course : comment votre rythme a évolué ?')
-        st.write("""
-        Un découpage en 4 parties égales pour observer votre dynamique de pacing.
-            """)
-        compare_course_quarts(df1, df2,nom1, nom2)
-
-        st.subheader('Coefficient de variation : avez-vous été régulier ?')
-        st.write("""
-
-    Le coefficient de variation mesure la dispersion de vos allures entre les différents secteurs.
-
-    - Un CV faible traduit une course régulière et bien maîtrisée.
-
-    - Un CV élevé indique des variations importantes de rythme (accélérations, ralentissements, coups de moins bien).""")
-        
-        compare_coefficient_variation(df_cv, nom1, nom2,bib1, bib2)
-        st.subheader('Analyse secteur par secteur : où avez-vous gagné ou perdu du temps ? ')
-        st.write('Le détail complet de vos passages.')
-
-        compare_course_detail(df1, df2,nom1, nom2)
-
-    except Exception as e:
-        st.error("Oups, une erreur est survenue !")
-        # Optionnel : log dans la console pour debug
-        print(f"[DEBUG] Erreur show_post_course: {e}")
-        traceback.print_exc()
-
-
-
-def post_course_indiv():
-   
-    st.header('Analyse détaillée')
-    try:
-        st.info("Selectionez ou saisissez une personne pour lancer l’analyse :")
-        # Construire liste mixte nom + dossard
-        options =["--"]+ [f"{info['name']} (Doss. {bib})" for bib, info in results.items()]
-        choice = st.selectbox("", options)
-
-        if not choice or choice =='--' :
-            return
-
-        # Extraire le dossard
-        bib = int(choice.split("(Doss. ")[1].split(")")[0])
-        info = results.get(str(bib))
-
-        if not info:
-            st.warning("Coureur non trouvé")
-            return
-
-        # Affichage infos générales
-      
-
-        if info['status'] == "DNF":
-            st.subheader(f"{info['name']} (Doss. {bib}) - {info['status']}")
-            st.write(f"Abandon au checkpoint : {info.get('last_checkpoint','inconnu')}")
-            return
-
-        # Infos détaillées du coureur
-        info_runner = df_ranks[df_ranks["bib"] == bib]
-        runner = info_runner.iloc[0]
-        if info_runner.empty:
-            st.warning("Infos détaillées introuvables")
-        else:
-
-            if runner['sex'] == "FEMALE" :
-                first_time=first_female_time
-            else :
-                first_time=first_male_time
-            
-            
-
-            runner_time_sec = time_to_seconds(runner['final_time'])
-            first_time_sec = time_to_seconds(first_time)
-            is_elite = runner_time_sec <= 1.2 * first_time_sec
-
-            col1, _ = st.columns(2)
-            with col1 : 
-                show_runner_info(info_runner)
-            # Graphique pacing
-
-            plotter = PacingPlotter(2025, "UTMB", "UTMB", is_elite=is_elite, offline=True)
-            fig, df_relative = plotter.plot(bib)
-            st.pyplot(fig)
-            explication_tab_post_course()
-            
-            st.divider()
-            show_post_course_table(info,df_best, df_cv, bib)
-
-       
-
-    except Exception as e:
-        st.error("Oups, une erreur est survenue !")
-        # Optionnel : log dans la console pour debug
-        print(f"[DEBUG] Erreur show_post_course: {e}")
-        traceback.print_exc()
-
-
-
-
-def show_post_course():
-    st.title("Analyse post-course UTMB 2025")
-
-    # st.markdown(
-    #     """
-    #     <div style="padding:12px; border-radius:12px; background-color:#f0f2f6; margin-bottom:20px;">
-    #          Sélectionnez le mode d'analyse souhaité ci-dessous pour explorer les performances :
-    #     </div>
-    #     """,
-    #     unsafe_allow_html=True
-    # )
-    st.info("👉 Sélectionnez le mode d'analyse souhaité ci-dessous pour explorer les performances :")
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if st.button("Analyse individuelle", use_container_width=True):
-            st.session_state["analyse_type"] = "individuelle"
-
-    with col2:
-        if st.button("Analyse comparée", use_container_width=True):
-            st.session_state["analyse_type"] = "comparaison"
-
-
-    if "analyse_type" not in st.session_state:
-        return
-    
-    # Affichage en fonction du choix
-    if st.session_state["analyse_type"] == "individuelle":
-
-        post_course_indiv()
-
-    elif st.session_state["analyse_type"] == "comparaison":
-
-        compare_runners()

@@ -1,0 +1,49 @@
+{
+    "category": "",
+    "color": "#35ccd4",
+    "distance": 163490,
+    "elevationGain": 3700,
+    "finishPlace": "",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 17,
+        "placeName": "Telgruc-sur-Mer"
+    },
+    "fullName": "Grand Raid du Finistère solo",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "grandr",
+    "shortName": "Grand Raid du Finistère solo",
+    "startDate": "2024-09-13T17:02:45.000+02:00",
+    "startPlace": "Départ",
+    "startWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 17,
+        "placeName": "Telgruc-sur-Mer"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grf-breizhchrono_2024/tracks/076a0ab5-4488-45a8-ab6e-661fdc1f7a57.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 H",
+        "M6 H",
+        "SE F",
+        "SE H"
+    ],
+    
+    "temps_cible": [19, 30]
+}

@@ -1,0 +1,14 @@
+access,altitude,distance,elevationGain,pointId,isAssistance,isMeet,lat,lon,name,raceId,services,shortName,type,livecams,dateFirstRunners,dateLastRunners
+[],5,0,0,0,False,True,48.29262,-4.45178,Lesvrez,lalanv,[],Départ,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],60,15220,307,30,False,True,48.31301,-4.5582,Roscanvel,lalanv,[],Roscanvel,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],67,19620,349,32,False,True,48.34098,-4.53393,Pointe des Espagnols,lalanv,[],Pointe des,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],15,34300,650,34,False,True,48.28226,-4.60102,Fort du Petit Gouin,lalanv,[],Fort du Pe,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],41,36380,712,36,False,True,48.27823,-4.60576,Camaret,lalanv,[],Camaret,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],51,38100,772,38,False,True,48.27885,-4.62218,Pointe du Toulinguet,lalanv,[],Pointe du ,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],58,41270,847,40,False,True,48.25621,-4.62176,Pointe de Pen Hir,lalanv,[],Pointe de ,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],6,50620,982,42,False,True,48.24036,-4.54544,Plage de Goulien,lalanv,[],Plage de G,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],58,53300,1083,44,False,True,48.2326,-4.57033,Pointe de Dinan,lalanv,[],Pointe de ,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],94,63620,1390,48,False,True,48.1713,-4.551,Cap de la Chèvre,lalanv,[],Cap de la ,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],7,73540,1736,52,False,True,48.22357,-4.50009,Port de Morgat,lalanv,[],Port de Mo,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],10,88560,2162,56,False,True,48.21726,-4.37408,Le Ped Retour,lalanv,[],Le Ped Ret,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
+[],91,90840,2245,60,False,True,48.23131,-4.35659,Arrivée,lalanv,[],Arrivée,SIMPLE,[],2024-09-14T06:33:02.000+02:00,2024-09-14T06:33:02.000+02:00
