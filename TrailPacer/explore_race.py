@@ -65,15 +65,14 @@ def explore_race():
 
         st.divider()
 
-        if event_code=="grandraid-reunion-oxybol": 
-            path_to_html = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/compare_2025_2024.html")
+        path_to_html = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/compare_2025_2024.html")
 
-            if path_to_html.exists():
-                with open(path_to_html, 'r', encoding="utf-8") as f:
-                    html_data = f.read()
+        if path_to_html.exists():
+            with open(path_to_html, 'r', encoding="utf-8") as f:
+                html_data = f.read()
 
-                st.header("Différence de parcours entre 2024 et 2025")
-                st.components.v1.html(html_data, height=600, scrolling=True)
+            st.header("Différence de parcours entre 2024 et 2025")
+            st.components.v1.html(html_data, height=600, scrolling=True)
     
 
 

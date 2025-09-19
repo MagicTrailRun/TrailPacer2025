@@ -1,0 +1,41 @@
+{
+    "color": "#4f660a",
+    "distance": 99500,
+    "elevationGain": 4420,
+    "finishPlace": "",
+    "finishWeather": {
+        "icon": "SCATTERED_CLOUDS_DAY",
+        "temperature": 15,
+        "placeName": "Millau"
+    },
+    "fullName": "Endurance Trail",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "endur",
+    "shortName": "Endurance Trail",
+    "startDate": "2023-10-20T04:00:16.000+00:00",
+    "startPlace": "Millau",
+    "startWeather": {
+        "icon": "SCATTERED_CLOUDS_DAY",
+        "temperature": 15,
+        "placeName": "Millau"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/templiers_2023/tracks/8ea0e7da-e6f0-4c03-b771-d0f53e164872.json",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M1-M2F",
+        "M1-M2H",
+        "M3-M4F",
+        "M3-M4H",
+        "M5-M6F",
+        "M5-M6H",
+        "S-M0F",
+        "S-M0H"
+    ]
+}
