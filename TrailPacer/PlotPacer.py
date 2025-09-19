@@ -37,7 +37,7 @@ class PacingPlotter():
         #self.df_ranks = self.load_ranks(**self.race_query)
         self.max_altitude = self.df_gpx.altitude.max()
         self.ymin = 0.93
-        self._idx_runner = ['bib', 'name', 'sex']
+        self._idx_runner = ['bib','name','status','category','sex','country']
        
     # def load_ranks(self, year, event, course):
 

@@ -394,47 +394,45 @@ def get_segments_by_terrain(df_col, terrain_colors, description_type, min_length
     return traces
 
 
-def get_segments_by_slope(df_col, min_length=100):
+def get_segments_by_slope(df, min_length=10):
     """
-    Découpe le tracé GPX par type de terrain et crée les polygones de remplissage.
-    Les segments trop courts (< min_length) sont considérés comme parasites
-    et fusionnés avec le terrain précédent.
+    Version simplifiée qui se contente de grouper par pente sans fusion complexe.
+    Plus lisible et plus facilement testable.
     """
-    current_color = None
-    segment_start_idx = 0
-    traces = []
-    unused_index=[]
-    altitude_min = df_col['altitude'].min()
-    df_col["pente_col"]=df_col['pente'].apply(color_pente)
-    for i in range(len(df_col) + 1):
-        if i == len(df_col) or df_col.iloc[i]['pente_col'] != current_color:
-            # Fin de segment
-            if current_color is not None and i > segment_start_idx:
-                seg = df_col.iloc[segment_start_idx:i+1]
-                seg_length = seg['distance'].iloc[-1] - seg['distance'].iloc[0]
-
-                if seg_length >= min_length:
-                    # vrai segment → on le garde
-                    traces.append(
-                        make_segment_polygon(seg, current_color, altitude_min, mode='slope')
+    if df.empty:
+        return []
+    
+    df_work = df.copy()
+    df_work['slope_color'] = df_work['pente'].apply(color_pente)
+    altitude_min = df_work['altitude'].min()
+    polygons = []
+    current_color = df_work.iloc[0]['slope_color']
+    segment_start = 0
+    
+    for i in range(len(df_work) + 1):
+        # Changement de couleur ou fin du DataFrame
+        if i == len(df_work) or (df_work.iloc[i]['slope_color'] != current_color):
+            if current_color is not None:
+                segment = df_work.iloc[segment_start:i+1]
+                segment_length = (segment['distance'].iloc[-1] - 
+                                segment['distance'].iloc[0])
+                
+                # Ne garder que les segments assez longs
+                if segment_length >= min_length:
+                    polygon = make_segment_polygon(
+                        segment, current_color, altitude_min, mode='slope'
                     )
-                    # on passe au prochain type
-                    if i < len(df_col):
-                        current_color = df_col.iloc[i]['pente_col']
-                        segment_start_idx = i
-                else:
-                    # parasite → on l’ignore et on reste dans le terrain précédent
-                    if i < len(df_col):
-                        unused_index.append(i)
-                        # on ne change pas de terrain, on recule le "curseur"
-                        continue
-            else:
-                # tout début du premier segment
-                if i < len(df_col):
-                    current_color = df_col.iloc[i]['pente_col']
-                    segment_start_idx = i
-
-    return traces,unused_index 
+                    polygons.append(polygon)
+                else :
+                    continue
+            
+            # Préparer le prochain segment
+            if i < len(df_work):
+                
+                current_color = df_work.iloc[i]['slope_color']
+                segment_start = i
+    
+    return polygons
 # --- Ajouter les segments colorés selon la pente ---
 
 
@@ -489,8 +487,8 @@ def create_col_profile(df_track,df_segments, col_name, has_terrain_type=False):
 
 
     fig = go.Figure()
-    traces,unused_index=get_segments_by_slope(df_col)
-    df_clean = df_col.drop(unused_index)
+    traces=get_segments_by_slope(df_col)
+    df_clean = df_col.copy() #drop(unused_index)
     fig.add_traces(traces)
     # Intervalles et couleurs correspondant à color_pente
     pente_intervals = [
@@ -558,8 +556,9 @@ def create_col_profile(df_track,df_segments, col_name, has_terrain_type=False):
         fig.add_trace(go.Scatter(
             x=df_clean["distance_km"], y=df_clean["altitude"], mode='markers',
             marker=dict(size=4, color='black', opacity=0),
-            name='Points', showlegend=False,
-            hovertemplate='<b>Distance:</b> %{x:.1f} km<br>'
+            name='', 
+            showlegend=False,
+            hovertemplate='<b>Distance:</b> %{x:.1f} km<br>' 
                         '<b>Altitude:</b> %{y:.0f} m<br>'
                         '<b>Pente:</b> %{customdata[0]:.1f}%<br>',
             customdata=[

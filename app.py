@@ -22,10 +22,10 @@ class TSXApplication:
         """Configuration initiale de Streamlit"""
         try:
             st.set_page_config(
-                page_title=self.config.APP_TITLE,
-                page_icon=self.config.APP_ICON,
-                layout="wide"
-            )
+                    page_title="TrailPacer",
+                    page_icon= "TrailPacer\image\icon.png",
+                    layout="wide"
+                )
         except Exception:
             # Fallback si erreur de configuration
             pass

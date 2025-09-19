@@ -10,7 +10,7 @@ from TrailPacer.formatting import format_dataframe,get_base64_image
 from TrailPacer.race_id import  get_df_for_gpx
 from TrailPacer.explore_race import explore_race
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
-#from TrailPacer.post_course import show_post_course
+from TrailPacer.post_course import show_post_course
 from config.styles import apply_custom_css
 import traceback
 from pathlib import Path
@@ -20,11 +20,7 @@ import streamlit.components.v1 as components
 
 print("___________________________________________")
 
-st.set_page_config(
-        page_title="TrailPacer",
-        page_icon= "TrailPacer\image\icon.png",
-        layout="wide"
-    )
+
 
 
 def select_event():
@@ -114,11 +110,6 @@ def show():
     img_base64 = get_base64_image(f"TrailPacer/image/{event_code.lower()}.png")
 
     
-    st.set_page_config(
-        page_title="TrailPacer: Planificateur de temps de passage & Analyses course",
-        page_icon="🏃‍♂️",
-        layout="wide"
-    )
 
     if img_base64:
 
@@ -352,8 +343,9 @@ def show():
 
     with postcourse4:
         try : 
-            st.info("page temporairement indisponible")
-            #show_post_course(event, race,year)
+            if event_code!='UTMB' :
+                st.info("page temporairement indisponible")
+            else : show_post_course(event_code, course_code,year)
         except Exception as e:
             st.error("Cette page n'est pas encore disponible pour la course selectionnée !")
             # Optionnel : log dans la console pour debug
