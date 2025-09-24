@@ -55,30 +55,25 @@ def format_dataframe(df,target_time):
     col_heure_passage = f"heure_passage_{target_time}"
 
     if col_temps_secteur_med in df.columns:
-        df["Allure secteur"] = df.apply(
-            lambda row: format_pace(row[col_temps_secteur_med], row["dist_secteur"]),
-            axis=1
-        )
+
+        
+        df["Segment (Km – Nom)"] = df.apply(lambda x: f"{x['dist_total']} km – {x['checkpoint']}", axis=1)
+        df["Temps de course au passage (intervalle)"] =  df.apply(lambda x: f"{x[col_temps_total]} ({x[col_temps_secteur]})", axis=1)
+
         df_display = df[[
-            "checkpoint",
-            "dist_total",
+            "Segment (Km – Nom)",
             "dist_secteur",
             "dplus_secteur",
             "dmoins_secteur",
-            col_temps_total,
-            col_temps_secteur,
-            "Allure secteur",
-            col_heure_passage
+
+           "Temps de course au passage (intervalle)"
         ]]
         column_config={ 
                     "dist_total": st.column_config.NumberColumn("Km total", format="%.1f"),
-                    "dist_secteur": st.column_config.NumberColumn("Km secteur", format="%.1f"),
-                    "dplus_secteur": st.column_config.NumberColumn("D+ secteur", format="%d"),
-                    "dmoins_secteur": st.column_config.NumberColumn("D- secteur", format="%d"),
-                    col_temps_secteur: st.column_config.TextColumn("Temps secteur"),
-                    "Allure secteur": st.column_config.TextColumn("Allure secteur"),
-                    col_temps_total: st.column_config.TextColumn("Temps cumulé cible"),
-                    col_heure_passage: st.column_config.TextColumn("Heure passage"),
+                    "dist_secteur": st.column_config.NumberColumn("Km segment", format="%.1f"),
+                    "dplus_secteur": st.column_config.NumberColumn("D+ segment", format="%d"),
+                    "dmoins_secteur": st.column_config.NumberColumn("D- segment", format="%d"),
+                    col_heure_passage: st.column_config.TextColumn("Heure de passage estimée"),
                     "barriere_horaire_hhmm" : st.column_config.TextColumn('Barrière horaire')
                 }
         if "barriere_horaire" in df.columns:

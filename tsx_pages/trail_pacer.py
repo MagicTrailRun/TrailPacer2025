@@ -272,7 +272,7 @@ def show():
             # Tableau principal
             st.subheader(f"📋Plan de course généré pour {target_time} h")
             df_display, column_config=format_dataframe(df,target_time)
-
+            
             st.dataframe(
                 df_display,
                 use_container_width=True,
@@ -281,7 +281,7 @@ def show():
                 column_config=column_config
                 
             )
-
+            
         format = st.radio("Télécharger au format :", ["CSV", "Excel"], horizontal=True)
 
         if format == "CSV":
