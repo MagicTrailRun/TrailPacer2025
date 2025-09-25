@@ -6,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from TrailPacer.data_loader import load_data, get_config
 from TrailPacer.gpx_tracer import plot_altitude_profile_area
-from TrailPacer.formatting import format_dataframe,get_base64_image
+from TrailPacer.formatting import format_dataframe,get_base64_image,image_to_base64
 from TrailPacer.race_id import  get_df_for_gpx
 from TrailPacer.explore_race import explore_race
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
@@ -259,7 +259,7 @@ def show():
 
         st.markdown("------------")
         st.markdown(" ### Fixez votre objectif de temps pour l’arrivée,  Trail Pacer calcule vos temps de passage.")
-        col1, col2, col3 = st.columns([2,1,2])
+        col1, col2, col3 = st.columns([1,1,2])
         with col1:
             target_time = st.slider("Sélectionnez le temps cible",
                 min_value=config['temps_cible_start'],
@@ -267,41 +267,100 @@ def show():
                 value=config['temps_cible_middle'],
                 label_visibility="collapsed"
 
+
             )
+            # target_time =  st.number_input("Sélectionnez le temps cible",
+            #     min_value=config['temps_cible_start'],
+            #     max_value=config['temps_cible_end'],
+            #     value=config['temps_cible_middle'],
+            #     label_visibility="collapsed"
+
+
+            # )
         if not df.empty:
             # Tableau principal
+            start_time=config['startDate']
+            df, df_display, column_config = format_dataframe(df, target_time, start_time)
             st.subheader(f"📋Plan de course généré pour {target_time} h")
-            df_display, column_config=format_dataframe(df,target_time)
-            
             st.dataframe(
                 df_display,
                 use_container_width=True,
                 hide_index=True,
-                height=(35 * len(df_display)) + 50 ,
-                column_config=column_config
-                
+                height=(35 * len(df_display)) + 50,
+                column_config=column_config,
             )
-            
-        format = st.radio("Télécharger au format :", ["CSV", "Excel"], horizontal=True)
+            st.divider()
+            with st.expander("Cliquez pour personaliser votre plan de course",icon=":material/discover_tune:" ,expanded=False):
+                colonnes_obligatoires = ["Segment (Km – Nom)", "Heure de passage estimée", "Temps de course au passage (± 5%)"]
 
-        if format == "CSV":
-            data = df_display.to_csv(index=False).encode("utf-8")
-            mime = "text/csv"
-            fname = "temps_de_passage.csv"
-        else:
-            output = io.BytesIO()
-            with pd.ExcelWriter(output, engine="openpyxl") as writer:
-                df_display.to_excel(writer, index=False, sheet_name="temps_de_passage")
-            data = output.getvalue()
-            mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            fname = "temps_de_passage.xlsx"
+                col_obj, col_col = st.columns([1, 1])
 
-        st.download_button(
-            label=f"⬇️ Télécharger ({format})",
-            data=data,
-            file_name=fname,
-            mime=mime,
-        )
+                with col_obj:
+                    with st.expander("Ajoutez vos objectifs nutritionnels", expanded=True, icon=":material/glass_cup:"):
+                        st.markdown("Définissez vos apports cibles pour le plan de course :")
+                        glucides = st.number_input("**Glucides (g/h)**", min_value=0, max_value=150, step=1)
+                        eau = st.number_input("**Hydratation (mL/h)**", min_value=0, max_value=2000, step=50)
+
+                        col_g, col_e = st.columns(2)
+                        with col_g:
+                            if glucides > 0:
+                                st.metric("🥖 Total glucides estimés", f"{glucides * target_time:.0f} g")
+                        with col_e:
+                            if eau > 0:
+                                st.metric("💧 Total hydratation estimée", f"{eau * target_time:.0f} mL")
+                        # --- Ajouter colonnes nutritionnelles si besoin ---
+                if glucides > 0:
+                    df_display["Glucides (g/h)"] = (df["temps_secteur_med"] * glucides).round(1)
+                    colonnes_obligatoires.append("Glucides (g/h)")
+                if eau > 0:
+                    df_display["Hydratation (mL/h)"] = (df["temps_secteur_med"] * eau).round(0)
+                    colonnes_obligatoires.append("Hydratation (mL/h)")
+
+
+                colonnes_possibles = df_display.columns.tolist()
+
+
+                
+                colonnes_selectionnees = st.multiselect(
+                                    "Cochez les colonnes à afficher :",
+                                    options=colonnes_possibles,
+                                    default=colonnes_obligatoires,
+                                )
+
+                colonnes_finales = [
+                    c for c in df_display.columns
+                    if (c in colonnes_obligatoires) or (c in colonnes_selectionnees)
+                ]
+                
+                # --- Affichage final ---
+                st.dataframe(
+                    df_display[colonnes_finales],
+                    use_container_width=True,
+                    hide_index=True,
+                    height=(35 * len(df_display)) + 50,
+                    column_config=column_config,
+                )
+
+                format = st.radio("Télécharger au format :", ["CSV", "Excel"], horizontal=True)
+
+                if format == "CSV":
+                    data = df_display.to_csv(index=False).encode("utf-8")
+                    mime = "text/csv"
+                    fname = "temps_de_passage.csv"
+                else:
+                    output = io.BytesIO()
+                    with pd.ExcelWriter(output, engine="openpyxl") as writer:
+                        df_display.to_excel(writer, index=False, sheet_name="temps_de_passage")
+                    data = output.getvalue()
+                    mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    fname = "temps_de_passage.xlsx"
+
+                st.download_button(
+                    label=f"⬇️ Télécharger ({format})",
+                    data=data,
+                    file_name=fname,
+                    mime=mime,
+                )
 
         st.divider()
         title=f"⛰️ Profil d'élévation - Objectif {target_time}h"
@@ -312,8 +371,7 @@ def show():
             default=["Heure de passage","D+ Secteur", "D- Secteur"]
 )       
 
-      
-        
+
 
         try :
 
