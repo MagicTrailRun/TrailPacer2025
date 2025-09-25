@@ -63,7 +63,7 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
             hoverinfo='skip',
             
         ),
-
+ 
     )
     
     # # === CALCUL ET AFFICHAGE D+/D- PAR SECTEUR ===
@@ -94,18 +94,6 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
         distances_secteur.append(dist)
     
 
-        # fig.add_annotation(
-        #         x=dist,
-        #         y=0,
-        #         text= name,
-        #         showarrow=False,
-        #         font=dict(size=10, color="white"),
-        #         textangle= -45,
-        #         xanchor="center",
-        #         yanchor="bottom",
-
-        #     )
-
 
     
     # Checkpoints 
@@ -126,10 +114,10 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
         texts_h = []
         if affichages:
             if "Heure de passage" in affichages:
-                heure_passage_col = f'heure_passage_{target_time}'
+                heure_passage_col = f'heure_passage'
                 texts_h.append(f'🕐 {row[heure_passage_col]}')
             if "Temps de passage" in affichages:
-                temps_passage_col = f'temps_cumule_med_{target_time}'
+                temps_passage_col = f'temps_cumule_med_fmt'
                 texts_h.append(f'⏱️ {row[temps_passage_col]}')
             if "D+ Secteur" in affichages:
                 d_plus_secteur = row['dplus_secteur'] 

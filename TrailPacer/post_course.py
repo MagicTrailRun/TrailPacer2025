@@ -6,14 +6,9 @@ import traceback
 from TrailPacer.PlotPacer import PacingPlotter
 from TrailPacer.text import explication_tab_post_course
 import streamlit.components.v1 as components
-
+from TrailPacer.formatting import image_to_base64
 import base64
 from pathlib import Path
-
-def image_to_base64(path):
-    """Convertit une image locale en base64 pour affichage inline"""
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode("utf-8")
 
 
 def show_post_course(event_code, course_code, year):

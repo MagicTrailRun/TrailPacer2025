@@ -26,6 +26,7 @@ class TSXApplication:
                     page_icon= "TrailPacer\image\icon.png",
                     layout="wide",
                     initial_sidebar_state="expanded"
+                    
                 )
         except Exception:
             # Fallback si erreur de configuration

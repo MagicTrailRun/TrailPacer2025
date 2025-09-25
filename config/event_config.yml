@@ -4,28 +4,28 @@ Grand Raid de la Réunion:
   races:
     "Diagonale des Fous":
       code: "GRR"
-      year: [ 2025,2024]
+      year: [ 2025]
     "Trail de Bourbon":
       code: "TDB"
-      year: [ 2025,2024] 
+      year: [ 2025]
     "Mascareignes":
       code: "MAS"
-      year: [ 2025,2024]
+      year: [ 2025]
     "Metis Trail":
       code: "MTR"
       year: [ 2025]
-HOKA LES TEMPLIERS:
-  tenant: 'templiers'
-  races: 
-    "Grand Trail des Templiers" :
-      code: "Templi"
-      year: [ 2025]
-    "Endurance Trail" :
-      code: "endur"
-      year: [ 2025]
-    "Intégrale des Causses":
-      code : "integra"
-      year: [ 2025]
+# HOKA LES TEMPLIERS:
+#   tenant: 'templiers'
+#   races: 
+#     "Grand Trail des Templiers" :
+#       code: "Templi"
+#       year: [ 2025]
+#     "Endurance Trail" :
+#       code: "endur"
+#       year: [ 2025]
+#     "Intégrale des Causses":
+#       code : "integra"
+#       year: [ 2025]
 
 UTMB:
   tenant: "UTMB"
@@ -34,13 +34,13 @@ UTMB:
       code: "UTMB"
       year: [ 2025]
 
-Graid Raid du Finistere:
-  tenant :  'grf-breizhchrono'
-  races:
-    "Grand Raid du Finistère solo" :
-      code : "grandr"
-      year : [2025]
-    "La Camaret" :
-      code : "lacama"
-      year : [2025]
+# Graid Raid du Finistere:
+#   tenant :  'grf-breizhchrono'
+#   races:
+#     "Grand Raid du Finistère solo" :
+#       code : "grandr"
+#       year : [2025]
+#     "La Camaret" :
+#       code : "lacama"
+#       year : [2025]
 
