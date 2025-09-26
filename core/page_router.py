@@ -4,7 +4,6 @@ import tsx_pages.trail_pacer as trail_pacer
 
 class PageRouter:
     """Routeur qui appelle la bonne page selon le nom"""
-
     def render_page(self, page_name: str):
         if page_name == "⏱️ Trail Pacer":
             trail_pacer.show()

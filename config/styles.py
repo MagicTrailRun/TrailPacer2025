@@ -1,7 +1,6 @@
 import streamlit as st
 
 def apply_custom_css():
-    """Applique le CSS personnalisé à l'application Streamlit."""
     custom_css = """
     <style>
         /* Général */
@@ -80,6 +79,20 @@ def apply_custom_css():
                 display: none !important;
             }
         }
+        /* Réduire les marges par défaut de Streamlit */
+        .css-1aumxhk {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        /* Réduire les marges autour des boutons */
+        .stButton>button {
+            margin: 0.5rem 0;
+        }
+        /* Réduire les marges autour des titres */
+        .stTitle {
+            margin-bottom: 1rem;
+        }
+
     </style>
     """
 

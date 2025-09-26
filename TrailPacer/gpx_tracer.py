@@ -10,6 +10,7 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
     """
     Profil d'altitude avec checkpoints, D+/D- par secteur et design moderne
     """
+    df.reset_index(inplace=True)
     min_alt = df_gpx["altitude"].min() - 300
     max_alt = df_gpx["altitude"].max() + 100
     df_gpx['distance_km'] = df_gpx['distance'] / 1000
@@ -21,16 +22,15 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
         'accent': '#10B981',       # Emeraude
         'warning': '#F59E0B',      # Ambre
         'success': '#059669',      # Vert
-        'background': "#D1D4D8",   # Slate sombre
-        'surface': "#D1D4D8",      # Slate moyen
+        'background':  "#f8f9fa",   # Slate sombre
+        'surface':  "#f8f9fa",      # Slate moyen
         'text': "#0C0C0C"          # Blanc cassé
     }
     
     # Création du graphique avec subplot pour plus de contrôle
     fig =go.Figure()
     
-
-    
+ 
     # Gradient fill moderne
     fig.add_trace(
         go.Scatter(
@@ -93,9 +93,6 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
         secteurs_d_moins.append(-d_moins_secteur)  # Négatif pour l'affichage
         distances_secteur.append(dist)
     
-
-
-    
     # Checkpoints 
     idx_high=[]
     altitude=2000
@@ -116,16 +113,16 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
             if "Heure de passage" in affichages:
                 heure_passage_col = f'heure_passage'
                 texts_h.append(f'🕐 {row[heure_passage_col]}')
-            if "Temps de passage" in affichages:
-                temps_passage_col = f'temps_cumule_med_fmt'
+            if "Temps de course cumulé" in affichages:
+                temps_passage_col = f'Temps de course cumulé'
                 texts_h.append(f'⏱️ {row[temps_passage_col]}')
-            if "D+ Secteur" in affichages:
+            if "D+ Segment" in affichages:
                 d_plus_secteur = row['dplus_secteur'] 
                 texts_h.append(f'↗️ {d_plus_secteur:.0f}m')
-            if "D- Secteur" in affichages:
+            if "D- Segment" in affichages:
                 d_moins_secteur = row['dmoins_secteur'] 
                 texts_h.append(f'↘️ {d_moins_secteur:.0f}m')
-            if "Distance Secteur" in affichages :
+            if "Distance Segment" in affichages :
                 dist_secteur= row['dist_secteur']
                 texts_h.append(f'📏{dist_secteur:.2f}km')
         
@@ -137,7 +134,7 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
         fig.add_trace(
             go.Scatter(
                 x=[dist],
-                y=[ele],
+                y=[ele] ,
                 mode="markers+text",
                 marker=dict(
                     color=marker_color,
