@@ -20,7 +20,6 @@ class SessionManager:
             cls.CURRENT_PAGE: "⏱️ Trail Pacer",
 
         }
-        
         for key, default_value in default_values.items():
             if key not in st.session_state:
                 st.session_state[key] = default_value
@@ -29,7 +28,7 @@ class SessionManager:
     @classmethod
     def get_current_page(cls) -> str:
         """Retourne la page courante"""
-        return st.session_state.get(cls.CURRENT_PAGE, "📊 Dashboard")
+        return st.session_state.get(cls.CURRENT_PAGE, "⏱️ Trail Pacer")
     
     @classmethod
     def set_current_page(cls, page: str):

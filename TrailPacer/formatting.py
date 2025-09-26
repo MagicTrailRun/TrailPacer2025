@@ -56,9 +56,7 @@ def format_dataframe(df, target_time, start_time):
     df["temps_secteur_med"] = df["temps_norm_med"] * target_time
     df["temps_cumule_med"] = df["temps_secteur_med"].cumsum()
     df["temps_secteur_low"] = df["temps_norm_low"] * target_time
-    df["temps_cumule_low"] = df["temps_secteur_low"].cumsum()
     df["temps_secteur_high"] = df["temps_norm_high"] * target_time
-    df["temps_cumule_high"] = df["temps_secteur_high"].cumsum()
         # --- 🛑 Vérification barrière horaire ---
     if "barriere_horaire" in df.columns:
         # Comparer le temps cumulé médian à la barrière
@@ -83,7 +81,7 @@ def format_dataframe(df, target_time, start_time):
 
 
 
-    df["Allure secteur"] = df.apply(lambda r: format_pace(r["temps_secteur_med"], r["dist_secteur"]), axis=1)
+    df["Allure segment"] = df.apply(lambda r: format_pace(r["temps_secteur_med"], r["dist_secteur"]), axis=1)
     df = get_pacing_temps_cible(df, start_time)
 
     # --- Arrondis ---
@@ -92,53 +90,45 @@ def format_dataframe(df, target_time, start_time):
     df['dmoins_secteur'] = df['dmoins_secteur'].round(1)
 
     # --- Colonnes texte ---
-    df["Segment (Km – Nom)"] = df.apply(lambda x: f"{x['dist_total']:.1f} km – {x['checkpoint']}", axis=1)
-    df["Temps de course au passage (± 5%)"] = df.apply(
-        lambda x: f"{x['temps_cumule_med_fmt']} ({x['temps_cumule_low_fmt']}-{x['temps_cumule_high_fmt']})", axis=1
-    )
+    df["Segment (Km – Nom)"] = df.apply(lambda x: f"**{x['dist_total']:.1f} km** – {x['checkpoint']}", axis=1)
+
     df["Temps segment (± 5%)"] = df.apply(
         lambda x: f"{x['temps_secteur_med_fmt']} ({x['temps_secteur_low_fmt']}-{x['temps_secteur_high_fmt']})", axis=1
     )
 
-
+    df.set_index("Segment (Km – Nom)", inplace=True)
     # --- Table affichage ---
     df_display = df[[
-        "Segment (Km – Nom)",
+       # "Segment (Km – Nom)",
         "dist_secteur",
         "dplus_secteur",
         "dmoins_secteur",
-        "heure_passage",
-        "Temps de course au passage (± 5%)",
         "Temps segment (± 5%)",
-        "Allure secteur",
+        "Temps de course cumulé",
+        "heure_passage",
+        "Allure segment",
         "Barrière horaire"
     ]]
+
 
     df_display.rename(
         columns={
             "dist_secteur": "Km segment",
             "dplus_secteur": "D+ segment",
             "dmoins_secteur": "D- segment",
-            "heure_passage": "Heure de passage estimée",
+            "heure_passage": "Heure de passage",
         },
         inplace=True
     )
-
+    
     # --- Ajouter colonne barrière horaire si dispo ---
-
-
-
+    df_display['Km segment'] = df_display['Km segment'].apply(lambda x: f"{x:.1f}")
+    df_display['D+ segment'] = df_display['D+ segment'].apply(lambda x: f"{x:.1f}")
+    df_display['D- segment'] = df_display['D- segment'].apply(lambda x: f"{x:.1f}")
+    #df_display.set_index("Segment (Km – Nom)", inplace=True)
     # --- Config colonnes ---
-    column_config = { 
-        "Segment (Km – Nom)": st.column_config.TextColumn("Segment (Km – Nom)", pinned=True),
-        "Km segment": st.column_config.TextColumn("Km segment", width="small"),
-        "D+ segment": st.column_config.TextColumn("D+ segment (m)", width="small"),
-        "D- segment": st.column_config.TextColumn("D- segment (m)", width="small"),
-        "Heure de passage estimée": st.column_config.TextColumn("Heure de passage estimée", width="small"),
-        "Barrière horaire": st.column_config.TextColumn("Barrière horaire", width="small"),
-    }
-
-    return df, df_display, column_config
+    
+    return df, df_display
 
 
 
@@ -157,9 +147,7 @@ def get_pacing_temps_cible(df_pred, start_time):
     df_pred[f"temps_secteur_low_fmt"]=df_pred[f"temps_secteur_low"].apply(format_hr_to_time)
     df_pred[f"temps_secteur_high_fmt"]=df_pred[f"temps_secteur_high"].apply(format_hr_to_time)
 
-    df_pred[f"temps_cumule_med_fmt"] = df_pred[f"temps_cumule_med"].apply(format_hr_to_time)
-    df_pred[f"temps_cumule_low_fmt"]=df_pred[f"temps_cumule_low"].apply(format_hr_to_time)
-    df_pred[f"temps_cumule_high_fmt"]=df_pred[f"temps_cumule_high"].apply(format_hr_to_time)
+    df_pred[f"Temps de course cumulé"] = df_pred[f"temps_cumule_med"].apply(format_hr_to_time)
 
     return df_pred
 
@@ -182,3 +170,72 @@ def normalize_ckpts(df, col, mapping, drop_ckpts=None):
 def format_hr_to_time(x):
     x = int(x*60)
     return f'{x//60}h{x%60:02d}'
+
+
+def show_hero_banner(event, course, event_code, df):
+    img_base64 = get_base64_image(f"TrailPacer/image/{event_code.lower()}.png")
+    background_style = (
+        f"background-image: url('data:image/png;base64,{img_base64}');"
+        if img_base64
+        else "background: linear-gradient(135deg, #1e3a8a, #3b82f6);"
+    )
+
+    st.markdown(
+        f"""
+        <style>
+        .hero {{
+            position: relative;
+            width: 100%;
+            height: 280px;
+            {background_style}
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 1.5rem;
+        }}
+        .hero h1 {{
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0);
+            margin: 0;
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px #000;
+        }}
+        .hero h2, .hero h3 {{
+            font-size: clamp(1.3rem, 2.5vw, 2rem);
+            color: white;
+            font-size: 2em;
+            font-weight: 500;
+            text-shadow: 2px 2px 6px #000;
+            margin: 0;
+        }}
+        .hero-overlay {{
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0);
+            border-radius: 16px;
+        }}
+        </style>
+
+        <div class="hero" role="banner" aria-label="En-tête événement {event} style="margin:0; padding:0;">">
+            <div class="hero-overlay"></div>
+            <h1>TrailPacer</h1>
+            <h2>{event}</h2>
+            <h3>{course}</h3>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    if df.empty:
+        st.error("⚠️ Impossible de charger les données pour cet événement.")
+        return

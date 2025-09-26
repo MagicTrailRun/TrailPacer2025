@@ -4,13 +4,12 @@ from core.session import SessionManager
 from core.page_router import PageRouter
 import os
 from config.airtableapi import email_form,commentaire_form
-from tsx_pages.trail_pacer import select_event
+from TrailPacer.data_loader import select_event
 import yaml
-
- 
+from Quest.sex_quest import show_quest_banner
+from BETA.beta_bandeau import show_beta_banner
 class TSXApplication:
     """Application principale TSX Trail"""
-    
     def __init__(self):
         self.session_manager = SessionManager()
         self.page_router = PageRouter()
@@ -43,28 +42,28 @@ class TSXApplication:
 
     def run(self): 
         """Point d'entrée principal de l'application"""
-        # Initialisation de la session
         self.session_manager.initialize_session()
-        
-        # Gestion de l'authentification
-       
         self._show_main_interface()
     
-    def _show_main_interface(self):
-        """Interface principale pour utilisateurs authentifiés"""
-        # Affichage de la sidebar
-        self._show_sidebar()
+ 
+    def show_banner(self) :
+        html_code=show_quest_banner()
+        st.components.v1.html(html_code)
 
-        self._display_waning_if_beta()
-        # Routage et affichage de la page courante
-        current_page = self.session_manager.get_current_page()
-        self.page_router.render_page(current_page)
+    def _show_main_interface(self):
+        self._show_sidebar()
+        main_container = st.container()
+        with main_container:
+            self._display_waning_if_beta()
+            self.show_banner()
+            current_page = self.session_manager.get_current_page()
+            self.page_router.render_page(current_page)
     
     def _show_user_message(self) :
 
         with st.sidebar:
 
-            with st.expander("ℹ️ En savoir plus") : 
+            with st.expander("En savoir plus", icon=":material/info:") : 
 
                 st.write("Trail Pacer n’est qu’un début d’une initiative plus ambitieuse… \n " \
                 "Entrez votre email pour découvrir nos nouveautés et être parmi les premiers informés de la suite du projet. \n " \
@@ -84,29 +83,11 @@ class TSXApplication:
     def _display_waning_if_beta(self):
         # Récupérer l'environnement
         app_env = os.getenv("APP_ENV", "prod")
-        txt_beta=""" Merci de participer à la version <span style="color:#FFD700;">BETA</span> de TrailPacer ! <br><br>
-                    Si vous avez des remarques, des suggestions, des retours , envoyez-nous un mail à 
-                    <a href="mailto: trailpacer.ia@gmail.com" style="color:#FFD700;">trailpacer.ia@gmail.com</a> <br>
-                    ou utilisez directement l'espace commentaire."""
+        txt_beta=show_beta_banner()
         # Afficher bannière si on est en beta
         if app_env == "beta":
-            st.markdown(
-                f"""
-                <div style="
-                    background-color:#4CAF50;
-                    padding:15px;
-                    border-radius:10px;
-                    text-align:center;
-                    color:white;
-                    font-size:18px;
-                    font-weight:bold;
-                ">
-                    {txt_beta}
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-            st.divider()
+             st.components.v1.html(txt_beta)
+
                     
                     
 if __name__ == "__main__":
