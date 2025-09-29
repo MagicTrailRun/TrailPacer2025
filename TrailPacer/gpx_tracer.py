@@ -26,7 +26,7 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
         'surface':  "#f8f9fa",      # Slate moyen
         'text': "#0C0C0C"          # Blanc cassé
     }
-    
+     
     # Création du graphique avec subplot pour plus de contrôle
     fig =go.Figure()
     
