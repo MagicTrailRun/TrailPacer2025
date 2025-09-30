@@ -56,9 +56,12 @@ def show():
 
     with postcourse4:
         try : 
-            if event_code!='UTMB' :
-                st.info("page temporairement indisponible")
-            else : show_post_course(event_code, course_code,year)
+            if event_code=='UTMB' :
+                show_post_course(event_code, course_code,year)
+            elif course_code=='GRR':
+                show_post_course(event_code, course_code,year-1)
+                
+            else : st.info("page temporairement indisponible")
         except Exception as e:
             st.error("Cette page n'est pas encore disponible pour la course selectionnée !")
             # Optionnel : log dans la console pour debug
