@@ -33,11 +33,11 @@ def show():
     show_hero_banner(event, course, event_code, df)
 
 
-    plan_course1, pacing2, explorer3, postcourse4, avis5, qui6 , cnil7= st.tabs([
+    plan_course1, explorer3, postcourse4, pacing2, avis5, qui6 , cnil7= st.tabs([
         "Plan de course",
-        "Le pacing selon TrailPacer",
         "Explorer les courses",
         "Analyse post-course",
+         "Le pacing selon TrailPacer",
         "Suivre le projet",
         "Qui sommes-nous?",
         "Politique de confidentialité"
@@ -49,9 +49,7 @@ def show():
        show_plan_pacing()
 
         
-    with pacing2 : 
-        pacing()
- 
+
     with explorer3 : 
         explore_race()
 
@@ -68,7 +66,9 @@ def show():
             traceback.print_exc()
 
 
-
+    with pacing2 : 
+            pacing()
+ 
 
     with avis5 :
 
