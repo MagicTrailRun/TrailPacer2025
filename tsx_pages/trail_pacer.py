@@ -76,6 +76,7 @@ def show():
 
     with qui6 :
         quisommesnous()
+        
 
     with cnil7 :
         cnil()

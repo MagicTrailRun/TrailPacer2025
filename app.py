@@ -4,7 +4,7 @@ from core.session import SessionManager
 from core.page_router import PageRouter
 import os
 from config.airtableapi import email_form,commentaire_form
-from TrailPacer.data_loader import select_event
+from TrailPacer.data_loader import select_event , info_social_media
 import yaml
 from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
@@ -77,9 +77,9 @@ class TSXApplication:
         """Affichage de la barre latérale"""
         select_event()
         self._show_user_message()
+        info_social_media()
 
-
- 
+    
     def _display_waning_if_beta(self):
         # Récupérer l'environnement
         app_env = os.getenv("APP_ENV", "prod")

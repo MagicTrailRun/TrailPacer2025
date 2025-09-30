@@ -3,6 +3,7 @@ import numpy as np
 import json
 import streamlit as st
 from TrailPacer.race_id import  get_df_for_gpx
+import streamlit.components.v1 as components
 
 def load_data(event,race="UTMB",year=2025, version="vf"):
     """Charge les données CSV"""
@@ -30,11 +31,11 @@ def get_config(path):
 
     return config #, dic_config['mapping_ckpt']
 
-
-
-
+def info_social_media():
+    with st.sidebar:
+        st.markdown( """ <div style=" position: fixed; bottom: 20px; left: 6%; transform: translateX(-50%); width: 90%; text-align: center; padding: 15px; background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); "> <p style=" font-weight: bold; font-size: 16px; margin-bottom: 10px; color: inherit; "> 📱 Suivez-nous sur les réseaux </p> <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;"> <a href="https://www.instagram.com/trail_pacer/" target="_blank" rel="noopener noreferrer" style="transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="30" height="30" alt="Instagram"> </a> <a href="https://www.facebook.com/TrailPacer.IA" target="_blank" rel="noopener noreferrer" style="transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"> <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" width="30" height="30" alt="Facebook"> </a> </div> </div> """, unsafe_allow_html=True )
 def select_event():
-
+    
     # --- CSS custom pour styliser les selectbox
     st.markdown("""
     <style>
