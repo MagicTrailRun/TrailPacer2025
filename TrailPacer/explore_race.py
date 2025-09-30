@@ -65,13 +65,13 @@ def explore_race():
 
         st.divider()
 
-        path_to_html = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/compare_2025_2024.html")
+        path_to_html = Path(f"data/TrailPacer/{event_code}/{course_code}/gpx_comparison/compare_{course_code}.html")
 
         if path_to_html.exists():
             with open(path_to_html, 'r', encoding="utf-8") as f:
                 html_data = f.read()
 
-            st.header("Différence de parcours entre 2024 et 2025")
+            st.header("Différence de parcours des éditions prédécentes")
             st.components.v1.html(html_data, height=600, scrolling=True)
     
 
