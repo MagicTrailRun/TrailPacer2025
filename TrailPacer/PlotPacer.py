@@ -47,7 +47,8 @@ class PacingPlotter():
 
     def load_ref_pacing(self, year, event, course):
         pth = f"{self.output_pth}/ref_pacing/ref_{year}.csv"
-        df = pd.read_csv(pth, index_col='checkpoint')
+        df = pd.read_csv(pth, index_col='checkpoint') 
+        df= df.sort_values(by="dist_total")
         return df
        
     def load_altitude_profile(self, year, course):
@@ -341,12 +342,11 @@ class PacingPlotter():
                                                         yr_min)
         self.df_checkpoints['plotted_elevation'] = plotted_elevation
         
-    
+     
         col_splits = df_splits.columns[0]
         for i, (ckpt, row) in enumerate(self.df_checkpoints.iterrows()):
             if i==0:
                 continue
-            
             y_ref = df_relative.loc[ckpt, splits_reference]  if splits_reference!="ref_pacing" else y_finish
             y_splits = df_relative.loc[ckpt, col_splits]
 

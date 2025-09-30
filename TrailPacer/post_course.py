@@ -242,11 +242,11 @@ def compare_runners(results, config_df, df_ranks, df_best, df_cv,
         with col_sep:
             st.markdown("<h3 style='text-align: center;'>VS</h3>", unsafe_allow_html=True)
 
-        # Graphique pacing
-        # st.divider()
-        # plotter = PacingPlotter(year, event_code, course_code, is_elite=False, offline=True, show_peloton=False)
-        # fig, df_relative = plotter.plot([bib1, bib2])
-        # st.pyplot(fig)
+        #Graphique pacing
+        st.divider()
+        plotter = PacingPlotter(year, event_code, course_code, is_elite=False, offline=True, show_peloton=False)
+        fig, df_relative = plotter.plot([bib1, bib2])
+        st.pyplot(fig)
 
         # Analyse course
         df1 = pd.DataFrame(info1["splits"])
@@ -267,7 +267,7 @@ def compare_runners(results, config_df, df_ranks, df_best, df_cv,
 
         st.subheader('Coefficient de variation')
         compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2)
-
+ 
         st.subheader('Analyse secteur par secteur')
         compare_course_detail(df1, df2, nom1, nom2)
 
@@ -320,12 +320,12 @@ def post_course_indiv(results, config_df, df_ranks, df_best, df_cv,
         with col1: 
             show_runner_info(info_runner)
 
-        # plotter = PacingPlotter(year, event_code, course_code, is_elite=is_elite, offline=True)
-        # fig, df_relative = plotter.plot(bib)
-        # st.pyplot(fig)
+        plotter = PacingPlotter(year, event_code, course_code, is_elite=is_elite, offline=True)
+        fig, df_relative = plotter.plot(bib)
+        st.pyplot(fig)
 
-        # explication_tab_post_course()
-        # st.divider()
+        explication_tab_post_course()
+        st.divider()
         show_post_course_table(info, df_best, df_cv, bib, config_df)
 
     except Exception as e:
