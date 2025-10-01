@@ -11,7 +11,7 @@ import base64
 from pathlib import Path
 
 
-def show_post_course(event_code, course_code, year):
+def show_post_course(course_name,event_code, course_code, year):
     """
     Affiche l'analyse post-course pour un événement donné.
     
@@ -20,7 +20,7 @@ def show_post_course(event_code, course_code, year):
         course_code (str): Code de la course (ex: "UTMB") 
         year (int ou str): Année de l'événement
     """
-    st.title(f"Analyse post-course {event_code} {year}")
+    st.title(f"Analyse post-course {course_name} {year}")
     
     # Conversion en string si nécessaire
     year = str(year)
@@ -40,21 +40,20 @@ def show_post_course(event_code, course_code, year):
         # Extraction des données
         results = data['results']
         config_df = data['config_df']
-        df_ranks = data['df_ranks']
-        df_best = data['df_best']
         df_cv = data['df_cv']
-        first_female_time = data['first_female_time']
-        first_male_time = data['first_male_time']
-        
+
         # Interface utilisateur
         _show_analysis_interface(
-            results, config_df, df_ranks, df_best, df_cv, 
-            first_female_time, first_male_time, event_code, course_code, year
+            results, config_df,df_cv, 
+           event_code, course_code, year,course_name
         )
         
     except Exception as e:
         st.error("❌ Erreur lors du chargement des données")
         st.exception(e)
+
+
+
 
 def _load_post_course_data(event_code, course_code, year):
     """
@@ -71,13 +70,11 @@ def _load_post_course_data(event_code, course_code, year):
             st.warning(f"📁 Dossier non trouvé: {base_path}")
             return None
         
-        # Définition des fichiers requis
+        # Définition des fichiers requis (CORRECTION: underscore manquant)
         files = {
             'results': base_path / f"{course_code}_{year}_all.json",
-            'config': base_path / "config_analysis.csv",
-            'ranks': base_path / f"ranks_{course_code}_{year}.csv",
-            'best': base_path / "best_perf.csv",
-            'cv': base_path / f"variation_coefficient_{course_code}_{year}.csv"
+            'config': base_path / f"df_config_{course_code}_{year}.csv",  # Ajout underscore
+            'cv': base_path / f"df_cv_{course_code}_{year}.csv"
         }
         
         # Vérification de l'existence des fichiers
@@ -97,69 +94,52 @@ def _load_post_course_data(event_code, course_code, year):
             results = json.load(f)
         
         config_df = pd.read_csv(files['config'])
-        df_ranks = pd.read_csv(files['ranks'])
-        df_best = pd.read_csv(files['best'])
         df_cv = pd.read_csv(files['cv'])
         
         # Validation des données
         if not results:
             st.warning("⚠️ Aucun résultat trouvé dans les données")
             return None
-            
-        if df_ranks.empty:
-            st.warning("⚠️ Données de classement vides")
+        
+        # Validation structure config_df
+        required_config_cols = ['portion_name', 'Type de tronçon', 'Quart de course','secteur_quart']
+        if not all(col in config_df.columns for col in required_config_cols):
+            st.warning(f"⚠️ Colonnes manquantes dans df_config: {required_config_cols}")
             return None
         
-        # Calcul des temps de référence
-        first_female_time = _get_first_time(df_ranks, 'FEMALE')
-        first_male_time = _get_first_time(df_ranks, 'MALE')
+        # Validation structure df_cv
+        required_cv_cols = ['bib', 'name', 'variation_coefficient', 'vitesse_moy']
+        if not all(col in df_cv.columns for col in required_cv_cols):
+            st.warning(f"⚠️ Colonnes manquantes dans df_cv: {required_cv_cols}")
+            return None
+        
+        # Renommer la colonne 'bib' en 'Doss.' pour compatibilité avec le reste du code
+        if 'bib' in df_cv.columns:
+            df_cv = df_cv.rename(columns={'bib': 'Doss.'})
         
         return {
             'results': results,
             'config_df': config_df,
-            'df_ranks': df_ranks,
-            'df_best': df_best,
             'df_cv': df_cv,
-            'first_female_time': first_female_time,
-            'first_male_time': first_male_time
         }
         
     except Exception as e:
         st.error(f"Erreur lors du chargement des données: {str(e)}")
+        st.exception(e)
         return None
 
 
-def _get_first_time(df_ranks, sex):
-    """
-    Récupère le temps du premier coureur/coureuse.
-    
-    Args:
-        df_ranks (pd.DataFrame): DataFrame des classements
-        sex (str): 'FEMALE' ou 'MALE'
-        
-    Returns:
-        str: Temps du premier ou None si non trouvé
-    """
-    try:
-        first_time = df_ranks[
-            (df_ranks['sex'] == sex) & (df_ranks['sex_rank'] == 1)
-        ]['final_time'].iloc[0]
-        return first_time
-    except (IndexError, KeyError):
-        st.warning(f"⚠️ Impossible de trouver le temps de référence pour {sex}")
-        return None
 
 
-def _show_analysis_interface(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year):
+def _show_analysis_interface(results, config_df, df_cv, 
+                            event_code, course_code, year,course_name):
     """
     Affiche l'interface d'analyse post-course.
     """
-
     
     # Statistiques générales
     total_runners = len(results)
-    finishers = len([r for r in results.values() if r.get('status') != 'DNF'])
+    finishers = len([r for r in results.values() if r.get('status') == 'FINISHER'])
     dnf_rate = ((total_runners - finishers) / total_runners * 100) if total_runners > 0 else 0
     
     col1, col2, col3 = st.columns(3)
@@ -187,105 +167,28 @@ def _show_analysis_interface(results, config_df, df_ranks, df_best, df_cv,
     
     # Affichage en fonction du choix
     if st.session_state.get("analyse_type") == "individuelle":
-        _show_individual_analysis(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year)
+        _show_individual_analysis(results, config_df, df_cv, 
+                                event_code, course_code, year,course_name)
     elif st.session_state.get("analyse_type") == "comparaison":
-        _show_comparison_analysis(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year)
-
-def compare_runners(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year):
-    try: 
-        st.header('Comparaison de deux finishers')
-        st.info("Veuillez sélectionner exactement deux dossards pour la comparaison.")
-
-        # Options robustes
-        options = ["--"] + [
-            f"{info.get('name','Inconnu')} (Doss. {bib})" 
-            for bib, info in results.items()
-        ]
-        selected = st.multiselect("Sélection", options, max_selections=2)
-
-        if len(selected) != 2 or "--" in selected:
-            return
-
-        # Extraction des dossards
-        def extract_bib(option):
-            return int(option.split("(Doss. ")[1].split(")")[0])
-
-        bib1, bib2 = [extract_bib(opt) for opt in selected]
-
-        info1 = results.get(str(bib1))
-        info2 = results.get(str(bib2))
-
-        if not info1 or not info2:
-            st.warning("❌ Dossard non trouvé")
-            return
-
-        # Vérifier statut
-        for info in [info1, info2]:
-            if info.get('status') != "FINISHER":
-                st.subheader(f"{info.get('name','Inconnu')} - {info['status']}")
-                st.write(f"Abandon au checkpoint : {info.get('last_checkpoint','inconnu')}")
-                st.error('⚠️ La comparaison n’est possible que pour les finishers')
-                return
-
-        col1, col_sep, col2 = st.columns([3,1,3])
-        for (bib, info, col) in [(bib1, info1, col1), (bib2, info2, col2)]:
-            with col:
-                info_runner = df_ranks[df_ranks["bib"] == bib]
-                if info_runner.empty:
-                    st.warning("⚠️ Infos détaillées introuvables")
-                else:
-                    show_runner_info(info_runner)
-
-        with col_sep:
-            st.markdown("<h3 style='text-align: center;'>VS</h3>", unsafe_allow_html=True)
-
-        #Graphique pacing
-        st.divider()
-        plotter = PacingPlotter(year, event_code, course_code, is_elite=False, offline=True, show_peloton=False)
-        fig, df_relative = plotter.plot([bib1, bib2])
-        st.pyplot(fig)
-
-        # Analyse course
-        df1 = pd.DataFrame(info1["splits"])
-        df1["runner_h"] = pd.to_numeric(df1["runner_h"], errors="coerce")
-        df1 = df1.merge(config_df, left_on="checkpoint", right_on="Checkpoint", how="left")
-
-        df2 = pd.DataFrame(info2["splits"])
-        df2["runner_h"] = pd.to_numeric(df2["runner_h"], errors="coerce")
-        df2 = df2.merge(config_df, left_on="checkpoint", right_on="Checkpoint", how="left")
-
-        nom1, nom2 = info1.get('name','?'), info2.get('name','?')
-
-        st.subheader('Récapitulatif montée / descente')
-        compare_course_pente(df1, df2, nom1, nom2)
-
-        st.subheader('Analyse par quart de course')
-        compare_course_quarts(df1, df2, nom1, nom2)
-
-        st.subheader('Coefficient de variation')
-        compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2)
- 
-        st.subheader('Analyse secteur par secteur')
-        compare_course_detail(df1, df2, nom1, nom2)
-
-    except Exception as e:
-        st.error("Oups, une erreur est survenue !")
-        print(f"[DEBUG] Erreur compare_runners: {e}")
-        traceback.print_exc()
+        _show_comparison_analysis(results, config_df, df_cv, 
+                                event_code, course_code, year,course_name)
 
 
-def post_course_indiv(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year):
+
+
+
+def _show_individual_analysis(results, config_df, df_cv, 
+                              event_code, course_code, year,course_name):
+    """
+    Affiche l'interface d'analyse individuelle.
+    """
     st.header('Analyse détaillée')
     try:
-        st.info("Sélectionnez un coureur pour lancer l’analyse :")
+        st.info("Sélectionnez un coureur pour lancer l'analyse :")
 
         options = ["--"] + [
-            f"{info.get('name','Inconnu')} (Doss. {bib})" 
-            for bib, info in results.items()
+            f"{info.get('rank_scratch','DNF')} - {info.get('name','Inconnu')} (Doss. {bib})"
+            for bib, info in sorted(results.items(), key=lambda x: x[1].get("rank_scratch", 9999))
         ]
         choice = st.selectbox("", options)
 
@@ -301,62 +204,111 @@ def post_course_indiv(results, config_df, df_ranks, df_best, df_cv,
 
         if info.get('status') == "DNF":
             st.subheader(f"{info.get('name','Inconnu')} (Doss. {bib}) - DNF")
-            st.write(f"Abandon au checkpoint : {info.get('last_checkpoint','inconnu')}")
+            st.write(f"Statut: Abandon")
             return
 
-        info_runner = df_ranks[df_ranks["bib"] == bib]
-        if info_runner.empty:
-            st.warning("⚠️ Infos détaillées introuvables")
+        # Affichage info coureur
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            show_runner_info(info,bib)
+        # Graphique pacing si disponible
+        try:
+            plotter = PacingPlotter(year, event_code, course_name, course_code, 
+                                   is_elite=False, offline=True)
+            fig, _ = plotter.plot(bib)
+            st.pyplot(fig)
+        except Exception as e:
+            st.warning(f"Graphique pacing non disponible: {e}")
+
+        st.divider()
+        
+        # Tableaux d'analyse
+        show_post_course_table(info, config_df, df_cv, bib)
+
+    except Exception as e:
+        st.error("Erreur lors de l'analyse individuelle")
+        st.exception(e)
+
+
+def _show_comparison_analysis(results, config_df, df_cv, event_code, course_code, year,course_name):
+    try: 
+        st.header('Comparaison de deux finishers')
+        st.info("Veuillez sélectionner exactement deux dossards pour la comparaison.")
+
+        options = ["--"] + [
+            f"{info.get('rank_scratch','DNF')} - {info.get('name','Inconnu')} (Doss. {bib})"
+            for bib, info in sorted(results.items(), key=lambda x: x[1].get("rank_scratch", 9999))
+        ]
+        selected = st.multiselect("Sélection", options, max_selections=2)
+
+        if len(selected) != 2 or "--" in selected:
             return
 
-        runner = info_runner.iloc[0]
-        first_time = first_female_time if runner['sex']=="FEMALE" else first_male_time
+        def extract_bib(option):
+            return int(option.split("(Doss. ")[1].split(")")[0])
 
-        runner_time_sec = time_to_seconds(runner['final_time'])
-        first_time_sec = time_to_seconds(first_time) if first_time else runner_time_sec
-        is_elite = runner_time_sec <= 1.2 * first_time_sec
+        bib1, bib2 = [extract_bib(opt) for opt in selected]
+        info1 = results.get(str(bib1))
+        info2 = results.get(str(bib2))
 
-        col1, _ = st.columns(2)
-        with col1: 
-            show_runner_info(info_runner)
+        if not info1 or not info2:
+            st.warning("❌ Dossard non trouvé")
+            return
 
-        plotter = PacingPlotter(year, event_code, course_code, is_elite=is_elite, offline=True)
-        fig, df_relative = plotter.plot(bib)
+        # Vérifier statut
+        for info in [info1, info2]:
+            if info.get('status') != "FINISHER":
+                st.error("⚠️ La comparaison n'est possible que pour les finishers")
+                return
+
+        # Affichage des infos
+        col1, col_sep, col2 = st.columns([3,1,3])  # la colonne du milieu est très fine
+
+        for (bib, info, col) in [(bib1, info1, col1), (bib2, info2, col2)]:
+            with col:
+                
+                show_runner_info(info,bib)
+        with col_sep:
+            st.markdown(
+        "<h3 style='text-align: center;'>VS</h3>",
+        unsafe_allow_html=True
+    )
+
+        # Graphique pacing
+
+        plotter = PacingPlotter(year, event_code,course_name, course_code, 
+                                is_elite=False, offline=True, show_peloton=False)
+        fig, _ = plotter.plot([bib1, bib2])
         st.pyplot(fig)
 
-        explication_tab_post_course()
-        st.divider()
-        show_post_course_table(info, df_best, df_cv, bib, config_df)
 
-    except Exception as e:
-        st.error("Oups, une erreur est survenue !")
-        print(f"[DEBUG] Erreur post_course_indiv: {e}")
-        traceback.print_exc()
+        # Analyse comparative
+        df1 = pd.DataFrame(info1["splits"])
+        df1["runner_h"] = pd.to_numeric(df1["runner_h"], errors="coerce")
+        df1 = df1.merge(config_df, on="portion_name", how="left")
 
-def _show_individual_analysis(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year):
-    """
-    Affiche l'interface d'analyse individuelle.
-    """
-    try:
-        post_course_indiv(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year)
+        df2 = pd.DataFrame(info2["splits"])
+        df2["runner_h"] = pd.to_numeric(df2["runner_h"], errors="coerce")
+        df2 = df2.merge(config_df, on="portion_name", how="left")
+
+        nom1, nom2 = info1.get('name', '?'), info2.get('name', '?')
+
+        st.subheader('Récapitulatif montée / descente')
+        compare_course_pente(df1, df2, nom1, nom2)
+
+        st.subheader('Analyse par quart de course')
+        compare_course_quarts(df1, df2, nom1, nom2)
+
+        st.subheader('Coefficient de variation')
+        compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2)
+
+        st.subheader('Analyse secteur par secteur')
+        compare_course_detail(df1, df2, nom1, nom2)
     except Exception as e:
-        st.error("❌ Erreur lors de l'analyse individuelle")
+        st.error("Erreur lors de l'analyse comparative")
         st.exception(e)
 
 
-def _show_comparison_analysis(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year):
-    """
-    Affiche l'interface d'analyse comparative.
-    """
-    try:
-        compare_runners(results, config_df, df_ranks, df_best, df_cv, 
-                           first_female_time, first_male_time, event_code, course_code, year)
-    except Exception as e:
-        st.error("❌ Erreur lors de l'analyse comparative")
-        st.exception(e)
 
 
 # Fonction pour colorer écarts
@@ -383,7 +335,7 @@ def color_troncon(val):
     else:
         return ""
 
-def post_course_detail(df_splits, df_best):
+def post_course_detail(df_splits):
     # Icônes
     icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
     icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
@@ -394,7 +346,6 @@ def post_course_detail(df_splits, df_best):
     )
     df_splits["Tronçon"] = df_splits["portion_name"]
 
-    df_splits = df_splits.merge(df_best, on="portion_name", how="left")
 
     df_table = pd.DataFrame({
         "Profil": df_splits["Profil"],
@@ -474,19 +425,17 @@ def post_course_pente(df_splits):
 
 
 def post_course_quarts(df_splits):
+   
     recap_quart = []
     
-    # Mapping des quarts avec détails
-    quart_details = {
-        "Premier quart": "0–47.2 km | Chamonix → Bonhomme",
-        "Deuxième quart": "47.2–87 km | Bonhomme → Bertone",
-        "Troisième quart": "87–128.3 km | Bertone → Champex-Lac",
-        "Quatrième quart": "128.3–175.4 km | Champex-Lac → Chamonix",
-    }
-
-    for quart in df_splits["Quart de course"].dropna().unique():
+    # Tri pour garder l'ordre logique
+    quarts_order = ["Premier quart", "Deuxième quart", "Troisième quart", "Quatrième quart"]
+    
+    for quart in quarts_order:
         mask = df_splits["Quart de course"] == quart
         if mask.any():
+            quart_name = df_splits.loc[mask, 'secteur_quart'].dropna().unique()
+            quart_name = quart_name[0] if len(quart_name) > 0 else "N/A"
             runner_sum = df_splits.loc[mask, "runner_h"].sum()
             median_local_sum = df_splits.loc[mask, "median_local_h"].sum()
             median_elite_sum = df_splits.loc[mask, "median_elite_h"].sum()
@@ -496,7 +445,7 @@ def post_course_quarts(df_splits):
             ecart_elite_pct = (ecart_elite / median_elite_sum * 100) if median_elite_sum != 0 else None
 
             recap_quart.append({
-                "Quart (Détails)": f"{quart} ({quart_details.get(quart, '')})",
+                "Quart": quart_name,
                 "Temps coureur": float_hours_to_hm(runner_sum),
                 "Temps peloton": float_hours_to_hm(median_local_sum),
                 "Ecart peloton": float_hours_to_hm(ecart_local),
@@ -506,6 +455,10 @@ def post_course_quarts(df_splits):
                 "Ecart élite %": f"{ecart_elite_pct:.1f}%" if ecart_elite_pct is not None else "N/A",
             })
     
+    if not recap_quart:
+        st.warning("Aucune donnée de quart de course disponible")
+        return
+        
     recap_quart_df = pd.DataFrame(recap_quart)
     st.dataframe(
         recap_quart_df.style
@@ -555,9 +508,9 @@ def show_coefficient_variation(df_cv, bib):
     )
 
 
-# -----------------------------
-# Fonction tableau post-course
-def show_post_course_table(info,df_best,df_cv,bib,config_df):
+
+
+def show_post_course_table(info, config_df, df_cv, bib):
     
     st.header("Temps de passage et écarts : où avez-vous gagné ou perdu du temps?")
     with st.expander("📘 Cliquez pour plus d'infos sur les données"):
@@ -596,7 +549,7 @@ def show_post_course_table(info,df_best,df_cv,bib,config_df):
 
     df_splits = pd.DataFrame(info['splits'])
     df_splits["runner_h"] = pd.to_numeric(df_splits["runner_h"], errors="coerce")
-    df_splits = df_splits.merge(config_df, left_on="checkpoint", right_on="Checkpoint", how="left")
+    df_splits = df_splits.merge(config_df, left_on="portion_name", right_on="portion_name", how="left")
 
  
     st.subheader('Récapitulatif montée / descente : où avez-vous fait la différence ? ')
@@ -636,29 +589,20 @@ def show_post_course_table(info,df_best,df_cv,bib,config_df):
     st.subheader('Analyse secteur par secteur : où avez-vous gagné ou perdu du temps ? ')
     st.write('Le détail complet de vos passages.')
 
-    post_course_detail(df_splits,df_best)
+    post_course_detail(df_splits)
 
 
-
-
-
-
-
-def show_runner_info(info_runner, height=230):
-    runner = info_runner.iloc[0]
-
+def show_runner_info(runner,bib, height=230):
     # sécuriser les valeurs
     name = runner.get("name","?")
-    bib = runner.get("bib","?")
-    country = runner.get("country","?")
     sex = runner.get("sex","?")
     category = runner.get("category","?")
-    club = runner.get("club","?")
+    utmb_index = runner.get("utmb_index","?")
     diff = runner.get("diff_to_first","")
-    final_time = runner.get("final_time","-")
-    rank = int(runner.get("rank") or 0)
-    category_rank = int(runner.get("category_rank") or 0)
-    sex_rank = int(runner.get("sex_rank") or 0)
+    final_time = float_hours_to_hm(runner.get("final_time_h",0))
+    rank = int(runner.get("rank_scratch") or 0)
+    category_rank = int(runner.get("rank_cat") or 0)
+    sex_rank = int(runner.get("rank_sex") or 0)
 
     # HTML de la carte (tu peux ajuster couleurs/tailles ici)
     html = f"""
@@ -671,18 +615,16 @@ def show_runner_info(info_runner, height=230):
         font-family: Inter, sans-serif;
     ">
       <div style="margin-bottom:8px;">
-        <h3 style="margin:0;font-weight:600;">{name} &nbsp;|&nbsp; Doss. {bib} &nbsp;|&nbsp; {country} &nbsp;|&nbsp; FINISHER</h3>
+        <h3 style="margin:0;font-weight:600;">{name} &nbsp;|&nbsp; Doss. {bib} &nbsp;|&nbsp; FINISHER</h3>
         <div style="color:#444;margin-top:6px;">
           <strong>Sexe :</strong> {sex} &nbsp;|&nbsp;
           <strong>Catégorie :</strong> {category} &nbsp;|&nbsp;
-          <strong>Club :</strong> {club}
+          <strong>UTMB index :</strong> {utmb_index}
         </div>
       </div>
-
       <div style="margin-top:8px;">
         {"<h4 style='margin:6px 0;'>Temps final : " + str(final_time) + " | Écart avec 1er : " + str(diff) + "</h4>" if diff and rank != 1 else "<h4 style='margin:6px 0;'>Temps final : " + str(final_time) + "</h4>"}
       </div>
-
       <div style="display:flex;gap:12px;margin-top:12px;">
         <div style="flex:1;padding:10px;background:#ffffff;border-radius:8px;text-align:center;">
           <div style="font-size:12px;color:#666;">Classement général</div>
@@ -702,8 +644,6 @@ def show_runner_info(info_runner, height=230):
 
     # render dans Streamlit — ajuster height si nécessaire
     components.html(html, height=height, scrolling=False)
-
-
 
 
 
@@ -839,18 +779,12 @@ def compare_course_pente(df1, df2, nom1, nom2):
     )
 
     st.write(styled.to_html(escape=False), unsafe_allow_html=True)
+def compare_course_quarts(df1, df2, nom1, nom2):
 
-
-def compare_course_quarts(df1, df2,nom1,nom2):
     recap_quart = []
-    quart_details = {
-        "Premier quart": "0–47.2 km | Chamonix → Bonhomme",
-        "Deuxième quart": "47.2–87 km | Bonhomme → Bertone",
-        "Troisième quart": "87–128.3 km | Bertone → Champex-Lac",
-        "Quatrième quart": "128.3–175.4 km | Champex-Lac → Chamonix",
-    }
+    quarts_order = ["Premier quart", "Deuxième quart", "Troisième quart", "Quatrième quart"]
 
-    for quart in df1["Quart de course"].dropna().unique():
+    for quart in quarts_order:
         mask1 = df1["Quart de course"] == quart
         mask2 = df2["Quart de course"] == quart
         if mask1.any() and mask2.any():
@@ -859,13 +793,17 @@ def compare_course_quarts(df1, df2,nom1,nom2):
             ecart = sum1 - sum2
             ecart_pct = (ecart / sum1 * 100) if sum1 != 0 else None
             recap_quart.append({
-                "Quart (Détails)": f"{quart} ({quart_details.get(quart, '')})",
-                 f"{nom1}": float_hours_to_hm(sum1),
-                 f"{nom2}": float_hours_to_hm(sum2),
+                "Quart": quart,
+                f"{nom1}": float_hours_to_hm(sum1),
+                f"{nom2}": float_hours_to_hm(sum2),
                 "Écart": float_hours_to_hm(ecart),
                 "Écart %": f"{ecart_pct:.1f}%" if ecart_pct is not None else "N/A"
             })
 
+    if not recap_quart:
+        st.warning("Aucune donnée de quart de course disponible")
+        return
+        
     recap_quart_df = pd.DataFrame(recap_quart)
     st.dataframe(
         recap_quart_df.style
@@ -874,7 +812,6 @@ def compare_course_quarts(df1, df2,nom1,nom2):
         height=(35*len(recap_quart_df))+50,
         hide_index=True,
     )
-
 
 
 def compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2):

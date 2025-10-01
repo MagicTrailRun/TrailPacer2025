@@ -1,0 +1,24 @@
+portion_name,Meilleure perf,Type de tronçon,Quart de course,secteur_quart
+St Pierre → Dom Vidot,Mathieu BLANCHARD (01:12:36),Montée,Premier quart,St Pierre → Dame paix
+Dom Vidot → Dame paix,Ben DHIMAN (02:11:09),Montée,Premier quart,St Pierre → Dame paix
+Dame paix → Nez boeuf,Ben DHIMAN (01:16:18),Montée,Deuxième quart,Dame paix → Sentier T
+Nez boeuf → Mare Boue,Mathieu BLANCHARD (00:57:32),Descente,Deuxième quart,Dame paix → Sentier T
+Mare Boue → Kerveguen,Jean - Philippe TSCHUMI (01:23:22),Montée,Deuxième quart,Dame paix → Sentier T
+Kerveguen → Croisée,Vincent ESMIOL (00:36:16),Montée,Deuxième quart,Dame paix → Sentier T
+Croisée → Le Bloc,Diego PAZOS (00:36:11),Descente,Deuxième quart,Dame paix → Sentier T
+Le Bloc → chênes,Jean - Philippe TSCHUMI (00:14:40),Non Catégorisé,Deuxième quart,Dame paix → Sentier T
+chênes → Cilaos,Maxime CAZAJOUS (00:11:34),Descente,Deuxième quart,Dame paix → Sentier T
+Cilaos → Sentier T,Mathieu BLANCHARD (00:56:05),Montée,Deuxième quart,Dame paix → Sentier T
+Sentier T → Marla,Jean - Philippe TSCHUMI (01:08:12),Montée,Troisième quart,Sentier T → Pit Orange
+Marla → Merles,Jean - Philippe TSCHUMI (00:58:05),Montée,Troisième quart,Sentier T → Pit Orange
+Merles → Sen. Scout,Jean - Philippe TSCHUMI (00:12:49),Descente,Troisième quart,Sentier T → Pit Orange
+Sen. Scout → Aurère,Jean - Philippe TSCHUMI (01:05:42),Descente,Troisième quart,Sentier T → Pit Orange
+Aurère → Pass Oussy,Mathieu BLANCHARD (00:24:20),Descente,Troisième quart,Sentier T → Pit Orange
+Pass Oussy → Ilet  Oran,Mathieu BLANCHARD (01:05:17),Montée,Troisième quart,Sentier T → Pit Orange
+Ilet  Oran → Pit Orange,Mathieu BLANCHARD (01:39:51),Montée,Troisième quart,Sentier T → Pit Orange
+Pit Orange → Ilet Savan,Mathieu BLANCHARD (01:42:49),Descente,Quatrième quart,Pit Orange → St Denis
+Ilet Savan → Ratinaud,Jean - Philippe TSCHUMI (01:04:03),Montée,Quatrième quart,Pit Orange → St Denis
+Ratinaud → Possession,Mathieu BLANCHARD (01:01:39),Descente,Quatrième quart,Pit Orange → St Denis
+Possession → Chaloupe,Mathieu BLANCHARD (00:57:22),Non Catégorisé,Quatrième quart,Pit Orange → St Denis
+Chaloupe → Colorado,Mathieu BLANCHARD (01:26:06),Montée,Quatrième quart,Pit Orange → St Denis
+Colorado → St Denis,Mathieu MARECHAL (00:39:15),Descente,Quatrième quart,Pit Orange → St Denis
