@@ -9,6 +9,9 @@ import streamlit.components.v1 as components
 from TrailPacer.formatting import image_to_base64
 import base64
 from pathlib import Path
+import plotly.graph_objects as go
+import pandas as pd
+import streamlit as st
 
 
 def show_post_course(course_name,event_code, course_code, year):
@@ -590,7 +593,22 @@ def show_post_course_table(info, config_df, df_cv, bib):
     st.write('Le détail complet de vos passages.')
 
     post_course_detail(df_splits)
+    metrics_options = {
+        "Écart vs peloton (%)": "écart_local_%",
+        "Écart vs élites (%)": "écart_elite_%",
+        "Écart vs index (%)": "écart_index_%",
+        "Écart vs peloton (h)": "écart_local_h",
+        "Écart vs élites (h)": "écart_elite_h",
+        "Écart vs index (h)": "écart_index_h",
+    }
 
+    metric_label = st.selectbox(
+        "📊 Choisir la métrique à afficher :",
+        list(metrics_options.keys()),
+        index=0
+    )
+    key = metrics_options[metric_label]
+    plot_spider_pacing(df_splits, bib, info, key=key)  # ou "écart_elite_%"
 
 def show_runner_info(runner,bib, height=230):
     # sécuriser les valeurs
@@ -855,3 +873,74 @@ def compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2):
         column_config=column_config
     )
 
+
+
+
+
+
+def plot_spider_pacing(splits: dict, bib: str, runner: dict, key: str = "écart_local_%"):
+    """
+    Trace un spider chart (radar) pour visualiser le pacing d'un coureur.
+    
+    Paramètres
+    ----------
+    results : dict
+        Dictionnaire complet contenant les splits par dossard.
+    bib : str
+        Dossard du coureur.
+    runner : dict
+        Détails du coureur (par exemple results[bib]).
+    key : str, optionnel
+        La métrique utilisée pour le radar ("écart_local_%" ou "écart_elite_%").
+    """
+
+
+    # --- Construire le DataFrame ---
+    
+   
+
+    df_chart = splits[["portion_name", key]].copy()
+    df_chart["portion_name"] = df_chart["portion_name"].str.replace("→", "→\n")  # lisibilité
+
+    # --- Préparer les données pour le radar ---
+    categories = df_chart["portion_name"].tolist()
+    values = df_chart[key].tolist()
+
+    # Fermer le cercle
+    categories += [categories[0]]
+    values += [values[0]]
+
+    # --- Créer le graphique ---
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatterpolar(
+        r=values,
+        theta=categories,
+        fill='toself',
+        name=f"{key} (coureur)",
+        line=dict(color="royalblue", width=3)
+    ))
+
+    # Ligne médiane = 0%
+    fig.add_trace(go.Scatterpolar(
+        r=[0]*len(categories),
+        theta=categories,
+        mode='lines',
+        name='Peloton',
+        line=dict(color="gray", dash='dash')
+    ))
+
+    # --- Mise en forme ---
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[min(values) - 5, max(values) + 5],
+                tickformat=".0f",
+                title="%"
+            )
+        ),
+        showlegend=True
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
