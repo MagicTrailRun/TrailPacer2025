@@ -10,9 +10,10 @@ import json
 import os
 class PacingPlotter():
 
-    def __init__(self, year, event, course, is_elite=False,offline=True,drop_ckpt=None, loadconfig=True,reduction=0.95,show_peloton=True):
+    def __init__(self, year, event, course_name,course, is_elite=False,offline=True,drop_ckpt=None, loadconfig=True,reduction=0.95,show_peloton=True):
         self.event = event
         self.course = course
+        self.course_name =course_name 
         self.year = year
         self.offline = offline
         self.is_elite=is_elite
@@ -526,7 +527,7 @@ class PacingPlotter():
             )
 
         axl.set_xlim(0, xmax)
-        axl.set_title(f'{" x ".join(names)} - {self.course} - {self.year}', fontsize=20)
+        axl.set_title(f'{" x ".join(names)} - {self.course_name} - {self.year}', fontsize=20)
         axr.set_ylabel('Plan de course (heures)', fontsize=13)
         axr.tick_params(labelsize=13)
         axl.tick_params(axis='x', labelsize=13)

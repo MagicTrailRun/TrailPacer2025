@@ -57,9 +57,9 @@ def show():
     with postcourse4:
         try : 
             if event_code=='UTMB' :
-                show_post_course(event_code, course_code,year)
+                show_post_course(course,event_code, course_code,year)
             elif course_code=='GRR':
-                show_post_course(event_code, course_code,year-1)
+                show_post_course(course,event_code, course_code,year-1)
                 
             else : st.info("page temporairement indisponible")
         except Exception as e:
