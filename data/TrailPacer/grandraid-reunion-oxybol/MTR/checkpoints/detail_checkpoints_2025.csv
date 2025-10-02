@@ -1,9 +1,9 @@
 checkpoint,distance_cum_m,altitude_m,dplus_secteur_m,dplus_cum_m,dmoins_cum_m,barriere_horaire,ouverture,fermeture,fermeture_v2,partiel_km,pointage_electronique,assistance_personnelle,ravitaillement,repas_chaud,medecin,infirmier,kine,podologue,secouriste,osteopathe,barriere_horaire_d
-ST Paul Grotte du Peuplement,0.0,6,0,0,0,0.0,Samedi 4h30,Samedi 6h30,,0.0,O,Non,Oui,,,,,,,,2025-10-18 06:30:00
+ST Paul,0.0,6,0,0,0,0.0,Samedi 4h30,Samedi 6h30,,0.0,O,Non,Oui,,,,,,,,2025-10-18 06:30:00
 Ecole de Bellemene,6000.0,403,412,412,15,1.75,Samedi 6h50,Samedi 8h15,,6.0,O,Non,Oui,,,,,,,,2025-10-18 08:15:00
 Ilet Savannah,15300.0,125,206,618,499,4.5,Samedi 7h30,Samedi 11h00,,9.3,O,Non,Oui,,,,,,,,2025-10-18 11:00:00
-Chemin Ratinaud - Kalla,22100.0,445,618,1236,798,6.5,Samedi 8h15,Samedi 13h00,,6.8,X,Non,Oui,,,,,,,,2025-10-18 13:00:00
-La Possession - Ecole Evariste De Parny,29900.0,4,173,1409,1412,8.5,Samedi 09h00,Samedi 15h00,,7.8,O,Non,Oui,,,,,,,,2025-10-18 15:00:00
-Grande Chaloupe,36800.0,9,356,1765,1763,10.5,Samedi 9h30,Samedi 17h00,,6.9,O,Non,Oui,,,,,,,,2025-10-18 17:00:00
+Ratinaud,22100.0,445,618,1236,798,6.5,Samedi 8h15,Samedi 13h00,,6.8,X,Non,Oui,,,,,,,,2025-10-18 13:00:00
+La Possession,29900.0,4,173,1409,1412,8.5,Samedi 09h00,Samedi 15h00,,7.8,O,Non,Oui,,,,,,,,2025-10-18 15:00:00
+Chaloupe,36800.0,9,356,1765,1763,10.5,Samedi 9h30,Samedi 17h00,,6.9,O,Non,Oui,,,,,,,,2025-10-18 17:00:00
 Colorado,45800.0,682,363,2597,1922,12.5,Samedi 10h15,Samedi 19h00,,4.7,O,Non,Oui,,,,,,,,2025-10-18 19:00:00
 La Redoute,52800.0,49,20,2631,2588,14.0,Samedi 10h30,Samedi 20h30,,3.0,O,Non,Oui,,,,,,,,2025-10-18 20:30:00

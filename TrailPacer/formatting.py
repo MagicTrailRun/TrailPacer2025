@@ -86,7 +86,7 @@ def format_dataframe(df, target_time, start_time):
 
     # --- Arrondis ---
     df['dist_secteur'] = df['dist_secteur'].round(1)
-    df['dplus_secteur'] = df['dplus_secteur'].round(1)
+    df['dplus_secteur'] = df['dplus_secteur'].round(1) 
     df['dmoins_secteur'] = df['dmoins_secteur'].round(1)
     if "ravitaillement" in df.columns:
         df["icon_ravito"] = df['ravitaillement'].apply(lambda x: ":material/water_bottle:" if x == 'Oui' else "")

@@ -1,16 +1,16 @@
 checkpoint,distance_cum_m,altitude_m,dplus_cum_m,dmoins_cum_m,ouverture,barriere_horaire,fermeture,partiel_km,pointage_electronique,assistance_personnelle,ravitaillement,eau,repas_chaud,medecin,infirmier,kine,podologue,secouriste,osteopathe,barriere_horaire_d
 Cilaos,0,1207,0,0,Vendredi 18h00,0.0,Vendredi 21h00,0.0,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-17 21:00:00
-Début Sentier Taibit,6800,1263,258,205,Vendredi 21h00,1.5833333333333333,Vendredi 22h35,6.8,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-17 22:35:00
+Taibit,6800,1263,258,205,Vendredi 21h00,1.5833333333333333,Vendredi 22h35,6.8,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-17 22:35:00
 Marla,12700,1614,1093,679,Vendredi 22h00,5.0,Samedi 02h00,5.9,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 02:00:00
-Plaine des Merles,19200,1808,1591,990,Vendredi 23h00,8.333333333333334,Samedi 05h20,6.5,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 05:20:00
-Départ Sentier Scout,21400,1632,1610,1205,Vendredi 23h00,9.333333333333334,Samedi 06h20,2.2,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 06:20:00
+Merles,19200,1808,1591,990,Vendredi 23h00,8.333333333333334,Samedi 05h20,6.5,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 05:20:00
+Sentier Scout,21400,1632,1610,1205,Vendredi 23h00,9.333333333333334,Samedi 06h20,2.2,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 06:20:00
 Aurère,30000,915,1914,2207,Samedi 00h00,,,8.6,Non,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,
-Ilet des Orangers - Ecole,39300,977,2796,3026,Samedi 01h30,17.5,Samedi 14h30,9.3,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 14:30:00
+Ilet des Orangers,39300,977,2796,3026,Samedi 01h30,17.5,Samedi 14h30,9.3,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 14:30:00
 Maïdo/Ti Col,45700,2029,3958,3138,,,,6.4,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non,
 Maïdo - Tête Dure,47200,1950,3965,3221,Samedi 02h30,22.833333333333332,Samedi 19h50,1.6,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 19:50:00
 Ilet Savannah,64100,126,4028,5108,Samedi 04h00,26.333333333333332,Samedi 23h20,16.9,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-18 23:20:00
-Chemin Ratinaud,71500,440,4661,5428,Samedi 05h00,29.0,Dimanche 02h00,7.4,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-19 02:00:00
-Ecole Evariste de Parny Possession,79700,3,4841,6045,Samedi 06h00,32.166666666666664,Dimanche 05h10,8.2,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-19 05:10:00
-Grande Chaloupe,87000,10,5198,6397,Samedi 07h00,34.5,Dimanche 07h30,7.3,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-19 07:30:00
+Ratinaud,71500,440,4661,5428,Samedi 05h00,29.0,Dimanche 02h00,7.4,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-19 02:00:00
+Possession,79700,3,4841,6045,Samedi 06h00,32.166666666666664,Dimanche 05h10,8.2,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-19 05:10:00
+Chaloupe,87000,10,5198,6397,Samedi 07h00,34.5,Dimanche 07h30,7.3,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-19 07:30:00
 Colorado,96400,682,6024,6546,Samedi 08h00,39.5,Dimanche 12h30,9.4,O,Non,Oui,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-19 12:30:00
 La Redoute,103400,49,6059,7217,Samedi 09h00,42.0,Dimanche 15h00,3.0,O,Non,Non,Non,Non,Non,Non,Non,Non,Non,Non,2025-10-19 15:00:00

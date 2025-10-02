@@ -135,7 +135,7 @@ def show_altitude_profile(df, df_gpx, target_time):
     )
     if not df_gpx.empty:
         fig = plot_altitude_profile_area(df_gpx, df, affichages, target_time)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, selection_mode='points')
     else:
         st.warning("Tracé GPS bientôt disponible")
 
