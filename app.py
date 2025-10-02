@@ -8,6 +8,8 @@ from TrailPacer.data_loader import select_event , info_social_media
 import yaml
 from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
+from Quest.sex_quest import show_quest_banner
+from BETA.beta_bandeau import show_beta_banner
 class TSXApplication:
     """Application principale TSX Trail"""
     def __init__(self):
@@ -50,8 +52,20 @@ class TSXApplication:
         html_code=show_quest_banner()
         st.components.v1.html(html_code)
 
+    
+ 
+    def show_banner(self) :
+        html_code=show_quest_banner()
+        st.components.v1.html(html_code)
+
     def _show_main_interface(self):
         self._show_sidebar()
+        main_container = st.container()
+        with main_container:
+            self._display_waning_if_beta()
+            self.show_banner()
+            current_page = self.session_manager.get_current_page()
+            self.page_router.render_page(current_page)
         main_container = st.container()
         with main_container:
             self._display_waning_if_beta()
@@ -64,7 +78,6 @@ class TSXApplication:
         with st.sidebar:
 
             with st.expander("En savoir plus", icon=":material/info:") : 
-
                 st.write("Trail Pacer n’est qu’un début d’une initiative plus ambitieuse… \n " \
                 "Entrez votre email pour découvrir nos nouveautés et être parmi les premiers informés de la suite du projet. \n " \
                 "Votre avis nous intéresse, n'hésitez pas à nous laissez un commentaire")
@@ -84,8 +97,11 @@ class TSXApplication:
         # Récupérer l'environnement
         app_env = os.getenv("APP_ENV", "prod")
         txt_beta=show_beta_banner()
+        txt_beta=show_beta_banner()
         # Afficher bannière si on est en beta
         if app_env == "beta":
+             st.components.v1.html(txt_beta)
+
              st.components.v1.html(txt_beta)
 
                     
