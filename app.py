@@ -94,8 +94,6 @@ class TSXApplication:
         if app_env == "beta":
              st.components.v1.html(txt_beta)
 
-             st.components.v1.html(txt_beta)
-
                     
                     
 if __name__ == "__main__":
