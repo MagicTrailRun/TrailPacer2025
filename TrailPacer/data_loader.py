@@ -3,15 +3,19 @@ import numpy as np
 import json
 import streamlit as st
 from TrailPacer.race_id import  get_df_for_gpx
+import streamlit.components.v1 as components
 
 def load_data(event,race="UTMB",year=2025, version="vf"):
     """Charge les données CSV"""
     try:
         csv_path = f"data/TrailPacer/{event}/{race}/pred_pacing/pred_{year}_{version}.csv"
         df = pd.read_csv(csv_path)
-        
+        df_checkpoints=pd.read_csv(f"data/TrailPacer/{event}/{race}/checkpoints/detail_checkpoints_{year}.csv")
+
         if "checkpoint" in df.columns:
             df = df.drop_duplicates(subset=["checkpoint"], keep="first")
+        if "ravitaillement" in df_checkpoints.columns :
+            df=df.merge(df_checkpoints[["checkpoint", "ravitaillement"]], on="checkpoint")
         return df
     except Exception as e:
         return pd.DataFrame()
@@ -29,12 +33,49 @@ def get_config(path):
     config['temps_cible_middle'] = int(np.round((config['temps_cible_start'] + config['temps_cible_end'])/2))
 
     return config #, dic_config['mapping_ckpt']
-
-
-
-
+def info_social_media():
+    with st.sidebar:
+        # Utilisez st.container pour le placer en dernier
+        st.markdown("<br>" * 10, unsafe_allow_html=True)  # Spacer
+        st.markdown(
+            """
+            <div style="
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.05);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin-bottom: 5px;
+            ">
+                    📱 Suivez-nous sur les réseaux
+                </p>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+                    <a href="https://www.instagram.com/trail_pacer/" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="transition: transform 0.2s;"
+                       onmouseover="this.style.transform='scale(1.1)'"
+                       onmouseout="this.style.transform='scale(1)'">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+                             width="30" height="30" alt="Instagram">
+                    </a>
+                    <a href="https://www.facebook.com/TrailPacer.IA" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="transition: transform 0.2s;"
+                       onmouseover="this.style.transform='scale(1.1)'"
+                       onmouseout="this.style.transform='scale(1)'">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" 
+                             width="30" height="30" alt="Facebook">
+                    </a>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 def select_event():
-
+    
     # --- CSS custom pour styliser les selectbox
     st.markdown("""
     <style>
@@ -94,7 +135,6 @@ def select_event():
         st.session_state["course_code"] = EVENT_CONFIG[event]['races'][course]["code"]
         event_code=st.session_state["event_code"]
         course_code=st.session_state["course_code"]
-        
         config = get_config(f"data/TrailPacer/{event_code}/{course_code}/config/config_{year}.json")
         st.session_state["config"]=config
         df = load_data(event=event_code,race=course_code, year=year)

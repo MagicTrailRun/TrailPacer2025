@@ -4,8 +4,10 @@ from core.session import SessionManager
 from core.page_router import PageRouter
 import os
 from config.airtableapi import email_form,commentaire_form
-from TrailPacer.data_loader import select_event
+from TrailPacer.data_loader import select_event , info_social_media
 import yaml
+from Quest.sex_quest import show_quest_banner
+from BETA.beta_bandeau import show_beta_banner
 from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
 class TSXApplication:
@@ -22,7 +24,7 @@ class TSXApplication:
         try:
             st.set_page_config(
                     page_title="TrailPacer",
-                    page_icon= "TrailPacer\image\icon.png",
+                    page_icon= "TrailPacer/image/icon_web.png",
                     layout="wide",
                     initial_sidebar_state="expanded"
                     
@@ -50,6 +52,9 @@ class TSXApplication:
         html_code=show_quest_banner()
         st.components.v1.html(html_code)
 
+    
+
+
     def _show_main_interface(self):
         self._show_sidebar()
         main_container = st.container()
@@ -58,13 +63,13 @@ class TSXApplication:
             self.show_banner()
             current_page = self.session_manager.get_current_page()
             self.page_router.render_page(current_page)
+
     
     def _show_user_message(self) :
 
         with st.sidebar:
 
             with st.expander("En savoir plus", icon=":material/info:") : 
-
                 st.write("Trail Pacer n’est qu’un début d’une initiative plus ambitieuse… \n " \
                 "Entrez votre email pour découvrir nos nouveautés et être parmi les premiers informés de la suite du projet. \n " \
                 "Votre avis nous intéresse, n'hésitez pas à nous laissez un commentaire")
@@ -77,9 +82,9 @@ class TSXApplication:
         """Affichage de la barre latérale"""
         select_event()
         self._show_user_message()
+        info_social_media()
 
-
- 
+    
     def _display_waning_if_beta(self):
         # Récupérer l'environnement
         app_env = os.getenv("APP_ENV", "prod")
