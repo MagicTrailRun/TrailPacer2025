@@ -53,10 +53,7 @@ class TSXApplication:
         st.components.v1.html(html_code)
 
     
- 
-    def show_banner(self) :
-        html_code=show_quest_banner()
-        st.components.v1.html(html_code)
+
 
     def _show_main_interface(self):
         self._show_sidebar()
@@ -66,12 +63,7 @@ class TSXApplication:
             self.show_banner()
             current_page = self.session_manager.get_current_page()
             self.page_router.render_page(current_page)
-        main_container = st.container()
-        with main_container:
-            self._display_waning_if_beta()
-            self.show_banner()
-            current_page = self.session_manager.get_current_page()
-            self.page_router.render_page(current_page)
+
     
     def _show_user_message(self) :
 
@@ -97,11 +89,8 @@ class TSXApplication:
         # Récupérer l'environnement
         app_env = os.getenv("APP_ENV", "prod")
         txt_beta=show_beta_banner()
-        txt_beta=show_beta_banner()
         # Afficher bannière si on est en beta
         if app_env == "beta":
-             st.components.v1.html(txt_beta)
-
              st.components.v1.html(txt_beta)
 
                     
