@@ -74,8 +74,11 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
         'fill' :  "#4D4A4A"
     }
      
+     
     # Création du graphique avec subplot pour plus de contrôle
     fig =go.Figure()
+    
+ 
     
  
     # Gradient fill moderne
@@ -110,6 +113,7 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
             hoverinfo='skip',
             
         ),
+ 
  
     )
     

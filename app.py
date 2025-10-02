@@ -8,6 +8,8 @@ from TrailPacer.data_loader import select_event , info_social_media
 import yaml
 from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
+from Quest.sex_quest import show_quest_banner
+from BETA.beta_bandeau import show_beta_banner
 class TSXApplication:
     """Application principale TSX Trail"""
     def __init__(self):
@@ -50,6 +52,9 @@ class TSXApplication:
         html_code=show_quest_banner()
         st.components.v1.html(html_code)
 
+    
+
+
     def _show_main_interface(self):
         self._show_sidebar()
         main_container = st.container()
@@ -58,6 +63,7 @@ class TSXApplication:
             self.show_banner()
             current_page = self.session_manager.get_current_page()
             self.page_router.render_page(current_page)
+    
     
     def _show_user_message(self) :
 
@@ -86,6 +92,8 @@ class TSXApplication:
         txt_beta=show_beta_banner()
         # Afficher bannière si on est en beta
         if app_env == "beta":
+             st.components.v1.html(txt_beta)
+
              st.components.v1.html(txt_beta)
 
                     
