@@ -22,7 +22,7 @@ class TSXApplication:
         try:
             st.set_page_config(
                     page_title="TrailPacer",
-                    page_icon= "TrailPacer\image\icon.png",
+                    page_icon= "TrailPacer/image/icon_web.png",
                     layout="wide",
                     initial_sidebar_state="expanded"
                     

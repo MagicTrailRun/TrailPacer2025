@@ -171,6 +171,12 @@ def plot_altitude_profile_area(df_gpx, df, affichages=None, target_time=None, sh
             if "Distance Segment" in affichages :
                 dist_secteur= row['dist_secteur']
                 texts_h.append(f'📏{dist_secteur:.2f}km')
+            if "Glucides" in affichages :
+                glucides= row['glucides']
+                texts_h.append(f' 🍌{glucides} g')
+            if "Hydratation" in affichages :
+                glucides= row['hydratation']
+                texts_h.append(f' 💧 {glucides} mL')
         
         label_h = f"<b>{name}</b><br>" + "<br>".join(texts_h) if texts_h else f'📍 {name}'
         

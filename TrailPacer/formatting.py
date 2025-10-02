@@ -113,7 +113,7 @@ def format_dataframe(df, target_time, start_time):
         "Barrière horaire"
     ]]
 
-
+    df_display=df_display.copy()
     df_display.rename(
         columns={
             "dist_secteur": "Km segment",
@@ -123,7 +123,7 @@ def format_dataframe(df, target_time, start_time):
         },
         inplace=True
     )
-    
+    df_display=df_display.copy()
     # --- Ajouter colonne barrière horaire si dispo ---
     df_display['Km segment'] = df_display['Km segment'].apply(lambda x: f"{x:.1f}")
     df_display['D+ segment'] = df_display['D+ segment'].apply(lambda x: f"{x:.1f}")

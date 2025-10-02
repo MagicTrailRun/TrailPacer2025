@@ -85,10 +85,12 @@ def show_nutrition_section(df, df_display, target_time):
         colonnes_obligatoires = ["Heure de passage", "Temps de course cumulé", "Temps segment (± 5%)"]
         if glucides > 0:
             df_display["Glucides secteur (g)"] = (df["temps_secteur_med"] * glucides).apply(lambda x: f"{x:.0f}")
+            df["glucides"]=df_display["Glucides secteur (g)"]
             colonnes_obligatoires.append("Glucides secteur (g)")
         if eau > 0:
             df_display["Hydratation secteur (mL)"] = (df["temps_secteur_med"] * eau).apply(lambda x: f"{x:.0f}")
             colonnes_obligatoires.append("Hydratation secteur (mL)")
+            df["hydratation"]=df_display["Hydratation secteur (mL)"]
 
         colonnes_selectionnees = st.multiselect(
             "Cochez les colonnes à afficher :",
@@ -97,7 +99,7 @@ def show_nutrition_section(df, df_display, target_time):
         )
 
         colonnes_finales = [c for c in df_display.columns if (c in colonnes_obligatoires) or (c in colonnes_selectionnees)]
-
+        st.session_state['cols_finales']=colonnes_finales
         st.table(
             df_display[colonnes_finales].style
             .format(escape='html')
@@ -128,9 +130,15 @@ def download_plan(df_display):
 def show_altitude_profile(df, df_gpx, target_time):
     st.divider()
     st.subheader(f"⛰️ Profil d'élévation - Objectif {target_time}h")
+    cols_finales=["Heure de passage", "Temps de course cumulé", "D+ Segment", "D- Segment", "Distance Segment"]
+    if "glucides" in df.columns:
+        cols_finales.append("Glucides")
+    if "hydratation" in df.columns :
+        cols_finales.append('Hydratation')
     affichages = st.multiselect(
         "Choisissez les éléments à afficher",
-        ["Heure de passage", "Temps de course cumulé", "D+ Segment", "D- Segment", "Distance Segment"],
+        cols_finales,
+
         default=["Heure de passage", "D+ Segment", "D- Segment"]
     )
     if not df_gpx.empty:
