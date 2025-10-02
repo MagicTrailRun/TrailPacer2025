@@ -10,9 +10,12 @@ def load_data(event,race="UTMB",year=2025, version="vf"):
     try:
         csv_path = f"data/TrailPacer/{event}/{race}/pred_pacing/pred_{year}_{version}.csv"
         df = pd.read_csv(csv_path)
-        
+        df_checkpoints=pd.read_csv(f"data/TrailPacer/{event}/{race}/checkpoints/detail_checkpoints_{year}.csv")
+
         if "checkpoint" in df.columns:
             df = df.drop_duplicates(subset=["checkpoint"], keep="first")
+        if "ravitaillement" in df_checkpoints.columns :
+            df=df.merge(df_checkpoints[["checkpoint", "ravitaillement"]], on="checkpoint")
         return df
     except Exception as e:
         return pd.DataFrame()
@@ -95,7 +98,6 @@ def select_event():
         st.session_state["course_code"] = EVENT_CONFIG[event]['races'][course]["code"]
         event_code=st.session_state["event_code"]
         course_code=st.session_state["course_code"]
-        
         config = get_config(f"data/TrailPacer/{event_code}/{course_code}/config/config_{year}.json")
         st.session_state["config"]=config
         df = load_data(event=event_code,race=course_code, year=year)

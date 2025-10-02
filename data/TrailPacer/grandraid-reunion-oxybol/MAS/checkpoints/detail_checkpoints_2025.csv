@@ -1,16 +1,16 @@
-checkpoint,distance_cum_m,altitude_m,dplus_secteur_m,dplus_cum_m,dmoins_cum_m,barriere_horaire,ouverture,fermeture,fermeture_v2,partiel_km,pointage_electronique,assistance_personnelle,eau,repas_chaud,medecin,infirmier,kine,podologue,secouriste,osteopathe,barriere_horaire_d
-Hell-Bourg - Stade Paul Dominique Hubert,0.0,996,0,0,0,0.0,Jeudi 22h00,Vendredi 1h00,Vendredi 1h10,0.0,O,Non,,,,,,,,,2025-10-17 01:00:00
-Parking Bras Marron,5800.0,752,69,69,307,5.0,Vendredi 2h00,Vendredi 6h00,Vendredi 6h10,5.8,X,Non,X,X,,,,,,,2025-10-17 06:00:00
-Intersection Mare d'Affouches GR1,7900.0,895,227,296,402,5.5,Vendredi 2h00,Vendredi 6h30,Vendredi 6h40,2.1,X,Non,X,X,,,,,,,2025-10-17 06:30:00
-Plaine des Merles,15800.0,1808,1050,1346,534,7.75,Vendredi 3h00,Vendredi 08h45,Vendredi 8h55,7.9,O,Non,,,,,,,,,2025-10-17 08:45:00
-RF départ Sentier Scout,18000.0,1635,18,1364,725,9.25,Vendredi 3h30,Vendredi 10h15,Vendredi 10h25,2.2,O,Non,,,,,,,,,2025-10-17 10:15:00
-La Plaque,24000.0,897,70,1434,1533,11.5,Vendredi 4h30,Vendredi 12h30,Vendredi 12h40,6.0,X,Non,X,X,,,,,,,2025-10-17 12:30:00
-Aurère Ecole,26700.0,914,206,1640,1722,12.5,Vendredi 5h00,Vendredi 13h30,Vendredi 13h40,2.7,O,Non,,,,,,,,,2025-10-17 13:30:00
-La Porte Rivière des Galets,31500.0,283,46,1686,2400,14.75,Vendredi 5h30,Vendredi 15h45,Vendredi 15h55,4.8,X,Non,X,X,,,,,,,2025-10-17 15:45:00
-Deux Bras,33000.0,258,3,1689,2427,17.0,Vendredi 6h30,Vendredi 18h00,Vendredi 18h10,1.5,O,Non,,,,,,,,,2025-10-17 18:00:00
-Dos D'Ane,38000.0,818,701,2390,2568,19.333333333333332,Vendredi 8h00,Vendredi 20h20,Vendredi 20h30,5.0,X,Non,X,X,,,,,,,2025-10-17 20:20:00
-Chemin Ratinaud,41300.0,439,4,2394,2950,21.0,Vendredi 8h30,Vendredi 22h00,Vendredi 22h10,3.3,X,Non,X,X,,,,,,,2025-10-17 22:00:00
-La Possession - Ecole Evariste de Parny,49500.0,3,3,2586,3578,14.75,Vendredi 05h30,Vendredi 15h45,Vendredi 15h55,2.1,O,Non,,,,,,,,,2025-10-17 15:45:00
-Grande Chaloupe,56800.0,9,352,2938,3924,17.0,Vendredi 6h30,Vendredi 18h00,Vendredi 18h10,7.3,O,Non,,,,,,,,,2025-10-17 18:00:00
-Colorado,66200.0,682,365,3775,4089,19.333333333333332,Vendredi 8h00,Vendredi 20h20,Vendredi 20h30,5.0,O,Non,,,,,,,,,2025-10-17 20:20:00
-La Redoute,73200.0,53,30,3813,4756,21.0,Vendredi 08h30,Vendredi 22h00,Vendredi 22h10,3.0,,Non,,,,,,,,,2025-10-17 22:00:00
+checkpoint,distance_cum_m,altitude_m,dplus_secteur_m,dplus_cum_m,dmoins_cum_m,barriere_horaire,ouverture,fermeture,fermeture_v2,partiel_km,pointage_electronique,assistance_personnelle,ravitaillement,repas_chaud,medecin,infirmier,kine,podologue,secouriste,osteopathe,barriere_horaire_d
+Hell-Bourg - Stade Paul Dominique Hubert,0.0,996,0,0,0,0.0,Jeudi 22h00,Vendredi 1h00,Vendredi 1h10,0.0,O,Non,Oui,,,,,,,,2025-10-17 01:00:00
+Parking Bras Marron,5800.0,752,69,69,307,5.0,Vendredi 2h00,Vendredi 6h00,Vendredi 6h10,5.8,X,Non,Non,X,,,,,,,2025-10-17 06:00:00
+Intersection Mare d'Affouches GR1,7900.0,895,227,296,402,5.5,Vendredi 2h00,Vendredi 6h30,Vendredi 6h40,2.1,X,Non,Non,X,,,,,,,2025-10-17 06:30:00
+Plaine des Merles,15800.0,1808,1050,1346,534,7.75,Vendredi 3h00,Vendredi 08h45,Vendredi 8h55,7.9,O,Non,Oui,,,,,,,,2025-10-17 08:45:00
+RF départ Sentier Scout,18000.0,1635,18,1364,725,9.25,Vendredi 3h30,Vendredi 10h15,Vendredi 10h25,2.2,O,Non,Non,,,,,,,,2025-10-17 10:15:00
+La Plaque,24000.0,897,70,1434,1533,11.5,Vendredi 4h30,Vendredi 12h30,Vendredi 12h40,6.0,X,Non,Non,X,,,,,,,2025-10-17 12:30:00
+Aurère Ecole,26700.0,914,206,1640,1722,12.5,Vendredi 5h00,Vendredi 13h30,Vendredi 13h40,2.7,O,Non,Oui,,,,,,,,2025-10-17 13:30:00
+La Porte Rivière des Galets,31500.0,283,46,1686,2400,14.75,Vendredi 5h30,Vendredi 15h45,Vendredi 15h55,4.8,X,Non,Non,X,,,,,,,2025-10-17 15:45:00
+Deux Bras,33000.0,258,3,1689,2427,17.0,Vendredi 6h30,Vendredi 18h00,Vendredi 18h10,1.5,O,Non,Oui,,,,,,,,2025-10-17 18:00:00
+Dos D'Ane,38000.0,818,701,2390,2568,19.333333333333332,Vendredi 8h00,Vendredi 20h20,Vendredi 20h30,5.0,X,Non,Non,X,,,,,,,2025-10-17 20:20:00
+Chemin Ratinaud,41300.0,439,4,2394,2950,21.0,Vendredi 8h30,Vendredi 22h00,Vendredi 22h10,3.3,X,Non,OUi,X,,,,,,,2025-10-17 22:00:00
+La Possession - Ecole Evariste de Parny,49500.0,3,3,2586,3578,14.75,Vendredi 05h30,Vendredi 15h45,Vendredi 15h55,2.1,O,Non,Oui,,,,,,,,2025-10-17 15:45:00
+Grande Chaloupe,56800.0,9,352,2938,3924,17.0,Vendredi 6h30,Vendredi 18h00,Vendredi 18h10,7.3,O,Non,Oui,,,,,,,,2025-10-17 18:00:00
+Colorado,66200.0,682,365,3775,4089,19.333333333333332,Vendredi 8h00,Vendredi 20h20,Vendredi 20h30,5.0,O,Non,Oui,,,,,,,,2025-10-17 20:20:00
+La Redoute,73200.0,53,30,3813,4756,21.0,Vendredi 08h30,Vendredi 22h00,Vendredi 22h10,3.0,,Non,Oui,,,,,,,,2025-10-17 22:00:00

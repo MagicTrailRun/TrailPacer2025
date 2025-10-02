@@ -88,9 +88,12 @@ def format_dataframe(df, target_time, start_time):
     df['dist_secteur'] = df['dist_secteur'].round(1)
     df['dplus_secteur'] = df['dplus_secteur'].round(1)
     df['dmoins_secteur'] = df['dmoins_secteur'].round(1)
-
+    if "ravitaillement" in df.columns:
+        df["icon_ravito"] = df['ravitaillement'].apply(lambda x: ":material/water_bottle:" if x == 'Oui' else "")
+    else:
+        df["icon_ravito"] = ""
     # --- Colonnes texte ---
-    df["Segment (Km – Nom)"] = df.apply(lambda x: f"**{x['dist_total']:.1f} km** – {x['checkpoint']}", axis=1)
+    df["Segment (Km – Nom)"] = df.apply(lambda x: f"**{x['dist_total']:.1f} km** – {x['checkpoint']} {x['icon_ravito']}", axis=1)
 
     df["Temps segment (± 5%)"] = df.apply(
         lambda x: f"{x['temps_secteur_med_fmt']} ({x['temps_secteur_low_fmt']}-{x['temps_secteur_high_fmt']})", axis=1
