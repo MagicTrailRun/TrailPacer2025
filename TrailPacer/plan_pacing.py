@@ -32,7 +32,6 @@ def generate_plan_table(df, target_time, start_time):
     if df.empty:
         st.warning("⚠️ Aucune donnée de course disponible.")
         st.stop()
-
     df, df_display = format_dataframe(df, target_time, start_time)
     st.subheader(f"📋 Plan de course généré pour {target_time} h")
 
@@ -152,7 +151,6 @@ def show_plan_pacing():
     config = st.session_state.get("config")
     df = st.session_state.get("df", pd.DataFrame())
     df_gpx = st.session_state.get("df_gpx", pd.DataFrame())
-
     show_intro_section()
     target_time = select_target_time(config)
     df, df_display = generate_plan_table(df, target_time, config["startDate"])
