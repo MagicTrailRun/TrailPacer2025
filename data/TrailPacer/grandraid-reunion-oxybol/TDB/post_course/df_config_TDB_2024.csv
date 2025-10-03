@@ -1,0 +1,13 @@
+portion_name,Meilleure perf,Type de tronçon,Quart de course,secteur_quart
+Marla → Merles,Louison COIFFET (00:55:03),Montée,Premier quart,Cilaos → Sen. Scout
+Merles → Sen. Scout,Louison COIFFET (00:12:12),Descente,Premier quart,Cilaos → Sen. Scout
+Sen. Scout → Aurère,Louison COIFFET (01:00:17),Descente,Deuxième quart,Sen. Scout → Pit Orange
+Aurère → Pass Oussy,Louison COIFFET (00:24:15),Descente,Deuxième quart,Sen. Scout → Pit Orange
+Pass Oussy → Ilet  Oran,Louison COIFFET (00:57:02),Montée,Deuxième quart,Sen. Scout → Pit Orange
+Ilet  Oran → Pit Orange,Louison COIFFET (01:20:34),Montée,Deuxième quart,Sen. Scout → Pit Orange
+Pit Orange → Ilet Savan,Louison COIFFET (01:33:38),Descente,Troisième quart,Pit Orange → Ratinaud
+Ilet Savan → Ratinaud,Louison COIFFET (00:55:26),Montée,Troisième quart,Pit Orange → Ratinaud
+Ratinaud → Possession,Louison COIFFET (00:57:10),Descente,Quatrième quart,Ratinaud → St Denis
+Possession → Chaloupe,Louison COIFFET (00:49:37),Montée,Quatrième quart,Ratinaud → St Denis
+Chaloupe → Colorado,Louison COIFFET (01:15:10),Montée,Quatrième quart,Ratinaud → St Denis
+Colorado → St Denis,Romain BARDEUR (00:35:05),Descente,Quatrième quart,Ratinaud → St Denis

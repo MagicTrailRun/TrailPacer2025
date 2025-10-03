@@ -602,13 +602,13 @@ def show_post_course_table(info, config_df, df_cv, bib):
         "Écart vs index (h)": "écart_index_h",
     }
 
-    metric_label = st.selectbox(
-        "📊 Choisir la métrique à afficher :",
-        list(metrics_options.keys()),
-        index=0
-    )
-    key = metrics_options[metric_label]
-    plot_spider_pacing(df_splits, bib, info, key=key)  # ou "écart_elite_%"
+    # metric_label = st.selectbox(
+    #     "📊 Choisir la métrique à afficher :",
+    #     list(metrics_options.keys()),
+    #     index=0
+    # )
+    # key = metrics_options[metric_label]
+    # plot_spider_pacing(df_splits, bib, info, key=key)  # ou "écart_elite_%"
 
 def show_runner_info(runner,bib, height=230):
     # sécuriser les valeurs

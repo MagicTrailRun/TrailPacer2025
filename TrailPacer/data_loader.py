@@ -134,6 +134,7 @@ def select_event():
         st.session_state["year"] = year
         st.session_state["event_code"] = EVENT_CONFIG[event]['tenant']
         st.session_state["course_code"] = EVENT_CONFIG[event]['races'][course]["code"]
+        st.session_state["post_course_year"]= EVENT_CONFIG[event]["races"][course]["post_course_year"]
         event_code=st.session_state["event_code"]
         course_code=st.session_state["course_code"]
         config = get_config(f"data/TrailPacer/{event_code}/{course_code}/config/config_{year}.json")

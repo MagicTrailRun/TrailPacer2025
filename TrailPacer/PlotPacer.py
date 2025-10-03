@@ -98,6 +98,7 @@ class PacingPlotter():
               .assign(altitude=lambda x: x.altitude.ffill())
               .dropna(subset=['checkpoint'])
               .set_index('checkpoint'))
+
         return df
         
     def get_df_splits(self, bibs, df_abs, names):
@@ -230,8 +231,10 @@ class PacingPlotter():
 
         df = df.join(self.df_cofinishers)
         
-        df.loc['Départ'] = np.zeros(df.shape[1])
-        df.loc['Départ', 'dist_total'] =0 
+
+        first_idx = df.index[0]
+        if df.loc[first_idx].isna().any():
+            df.loc[first_idx] = df.loc[first_idx].fillna(0)
 
         df = (df
               .set_index('dist_total', append=True)
@@ -240,8 +243,8 @@ class PacingPlotter():
         reference_pacing = df.ref_pacing
         df_plotted_relative_pacings = (df
                                        .apply(lambda x: x.div(reference_pacing))
-                                       .mul(finish_time))
-       
+                                       .mul(finish_time)
+                                         )
         return (df_plotted_relative_pacings,
                 df.droplevel('dist_total'),
                 finish_time,
@@ -346,7 +349,14 @@ class PacingPlotter():
      
         col_splits = df_splits.columns[0]
         for i, (ckpt, row) in enumerate(self.df_checkpoints.iterrows()):
+
             if i==0:
+                ax.annotate(xy=(row['dist_total'], yr_max),
+                        text= ckpt + " " ,
+                        verticalalignment='top', 
+                        horizontalalignment='left',
+                        rotation=45,
+                        color='k',)
                 continue
             y_ref = df_relative.loc[ckpt, splits_reference]  if splits_reference!="ref_pacing" else y_finish
             y_splits = df_relative.loc[ckpt, col_splits]
@@ -354,10 +364,10 @@ class PacingPlotter():
             #y_finish = df_relative.loc[ckpt, 'ref_pacing']
 
             ax.annotate(xy=(row['dist_total'], yr_max),
-                        text=' '+ckpt,
+                        text=ckpt+ " " ,
                         verticalalignment='top', 
-                        horizontalalignment='right',
-                        rotation=90,
+                        horizontalalignment='center',
+                        rotation=45,
                         color='k',)
 
             if not self.is_elite : 
@@ -406,10 +416,9 @@ class PacingPlotter():
     def _draw_runner_pacing(self, ax, df, names, df_ranks=None):
         df = df.reset_index('dist_total')
         df_pace = (df
-                   .loc[df.dist_total>0]
+                   .loc[df.dist_total>=0] 
                    #.join(df_ranks, how='left')
                    )
-
         for name in names:
             color = next(self.color_cycle)
             ax.plot(df_pace['dist_total'],
@@ -441,7 +450,7 @@ class PacingPlotter():
     def _draw_copacing(self, ax, df, names):
         
         df_pace = (df
-                   .loc[df.index.get_level_values('dist_total')>0]
+                   .loc[df.index.get_level_values('dist_total')>=0]
                    .reset_index('dist_total')
                    .drop(columns=[*names, 'ref_pacing']))
         
