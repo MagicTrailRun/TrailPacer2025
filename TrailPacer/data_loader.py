@@ -11,9 +11,10 @@ def load_data(event,race="UTMB",year=2025, version="vf"):
         csv_path = f"data/TrailPacer/{event}/{race}/pred_pacing/pred_{year}_{version}.csv"
         df = pd.read_csv(csv_path)
         df_checkpoints=pd.read_csv(f"data/TrailPacer/{event}/{race}/checkpoints/detail_checkpoints_{year}.csv")
-
         if "checkpoint" in df.columns:
             df = df.drop_duplicates(subset=["checkpoint"], keep="first")
+            df["checkpoint"]=df["checkpoint"].str.strip()
+        df_checkpoints["checkpoint"]=df_checkpoints["checkpoint"].str.strip()
         if "ravitaillement" in df_checkpoints.columns :
             df=df.merge(df_checkpoints[["checkpoint", "ravitaillement"]], on="checkpoint")
         return df

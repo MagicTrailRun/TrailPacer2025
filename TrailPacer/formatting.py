@@ -61,7 +61,6 @@ def format_dataframe(df, target_time, start_time):
     df["temps_cumule_med"] = df["temps_secteur_med"].cumsum()
     df["temps_secteur_low"] = df["temps_norm_low"] * target_time
     df["temps_secteur_high"] = df["temps_norm_high"] * target_time
-        # --- 🛑 Vérification barrière horaire ---
     if "barriere_horaire" in df.columns:
         # Comparer le temps cumulé médian à la barrière
         df["hors_barriere"] = df["temps_cumule_med"] > df["barriere_horaire"]
