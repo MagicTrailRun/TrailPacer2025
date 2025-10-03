@@ -44,7 +44,7 @@ class PacingPlotter():
 
     #     pth = f"{self.output_pth}/ranks/{course}_{year}.csv"
     #     return pd.read_csv(pth, index_col=self._idx_runner)
-    
+     
 
     def load_ref_pacing(self, year, event, course):
         pth = f"{self.output_pth}/ref_pacing/ref_{year}.csv"
