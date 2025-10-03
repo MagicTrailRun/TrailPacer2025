@@ -216,10 +216,13 @@ def _show_individual_analysis(results, config_df, df_cv,
             show_runner_info(info,bib)
         # Graphique pacing si disponible
         try:
+            is_elite=info.get("is_elite", False)
+            print(bib)
             plotter = PacingPlotter(year, event_code, course_name, course_code, 
-                                   is_elite=False, offline=True)
+                                   is_elite=is_elite, offline=True)
             fig, _ = plotter.plot(bib)
             st.pyplot(fig)
+            explication_tab_post_course()
         except Exception as e:
             st.warning(f"Graphique pacing non disponible: {e}")
 
@@ -276,15 +279,11 @@ def _show_comparison_analysis(results, config_df, df_cv, event_code, course_code
         "<h3 style='text-align: center;'>VS</h3>",
         unsafe_allow_html=True
     )
-
         # Graphique pacing
-
         plotter = PacingPlotter(year, event_code,course_name, course_code, 
                                 is_elite=False, offline=True, show_peloton=False)
         fig, _ = plotter.plot([bib1, bib2])
         st.pyplot(fig)
-
-
         # Analyse comparative
         df1 = pd.DataFrame(info1["splits"])
         df1["runner_h"] = pd.to_numeric(df1["runner_h"], errors="coerce")
