@@ -1,0 +1,744 @@
+year,bib,race_name,distance,elevationGain,gender,indexCategory,rank,time,race_year,countryCode
+2024,7007,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,1795,60:49:32,2023,FR
+2024,7007,le grand raid de la réunion - trail de bourbon,109200.0,5960,MALE,100K,643,37:25:53,2022,FR
+2024,7007,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,648,19:13:21,2021,FR
+2024,7008,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,184,09:52:05,2022,FR
+2024,7013,trail nbz  - le pourcharet,29000.0,990,MALE,20K,183,03:59:44,2024,FR
+2024,7013,trail de vulcain - marathon volcanique,48000.0,1840,MALE,50K,419,06:55:26,2024,FR
+2024,7013,ardeche trail - la voie romaine - la virée des chateaux - 36km,36000.0,1700,MALE,50K,220,04:52:24,2023,FR
+2024,7013,tour du nipalou 53km - tour du nipalou 21km,21000.0,1000,MALE,20K,79,02:46:01,2022,FR
+2024,7013,les trails du sancy - le trail du sancy,33300.0,2000,MALE,50K,526,05:42:30,2022,FR
+2024,7015,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,476,43:02:19,2023,FR
+2024,7019,grand raid des pyrénées - tour des lacs,80000.0,5000,MALE,100K,1267,25:21:19,2024,FR
+2024,7019,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,1007,40:35:42,2023,FR
+2024,7019,le grand raid de la réunion - la diagonale des fous,168400.0,10250,MALE,100M,1884,65:27:27,2022,FR
+2024,7019,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,512,12:02:53,2022,FR
+2024,7019,le grand raid de la réunion - trail de bourbon,105100.0,6131,MALE,100K,717,39:37:13,2021,FR
+2024,7020,préalpes trail du mouret #6 - trail surprise,23790.0,943,MALE,20K,86,03:43:32,2024,CH
+2024,7020,corfu mountain trail - olive tree trail 24 km,24500.0,1200,MALE,20K,50,03:53:00,2023,GR
+2024,7020,ultra madeira® - trail 30km,27200.0,1360,MALE,20K,67,04:32:33,2022,PT
+2024,7020,trail de la dent de broc - tdb | 22km,22000.0,1700,MALE,20K,136,04:11:39,2022,CH
+2024,7020,eiger ultra-trail® by UTMB - e35 north face trail,35000.0,2500,MALE,50K,285,06:59:36,2022,CH
+2024,7020,trail verbier st bernard by UTMB - verbier x-plore,26000.0,1700,MALE,20K,296,05:05:41,2022,CH
+2024,7020,tenerife bluetrail - mediatrail,23600.0,1106,MALE,20K,264,03:30:49,2022,ES
+2024,7020,supertrail du barlatay - trail découverte,24300.0,1390,MALE,20K,76,04:09:02,2021,CH
+2024,7020,gruyère trail charmey (gtc) - gtc_24,24100.0,1510,MALE,20K,228,04:17:21,2021,CH
+2024,7020,torgon portes du soleil - 20 k,19500.0,1460,MALE,20K,174,03:41:18,2021,CH
+2024,7021,meribel trail - 25 km,23900.0,1830,MALE,20K,268,06:08:58,2024,FR
+2024,7021,gruissan poli trail - las caladas,25000.0,800,MALE,20K,288,03:01:57,2020,FR
+2024,7022,mauritius by UTMB - bel ombre,59100.0,1790,MALE,50K,239,12:47:13,2024,MU
+2024,7022,utcs - trail ambodirano - utcs - trail ambodirano,31000.0,1000,MALE,20K,207,06:10:09,2024,MG
+2024,7023,altore trails origins : acqua e rocca di u cavu - giru di u cavu,30000.0,2000,FEMALE,50K,20,05:36:33,2024,FR
+2024,7023,trail napoléon - trail napoléon classic,25000.0,1500,FEMALE,20K,139,03:59:24,2024,FR
+2024,7023,trail napoléon - grand trail napoléon,63000.0,3000,FEMALE,50K,46,11:11:38,2023,FR
+2024,7023,restonica trail by UTMB - tavignanu trail,32500.0,2270,FEMALE,50K,249,06:49:34,2022,FR
+2024,7023,trail napoléon - trail napoléon impérial,43000.0,1700,FEMALE,50K,108,07:13:48,2022,FR
+2024,7024,trail du tour des fiz - tour des 5 refuges,37900.0,2330,FEMALE,50K,698,08:41:52,2024,FR
+2024,7024,trails de la vallée du brevon - trail des 20 ans,20000.0,1518,FEMALE,20K,296,05:20:07,2023,FR
+2024,7024,trail du tour des fiz - duo des fiz,24500.0,1440,FEMALE,20K,187,05:57:24,2022,FR
+2024,7024,trail des reculees - l'ermitage,22300.0,740,FEMALE,20K,465,04:11:12,2019,FR
+2024,7026,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,31,11:05:26,2023,FR
+2024,7026,ultra tour des 4 massifs - ut4m20 vercors,20000.0,1900,MALE,20K,1,02:18:38,2023,FR
+2024,7026,trail des mélèzes du mercantour - 25km,26400.0,1710,MALE,20K,4,02:50:30,2022,FR
+2024,7026,le grand raid de la réunion - zembrocal trail relais1,44000.0,3815,MALE,50K,7,08:04:40,2019,FR
+2024,7026,cimasa - cimasarun,52000.0,3699,MALE,50K,37,08:03:00,2019,FR
+2024,7028,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,548,16:38:50,2022,FR
+2024,7028,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,436,04:04:13,2020,FR
+2024,7036,mauritius by UTMB - bel ombre,59100.0,1790,MALE,50K,106,09:04:06,2024,MU
+2024,7036,mafate trail tour - mafate trail tour,53900.0,3560,MALE,50K,489,13:38:28,2023,FR
+2024,7036,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,173,09:44:09,2023,FR
+2024,7036,le grand raid de la réunion - trail de bourbon,109200.0,5960,MALE,100K,709,38:31:20,2022,FR
+2024,7036,restonica trail by UTMB - restonica trail,66800.0,3900,MALE,100K,257,17:57:32,2022,FR
+2024,7036,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,738,19:51:37,2021,FR
+2024,7038,x trail corrèze dordogne - les balcons de la dordogne,27000.0,980,MALE,20K,82,02:47:51,2024,FR
+2024,7038,l'ultra marin raid golfe du morbihan - trail 56 km,59400.0,600,MALE,50K,184,06:13:47,2023,FR
+2024,7038,la asics saintélyon - la saintexpress,45900.0,1000,MALE,50K,483,05:12:18,2021,FR
+2024,7038,trail du loup blanc - le grand méchant loup,58100.0,1900,MALE,50K,145,08:45:00,2019,FR
+2024,7038,x trail corrèze dordogne - les balcons de la dordogne,25800.0,790,MALE,20K,133,03:13:59,2019,FR
+2024,7045,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,834,38:30:31,2023,FR
+2024,7045,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,842,18:48:48,2022,FR
+2024,7047,scarpa trail de la vallée des lacs - trail court de la vallee des lacs,24600.0,1406,FEMALE,20K,467,04:03:15,2024,FR
+2024,7047,ultra trail des montagnes du jura - la cmm,43500.0,1130,FEMALE,50K,772,06:03:57,2023,FR
+2024,7047,trail de la vallée des lacs -  la géromée,18000.0,820,FEMALE,20K,40,01:56:10,2022,FR
+2024,7051,xterra moorea - xterra iti trail rotui,13000.0,650,MALE,,43,01:54:52,2019,PF
+2024,7053,trail du laudon - trail des charmettes,14000.0,400,FEMALE,,205,01:41:00,2022,FR
+2024,7054,uttn ultra trail tour de nancy - uttn mirabelle 28km ,27000.0,710,MALE,20K,106,03:05:04,2023,FR
+2024,7055,millet xtrail courchevel - xt 33km,33300.0,2170,FEMALE,50K,185,06:51:25,2024,FR
+2024,7055,the longest day trail - 25km,25000.0,1080,FEMALE,20K,49,02:46:38,2024,BE
+2024,7059,black mountain trail ® - black race,40000.0,2300,MALE,50K,801,08:06:41,2024,FR
+2024,7059,grand raid des pyrénées - tour du moudang,60000.0,3800,MALE,50K,892,17:21:55,2022,FR
+2024,7059,grands trails d'auvergne - x ultra-trail 78km (solo),79700.0,2940,MALE,100K,144,15:30:30,2021,FR
+2024,7059,fest'trail des 7 collines - la montaigut,25000.0,1200,MALE,20K,83,04:11:46,2021,FR
+2024,7060,UTMB® - mcc,38900.0,2410,FEMALE,50K,918,09:30:49,2019,FR
+2024,7060,swiss canyon trail - swiss canyon trail k45,51500.0,2550,FEMALE,50K,296,08:00:04,2019,CH
+2024,7060,trail'n loue - trail des sources,18100.0,1030,FEMALE,20K,441,03:21:11,2019,FR
+2024,7063,la asics saintélyon - la saintexpress,44000.0,974,FEMALE,50K,3226,08:10:55,2023,FR
+2024,7063,marathon du mont-blanc - 10 km du mont-blanc,9800.0,270,FEMALE,,1482,01:27:38,2023,FR
+2024,7063,le trail des hobbits - la semi-comtoise,21300.0,500,FEMALE,20K,1052,03:29:37,2023,FR
+2024,7063,trail alsace grand est by UTMB - trail des celtes,49600.0,2020,FEMALE,50K,1434,09:35:40,2023,FR
+2024,7063,nord trail monts de flandres - ntmf 25 km,25300.0,550,FEMALE,20K,1505,03:36:52,2023,FR
+2024,7063,la asics saintélyon - la saintésprint,24000.0,520,FEMALE,20K,2226,03:58:59,2022,FR
+2024,7063,nice côte d’azur by UTMB® - nice 20k,16800.0,626,FEMALE,20K,839,03:11:32,2022,FR
+2024,7063,UTMB® mont blanc - etc®,15200.0,1290,FEMALE,20K,720,04:40:27,2022,FR
+2024,7064,nice côte d’azur by UTMB® - saint-jean-cap-ferrat - nice - 20k,22000.0,700,MALE,20K,407,02:38:34,2024,FR
+2024,7064,hoka UTMB® mont blanc - mcc,40000.0,2350,MALE,50K,923,07:52:39,2024,FR
+2024,7064,la asics saintélyon - la saintexpress,44000.0,974,MALE,50K,2216,06:17:36,2023,FR
+2024,7064,dacia UTMB® mont blanc - occ,55000.0,3425,MALE,50K,1318,11:34:15,2023,FR
+2024,7064,marathon du mont-blanc - 23 km du mont-blanc,23600.0,1590,MALE,20K,932,04:16:57,2023,FR
+2024,7064,le trail des hobbits - la semi-comtoise,21300.0,500,MALE,20K,249,02:15:12,2023,FR
+2024,7064,trail alsace grand est by UTMB - trail des celtes,49600.0,2020,MALE,50K,991,07:15:32,2023,FR
+2024,7064,nord trail monts de flandres - ntmf 25 km,25300.0,550,MALE,20K,274,02:21:19,2023,FR
+2024,7064,trail d2b - moyenne distance,23500.0,150,MALE,20K,495,02:30:08,2023,FR
+2024,7064,la asics saintélyon - la saintexpress,44000.0,1150,MALE,50K,2783,07:33:48,2022,FR
+2024,7064,nice côte d’azur by UTMB® - nice 20k,16800.0,626,MALE,20K,450,02:19:11,2022,FR
+2024,7064,UTMB® mont blanc - etc®,15200.0,1290,MALE,20K,485,03:29:00,2022,FR
+2024,7064,nord trail monts de flandres - ntmf 25 km,25300.0,550,MALE,20K,831,02:58:54,2022,FR
+2024,7064,trail d2b - moyenne distance,21000.0,350,MALE,20K,323,02:12:37,2022,FR
+2024,7067,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,45,31:11:09,2023,FR
+2024,7067,dodo trail - xtreme 50km,50000.0,3500,MALE,50K,4,06:58:24,2023,MU
+2024,7067,swiss canyon trail - k111 swiss canyon trail,115300.0,5170,MALE,100K,14,13:43:55,2023,CH
+2024,7067,le grand raid de la réunion - la diagonale des fous,160200.0,9377,MALE,100M,11,26:43:34,2021,FR
+2024,7067,tchimbe raid de la martinique - tchimbe raid ,98400.0,4800,MALE,100K,5,14:58:42,2019,FR
+2024,7068,caldeira trail - bruleries de la fournaise,47400.0,1130,MALE,50K,228,10:52:46,2020,FR
+2024,7072,le grand raid de la réunion - zembrocal trail relais1,44000.0,3815,FEMALE,50K,107,12:12:53,2019,FR
+2024,7072,cilaos women trail - cilaos women trail,20000.0,1100,FEMALE,20K,93,04:02:43,2019,FR
+2024,7074,raid 974 - semi-raid 974,57000.0,2800,MALE,50K,190,11:59:24,2024,FR
+2024,7074,caldeira trail - bruleries de la fournaise,47400.0,1130,MALE,50K,125,08:24:45,2020,FR
+2024,7074,le grand raid de la réunion - trail de bourbon,113700.0,6520,MALE,100M,619,37:43:47,2019,FR
+2024,7074,cimasa - cimasarun,52000.0,3699,MALE,50K,177,09:20:13,2019,FR
+2024,7075,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,319,14:55:41,2022,FR
+2024,7075,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,185,12:37:33,2019,FR
+2024,7075,transvolcano - transvolcano,45500.0,1680,MALE,50K,190,08:13:40,2019,FR
+2024,7077,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,1165,20:47:59,2022,FR
+2024,7078,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,808,16:49:15,2019,FR
+2024,7083,le grand raid de la réunion - trail de bourbon,113700.0,6520,MALE,100M,321,31:52:22,2019,FR
+2024,7086,mafate trail tour - ultra mafate trail tour,63400.0,4090,MALE,100K,250,17:51:06,2023,FR
+2024,7086,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,1896,62:04:36,2023,FR
+2024,7086,le grand raid de la réunion - zembrocal trail relais3,41400.0,2700,MALE,50K,170,11:57:43,2022,FR
+2024,7086,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,895,17:20:50,2019,FR
+2024,7086,ultra marin raid golfe du morbihan - grand raid,176300.0,1430,MALE,100M,816,40:42:08,2019,FR
+2024,7087,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,1319,06:29:43,2020,FR
+2024,7088,raid 974 - semi-raid 974,57000.0,2800,MALE,50K,372,15:56:30,2024,FR
+2024,7088,le grand raid de la réunion - zembrocal trail relais2,36200.0,1210,MALE,20K,130,08:47:17,2023,FR
+2024,7088,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,932,19:29:14,2022,FR
+2024,7088,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,1251,05:58:01,2020,FR
+2024,7089,mafate trail tour - mafate trail tour,53900.0,3560,MALE,50K,317,11:44:17,2023,FR
+2024,7089,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,49,06:58:00,2022,FR
+2024,7093,le grand raid de la réunion - la mascareignes,72000.0,4007,FEMALE,100K,696,18:19:43,2023,FR
+2024,7096,cimasarun - cumasarun,56200.0,3818,MALE,50K,897,16:17:56,2024,FR
+2024,7096,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,1988,63:13:14,2023,FR
+2024,7096,caldeira trail - trail des bruleries de la fournaise,44000.0,2800,MALE,50K,355,10:53:12,2023,FR
+2024,7096,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,97,07:47:02,2022,FR
+2024,7096,le grand raid de la réunion - la diagonale des fous,160200.0,9377,MALE,100M,1622,59:55:01,2021,FR
+2024,7101,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,433,15:47:50,2022,FR
+2024,7101,marathon du mont-blanc - 23 km du mont-blanc,24400.0,1657,MALE,20K,204,03:21:17,2022,FR
+2024,7101,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,294,03:47:56,2020,FR
+2024,7101,trail du tangue - trail du tangue,23600.0,900,MALE,20K,70,03:06:53,2020,FR
+2024,7102,trail la rosiere - 22 km,22210.0,1495,MALE,20K,26,02:49:49,2024,FR
+2024,7102,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,179,37:17:58,2023,FR
+2024,7102,trail la rosiere - 22 km,22000.0,1450,MALE,20K,24,02:51:04,2023,FR
+2024,7102,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,16,10:30:59,2022,FR
+2024,7102,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,35,11:49:21,2021,FR
+2024,7105,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,1075,20:20:46,2022,FR
+2024,7105,le grand raid de la réunion - zembrocal trail relais4,54200.0,2090,MALE,50K,76,07:03:43,2021,FR
+2024,7105,trail du tangue - trail du tangue,23600.0,900,MALE,20K,356,04:32:33,2020,FR
+2024,7105,mafate trail tour - mafate trail tour,51900.0,3430,MALE,50K,377,14:19:41,2019,FR
+2024,7105,trail du tangue - trail du tangue,26000.0,1200,MALE,20K,392,05:09:43,2019,FR
+2024,7108,caldeira trail - trail des bruleries de la fournaise,44000.0,2800,MALE,50K,422,12:00:06,2023,FR
+2024,7108,trail de minuit - trail de minuit,56400.0,3180,MALE,50K,887,14:26:56,2020,FR
+2024,7108,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,1164,05:33:56,2020,FR
+2024,7109,cimasarun - cumasarun,56200.0,3818,MALE,50K,23,08:02:25,2024,FR
+2024,7109,nord trail monts de flandres - 42 km,42500.0,1140,MALE,50K,3,03:10:00,2024,FR
+2024,7109,restonica trail by UTMB - tavignanu trail,32500.0,2270,MALE,50K,23,04:17:29,2023,FR
+2024,7109,a petralbinca - a petralbinca,21000.0,1500,MALE,20K,10,02:33:38,2023,FR
+2024,7109,trail gravona - trail gravona,22200.0,1660,MALE,20K,6,02:18:56,2023,FR
+2024,7109,la asics saintélyon - la saintésprint,24000.0,520,MALE,20K,30,01:50:23,2022,FR
+2024,7109,restonica trail by UTMB - tavignanu trail,32500.0,2270,MALE,50K,14,04:08:54,2022,FR
+2024,7109,a petralbinca - a petralbinca,21000.0,1500,MALE,20K,11,02:40:13,2022,FR
+2024,7109,trail napoléon - trail napoléon classic,24000.0,1500,MALE,20K,25,02:56:26,2022,FR
+2024,7109,restonica trail - tavignanu trail,32500.0,2270,MALE,50K,82,05:30:58,2021,FR
+2024,7113,trail du gypaète - la circaète,31000.0,1570,FEMALE,20K,351,10:04:13,2024,FR
+2024,7115,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,411,16:42:55,2021,FR
+2024,7115,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,363,14:05:33,2019,FR
+2024,7115,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,528,11:49:38,2019,FR
+2024,7118,trail du tangue - trail du tangue,23600.0,900,MALE,20K,300,04:14:01,2020,FR
+2024,7119,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,876,14:41:22,2022,FR
+2024,7120,trail de minuit - trail de minuit,54200.0,3180,FEMALE,50K,612,12:41:32,2022,FR
+2024,7127,le grand raid de la réunion - trail de bourbon,105100.0,6131,FEMALE,100K,720,39:41:29,2021,FR
+2024,7127,caldeira trail - bruleries de la fournaise,47400.0,1130,FEMALE,50K,99,07:54:52,2020,FR
+2024,7127,trail du tangue - trail du tangue,23600.0,900,FEMALE,20K,169,03:37:28,2020,FR
+2024,7127,le grand raid de la réunion - la mascareignes,66200.0,3550,FEMALE,100K,447,14:30:29,2019,FR
+2024,7127,trail de minuit - trail de minuit ,56400.0,3180,FEMALE,50K,698,12:51:52,2019,FR
+2024,7128,supertrail du barlatay - trail découverte,26000.0,1300,FEMALE,20K,158,04:18:14,2024,CH
+2024,7130,le grand raid de la réunion - zembrocal trail relais4,33400.0,1360,FEMALE,20K,82,07:09:01,2023,FR
+2024,7130,trail de minuit - trail de minuit,54200.0,3180,FEMALE,50K,696,13:08:53,2022,FR
+2024,7130,trail volodalen du lac de vouglans - tour du lac,63600.0,1910,FEMALE,50K,73,09:34:49,2021,FR
+2024,7130,le grand raid de la réunion - la mascareignes,66200.0,3550,FEMALE,100K,865,17:11:43,2019,FR
+2024,7131,trail des passerelles du monteynard - la grande course,63300.0,3110,FEMALE,50K,303,11:24:12,2024,FR
+2024,7131,trail du cirque du fer à cheval - trail 32km,32700.000000000004,1300,FEMALE,20K,193,04:09:35,2024,FR
+2024,7131,ultra tour des 4 massifs - ut4m 20 belledonne,22500.0,2020,FEMALE,20K,167,04:35:41,2023,FR
+2024,7131,la pastourelle - trail du grand cirque,53000.0,2670,FEMALE,50K,567,08:52:48,2023,FR
+2024,7131,maxicross - nightcross,21400.0,930,FEMALE,20K,161,02:42:42,2023,FR
+2024,7131,impérial trail de fontainebleau - trophée philippe mahut,26000.0,630,FEMALE,20K,185,02:56:10,2022,FR
+2024,7131,trail des forts de besançon - 30km,29300.0,800,FEMALE,20K,462,03:28:56,2022,FR
+2024,7131,festival des templiers - marathon des causses,35000.0,1570,FEMALE,50K,353,05:43:06,2021,FR
+2024,7131,trail des rois maudits - trm27,27100.0,1110,FEMALE,20K,189,03:43:08,2021,FR
+2024,7132,dodo trail - trooper 25km,23700.0,1450,MALE,20K,24,03:51:36,2023,MU
+2024,7132,la ferme trail - la ferme trail,23500.0,1050,MALE,20K,21,03:18:51,2023,MU
+2024,7132,dodo trail - trooper 25km,23700.0,1450,MALE,20K,20,04:00:43,2022,MU
+2024,7132,trail des goyaves - trail des goyaves,25500.0,1550,MALE,20K,13,03:46:04,2022,MU
+2024,7132,dodo trail - trooper 25km,23700.0,1450,MALE,20K,7,03:44:54,2021,MU
+2024,7133,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,1003,20:29:15,2023,FR
+2024,7134,grand trail des lacs et chateaux summer edition (gtlc) - gt21,21500.0,725,MALE,20K,379,03:04:16,2024,BE
+2024,7134,olne spa olne - olne spa olne,71000.0,2380,MALE,50K,684,12:04:48,2023,BE
+2024,7134,marathon du mont-blanc - 10 km du mont-blanc,9900.0,280,MALE,,205,01:00:52,2019,FR
+2024,7134,marathon du mont-blanc - duo étoilé,19500.0,1250,MALE,20K,334,04:15:46,2019,FR
+2024,7135,hoka UTMB® mont blanc - etc,15000.0,1200,MALE,20K,734,03:18:54,2024,FR
+2024,7135,la asics saintélyon - la saintexpress,44000.0,974,MALE,50K,1798,05:55:58,2023,FR
+2024,7135,nice côte d’azur by UTMB® - saint-jean-cap-ferrat - nice 20k,22000.0,700,MALE,20K,604,03:03:33,2023,FR
+2024,7135,ecotrail copenhagen - ecotrail cph 10k,10100.0,113,MALE,,18,00:52:12,2023,DK
+2024,7135,ecotrail paris® - trail 18km,18600.0,400,MALE,20K,1138,01:59:03,2023,FR
+2024,7136,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,981,15:10:03,2019,FR
+2024,7141,le salaozy festival nature - kmv libre,2500.0,990,MALE,,1,00:42:50,2019,FR
+2024,7142,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,916,19:54:35,2023,FR
+2024,7143,trail des anglais - trail des anglais,28000.0,1260,FEMALE,20K,1219,05:47:36,2020,FR
+2024,7145,le belier - trail 27km | le bélier,27000.0,1090,MALE,20K,207,03:08:11,2024,FR
+2024,7145,trail du gypaète - la circaète,31000.0,1570,MALE,20K,81,04:15:14,2024,FR
+2024,7145,ultra tour du môle - ultra tour du môle,35400.0,3190,MALE,50K,185,06:29:00,2024,FR
+2024,7147,hoka UTMB® mont blanc - UTMB,173300.0,9525,MALE,100M,941,41:05:47,2024,FR
+2024,7147,hoka val d’aran by UTMB® - camins d'hèr - cdh,110300.0,6338,MALE,100M,87,18:16:04,2024,ES
+2024,7147,trail du hautacam  - trail du hautacam 67 km,67000.0,4220,MALE,100K,30,09:48:20,2024,FR
+2024,7147,festival des templiers - endurance trail,99900.0,4228,MALE,100K,168,15:02:42,2023,FR
+2024,7147,val d’aran by UTMB® - pda,55000.0,3360,MALE,50K,197,08:33:47,2023,ES
+2024,7148,caldeira trail - petite caldeira,49800.0,2630,MALE,50K,330,11:05:23,2019,FR
+2024,7149,trail de la colline - l'expedi'sion,25000.0,900,MALE,20K,112,02:44:25,2024,FR
+2024,7150,trail des goyaves - trail des goyaves,26100.0,1540,MALE,20K,7,03:18:25,2020,MU
+2024,7150,ferney trail - ferney trail ,38300.0,1980,MALE,50K,8,04:53:22,2019,MU
+2024,7150,utrb ile maurice - trail du nautile,24600.0,380,MALE,20K,7,02:13:29,2019,MU
+2024,7151,le grand raid de la réunion - la mascareignes,72000.0,4007,FEMALE,100K,542,17:09:22,2023,FR
+2024,7153,dodo trail - xtreme 50km,50000.0,3500,MALE,50K,10,07:40:44,2024,MU
+2024,7153,mauritius by UTMB - bel ombre,59100.0,1790,MALE,50K,11,06:29:04,2024,MU
+2024,7153,la ferme trail - la ferme trail,23500.0,1050,MALE,20K,1,02:26:02,2023,MU
+2024,7153,moka trail - moka trail,30500.0,1610,MALE,20K,9,03:20:10,2022,MU
+2024,7153,dodo trail - trooper 25km,23700.0,1450,MALE,20K,1,02:54:41,2021,MU
+2024,7154,le grand raid de la réunion - zembrocal trail relais4,33400.0,1360,FEMALE,20K,145,08:12:48,2022,FR
+2024,7155,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,66,11:13:40,2019,FR
+2024,7159,le grand raid de la réunion - zembrocal trail relais2,36200.0,1210,MALE,20K,23,06:36:13,2022,FR
+2024,7159,le grand raid de la réunion - zembrocal trail relais1,44000.0,3815,MALE,50K,69,10:59:20,2019,FR
+2024,7160,le grand raid de la réunion - zembrocal trail relais4,54200.0,2090,FEMALE,50K,117,08:54:43,2021,FR
+2024,7161,le salaozy festival nature - mini salazienne,23100.0,1280,MALE,20K,149,05:27:31,2019,FR
+2024,7167,le salaozy festival nature - la salazienne,34000.0,2100,MALE,50K,20,05:13:00,2019,FR
+2024,7168,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,309,15:08:26,2023,FR
+2024,7169,le grand raid de la réunion - la mascareignes,72000.0,3874,FEMALE,100K,615,18:57:08,2021,FR
+2024,7169,trail de minuit - trail de minuit,56400.0,3180,FEMALE,50K,618,12:18:54,2020,FR
+2024,7169,le grand raid de la réunion - la mascareignes,66200.0,3550,FEMALE,100K,866,17:11:44,2019,FR
+2024,7174,swiss canyon trail - swiss canyon trail,33000.0,1380,MALE,20K,450,04:49:29,2024,CH
+2024,7174,trail de la dent de broc - tdb | 14km,14000.0,740,MALE,20K,85,01:47:41,2023,CH
+2024,7176,trail de la savane - 28km,25000.0,900,FEMALE,20K,209,03:51:34,2020,FR
+2024,7176,cilaos women trail - cilaos super women trail,26000.0,1700,FEMALE,20K,61,06:39:30,2019,FR
+2024,7179,swiss canyon trail - swiss canyon trail,53000.0,2632,FEMALE,50K,300,07:26:09,2024,CH
+2024,7179,miut® - madeira island ultra-trail® - miut 60,58500.0,2980,FEMALE,50K,170,10:44:27,2023,PT
+2024,7179,le grand raid de la réunion - la diagonale des fous,160200.0,9377,FEMALE,100M,962,48:49:59,2021,FR
+2024,7179,trail du petit ballon - 54 km,55900.0,2180,FEMALE,50K,168,07:35:07,2021,FR
+2024,7179,la chute du diable 9e edition - 80 km - le diable au corps,82400.0,2490,FEMALE,100K,15,14:15:00,2021,CA
+2024,7180,qmt- québec mega trail - qmt 50,50900.0,2220,FEMALE,50K,273,09:19:22,2024,CA
+2024,7180,qmt- québec mega trail - qmt 25,26000.0,950,FEMALE,20K,307,03:52:25,2023,CA
+2024,7180,ultra-trail harricana du canada - 42 km classique,42000.0,1300,FEMALE,50K,114,06:26:52,2022,CA
+2024,7180,ultra-trail harricana™ du canada - 28k,27700.0,920,FEMALE,20K,92,03:20:42,2021,CA
+2024,7182,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,917,39:29:45,2023,FR
+2024,7182,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,826,14:11:52,2022,FR
+2024,7182,trail de minuit - trail de minuit,56400.0,3180,MALE,50K,454,11:19:37,2020,FR
+2024,7182,transvolcano - transvolcano,45500.0,1680,MALE,50K,274,09:28:01,2020,FR
+2024,7182,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,1066,16:49:01,2019,FR
+2024,7183,altore trails origins : acqua e rocca di u cavu - sapara e carbonari,11000.0,360,MALE,,48,01:27:17,2024,FR
+2024,7186,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,196,03:33:25,2020,FR
+2024,7187,trail des Étoiles 05 - trail des etoiles 05,36000.0,2100,FEMALE,50K,183,06:22:38,2024,FR
+2024,7187,lozère trail - version longue,52000.0,2200,FEMALE,50K,145,07:45:55,2024,FR
+2024,7187,volvic volcanic expérience - trail expérience  volcanique,28750.0,1000,FEMALE,20K,248,03:38:59,2024,FR
+2024,7187,le grand trail de serre-poncon - lac et montagne,49100.0,3420,FEMALE,50K,120,10:59:17,2023,FR
+2024,7187,meribel trail - 35km,35000.0,3025,FEMALE,50K,114,08:24:32,2023,FR
+2024,7187,trans aubrac - trail du capuchadou,52300.0,1390,FEMALE,50K,262,07:10:34,2023,FR
+2024,7187,trail des Étoiles 05 - trail des etoiles,36000.0,2200,FEMALE,50K,118,06:06:11,2022,FR
+2024,7187,trail verbier st bernard by UTMB - verbier marathon 4000,46300.0,3985,FEMALE,50K,278,11:01:51,2022,CH
+2024,7187,volvic volcanic expérience - trail expérience  volcanique,25000.0,1000,FEMALE,20K,130,03:12:47,2022,FR
+2024,7187,menestrail - le menestrail,24500.0,820,FEMALE,20K,456,03:27:11,2021,FR
+2024,7187,les trails du sancy - le trail du sancy,35000.0,2050,FEMALE,50K,314,05:20:29,2021,FR
+2024,7187,trail verbier st bernard - liddes verbier,32700.000000000004,2560,FEMALE,50K,163,05:57:22,2021,CH
+2024,7189,swiss canyon trail - k31 swiscanyon trail,32200.000000000004,1400,FEMALE,20K,482,05:58:42,2023,CH
+2024,7190,lyon urban trail - 25 km,25000.0,800,FEMALE,20K,1688,04:08:44,2024,FR
+2024,7190,lyon urban trail by night - 15 km,15100.0,550,FEMALE,20K,1913,02:12:32,2023,FR
+2024,7193,marathon du mont-blanc - 23 km du mont-blanc,24400.0,1657,FEMALE,20K,949,04:26:54,2022,FR
+2024,7193,volvic volcanic expérience - trail expérience  volcanique,25000.0,1000,FEMALE,20K,225,03:41:47,2022,FR
+2024,7202,le grand raid de la réunion - la diagonale des fous,168400.0,10250,MALE,100M,818,47:10:18,2022,FR
+2024,7202,ultra trail causses et vallées lot  dordogne - ultra  vallées lot dordogne,183500.0,4370,MALE,100M,28,34:34:31,2020,FR
+2024,7207,hoka UTMB® mont blanc - etc,15000.0,1200,FEMALE,20K,202,02:22:21,2024,FR
+2024,7207,trail la frison roche - challenge frison,24000.0,1370,FEMALE,20K,30,02:53:41,2024,FR
+2024,7207,marathon des sables jordan - mds jordan 2024 - 120km,114000.0,2615,FEMALE,100K,40,27:58:12,2024,JO
+2024,7207,trail hivernal des coursières - 32 km,32400.0,1100,FEMALE,20K,331,03:51:41,2024,FR
+2024,7207,trail en côte-rôtie - la verticale,11000.0,550,FEMALE,,140,01:29:37,2023,FR
+2024,7207,ultra trail du beaujolais vert - utbv - 23 km,22600.0,880,FEMALE,20K,223,02:36:49,2023,FR
+2024,7208,patou trail - marathon,42000.0,3450,FEMALE,50K,502,11:59:37,2024,FR
+2024,7208,caldeira trail - trail des bruleries de la fournaise,44000.0,2800,FEMALE,50K,394,11:31:33,2023,FR
+2024,7209,trail napoléon - trail des aiglons,11000.0,400,MALE,,4,00:46:10,2022,FR
+2024,7211,raid 974 - semi-raid 974,57000.0,2800,MALE,50K,380,16:18:49,2024,FR
+2024,7212,miut® - madeira island ultra-trail® - miut 42,42000.0,1685,MALE,50K,161,05:50:44,2024,PT
+2024,7212,ultra-trail harricana du canada - 42 km classique,42000.0,1300,MALE,50K,29,05:18:51,2022,CA
+2024,7216,le grand raid de la réunion - trail de bourbon,109200.0,5960,MALE,100K,751,39:28:45,2022,FR
+2024,7216,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,757,13:37:51,2022,FR
+2024,7217,raid 974 - semi-raid 974,57000.0,2800,FEMALE,50K,357,15:14:04,2024,FR
+2024,7221,trail de la cÔte d'Émeraude - trail de la côte d'Émeraude,52700.0,1170,MALE,50K,626,07:27:39,2024,FR
+2024,7221,grand raid des pyrénées - tour du néouvielle,41000.0,2400,MALE,50K,1066,09:52:07,2024,FR
+2024,7221,a petralbinca - a petralbinca,21000.0,1500,MALE,20K,218,04:39:01,2024,FR
+2024,7223,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,96,07:56:18,2023,FR
+2024,7223,le grand raid de la réunion - zembrocal trail relais3,41400.0,2700,MALE,50K,109,09:51:17,2022,FR
+2024,7223,le grand raid de la réunion - zembrocal trail relais2,37900.0,1080,MALE,20K,1,03:58:23,2019,FR
+2024,7225,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,253,14:22:34,2022,FR
+2024,7225,le grand raid de la réunion - trail de bourbon,113700.0,6520,MALE,100M,229,29:15:42,2019,FR
+2024,7229,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,763,46:15:50,2023,FR
+2024,7229,raid 974 - raid 974,99500.0,5370,MALE,100K,103,23:30:30,2023,FR
+2024,7229,le grand raid de la réunion - trail de bourbon,105100.0,6131,MALE,100K,139,25:22:46,2021,FR
+2024,7230,le grand raid de la réunion - zembrocal trail relais2,36200.0,1210,FEMALE,20K,51,07:07:07,2023,FR
+2024,7232,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,332,11:03:10,2022,FR
+2024,7232,trail du tangue - trail du tangue,23600.0,900,MALE,20K,40,02:54:53,2020,FR
+2024,7233,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,324,40:44:01,2023,FR
+2024,7234,swisspeaks trail - marathon,43900.0,2290,MALE,50K,302,10:19:43,2023,CH
+2024,7234,le grand raid de la réunion - trail de bourbon,109200.0,5960,MALE,100K,797,40:12:58,2022,FR
+2024,7234,trail des passerelles du monteynard - la grande course,67000.0,3500,MALE,100K,374,13:18:52,2022,FR
+2024,7234,le grand raid de la réunion - la diagonale des fous,160200.0,9377,MALE,100M,1746,62:14:14,2021,FR
+2024,7234,trail de minuit - trail de minuit,56400.0,3180,MALE,50K,494,11:33:19,2020,FR
+2024,7235,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,271,14:52:25,2023,FR
+2024,7235,championnat du canigo - championnat du canigo - trail barbet,33000.0,2100,MALE,50K,196,04:56:49,2023,FR
+2024,7236,foulées du souvenir - foulées du souvenir,27800.0,1232,MALE,20K,92,03:02:31,2023,FR
+2024,7236,munster'trail - munster'trail 40km,39800.0,1790,MALE,50K,36,04:22:23,2021,FR
+2024,7236,trail du haut-barr - 28km,28700.0,1360,MALE,20K,26,02:46:41,2020,FR
+2024,7238,cimasarun - cumasarun,56200.0,3818,MALE,50K,627,13:21:36,2024,FR
+2024,7238,mafate trail tour - mafate trail tour,53900.0,3560,MALE,50K,169,10:08:41,2023,FR
+2024,7238,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,503,16:51:37,2023,FR
+2024,7238,trail du tangue - trail du tangue,26000.0,1200,MALE,20K,62,03:14:26,2019,FR
+2024,7240,patou trail -  tdv 11,11000.0,700,FEMALE,,62,01:29:53,2024,FR
+2024,7240,trail des 3 pics - 3 pics m,22500.0,1410,FEMALE,20K,49,03:04:44,2022,FR
+2024,7241,royal raid - royal raid ,66300.0,2350,MALE,50K,26,08:29:51,2019,MU
+2024,7242,trans aubrac - trans aubrac - relais 3,24300.0,740,MALE,20K,138,03:01:14,2023,FR
+2024,7242,ubaye trail salomon - parcours découverte,22900.0,1090,MALE,20K,468,03:52:04,2020,FR
+2024,7242,trail des citadelles - 50 km,52000.0,2600,MALE,50K,275,10:26:41,2019,FR
+2024,7243,hoka UTMB® mont blanc - CCC,101000.0,6050,MALE,100K,984,23:07:28,2024,FR
+2024,7243,la 6000d trail de légende - la 6000d,68700.0,3468,MALE,100K,587,11:30:14,2024,FR
+2024,7243,trail du saint-jacques by UTMB® - maratrail - 50k,51000.0,2000,MALE,50K,805,07:37:38,2024,FR
+2024,7243,trail drome - le saint-julien ,21000.0,950,MALE,20K,911,02:45:04,2024,FR
+2024,7243,trail du cirque du fer à cheval - trail 32km,32700.000000000004,1300,MALE,20K,257,04:25:11,2024,FR
+2024,7243,trail givre - trail givre,25100.0,530,MALE,20K,620,02:26:13,2024,FR
+2024,7243,ultra trail des montagnes du jura - la franco suisse,103900.0,4075,MALE,100K,234,19:35:57,2023,FR
+2024,7243,trail verbier st bernard by UTMB - x-traversee,76000.0,5300,MALE,100K,633,18:11:50,2023,CH
+2024,7243,trail du saint-jacques by UTMB® - maratrail 50k,46000.0,1450,MALE,50K,513,06:02:19,2023,FR
+2024,7243,trail des forts de besançon - 30km,30000.0,900,MALE,20K,572,03:33:36,2023,FR
+2024,7243,la asics saintélyon - la saintélyon,78000.0,2200,MALE,100K,2959,11:43:16,2022,FR
+2024,7243,belfortrail - belfortrail,58000.0,3100,MALE,50K,208,09:22:20,2022,FR
+2024,7243,ultra trail des montagnes du jura - la cmm,42700.0,1320,MALE,50K,205,05:48:12,2022,FR
+2024,7243,l'infernal trail des vosges - it 30,33700.0,1125,MALE,20K,272,04:18:47,2022,FR
+2024,7244,le grand raid de la réunion - la diagonale des fous,160200.0,9377,MALE,100M,1494,57:57:49,2021,FR
+2024,7244,cimasa - cimasarun,52000.0,3699,MALE,50K,346,10:28:30,2019,FR
+2024,7245,serre che trail - petit tour des cerces,26000.0,1850,FEMALE,20K,98,04:15:41,2024,FR
+2024,7245,serre che trail - tour des chapelles,12000.0,600,FEMALE,,56,01:13:02,2024,FR
+2024,7245,trail du gypaète - la circaète,31000.0,1570,FEMALE,20K,59,04:06:10,2024,FR
+2024,7245,trail du gresivaudan - trail relais ,30000.0,1700,FEMALE,20K,214,03:48:12,2024,FR
+2024,7245,high trail vanoise - balcons de val,18900.0,1030,FEMALE,20K,50,02:22:58,2023,FR
+2024,7245,entrelacs run and trail - trail des hauts du lac,37000.0,1750,FEMALE,50K,80,04:08:26,2023,FR
+2024,7245,le bélier blanc - trail 8 km,8000.0,330,FEMALE,,26,00:47:46,2023,FR
+2024,7250,trail des rois maudits - trm41,40700.0,1710,FEMALE,50K,346,06:47:37,2024,FR
+2024,7250,maxicross - 30 km,30500.0,1250,FEMALE,20K,708,04:25:55,2024,FR
+2024,7252,trail edf cenis tour - trail bleu,35800.0,2200,FEMALE,50K,67,05:19:08,2024,FR
+2024,7252,lozère trail - lozere trail,27000.0,1150,FEMALE,20K,32,03:07:53,2024,FR
+2024,7252,le passage du viaduc - le passage du viaduc,32000.0,820,FEMALE,20K,16,02:55:23,2024,FR
+2024,7252,les gabizos - gabizos sky race,31900.0,2400,FEMALE,50K,124,05:01:22,2021,FR
+2024,7252,trail des hauts forts - relais des contrebandiers - partie 2,22600.0,1840,FEMALE,20K,18,03:34:50,2020,FR
+2024,7256,nord trail monts de flandres - 80 km,75100.0,1797,MALE,50K,6,07:20:49,2024,FR
+2024,7256,trail d2b - marathon des plages,37500.0,350,MALE,20K,26,02:52:29,2024,FR
+2024,7256,trail côte d'opale en pas-de-calais - 80 km,80000.0,1240,MALE,50K,5,07:51:25,2023,FR
+2024,7256,restonica trail by UTMB - restonica trail,67800.0,3900,MALE,100K,86,13:34:08,2023,FR
+2024,7256,trail du chemin de la craie - moyenne distance,19900.0,340,MALE,20K,4,01:25:04,2019,FR
+2024,7261,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,325,15:59:43,2021,FR
+2024,7261,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,207,03:36:16,2020,FR
+2024,7262,trail du saint-jacques by UTMB® - les chibottes - 20k,17700.0,534,MALE,20K,240,01:49:01,2024,FR
+2024,7264,mafate trail tour - mafate trail tour,53900.0,3560,FEMALE,50K,346,11:58:54,2023,FR
+2024,7264,raid 974 - semi-raid 974,61000.0,2426,FEMALE,50K,179,13:53:26,2023,FR
+2024,7266,raid 974 - semi-raid 974,57000.0,2800,MALE,50K,362,15:28:45,2024,FR
+2024,7266,le grand raid de la réunion - zembrocal trail relais4,33400.0,1360,MALE,20K,108,07:26:23,2022,FR
+2024,7267,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,1943,62:38:16,2023,FR
+2024,7269,cimasarun - cumasarun,56200.0,3818,MALE,50K,820,15:04:29,2024,FR
+2024,7272,cimasarun - cumasarun,51700.0,3725,FEMALE,50K,762,14:04:51,2023,FR
+2024,7272,le grand raid de la réunion - la mascareignes,72000.0,3874,FEMALE,100K,629,19:04:59,2021,FR
+2024,7272,trail des anglais - trail des anglais,28000.0,1260,FEMALE,20K,911,04:56:33,2020,FR
+2024,7273,marathon du mont-blanc - duo étoilé,21500.0,1570,FEMALE,20K,320,04:28:26,2024,FR
+2024,7273,trail du gypaète - la circaète,31000.0,1570,FEMALE,20K,300,06:10:02,2024,FR
+2024,7273,ultra tour du môle - ultra verticale du môle,6000.0,1380,FEMALE,,100,01:46:05,2024,FR
+2024,7273,dacia UTMB® mont blanc - occ,55000.0,3425,FEMALE,50K,1121,10:42:39,2023,FR
+2024,7273,ultra-trail® du haut-giffre - tour de bostan,32900.0,2150,FEMALE,50K,618,06:56:07,2023,FR
+2024,7273,festival des templiers - marathon des causses,36000.0,1610,FEMALE,50K,636,06:17:31,2022,FR
+2024,7273,wildstrubel by UTMB - wild 25,25000.0,1150,FEMALE,20K,402,03:53:06,2022,CH
+2024,7273,ultra tour des 4 massifs - ut4m 40 belledonne,48100.0,2930,FEMALE,50K,324,13:26:22,2022,FR
+2024,7273,greenweez maxi-race - femina race,16700.0,950,FEMALE,20K,101,02:50:31,2022,FR
+2024,7274,mafate trail tour - ultra mafate trail tour,63400.0,4090,FEMALE,100K,271,20:59:50,2023,FR
+2024,7277,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,148,13:16:20,2022,FR
+2024,7277,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,199,03:33:50,2020,FR
+2024,7277,le grand raid de la réunion - trail de bourbon,113700.0,6520,MALE,100M,162,27:37:08,2019,FR
+2024,7277,isalo raid - semi raid 97.4,45600.0,3500,MALE,50K,37,07:58:22,2019,MG
+2024,7277,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,102,09:09:05,2019,FR
+2024,7278,ultra trail cote d'azur mercantour - utcam - 10km,9700.0,690,FEMALE,,101,01:38:38,2021,FR
+2024,7279,marathon de la vesubie - 25km de la vesubie,25000.0,1900,MALE,20K,37,03:44:03,2024,FR
+2024,7281,munster'trail - munster'trail 22km,22000.0,1000,FEMALE,20K,338,03:50:45,2024,FR
+2024,7281,trail du barrage - 21km,21000.0,880,FEMALE,20K,126,03:38:59,2024,BE
+2024,7281,trail côte d'opale en pas-de-calais - 62 km,63900.0,1040,FEMALE,50K,411,09:32:30,2024,FR
+2024,7281,marathon du mont-blanc - 23 km du mont-blanc,23600.0,1590,FEMALE,20K,1594,05:18:44,2024,FR
+2024,7281,trail godefroy | bouillon - 20km,20000.0,690,FEMALE,20K,345,02:58:02,2024,BE
+2024,7281,ohm trail - ohm trail light,25000.0,1250,FEMALE,20K,385,05:00:56,2024,BE
+2024,7281,trail du grand ballon - trail du grand ballon 23km,23400.0,980,FEMALE,20K,301,04:21:17,2024,FR
+2024,7281,trail côte d'opale en pas-de-calais - 24 km,23900.0,390,FEMALE,20K,1079,03:31:22,2023,FR
+2024,7281,marathon du mont-blanc - 23 km du mont-blanc,23600.0,1590,FEMALE,20K,2153,06:09:30,2023,FR
+2024,7281,trail du grand ballon - 22km,21900.0,1030,FEMALE,20K,290,04:05:57,2023,FR
+2024,7281,crêtes de spa - crêtes de spa 32km,32000.0,1045,FEMALE,20K,254,05:20:20,2023,BE
+2024,7281,grand trail des lacs & châteaux winter edition (gtlc)  - gt22,23000.0,1120,FEMALE,20K,419,04:13:50,2022,BE
+2024,7281,trail côte d'opale en pas-de-calais - 27 km,27000.0,410,FEMALE,20K,1190,03:26:19,2022,FR
+2024,7283,x trail corrèze dordogne - les balcons de la dordogne,27000.0,980,FEMALE,20K,489,04:17:23,2023,FR
+2024,7284,périple de l'arche - périple de l'arche,23000.0,1700,MALE,20K,4,02:36:50,2024,FR
+2024,7284,restonica trail by UTMB - tavignanu trail,33000.0,2270,MALE,50K,15,04:16:56,2024,FR
+2024,7284,a petralbinca - a petralbinca,21000.0,1500,MALE,20K,2,02:15:26,2024,FR
+2024,7284,trail napoléon - trail napoléon classic,25000.0,1500,MALE,20K,10,02:34:08,2024,FR
+2024,7284,trail gravona - trail gravona,21000.0,1600,MALE,20K,5,02:21:29,2024,FR
+2024,7284,restonica trail by UTMB - tavignanu trail,32500.0,2270,MALE,50K,14,03:59:36,2023,FR
+2024,7284,a petralbinca - a petralbinca,21000.0,1500,MALE,20K,1,02:20:14,2023,FR
+2024,7284,trail napoléon - trail napoléon classic,24000.0,1500,MALE,20K,4,02:22:18,2023,FR
+2024,7286,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,606,15:36:56,2019,FR
+2024,7287,mafate trail tour - mafate trail tour,53900.0,3560,MALE,50K,232,10:40:55,2023,FR
+2024,7288,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,213,14:44:54,2021,FR
+2024,7288,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,505,04:11:49,2020,FR
+2024,7288,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,365,14:06:57,2019,FR
+2024,7289,le grand raid de la réunion - la mascareignes,72000.0,4007,FEMALE,100K,654,17:59:58,2023,FR
+2024,7289,le grand raid de la réunion - zembrocal trail relais2,36200.0,1210,FEMALE,20K,33,06:56:24,2022,FR
+2024,7290,luchon aneto trail - la route 3404,47300.0,2700,MALE,50K,149,07:17:46,2024,FR
+2024,7290,menestrail - le grand menestrail,54000.0,2000,MALE,50K,459,08:00:36,2023,FR
+2024,7290,grand raid des pyrénées - tour des cirques,122800.0,7284,MALE,100M,195,31:18:11,2023,FR
+2024,7290,festival des templiers - endurance trail,105200.0,4550,MALE,100K,375,18:40:20,2022,FR
+2024,7290,trail du saint-jacques by UTMB® - ultra du saint-jacques,123000.0,5150,MALE,100M,89,21:28:39,2022,FR
+2024,7290,menestrail - grand menestrail de moncontour,57000.0,1960,MALE,50K,278,07:49:21,2021,FR
+2024,7290,festival des templiers - intégrale des causses,63800.0,2890,MALE,50K,78,09:56:24,2021,FR
+2024,7291,caldeira trail - petite caldeira,49800.0,2630,MALE,50K,320,10:56:05,2019,FR
+2024,7292,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,177,09:52:50,2023,FR
+2024,7294,trail de minuit - trail de minuit,56400.0,3180,MALE,50K,815,13:35:01,2020,FR
+2024,7295,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,1057,05:16:17,2020,FR
+2024,7295,le grand raid de la réunion - trail de bourbon,113700.0,6520,MALE,100M,712,39:05:13,2019,FR
+2024,7295,isalo raid - semi raid 97.4,45600.0,3500,MALE,50K,228,12:05:11,2019,MG
+2024,7295,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,851,13:52:43,2019,FR
+2024,7298,ultra tour des 4 massifs - ut4m 50 belledonne,47700.0,2890,MALE,50K,115,07:32:10,2024,FR
+2024,7298,ultra tour des 4 massifs - ut4m20 vercors,20000.0,1900,MALE,20K,25,03:16:35,2024,FR
+2024,7298,ecotrail paris® - trail 45km,45800.0,800,MALE,50K,584,04:48:56,2024,FR
+2024,7298,nice côte d’azur by UTMB® - nice 50k,62000.0,3300,MALE,50K,783,12:36:41,2023,FR
+2024,7299,grand trail de la vallée d'ossau - tvo,26250.0,1550,FEMALE,20K,341,05:48:33,2024,FR
+2024,7299,grand trail de la vallée d'ossau - tvo,26250.0,1550,FEMALE,20K,336,05:49:49,2023,FR
+2024,7307,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,392,15:55:14,2023,FR
+2024,7307,le grand raid de la réunion - la diagonale des fous,168400.0,10250,MALE,100M,1514,56:42:34,2022,FR
+2024,7307,le grand raid de la réunion - trail de bourbon,105100.0,6131,MALE,100K,302,30:03:42,2021,FR
+2024,7308,caldeira trail - ultra caldeira trail,71200.0,1880,MALE,50K,318,19:15:22,2020,FR
+2024,7308,transvolcano - transvolcano,45500.0,1680,MALE,50K,295,10:14:32,2020,FR
+2024,7309,ultra marin raid golfe du morbihan - trail golfe du morbihan,58200.0,350,MALE,50K,387,06:49:11,2019,FR
+2024,7310,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,513,33:50:05,2023,FR
+2024,7310,le grand raid de la réunion - la diagonale des fous,160200.0,9377,MALE,100M,433,42:09:51,2021,FR
+2024,7311,trail des passerelles du monteynard - le 3ème poste,17700.0,800,MALE,20K,66,02:08:21,2024,FR
+2024,7311,marathon du mont-blanc - duo étoilé,21500.0,1570,MALE,20K,51,03:14:35,2024,FR
+2024,7311,trail du saint-jacques by UTMB® - les chibottes - 20k,17700.0,534,MALE,20K,154,01:40:28,2024,FR
+2024,7311,la asics saintélyon - la saintésprint,24000.0,412,MALE,20K,317,02:10:54,2023,FR
+2024,7311,trail du saint-jacques by UTMB® - les chibottes - 20k,18000.0,600,MALE,20K,266,01:57:49,2023,FR
+2024,7313,dodo trail - trooper 25km,23700.0,1450,MALE,20K,73,04:42:55,2023,MU
+2024,7315,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,178,13:49:10,2023,FR
+2024,7323,trail de nantes à montaigu - trail de la digue,53000.0,634,MALE,50K,369,07:13:05,2024,FR
+2024,7323,les courses du père noel - la surprise du pere noel -35km,35600.0,850,MALE,20K,283,04:40:51,2023,FR
+2024,7327,l'hivernale de la grande champagne - nuit noire,15500.0,580,MALE,20K,22,01:32:24,2024,FR
+2024,7327,festival des templiers - monna lisa,27900.0,1140,MALE,20K,175,03:56:18,2023,FR
+2024,7328,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,558,04:18:46,2020,FR
+2024,7329,wildstrubel by UTMB - wild 50,37000.0,1700,FEMALE,50K,839,05:58:59,2024,CH
+2024,7329,le salaozy festival nature - kmv libre,2500.0,990,FEMALE,,58,01:30:13,2019,FR
+2024,7329,le salaozy festival nature - la salazienne,34000.0,2100,FEMALE,50K,155,07:41:01,2019,FR
+2024,7330,le grand raid de la réunion - la mascareignes,72000.0,4007,FEMALE,100K,760,18:44:12,2023,FR
+2024,7333,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,1280,06:09:57,2020,FR
+2024,7334,le grand raid de la réunion - zembrocal trail relais4,33400.0,1360,MALE,20K,98,07:12:55,2022,FR
+2024,7334,le grand raid de la réunion - la diagonale des fous,168100.0,9610,MALE,100M,1444,55:46:28,2019,FR
+2024,7334,cimasa - cimasarun,52000.0,3699,MALE,50K,420,10:56:27,2019,FR
+2024,7334,isalo raid - semi raid 97.4,45600.0,3500,MALE,50K,116,09:41:20,2019,MG
+2024,7334,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,468,11:37:27,2019,FR
+2024,7336,le grand raid de la réunion - zembrocal trail relais2,36200.0,1210,MALE,20K,125,08:42:38,2023,FR
+2024,7336,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,824,04:46:23,2020,FR
+2024,7338,le grand raid de la réunion - trail de bourbon,109000.0,6328,FEMALE,100M,970,40:10:56,2023,FR
+2024,7338,le grand raid de la réunion - la mascareignes,72000.0,3874,FEMALE,100K,707,19:38:34,2021,FR
+2024,7338,trail des anglais - trail des anglais,28000.0,1260,FEMALE,20K,1084,05:20:40,2020,FR
+2024,7338,le grand raid de la réunion - la mascareignes,66200.0,3550,FEMALE,100K,1097,18:17:48,2019,FR
+2024,7340,dodo trail - trooper 25km,23700.0,1450,MALE,20K,14,03:35:10,2024,MU
+2024,7340,la ferme trail - la ferme trail,23500.0,1050,MALE,20K,15,03:06:10,2023,MU
+2024,7340,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,220,14:00:54,2022,FR
+2024,7340,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,184,03:31:49,2020,FR
+2024,7340,cimasa - cimasarun,52000.0,3699,MALE,50K,329,10:24:07,2019,FR
+2024,7341,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,316,29:49:26,2023,FR
+2024,7341,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,95,12:33:37,2022,FR
+2024,7341,trail de minuit - trail de minuit,56400.0,3180,MALE,50K,73,08:31:21,2020,FR
+2024,7341,trail des 2 rivieres -  st jo trail d 2 rivieres,61600.0,2760,MALE,50K,44,08:11:00,2019,FR
+2024,7342,le grand raid de la réunion - trail de bourbon,109200.0,5960,MALE,100K,184,27:06:47,2022,FR
+2024,7342,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,345,16:12:38,2021,FR
+2024,7342,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,435,04:04:04,2020,FR
+2024,7344,trail du ventoux - balcons des jas,29000.0,1550,MALE,20K,488,05:13:31,2024,FR
+2024,7345,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,797,20:19:13,2021,FR
+2024,7348,lyon urban trail by night - 15 km,15100.0,550,MALE,20K,1522,02:00:26,2023,FR
+2024,7349,le grand raid de la réunion - trail de bourbon,109000.0,6328,FEMALE,100M,923,39:35:33,2023,FR
+2024,7350,mauritius by UTMB - black river peak - v2,126300.0,4800,MALE,100M,32,24:08:39,2024,MU
+2024,7350,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,267,14:49:21,2023,FR
+2024,7350,cimasarun - cumasarun,51700.0,3725,MALE,50K,242,10:30:42,2023,FR
+2024,7350,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,59,07:06:17,2022,FR
+2024,7350,le grand raid de la réunion - la diagonale des fous,160200.0,9377,MALE,100M,769,46:29:47,2021,FR
+2024,7351,marathon du grand ballon - 16km,16000.0,850,FEMALE,20K,54,02:05:44,2022,FR
+2024,7353,marathon du mont-blanc - duo étoilé,21500.0,1570,FEMALE,20K,322,04:29:43,2024,FR
+2024,7353,trail des chamois - le petit chamois,18000.0,730,FEMALE,20K,262,02:39:53,2024,FR
+2024,7353,marathon du mont-blanc - 10 km du mont-blanc,9800.0,270,FEMALE,,1075,01:15:38,2023,FR
+2024,7354,trail des mélèzes du mercantour - 25km,26800.0,1870,FEMALE,20K,30,03:19:01,2024,FR
+2024,7354,marathon du mont-blanc - 42 km du mont-blanc,44400.0,2500,FEMALE,50K,580,06:46:29,2022,FR
+2024,7354,trail napoléon - trail napoléon impérial,43000.0,1700,FEMALE,50K,66,06:35:49,2022,FR
+2024,7354,trail de bormes les mimosas - la borméenne,10000.0,550,FEMALE,,51,01:08:17,2019,FR
+2024,7355,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,924,39:35:34,2023,FR
+2024,7355,le grand raid de la réunion - zembrocal trail relais3,48200.0,4170,MALE,50K,69,14:32:32,2019,FR
+2024,7359,mafate trail tour - mafate trail tour,53900.0,3560,MALE,50K,149,09:54:12,2023,FR
+2024,7359,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,284,14:58:40,2023,FR
+2024,7359,le grand raid de la réunion - la diagonale des fous,168400.0,10250,MALE,100M,1132,50:26:05,2022,FR
+2024,7359,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,224,10:19:47,2022,FR
+2024,7361,le grand raid de la réunion - trail de bourbon,109200.0,5960,MALE,100K,320,31:00:04,2022,FR
+2024,7363,trail du tangue - trail du tangue,23600.0,900,MALE,20K,155,03:34:41,2020,FR
+2024,7367,raid 974 - semi-raid 974,57000.0,2800,MALE,50K,208,12:26:10,2024,FR
+2024,7367,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,785,13:49:06,2022,FR
+2024,7367,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,981,17:43:58,2019,FR
+2024,7368,le grand raid de la réunion - trail de bourbon,109200.0,5960,FEMALE,100K,859,41:57:14,2022,FR
+2024,7373,raid 974 - semi-raid 974,61000.0,2426,FEMALE,50K,26,10:26:18,2023,FR
+2024,7373,le grand raid de la réunion - la mascareignes,66200.0,3550,FEMALE,100K,20,09:49:43,2019,FR
+2024,7378,swiss canyon trail - k51 swiss canyon trail,51000.0,2500,MALE,50K,26,05:19:30,2023,CH
+2024,7378,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,59,08:38:49,2022,FR
+2024,7378,le grand raid de la réunion - zembrocal trail relais2,38100.0,1300,MALE,50K,1,03:37:48,2021,FR
+2024,7378,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,234,13:05:38,2019,FR
+2024,7378,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,56,08:27:35,2019,FR
+2024,7380,cimalp tignes trail - 26km,25900.0,1440,FEMALE,20K,310,05:27:10,2024,FR
+2024,7380,la 6000d trail de légende - la 6d lacs,30000.0,1520,FEMALE,20K,584,05:15:50,2024,FR
+2024,7380,ecotrail paris® - trail 30 km,31300.0,520,FEMALE,20K,2821,04:12:48,2024,FR
+2024,7381,les crêtes vosgiennes - les crêtes vosgiennes,32700.000000000004,1280,MALE,20K,51,03:07:47,2024,FR
+2024,7381,trail alsace grand est by UTMB - trail des celtes,50000.0,1980,MALE,50K,194,05:35:26,2024,FR
+2024,7381,trail du petit ballon - marathon du petit ballon 42 km,42730.0,1346,MALE,50K,79,04:23:57,2024,FR
+2024,7381,terre de feu  - terre de feu le grand,29200.0,1460,MALE,20K,127,03:10:02,2024,FR
+2024,7381,la landsberg - le grand,23000.0,870,MALE,20K,28,01:57:38,2023,FR
+2024,7381,la belmontée de feu - la belmontée de feu,16000.0,1000,MALE,20K,13,01:31:37,2023,FR
+2024,7388,challenge trail-nature - la montliardaise,25000.0,300,MALE,20K,94,03:22:06,2019,FR
+2024,7390,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,FEMALE,50K,135,08:37:10,2023,FR
+2024,7392,luchon aneto trail - la venasque,45000.0,2800,FEMALE,50K,290,08:10:55,2024,FR
+2024,7392,luchon aneto trail - la kbour,19700.0,1370,FEMALE,20K,382,03:44:58,2022,FR
+2024,7393,half marathon des sables fuerteventura - hmds fuerteventura 2022 - 120km,97000.0,2379,FEMALE,100K,272,16:48:28,2022,ES
+2024,7397,lyon urban trail by night - 26 km ,26200.0,860,MALE,20K,1068,03:17:16,2019,FR
+2024,7408,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,942,19:30:04,2022,FR
+2024,7408,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,846,14:23:54,2022,FR
+2024,7411,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,153,12:15:28,2019,FR
+2024,7412,caldeira trail - bruleries de la fournaise,47400.0,1130,FEMALE,50K,257,12:44:02,2020,FR
+2024,7413,grand raid des pyrénées - tour du néouvielle,41000.0,2400,FEMALE,50K,146,06:44:34,2024,FR
+2024,7413,trail de vulcain - riom limagne & volcans,22000.0,860,FEMALE,20K,52,02:04:56,2024,FR
+2024,7413,trail la rosiere - 40 km,40000.0,3000,FEMALE,50K,38,07:09:35,2023,FR
+2024,7413,marathon du mont-blanc - 10 km du mont-blanc,9800.0,270,FEMALE,,151,00:51:47,2023,FR
+2024,7413,trail de vulcain - riom limagne & volcans,22000.0,880,FEMALE,20K,70,02:06:50,2023,FR
+2024,7413,restonica trail by UTMB - tavignanu trail,32500.0,2270,FEMALE,50K,179,06:14:32,2022,FR
+2024,7413,trail de vulcain - riom limagne & volcans,22000.0,880,FEMALE,20K,136,02:23:03,2022,FR
+2024,7415,le salaozy festival nature - mini salazienne,23100.0,1280,FEMALE,20K,39,03:47:55,2019,FR
+2024,7415,cilaos women trail - cilaos women trail,20000.0,1100,FEMALE,20K,12,03:12:46,2019,FR
+2024,7420,caldeira trail - bruleries de la fournaise,47400.0,1130,FEMALE,50K,145,08:44:32,2020,FR
+2024,7424,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,508,33:48:31,2023,FR
+2024,7424,cimasarun - cumasarun,51700.0,3725,MALE,50K,237,10:27:04,2023,FR
+2024,7424,le grand raid de la réunion - la diagonale des fous,168400.0,10250,MALE,100M,1260,52:21:54,2022,FR
+2024,7424,le grand raid de la réunion - trail de bourbon,105100.0,6131,MALE,100K,543,35:59:27,2021,FR
+2024,7424,caldeira trail - ultra caldeira trail,71200.0,1880,MALE,50K,162,14:54:11,2020,FR
+2024,7425,le grand raid de la réunion - zembrocal trail relais2,36200.0,1210,MALE,20K,171,09:38:18,2022,FR
+2024,7427,le grand raid de la réunion - trail de bourbon,109200.0,5960,MALE,100K,81,24:06:35,2022,FR
+2024,7427,transvolcano - transvolcano,45500.0,1680,MALE,50K,13,05:38:46,2019,FR
+2024,7428,trail du laudon - trail de la bauche,25000.0,1100,MALE,20K,67,03:15:24,2024,FR
+2024,7428,ultra trail chic-chocs - le demi marathon des altitudes,23400.0,1220,MALE,20K,32,03:15:15,2023,CA
+2024,7429,trail margeride - lou pas del ase,25000.0,850,MALE,20K,5,01:54:41,2023,FR
+2024,7430,trail des chateaux - trail d'harcourt,26000.0,750,FEMALE,20K,189,03:28:36,2024,FR
+2024,7430,trail du saint-jacques by UTMB® - maratrail - 50k,51000.0,2000,FEMALE,50K,914,07:51:53,2024,FR
+2024,7430,trail sud touraine  - 47km,46600.0,1000,FEMALE,50K,212,07:27:35,2024,FR
+2024,7430,trail des chateaux - trail des evèques,52000.0,1200,FEMALE,50K,49,07:12:04,2023,FR
+2024,7430,trans aubrac - trans aubrac relais 1,25000.0,680,FEMALE,20K,64,02:20:27,2022,FR
+2024,7432,trail du ventoux - aoc ventoux trail,15000.0,350,FEMALE,,116,01:34:14,2024,FR
+2024,7432,ceven'trail - trail aux étoiles 63 km,63000.0,2600,FEMALE,50K,279,12:11:37,2023,FR
+2024,7432,ergysport trail du ventoux - 46 kms,47100.0,2340,FEMALE,50K,900,08:59:29,2022,FR
+2024,7432,ergysport trail du ventoux - 46 km,45800.0,2438,FEMALE,50K,634,08:56:08,2021,FR
+2024,7432,trail des passerelles du monteynard - trail du grand ebron 20km,19400.0,880,FEMALE,20K,431,03:16:32,2020,FR
+2024,7433,cimasarun - cumasarun,56200.0,3818,MALE,50K,501,12:28:57,2024,FR
+2024,7434,raid 974 - semi-raid 974,61000.0,2426,MALE,50K,302,18:31:42,2023,FR
+2024,7437,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,1536,56:48:02,2023,FR
+2024,7437,caldeira trail - ultra caldeira trail,94000.0,4000,MALE,100K,120,22:04:17,2023,FR
+2024,7437,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,395,15:27:55,2022,FR
+2024,7437,le grand raid de la réunion - trail de bourbon,105100.0,6131,MALE,100K,356,31:33:41,2021,FR
+2024,7437,caldeira trail - ultra caldeira trail,71200.0,1880,MALE,50K,166,15:03:18,2020,FR
+2024,7438,millet xtrail courchevel - xt 33km,33300.0,2170,FEMALE,50K,124,06:14:09,2024,FR
+2024,7438,ultra tour des 4 massifs - ut4m 20 belledonne,22500.0,2020,FEMALE,20K,101,04:11:33,2024,FR
+2024,7438,trail nivolet-revard - trail la voglanaise,14500.0,450,FEMALE,,177,01:40:19,2024,FR
+2024,7438,pilatrail - traversée des 3 dents,21000.0,1150,FEMALE,20K,333,03:47:22,2022,FR
+2024,7442,trail les 3 monts - mont macaron,15000.0,800,FEMALE,20K,26,02:19:05,2024,FR
+2024,7442,half marathon des sables jordan - hmds jordan 2023 - 120km,115400.0,2615,FEMALE,100K,40,18:16:41,2023,JO
+2024,7442,half marathon des sables fuerteventura - hmds fuerteventura 2022 - 120km,97000.0,2379,FEMALE,100K,141,14:42:41,2022,ES
+2024,7442,le trail des hobbits - la semi-comtoise,23300.0,490,FEMALE,20K,121,02:55:59,2019,FR
+2024,7443,trail du grand ballon - trail du grand ballon 32km,32000.0,1260,FEMALE,20K,312,05:10:55,2024,FR
+2024,7443,trail de bruxelles - 15km,15000.0,200,FEMALE,,169,01:33:51,2023,BE
+2024,7443,trail de bruxelles - 21km,21000.0,375,FEMALE,20K,303,02:26:52,2022,BE
+2024,7444,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,1012,05:09:58,2020,FR
+2024,7446,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,1108,18:17:59,2019,FR
+2024,7452,le grand raid de la réunion - la mascareignes,74100.0,4000,FEMALE,100K,566,16:50:06,2022,FR
+2024,7452,trail de minuit - trail de minuit,54200.0,3180,FEMALE,50K,613,12:41:32,2022,FR
+2024,7454,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,1005,17:54:57,2019,FR
+2024,7455,mafate trail tour - mafate trail tour,53900.0,3560,FEMALE,50K,528,14:09:27,2023,FR
+2024,7455,grand raid du guillestrois-queyras - le trail des lacs,45000.0,3200,FEMALE,50K,187,13:35:10,2023,FR
+2024,7459,mafate trail tour - mafate trail tour,51900.0,3430,MALE,50K,380,14:21:49,2019,FR
+2024,7459,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,1104,18:17:55,2019,FR
+2024,7459,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,1018,15:45:05,2019,FR
+2024,7461,ultra trail haut-koenigsbourg ® - thk 25 km,25000.0,920,MALE,20K,134,02:38:40,2024,FR
+2024,7461,les crêtes vosgiennes - les crêtes vosgiennes,32700.000000000004,1280,MALE,20K,317,04:00:24,2024,FR
+2024,7461,trail du pays welche - les balcons d'orbey,26000.0,1000,MALE,20K,67,02:45:12,2024,FR
+2024,7461,trail du vieil armand - le moyen,15000.0,500,MALE,20K,105,01:23:57,2024,FR
+2024,7461,foulées du souvenir - foulées du souvenir,27800.0,1232,MALE,20K,353,03:57:26,2023,FR
+2024,7461,trail du pays welche - les balcons d'orbey,26000.0,1000,MALE,20K,162,03:15:17,2023,FR
+2024,7463,trail de la cité de pierres - 16km,16000.0,850,MALE,20K,252,02:48:09,2023,FR
+2024,7463,festival des templiers - vo2 trail,19200.0,810,MALE,20K,596,03:14:20,2021,FR
+2024,7464,le grand raid de la réunion - la diagonale des fous,167300.0,9710,MALE,100M,1987,63:12:44,2023,FR
+2024,7464,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,897,14:47:45,2022,FR
+2024,7464,trail de minuit - trail de minuit,56400.0,3180,MALE,50K,585,12:03:31,2020,FR
+2024,7468,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,933,17:32:59,2019,FR
+2024,7470,le grand raid de la réunion - zembrocal trail relais3,41400.0,2700,MALE,50K,128,10:59:01,2023,FR
+2024,7474,le grand raid de la réunion - la mascareignes,72000.0,3874,FEMALE,100K,59,12:17:41,2021,FR
+2024,7474,trail de minuit - trail de minuit,56400.0,3180,FEMALE,50K,69,08:28:10,2020,FR
+2024,7478,hoka UTMB® mont blanc - occ,57000.0,3500,MALE,50K,678,10:45:13,2024,FR
+2024,7478,mad'trail - mad'trail,61900.0,3933,MALE,100K,104,14:24:06,2024,FR
+2024,7478,trail sainte-victoire - trail sainte victoire-les crêtes,60000.0,3000,MALE,50K,195,10:27:51,2024,FR
+2024,7478,les 40 bosses - les 40 bosses - 45km,45000.0,2100,MALE,50K,173,05:59:41,2023,FR
+2024,7478,nice côte d’azur by UTMB® - nice 50k,62000.0,3300,MALE,50K,707,12:18:00,2023,FR
+2024,7478,le belier - trail 42km | le marathon du bélier,42200.0,2040,MALE,50K,311,05:51:12,2023,FR
+2024,7478,trail du tour des fiz - tour des 8 refuges,61700.0,4410,MALE,100K,193,12:49:41,2023,FR
+2024,7478,maxicross - 42 km,43300.0,1800,MALE,50K,182,04:47:24,2023,FR
+2024,7478,trail des châtaignes - 30 km,30500.0,1210,MALE,20K,105,02:50:07,2022,FR
+2024,7478,le belier - trail 42km | le marathon du bélier,42000.0,1980,MALE,50K,214,05:40:31,2022,FR
+2024,7478,la 6000d trail de légende - la 6000d,69200.0,3450,MALE,100K,261,09:59:37,2022,FR
+2024,7478,raidlight trail festival - maratour,47000.0,3100,MALE,50K,95,07:07:24,2022,FR
+2024,7478,ergysport trail du ventoux - 46 kms,47100.0,2340,MALE,50K,386,06:32:59,2022,FR
+2024,7478,maxicross - 42 km,42000.0,1900,MALE,50K,161,05:29:37,2022,FR
+2024,7478,festival des hospitaliers - trail des hospitaliers,75200.0,3520,MALE,100K,103,11:23:44,2021,FR
+2024,7478,belle-île en trail - ultra des vagues,81000.0,2250,MALE,100K,164,10:47:33,2021,FR
+2024,7478,impérial trail de fontainebleau - marth'bleau,43000.0,960,MALE,50K,71,04:31:22,2021,FR
+2024,7478,UTMB® - mcc,38900.0,2290,MALE,50K,427,06:40:01,2021,FR
+2024,7478,luchon aneto trail - la venasque,44600.0,3050,MALE,50K,144,08:05:45,2021,FR
+2024,7478,ergysport trail du ventoux - 46 km,45800.0,2438,MALE,50K,434,07:03:52,2021,FR
+2024,7479,hoka UTMB® mont blanc - TDS,148000.0,9300,MALE,100M,992,43:11:08,2024,FR
+2024,7479,mauritius by UTMB - chamarel,100600.0,4139,MALE,100K,32,19:52:10,2024,MU
+2024,7479,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,479,33:10:44,2023,FR
+2024,7479,eiger ultra-trail® by UTMB - e51 panorama trail,51000.0,3000,MALE,50K,312,09:15:52,2023,CH
+2024,7479,ultra trail du vercors - crazy trail,46000.0,2600,MALE,50K,112,07:29:36,2022,FR
+2024,7479,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,162,14:05:09,2021,FR
+2024,7480,trail du grand sénonais - la l'yonne,41700.0,730,FEMALE,20K,114,05:37:39,2024,FR
+2024,7480,ecotrail paris® - trail 30 km,31300.0,520,FEMALE,20K,2559,03:54:53,2024,FR
+2024,7480,le grand raid de la réunion - la mascareignes,74100.0,4000,FEMALE,100K,734,18:03:35,2022,FR
+2024,7481,le grand raid de la réunion - la mascareignes,72000.0,3874,MALE,100K,640,19:09:23,2021,FR
+2024,7482,trail givré - trail givré,23200.0,440,MALE,20K,558,02:30:10,2020,FR
+2024,7482,lyon urban trail - 24 km,24200.0,1030,MALE,20K,472,02:40:28,2019,FR
+2024,7484,raid 974 - semi-raid 974,57000.0,2800,MALE,50K,352,15:00:53,2024,FR
+2024,7484,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,774,18:20:59,2022,FR
+2024,7484,le grand raid de la réunion - la mascareignes,66200.0,3550,MALE,100K,714,16:23:04,2019,FR
+2024,7484,isalo raid - semi raid 97.4,45600.0,3500,MALE,50K,133,10:09:32,2019,MG
+2024,7488,cimasa - cimasarun,52000.0,3699,MALE,50K,570,11:57:06,2019,FR
+2024,7488,caldeira trail - petite caldeira,49800.0,2630,MALE,50K,180,09:13:17,2019,FR
+2024,7491,le grand raid de la réunion - trail de bourbon,109000.0,6328,MALE,100M,84,23:17:24,2023,FR
+2024,7491,cimasarun - cumasarun,51700.0,3725,MALE,50K,30,08:06:56,2023,FR
+2024,7491,sierre-zinal - sierre-zinal,31300.0,2190,MALE,50K,385,03:45:35,2022,CH
+2024,7491,ultra trail cote d'azur mercantour - utcam - 50km,52700.0,4050,MALE,50K,38,10:34:51,2022,FR
+2024,7491,"ohm trail, belgian championship trail  - ohm trail original",35900.0,1860,MALE,50K,52,04:09:02,2022,BE
+2024,7491,serre che trail - marathon des cerces,45800.0,3210,MALE,50K,19,06:50:35,2021,FR
+2024,7491,montreux trail festival - mxsky,29900.0,2200,MALE,50K,83,04:28:47,2021,CH
+2024,7494,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,607,04:24:09,2020,FR
+2024,7494,le grand raid de la réunion - zembrocal trail relais3,48200.0,4170,MALE,50K,79,14:57:33,2019,FR
+2024,7501,scarpa trail de la vallée des lacs - trail long de la vallee des lacs,43600.0,2370,MALE,50K,184,06:20:55,2024,FR
+2024,7501,l'infernal trail des vosges - l'infernal 30,31600.0,1170,MALE,20K,195,03:43:29,2020,FR
+2024,7501,l'infernal trail des vosges - 60 km,68700.0,2990,MALE,50K,150,10:41:45,2019,FR
+2024,7501,nordic'trail la bresse - 40 km,41500.0,2030,MALE,50K,74,05:35:45,2019,FR
+2024,7504,swisspeaks trail - marathon,43900.0,2290,FEMALE,50K,267,09:44:07,2023,CH
+2024,7504,trail du vélan - petit trail du vélan,21000.0,2180,FEMALE,20K,128,05:58:24,2023,CH
+2024,7504,montreux trail festival - freddie's night,14100.0,715,FEMALE,20K,97,02:17:38,2022,CH
+2024,7504,trail du vélan - petit trail du vélan,21000.0,1990,FEMALE,20K,102,06:13:42,2022,CH
+2024,7504,humani'trail - trail du yak,17300.0,870,FEMALE,20K,251,02:56:16,2021,CH
+2024,7506,trail de minuit - trail de minuit,54200.0,3180,FEMALE,50K,834,14:17:46,2022,FR
+2024,7506,le grand raid de la réunion - zembrocal trail relais2,37900.0,1080,FEMALE,20K,65,08:07:25,2019,FR
+2024,7510,le grand raid de la réunion - zembrocal trail relais2,36200.0,1210,MALE,20K,123,08:39:20,2023,FR
+2024,7510,x trail corrèze dordogne - trail des tours,53000.0,2400,MALE,50K,304,10:15:42,2023,FR
+2024,7510,luchon aneto trail - la kbour,21000.0,1300,MALE,20K,179,02:54:22,2023,FR
+2024,7514,le grand raid de la réunion - la mascareignes,72000.0,4007,MALE,100K,984,20:22:10,2023,FR
+2024,7514,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,178,09:40:08,2022,FR
+2024,7514,le grand raid de la réunion - zembrocal trail relais1,44000.0,3815,MALE,50K,102,12:09:39,2019,FR
+2024,7514,cimasa - cimasarun,52000.0,3699,MALE,50K,481,11:24:10,2019,FR
+2024,7514,utrb ile maurice - trail du nautile,24600.0,380,MALE,20K,52,03:02:03,2019,MU
+2024,7516,la montagn'hard - la montagn'hard bif et arrêt les contamines,42000.0,2900,FEMALE,50K,22,09:13:29,2024,FR
+2024,7516,la montagn'hard - la mini'hard,26500.0,1810,FEMALE,20K,146,04:31:00,2023,FR
+2024,7518,la 6000d trail de légende - la 6000d,68700.0,3468,FEMALE,100K,626,11:38:19,2024,FR
+2024,7518,trail du saint-jacques by UTMB® - maratrail - 50k,51000.0,2000,FEMALE,50K,804,07:37:37,2024,FR
+2024,7518,trail drome - sur les traces des barons,58000.0,2950,FEMALE,50K,511,09:12:03,2024,FR
+2024,7518,trail du cirque du fer à cheval - trail 32km,32700.000000000004,1300,FEMALE,20K,256,04:25:11,2024,FR
+2024,7518,trail givre - trail givre,25100.0,530,FEMALE,20K,671,02:31:25,2024,FR
+2024,7518,la asics saintélyon - la saintélyon,78000.0,2201,FEMALE,100K,3594,11:52:01,2023,FR
+2024,7518,trail du saint-jacques by UTMB® - maratrail 50k,46000.0,1450,FEMALE,50K,447,05:52:43,2023,FR
+2024,7518,trail des forts de besançon - 60 km,60000.0,2300,FEMALE,50K,322,08:33:09,2023,FR
+2024,7518,ultra trail des montagnes du jura - la cmm,42700.0,1320,FEMALE,50K,223,05:55:52,2022,FR
+2024,7518,l'infernal trail des vosges - it 30,33700.0,1125,FEMALE,20K,271,04:18:46,2022,FR
+2024,7518,l'infernal trail des vosges - it 30,35400.0,1200,FEMALE,20K,222,04:32:23,2021,FR
+2024,7520,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,1118,05:27:14,2020,FR
+2024,7520,trail de minuit - trail de minuit ,56400.0,3180,MALE,50K,1000,15:23:56,2019,FR
+2024,7520,caldeira trail - petite caldeira,49800.0,2630,MALE,50K,322,10:56:07,2019,FR
+2024,7521,le grand raid de la réunion - zembrocal trail relais4,33400.0,1360,MALE,20K,124,08:09:03,2023,FR
+2024,7521,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,993,05:04:50,2020,FR
+2024,7523,la asics saintélyon - la saintexpress,44000.0,974,MALE,50K,2122,06:12:26,2023,FR
+2024,7523,trail des châtaignes - les châtaignes,32000.0,1200,MALE,20K,428,04:32:38,2023,FR
+2024,7523,la asics saintélyon - la saintexpress,44000.0,1150,MALE,50K,1657,06:06:35,2022,FR
+2024,7523,la asics saintélyon - la saintésprint,23300.0,410,MALE,20K,1041,02:34:33,2021,FR
+2024,7523,greenweez maxi-race - short-race,16500.0,950,MALE,20K,207,02:53:51,2021,FR
+2024,7523,hoka xtrail courchevel - xt 22km,22000.0,1600,MALE,20K,91,05:06:46,2021,FR
+2024,7523,ecotrail paris ile-de-france® - trail 30 km,31000.0,470,MALE,20K,1166,03:50:28,2021,FR
+2024,7524,le grand raid de la réunion - la diagonale des fous,168100.0,9610,MALE,100M,576,44:34:57,2019,FR
+2024,7526,le grand raid de la réunion - zembrocal trail relais1,44300.0,3950,MALE,50K,66,12:47:40,2021,FR
+2024,7526,trail du tangue - trail du tangue,23600.0,900,MALE,20K,19,02:37:55,2020,FR
+2024,7526,mafate trail tour - mafate trail tour,51900.0,3430,MALE,50K,42,08:35:25,2019,FR
+2024,7526,trail du tour des fiz - balcon des fiz - radio mont-blanc,15400.0,730,MALE,20K,28,01:26:09,2019,FR
+2024,7526,isalo raid - semi raid 97.4,45600.0,3500,MALE,50K,30,07:40:58,2019,MG
+2024,7527,trail d2b - moyenne distance,22400.0,130,MALE,20K,263,02:30:25,2019,FR
+2024,7531,high trail vanoise - trail des 6 cols ,32000.0,2600,FEMALE,50K,134,06:12:47,2024,FR
+2024,7531,ultra trail des montagnes du jura - la cmm,42700.0,1320,FEMALE,50K,161,05:32:01,2022,FR
+2024,7531,trail verbier st bernard by UTMB - verbier marathon 4000,46300.0,3985,FEMALE,50K,215,10:16:32,2022,CH
+2024,7531,trail sainte-victoire - le cézanne,39000.0,1790,FEMALE,50K,117,05:17:28,2022,FR
+2024,7531,les trails du sancy - le trail du sancy,35000.0,2050,FEMALE,50K,326,05:21:36,2021,FR
+2024,7531,trail verbier st bernard - liddes verbier,32700.000000000004,2560,FEMALE,50K,163,05:57:22,2021,CH
+2024,7531,swiss canyon trail - k31,32299.999999999996,1520,FEMALE,20K,153,03:23:26,2021,CH
+2024,7532,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,239,03:40:48,2020,FR
+2024,7534,le grand raid de la réunion - zembrocal trail relais3,48200.0,4170,MALE,50K,42,13:09:43,2019,FR
+2024,7535,le grand raid de la réunion - zembrocal trail relais1,37200.0,2720,MALE,50K,99,07:49:02,2022,FR
+2024,7535,le grand raid de la réunion - zembrocal trail relais3,48200.0,4170,MALE,50K,55,14:01:07,2019,FR
+2024,7538,le belier - trail 27km | le bélier,27000.0,1090,FEMALE,20K,986,04:33:19,2024,FR
+2024,7538,le belier - trail 15km | l'agneau,15000.0,650,FEMALE,20K,608,02:13:04,2024,FR
+2024,7538,marathon du grand ballon - 22km,22000.0,1200,FEMALE,20K,311,03:51:44,2024,FR
+2024,7538,landelow trail - le long,25000.0,1100,FEMALE,20K,283,03:38:18,2024,FR
+2024,7538,le belier - trail 27km | le bélier,27000.0,1270,FEMALE,20K,1256,04:25:32,2023,FR
+2024,7538,le belier - trail 15km,15000.0,430,FEMALE,,656,01:55:48,2022,FR
+2024,7539,le grand raid de la réunion - zembrocal trail relais3,41400.0,2700,MALE,50K,73,09:00:19,2022,FR
+2024,7539,le grand raid de la réunion - zembrocal trail relais1,44000.0,3815,MALE,50K,67,10:48:55,2019,FR
+2024,7541,trail de la savane - 28km,28000.0,900,MALE,20K,208,04:06:43,2019,FR
+2024,7545,le grand raid de la réunion - la mascareignes,74100.0,4000,MALE,100K,383,15:21:40,2022,FR
+2024,7545,le grand raid de la réunion - zembrocal trail relais2,38100.0,1300,MALE,50K,5,03:52:40,2021,FR
+2024,7545,trail des 2 rivieres -  st jo trail d 2 rivieres,61600.0,2760,MALE,50K,73,08:38:55,2019,FR
+2024,7546,raid 974 - semi-raid 974,57000.0,2800,MALE,50K,225,12:43:52,2024,FR
+2024,7548,trail des anglais - trail des anglais,28000.0,1260,MALE,20K,967,05:00:06,2020,FR
+2024,7550,le grand raid de la réunion - zembrocal trail relais3,41400.0,2700,MALE,50K,166,11:39:41,2022,FR
+2024,7552,trail du laudon - trail de la bauche,25000.0,1100,MALE,20K,8,02:37:12,2024,FR
+2024,7552,techni trail tiranges - 25 km,25200.0,1340,MALE,20K,29,03:13:41,2022,FR
+2024,7553,mauritius by UTMB - bel ombre,59100.0,1790,MALE,50K,147,09:51:53,2024,MU
+2024,7553,ecotrail paris® - trail 10km,10000.0,190,MALE,,621,01:05:57,2022,FR
+2024,7554,la saintélyon - la saintéxpress,44800.0,1000,MALE,50K,2915,08:29:41,2019,FR
+2024,7555,le grand raid de la réunion - zembrocal trail relais4,33400.0,1360,FEMALE,20K,87,07:16:45,2023,FR
+2024,7556,trail de minuit - trail de minuit,54200.0,3180,MALE,50K,244,10:25:19,2022,FR

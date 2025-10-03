@@ -5,15 +5,19 @@ Grand Raid de la Réunion:
     "Diagonale des Fous":
       code: "GRR"
       year: [ 2025]
+      post_course_year : 2024
     "Trail de Bourbon":
       code: "TDB"
       year: [ 2025]
+      post_course_year : 2024
     "Mascareignes":
       code: "MAS"
       year: [ 2025]
+      post_course_year : 2024
     "Metis Trail":
       code: "MTR"
       year: [ 2025]
+      post_course_year : 2024
 # HOKA LES TEMPLIERS:
 #   tenant: 'templiers'
 #   races: 
@@ -33,6 +37,7 @@ UTMB:
     "UTMB®":
       code: "UTMB"
       year: [ 2025]
+      post_course_year : 2025
 
 # Graid Raid du Finistere:
 #   tenant :  'grf-breizhchrono'

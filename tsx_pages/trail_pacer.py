@@ -54,18 +54,18 @@ def show():
         explore_race()
 
 
+
+
     with postcourse4:
-        try : 
-            if event_code=='UTMB' :
-                show_post_course(course,event_code, course_code,year)
-            elif course_code=='GRR':
-                show_post_course(course,event_code, course_code,year-1)
-                
-            else : st.info("page temporairement indisponible")
+        post_course_year=st.session_state["post_course_year"]
+        try:
+            # 1️⃣ Essai sur l'année sélectionnée
+            
+            show_post_course(course, event_code, course_code, post_course_year)
+
         except Exception as e:
-            st.error("Cette page n'est pas encore disponible pour la course selectionnée !")
-            # Optionnel : log dans la console pour debug
-            print(f"[DEBUG] Erreur show_post_course: {e}")
+            st.error("❌ Cette page n'est pas encore disponible pour la course sélectionnée !")
+            print(f"[DEBUG] Erreur lors de show_post_course pour l'année {post_course_year} : {e}")
             traceback.print_exc()
 
 
