@@ -1,13 +1,15 @@
 portion_name,Meilleure perf,Type de tronçon,Quart de course,secteur_quart
-Marla → Merles,Louison COIFFET (00:55:03),Montée,Premier quart,Cilaos → Sen. Scout
-Merles → Sen. Scout,Louison COIFFET (00:12:12),Descente,Premier quart,Cilaos → Sen. Scout
-Sen. Scout → Aurère,Louison COIFFET (01:00:17),Descente,Deuxième quart,Sen. Scout → Pit Orange
-Aurère → Pass Oussy,Louison COIFFET (00:24:15),Descente,Deuxième quart,Sen. Scout → Pit Orange
-Pass Oussy → Ilet  Oran,Louison COIFFET (00:57:02),Montée,Deuxième quart,Sen. Scout → Pit Orange
-Ilet  Oran → Pit Orange,Louison COIFFET (01:20:34),Montée,Deuxième quart,Sen. Scout → Pit Orange
-Pit Orange → Ilet Savan,Louison COIFFET (01:33:38),Descente,Troisième quart,Pit Orange → Ratinaud
-Ilet Savan → Ratinaud,Louison COIFFET (00:55:26),Montée,Troisième quart,Pit Orange → Ratinaud
-Ratinaud → Possession,Louison COIFFET (00:57:10),Descente,Quatrième quart,Ratinaud → St Denis
-Possession → Chaloupe,Louison COIFFET (00:49:37),Montée,Quatrième quart,Ratinaud → St Denis
-Chaloupe → Colorado,Louison COIFFET (01:15:10),Montée,Quatrième quart,Ratinaud → St Denis
-Colorado → St Denis,Romain BARDEUR (00:35:05),Descente,Quatrième quart,Ratinaud → St Denis
+Cilaos → Sentier T,Louison COIFFET (00:32:10),Montée,1er quart,1er quart (0.0–21.6 km | Cilaos  → Sen. Scout)
+Sentier T → Marla,Louison COIFFET (00:58:43),Non Catégorisé,1er quart,1er quart (0.0–21.6 km | Cilaos  → Sen. Scout)
+Marla → Merles,Louison COIFFET (00:55:03),Non Catégorisé,1er quart,1er quart (0.0–21.6 km | Cilaos  → Sen. Scout)
+Merles → Sen. Scout,Louison COIFFET (00:12:12),Descente,1er quart,1er quart (0.0–21.6 km | Cilaos  → Sen. Scout)
+Sen. Scout → Aurère,Louison COIFFET (01:00:17),Non Catégorisé,2ème quart,2ème quart (30.4–40.0 km | Sen. Scout  → Ilet  Oran)
+Aurère → Pass Oussy,Louison COIFFET (00:24:15),Non Catégorisé,2ème quart,2ème quart (30.4–40.0 km | Sen. Scout  → Ilet  Oran)
+Pass Oussy → Ilet  Oran,Louison COIFFET (00:57:02),Non Catégorisé,2ème quart,2ème quart (30.4–40.0 km | Sen. Scout  → Ilet  Oran)
+Ilet  Oran → Pit Orange,Louison COIFFET (01:20:34),Montée,3ème quart,3ème quart (48.0–72.1 km | Ilet  Oran  → Ratinaud)
+Pit Orange → Ilet Savan,Louison COIFFET (01:33:38),Descente,3ème quart,3ème quart (48.0–72.1 km | Ilet  Oran  → Ratinaud)
+Ilet Savan → Ratinaud,Louison COIFFET (00:55:26),Non Catégorisé,3ème quart,3ème quart (48.0–72.1 km | Ilet  Oran  → Ratinaud)
+Ratinaud → Possession,Louison COIFFET (00:57:10),Non Catégorisé,4ème quart,4ème quart (80.7–101.2 km | Ratinaud  → St Denis)
+Possession → Chaloupe,Louison COIFFET (00:49:37),Non Catégorisé,4ème quart,4ème quart (80.7–101.2 km | Ratinaud  → St Denis)
+Chaloupe → Colorado,Louison COIFFET (01:15:10),Montée,4ème quart,4ème quart (80.7–101.2 km | Ratinaud  → St Denis)
+Colorado → St Denis,Romain BARDEUR (00:35:05),Descente,4ème quart,4ème quart (80.7–101.2 km | Ratinaud  → St Denis)

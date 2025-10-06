@@ -13,6 +13,32 @@ import plotly.graph_objects as go
 import pandas as pd
 import streamlit as st
 
+def get_icon_base64(icon_name: str) -> str:
+    """
+    Récupère une icône en base64 avec mise en cache.
+    
+    Args:
+        icon_name: Nom de l'icône ('montee' ou 'descente')
+    
+    Returns:
+        str: Code HTML de l'image en base64
+    """
+    
+    try:
+        if pd.isna(icon_name):
+            return ""
+        icon_name= str(icon_name.lower())
+        if icon_name == "montée" :
+            icon_name= "montee"
+        if icon_name == 'non catégorisé':
+            return ""
+        icon_path = f"TrailPacer/image/{icon_name}.png"
+        base64_str = image_to_base64(icon_path)
+        return f'<img src="data:image/png;base64,{base64_str}" width="20" alt="{icon_name}"/>'
+    except Exception as e:
+        st.warning(f"Impossible de charger l'icône {icon_name}: {e}")
+        # Fallback avec des symboles Unicode
+        return ""
 
 def show_post_course(course_name,event_code, course_code, year):
     """
@@ -193,7 +219,7 @@ def _show_individual_analysis(results, config_df, df_cv,
             f"{info.get('rank_scratch','DNF')} - {info.get('name','Inconnu')} (Doss. {bib})"
             for bib, info in sorted(results.items(), key=lambda x: x[1].get("rank_scratch", 9999))
         ]
-        choice = st.selectbox("", options)
+        choice = st.selectbox("Choisir un coureur :", options, label_visibility="collapsed")
 
         if not choice or choice == "--":
             return
@@ -217,7 +243,6 @@ def _show_individual_analysis(results, config_df, df_cv,
         # Graphique pacing si disponible
         try:
             is_elite=info.get("is_elite", False)
-            print(bib)
             plotter = PacingPlotter(year, event_code, course_name, course_code, 
                                    is_elite=is_elite, offline=True)
             fig, _ = plotter.plot(bib)
@@ -322,30 +347,21 @@ def color_ecart(val):
     else:
         return "color:red"
 
-# -----------------------------
-# Fonction pour colorer type de tronçon
 def color_troncon(val):
-    # Orange clair = montée
-    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
-    # Bleu clair = descente
-    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
+    """Applique une couleur de fond selon le type de tronçon."""
+    val_str = str(val)
+    if get_icon_base64('montee') in val_str :
+        return "background-color: #ffe5b4"  # orange pâle pour montée
+    elif get_icon_base64('descente') in val_str :
+        return "background-color: #cce5ff"  # bleu clair pour descente
+    return ""
 
-    if icon_montee in str(val):
-        return "background-color: #ffe5b4"  # orange pâle
-    elif icon_descente in str(val):
-        return "background-color: #cce5ff"  # bleu clair
-    else:
-        return ""
+
 
 def post_course_detail(df_splits):
-    # Icônes
-    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
-    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
 
     # Ajout de deux colonnes séparées : "Profil" (icône) + "Tronçon" (nom)
-    df_splits["Profil"] = df_splits["Type de tronçon"].map(
-        lambda t: icon_montee if t == "Montée" else icon_descente if t == "Descente" else ""
-    )
+    df_splits["Profil"] = df_splits["Type de tronçon"].map(lambda t: get_icon_base64(t))
     df_splits["Tronçon"] = df_splits["portion_name"]
 
 
@@ -370,7 +386,7 @@ def post_course_detail(df_splits):
     styled = (
         df_table.style
             .map(color_ecart, subset=["Ecart peloton", "Ecart élite", "Ecart peloton %", "Ecart élite %"])
-            .map(color_troncon, subset=["Profil"])   # <-- profil coloré
+            .map(color_troncon, subset=["Profil"])  
             .set_properties(**{"text-align": "center"})
             .set_table_attributes('style="width:100%"')
             .hide(axis="index")
@@ -381,9 +397,6 @@ def post_course_detail(df_splits):
 
 def post_course_pente(df_splits):
     recap_pente = []
-    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
-    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
-
     # Totaux Montée/Descente
     for ttype in ["Montée", "Descente"]:
         mask = df_splits["Type de tronçon"] == ttype
@@ -398,7 +411,7 @@ def post_course_pente(df_splits):
             ecart_elite_pct = (ecart_elite / median_elite_sum * 100) if median_elite_sum != 0 else None
 
             recap_pente.append({
-                " ": icon_montee if ttype == "Montée" else icon_descente,
+                " ":  get_icon_base64(ttype.lower()),
                 "Catégorie": ttype,
                 "Temps coureur": float_hours_to_hm(runner_sum),
                 "Temps peloton": float_hours_to_hm(median_local_sum),
@@ -431,7 +444,7 @@ def post_course_quarts(df_splits):
     recap_quart = []
     
     # Tri pour garder l'ordre logique
-    quarts_order = ["Premier quart", "Deuxième quart", "Troisième quart", "Quatrième quart"]
+    quarts_order = df_splits["Quart de course"].dropna().unique()
     
     for quart in quarts_order:
         mask = df_splits["Quart de course"] == quart
@@ -592,14 +605,16 @@ def show_post_course_table(info, config_df, df_cv, bib):
     st.write('Le détail complet de vos passages.')
 
     post_course_detail(df_splits)
-    metrics_options = {
-        "Écart vs peloton (%)": "écart_local_%",
-        "Écart vs élites (%)": "écart_elite_%",
-        "Écart vs index (%)": "écart_index_%",
-        "Écart vs peloton (h)": "écart_local_h",
-        "Écart vs élites (h)": "écart_elite_h",
-        "Écart vs index (h)": "écart_index_h",
-    }
+
+
+    # metrics_options = {
+    #     "Écart vs peloton (%)": "écart_local_%",
+    #     "Écart vs élites (%)": "écart_elite_%",
+    #     "Écart vs index (%)": "écart_index_%",
+    #     "Écart vs peloton (h)": "écart_local_h",
+    #     "Écart vs élites (h)": "écart_elite_h",
+    #     "Écart vs index (h)": "écart_index_h",
+    # }
 
     # metric_label = st.selectbox(
     #     "📊 Choisir la métrique à afficher :",
@@ -730,13 +745,10 @@ def time_to_seconds(t):
 
 
 def compare_course_detail(df1, df2, nom1, nom2):
-    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
-    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
-
     df = df1.merge(df2, on="portion_name", suffixes=("_c1", "_c2"))
 
     df["Profil"] = df["Type de tronçon_c1"].map(
-        lambda t: icon_montee if t == "Montée" else icon_descente if t == "Descente" else ""
+        lambda t: get_icon_base64(t)
     )
     df["Tronçon"] = df["portion_name"]
 
@@ -764,9 +776,6 @@ def compare_course_detail(df1, df2, nom1, nom2):
 
 def compare_course_pente(df1, df2, nom1, nom2):
     recap_pente = []
-    icon_montee = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/montee.png")}" width="20"/>'
-    icon_descente = f'<img src="data:image/png;base64,{image_to_base64("TrailPacer/image/descente.png")}" width="20"/>'
-
     for ttype in ["Montée", "Descente"]:
         mask1 = df1["Type de tronçon"] == ttype
         mask2 = df2["Type de tronçon"] == ttype
@@ -777,7 +786,7 @@ def compare_course_pente(df1, df2, nom1, nom2):
             ecart_pct = (ecart / sum1 * 100) if sum1 != 0 else None
 
             recap_pente.append({
-                " ": icon_montee if ttype == "Montée" else icon_descente,
+                " ": get_icon_base64(ttype),
                 "Catégorie": ttype,
                 f"{nom1}": float_hours_to_hm(sum1),
                 f"{nom2}": float_hours_to_hm(sum2),
@@ -799,18 +808,21 @@ def compare_course_pente(df1, df2, nom1, nom2):
 def compare_course_quarts(df1, df2, nom1, nom2):
 
     recap_quart = []
-    quarts_order = ["Premier quart", "Deuxième quart", "Troisième quart", "Quatrième quart"]
+    quarts_order = df1["Quart de course"].dropna().unique()
 
     for quart in quarts_order:
+        
         mask1 = df1["Quart de course"] == quart
         mask2 = df2["Quart de course"] == quart
         if mask1.any() and mask2.any():
+            quart_name = df1.loc[mask1, 'secteur_quart'].dropna().unique()
+            quart_name = quart_name[0] if len(quart_name) > 0 else "N/A"
             sum1 = df1.loc[mask1, "runner_h"].sum()
             sum2 = df2.loc[mask2, "runner_h"].sum()
             ecart = sum1 - sum2
             ecart_pct = (ecart / sum1 * 100) if sum1 != 0 else None
             recap_quart.append({
-                "Quart": quart,
+                "Quart": quart_name,
                 f"{nom1}": float_hours_to_hm(sum1),
                 f"{nom2}": float_hours_to_hm(sum2),
                 "Écart": float_hours_to_hm(ecart),

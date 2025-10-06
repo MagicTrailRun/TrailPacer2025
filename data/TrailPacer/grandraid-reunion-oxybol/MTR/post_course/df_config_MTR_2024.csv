@@ -1,8 +1,8 @@
 portion_name,Meilleure perf,Type de tronçon,Quart de course,secteur_quart
-St Paul → Ecole  Bel,Corentin FOURNI (00:33:52),Montée,Premier quart,St Paul → Ecole  Bel
-Ecole  Bel → Ilet Savan,Corentin FOURNI (00:43:05),Descente,Deuxième quart,Ecole  Bel → Ratinaud
-Ilet Savan → Ratinaud,Corentin FOURNI (00:56:49),Montée,Deuxième quart,Ecole  Bel → Ratinaud
-Ratinaud → Possession,Stéphane SERY (00:51:41),Descente,Troisième quart,Ratinaud → Chaloupe
-Possession → Chaloupe,Yannick IMBROSCIANO (00:57:57),Non Catégorisé,Troisième quart,Ratinaud → Chaloupe
-Chaloupe → Colorado,Tristan ROUX (01:31:39),Montée,Quatrième quart,Chaloupe → St Denis
-Colorado → St Denis,Grégoire RUYSSEN (00:35:59),Descente,Quatrième quart,Chaloupe → St Denis
+St Paul → Ecole  Bel,Corentin FOURNI (00:33:52),Montée,1er quart,1er quart (0.0–5.9 km | St Paul → Ecole  Bel)
+Ecole  Bel → Ilet Savan,Corentin FOURNI (00:43:05),Non Catégorisé,2ème quart,2ème quart (15.4–22.0 km | Ilet Savan → Ratinaud)
+Ilet Savan → Ratinaud,Corentin FOURNI (00:56:49),Non Catégorisé,2ème quart,2ème quart (15.4–22.0 km | Ilet Savan → Ratinaud)
+Ratinaud → Possession,Stéphane SERY (00:51:41),Non Catégorisé,3ème quart,3ème quart (30.1–37.1 km | Possession → Chaloupe)
+Possession → Chaloupe,Yannick IMBROSCIANO (00:57:57),Non Catégorisé,3ème quart,3ème quart (30.1–37.1 km | Possession → Chaloupe)
+Chaloupe → Colorado,Tristan ROUX (01:31:39),Montée,4ème quart,4ème quart (45.2–49.5 km | Colorado → St Denis)
+Colorado → St Denis,Grégoire RUYSSEN (00:35:59),Descente,4ème quart,4ème quart (45.2–49.5 km | Colorado → St Denis)

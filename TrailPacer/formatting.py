@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+import numpy as np
 import base64 
 
 def image_to_base64(path):
@@ -88,19 +88,24 @@ def format_dataframe(df, target_time, start_time):
     df = get_pacing_temps_cible(df, start_time)
 
     # --- Arrondis ---
-    df['dist_secteur'] = df['dist_secteur'].round(1)
-    df['dplus_secteur'] = df['dplus_secteur'].round(1) 
-    df['dmoins_secteur'] = df['dmoins_secteur'].round(1)
+    df = df.assign(
+    dist_secteur = df["dist_secteur"].round(1),
+    dplus_secteur = df["dplus_secteur"].round(1),
+    dmoins_secteur = df["dmoins_secteur"].round(1)
+    )
     if "ravitaillement" in df.columns:
-        df["icon_ravito"] = df['ravitaillement'].apply(lambda x: ":material/water_bottle:" if x == 'Oui' else "")
+        df["icon_ravito"] = np.where(df["ravitaillement"] == "Oui", ":material/water_bottle:", "")
     else:
         df["icon_ravito"] = ""
     # --- Colonnes texte ---
-    df["Segment (Km – Nom)"] = df.apply(lambda x: f"**{x['dist_total']:.1f} km** – {x['checkpoint']} {x['icon_ravito']}", axis=1)
+    df["Segment (Km – Nom)"] = (
+    "**" + df["dist_total"].round(1).astype(str) + " km** – " + df["checkpoint"] + " " + df["icon_ravito"]
+)
 
-    df["Temps segment (± 5%)"] = df.apply(
-        lambda x: f"{x['temps_secteur_med_fmt']} ({x['temps_secteur_low_fmt']}-{x['temps_secteur_high_fmt']})", axis=1
+    df["Temps segment (± 5%)"] = (
+        df["temps_secteur_med_fmt"] + " (" + df["temps_secteur_low_fmt"] + "-" + df["temps_secteur_high_fmt"] + ")"
     )
+
 
     df.set_index("Segment (Km – Nom)", inplace=True)
     # --- Table affichage ---
