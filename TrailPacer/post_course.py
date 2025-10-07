@@ -12,6 +12,7 @@ from pathlib import Path
 import plotly.graph_objects as go
 import pandas as pd
 import streamlit as st
+import os
 
 def get_icon_base64(icon_name: str) -> str:
     """
@@ -27,12 +28,12 @@ def get_icon_base64(icon_name: str) -> str:
     try:
         if pd.isna(icon_name):
             return ""
-        icon_name= str(icon_name.lower())
+        icon_name = str(icon_name).strip().lower()
         if icon_name == "montée" :
             icon_name= "montee"
         if icon_name == 'non catégorisé':
             return ""
-        icon_path = f"TrailPacer/image/{icon_name}.png"
+        icon_path = os.path.join("TrailPacer", "image", f"{icon_name}.png")
         base64_str = image_to_base64(icon_path)
         return f'<img src="data:image/png;base64,{base64_str}" width="20" alt="{icon_name}"/>'
     except Exception as e:
@@ -582,7 +583,7 @@ def show_post_course_table(info, config_df, df_cv, bib):
     # Totaux par Quart de course
     st.subheader('Analyse par quart de course : comment votre rythme a évolué ?')
     st.write("""
-    Un découpage en 4 parties égales pour observer votre dynamique de pacing.
+    Un découpage en 4 parties pour observer votre dynamique de pacing.
             """)
     
 

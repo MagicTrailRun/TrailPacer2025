@@ -358,8 +358,8 @@ class PacingPlotter():
                         rotation=45,
                         color='k',)
                 continue
-            y_ref = df_relative.loc[ckpt, splits_reference]  if splits_reference!="ref_pacing" else y_finish
-            y_splits = df_relative.loc[ckpt, col_splits]
+            y_ref =float(df_relative.loc[ckpt, splits_reference].iloc[0]) if splits_reference!="ref_pacing" else y_finish
+            y_splits = float(df_relative.loc[ckpt, col_splits].iloc[0])
 
             #y_finish = df_relative.loc[ckpt, 'ref_pacing']
 
@@ -432,7 +432,9 @@ class PacingPlotter():
                 if ckpt in self.drop_ckpt:
                     continue
                 annot_color = "white" if self.is_color_dark(color) else 'k'
-                ax.annotate(xy=(row['dist_total'], row[name]),
+                x_val = float(row['dist_total'])
+                y_val = float(row[name])
+                ax.annotate(xy=(x_val, y_val),
                             text="",
                             xytext=(0,0),
                             ha='center',
@@ -462,8 +464,8 @@ class PacingPlotter():
         
         alpha= 0.5
         q = 0.2
-        q1 = df_pace.quantile(q, axis=1)
-        q3 = df_pace.quantile(1-q, axis=1)
+        q1 = df_pace.quantile(q, axis=1).astype(float)
+        q3 = df_pace.quantile(1 - q, axis=1).astype(float)
         
         ax.fill_between(df_pace.index.get_level_values('dist_total'),
                  q1,q3,
