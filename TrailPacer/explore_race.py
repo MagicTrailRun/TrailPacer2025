@@ -2,7 +2,7 @@
 import streamlit as st
 from pathlib import Path
 import traceback
-from TrailPacer.race_id import color_pente,altitude_metrics,  create_col_profile,  get_df_for_gpx
+from TrailPacer.race_id import color_pente,altitude_metrics,  create_col_profile
 
 
 def explore_race():
@@ -15,8 +15,7 @@ def explore_race():
         config=st.session_state["config"]
         df=st.session_state["df"]
         
-        df_gpx, has_terrain_type =get_df_for_gpx()
-
+        df_gpx, has_terrain_type = st.session_state["df_gpx"], st.session_state["has_terrain_type"]
 
         st.info("Page en cours de construction...")
         st.markdown("## Fiche identité")
@@ -78,7 +77,6 @@ def explore_race():
 
     except Exception as e:
             st.error("Cette page n'est pas encore disponible pour la course selectionnée !")
-            # Optionnel : log dans la console pour debug
             print(f"[DEBUG] Erreur explorer_course: {e}")
             traceback.print_exc()
 

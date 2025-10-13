@@ -10,6 +10,7 @@ from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
 from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
+import psutil, os
 class TSXApplication:
     """Application principale TSX Trail"""
     def __init__(self):
