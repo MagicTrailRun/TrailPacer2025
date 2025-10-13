@@ -3,8 +3,9 @@ import numpy as np
 import json
 import streamlit as st
 from TrailPacer.race_id import  get_df_for_gpx
-import streamlit.components.v1 as components
-
+import os
+from pathlib import Path
+@st.cache_data
 def load_data(event,race="UTMB",year=2025, version="vf"):
     """Charge les données CSV"""
     try:
@@ -21,6 +22,7 @@ def load_data(event,race="UTMB",year=2025, version="vf"):
     except Exception as e:
         return pd.DataFrame()
 
+@st.cache_data
 def get_config(path):
     with open(path, "r", encoding="utf-8") as f:
         config = json.load(f)
@@ -34,6 +36,8 @@ def get_config(path):
     config['temps_cible_middle'] = int(np.round((config['temps_cible_start'] + config['temps_cible_end'])/2))
 
     return config #, dic_config['mapping_ckpt']
+
+
 def info_social_media():
     with st.sidebar:
         # Utilisez st.container pour le placer en dernier
@@ -75,6 +79,8 @@ def info_social_media():
             """,
             unsafe_allow_html=True
         )
+        
+
 def select_event():
     
     # --- CSS custom pour styliser les selectbox
@@ -141,4 +147,20 @@ def select_event():
         st.session_state["config"]=config
         df = load_data(event=event_code,race=course_code, year=year)
         st.session_state['df']=df
-        st.session_state["df_gpx"], st.session_state["has_terrain_type"] =get_df_for_gpx()
+        tracks_dir = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/")
+        track_file_json = tracks_dir / f"track_{year}.json"
+        track_tile_csv = tracks_dir / f"track_{year}.csv"
+        track_file_gpx = tracks_dir / f"gpx_{year}.gpx"
+
+        # On calcule un "file_hash" basé sur la date de modification
+        file_hash = None
+        for f in [track_file_json, track_tile_csv, track_file_gpx]:
+            if f.exists():
+                file_hash = os.path.getmtime(f)
+                break
+
+        file_hash = os.path.getmtime(track_file_json) if track_file_json.exists() else None
+        df_gpx, has_terrain_type = get_df_for_gpx(event_code, course_code, year, file_hash)
+        df_gpx, has_terrain_type = get_df_for_gpx(event_code, course_code, year)
+        st.session_state["df_gpx"] = df_gpx
+        st.session_state["has_terrain_type"] = has_terrain_type

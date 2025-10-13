@@ -1,85 +1,16 @@
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
 import json
-import plotly.graph_objects as go
-import numpy as np
 from pathlib import Path
 import streamlit as st
-
-def load_data_checkpoints(csv_file="utmb_checkpoints.csv"):
-    """Charge le CSV et parse les dates"""
-    df = pd.read_csv(csv_file, parse_dates=['dateFirstRunners','dateLastRunners'])
-    return df
-
-def process_data(df):
-    """Traite et nettoie les données"""
-    # Convertir les dates
-    df['dateFirstRunners'] = pd.to_datetime(df['dateFirstRunners'], errors='coerce')
-    df['dateLastRunners'] = pd.to_datetime(df['dateLastRunners'], errors='coerce')
-    df['cutoff'] = pd.to_datetime(df['cutoff'], errors='coerce')
-    
-    # Calculer les durées
-    if not df['dateFirstRunners'].isna().all() and not df['dateLastRunners'].isna().all():
-        df['duree_passage'] = (df['dateLastRunners'] - df['dateFirstRunners']).dt.total_seconds() / 3600
-    
-    # Distance en km
-    df['distance_km'] = df['distance'] / 1000
-    df['distCum_km'] = df['distCum'] / 1000
-    
-    return df
+import xml.etree.ElementTree as ET
+from math import radians, cos, sin, sqrt, atan2
 
 
 
 
-
-def plot_segment_analysis(df):
-    """
-    Analyse segmentaire interactive : D+/km, D-/km
-    """
-    # Calcul des ratios (en m / km)
-    df["D+_per_km"] = df["D+CP"] / (df["distCP"] / 1000)
-    df["D-_per_km"] = df["D-CP"] / (df["distCP"] / 1000)
-
-    fig = go.Figure()
-
-    # Barres D+
-    fig.add_trace(go.Bar(
-        x=df["shortName"],
-        y=df["D+_per_km"],
-        name="D+ / km",
-        marker_color="orange",
-        hovertemplate="Segment: %{x}<br>D+/km: %{y:.1f}<extra></extra>"
-    ))
-
-    # Barres D-
-    fig.add_trace(go.Bar(
-        x=df["shortName"],
-        y=-df["D-_per_km"],  # négatif pour les descentes
-        name="D- / km",
-        marker_color="blue",
-        hovertemplate="Segment: %{x}<br>D-/km: %{y:.1f}<extra></extra>"
-    ))
-
-    fig.update_layout(
-        title="Répartition du dénivelé par km (D+/km et D-/km)",
-        xaxis_title="Segments",
-        yaxis_title="Dénivelé par km (m/km)",
-        barmode="relative",
-        bargap=0.3,
-        template="plotly_white"
-    )
-
-    return fig
-
-
-
-
-     
-
-
-
+@st.cache_data
 def load_json(pth):
 
     with open(pth, "r", encoding="utf-8") as f:
@@ -107,52 +38,6 @@ def load_json(pth):
 
 
 
-import xml.etree.ElementTree as ET
-import pandas as pd
-import numpy as np
-from math import radians, cos, sin, sqrt, atan2
-
-# def haversine(lat1, lon1, lat2, lon2):
-#     """Distance en mètres entre 2 lat/lon."""
-#     R = 6371000  # rayon Terre en m
-#     dlat = radians(lat2 - lat1)
-#     dlon = radians(lon2 - lon1)
-#     a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
-#     c = 2 * atan2(sqrt(a), sqrt(1-a))
-#     return R * c
-
-# def gpx_to_df(gpx_file):
-#     """Lit un GPX et retourne un DataFrame avec lat, lon, altitude, temps, distance cumulée."""
-#     ns = {"default": "http://www.topografix.com/GPX/1/1"}
-#     tree = ET.parse(gpx_file)
-#     root = tree.getroot()
-
-#     pts = []
-#     for trkpt in root.findall(".//default:trkpt", ns):
-#         lat = float(trkpt.attrib["lat"])
-#         lon = float(trkpt.attrib["lon"])
-#         ele = float(trkpt.find("default:ele", ns).text)
-#         t = trkpt.find("default:time", ns).text if trkpt.find("default:time", ns) is not None else None
-#         pts.append((lat, lon, ele, t))
-
-#     df = pd.DataFrame(pts, columns=["lat", "lon", "altitude", "time"])
-
-#     # Calcul distance cumulée
-#     dists = [0.0]
-#     for i in range(1, len(df)):
-#         d = haversine(df.loc[i-1,"lat"], df.loc[i-1,"lon"],
-#                       df.loc[i,"lat"], df.loc[i,"lon"])
-#         dists.append(dists[-1] + d)
-#     df["distance"] = dists  # en m
-
-#     return df
-
-
-
-import xml.etree.ElementTree as ET
-import pandas as pd
-import numpy as np
-from math import radians, cos, sin, sqrt, atan2
 
 def haversine(lat1, lon1, lat2, lon2):
     """Distance en mètres entre 2 lat/lon."""
@@ -162,6 +47,8 @@ def haversine(lat1, lon1, lat2, lon2):
     a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
     c = 2 * atan2(sqrt(a), sqrt(1-a))
     return R * c
+
+@st.cache_data
 def gpx_to_df(gpx_file):
     """Lit un GPX et retourne un DataFrame avec lat, lon, altitude, temps, 
     distance cumulée (3D), pente en %, D+ et D- cumulés."""
@@ -218,19 +105,8 @@ def gpx_to_df(gpx_file):
 
 
 
-from pathlib import Path
-import pandas as pd
-
-from pathlib import Path
-import pandas as pd
-from pathlib import Path
-import pandas as pd
-
-def get_df_for_gpx():
-    event_code = st.session_state["event_code"]
-    course_code = st.session_state["course_code"]
-    year = st.session_state["year"]
-
+@st.cache_data
+def get_df_for_gpx(event_code,course_code,year,file_hash=None):
     tracks_dir = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/")
     track_tile_csv = tracks_dir / f"track_{year}.csv"
     track_file_gpx = tracks_dir / f"gpx_{year}.gpx"
@@ -248,22 +124,11 @@ def get_df_for_gpx():
     else:
         df_gpx = pd.DataFrame()
         has_terrain_type = False
-    st.session_state["df_gpx"] = df_gpx
-    st.session_state["has_terrain_type"] = has_terrain_type
-
     return df_gpx, has_terrain_type
 
 
 
-
-import pandas as pd
-import numpy as np
-
-
-
-
-
-
+@st.cache_data
 def altitude_metrics(df_gpx, seuil=2000):
     """
     Retourne la proportion du parcours au-dessus et en-dessous d'un seuil d'altitude
