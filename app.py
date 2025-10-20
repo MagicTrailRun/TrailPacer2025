@@ -10,6 +10,7 @@ from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
 from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
+from core.auth import supabase_login
 class TSXApplication:
     """Application principale TSX Trail"""
     def __init__(self):
@@ -44,6 +45,12 @@ class TSXApplication:
 
     def run(self): 
         """Point d'entrée principal de l'application"""
+        # Authentification
+        supabase_login()
+        
+        if st.session_state.get('user') is None:
+            st.stop()
+            
         self.session_manager.initialize_session()
         self._show_main_interface()
     
