@@ -76,7 +76,7 @@ def supabase_login():
                 if st.session_state['auth_mode'] == "login":
                     if st.button("Se connecter"):
                         try:
-                            user = supabase.auth.sign_in({"email": email, "password": password})
+                            user = supabase.auth.sign_in_with_password({"email": email, "password": password})
                             if user.user:
                                 st.session_state['user'] = user.user
                                 st.success(f"Bienvenue {email} !")
