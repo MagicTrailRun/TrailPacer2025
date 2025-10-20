@@ -1,0 +1,54 @@
+{
+    "category": "",
+    "color": "#0c991f",
+    "distance": 70000,
+    "elevationGain": 4000,
+    "finishPlace": "Stade de la Redoute",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 27,
+        "placeName": "Petite Île"
+    },
+    "fullName": "Mascareignes",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "MAS",
+    "shortName": "Mascareignes",
+    "startDate": "2025-10-17T00:59:59.000+04:00",
+    "startPlace": "Hell-Bourg",
+    "startWeather": {
+        "icon": "SCATTERED_CLOUDS_DAY",
+        "temperature": 20,
+        "placeName": "Mare à Vieille Place"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion_2025/tracks/f35714da-cfe6-4138-813e-fad2e5caec22.json",
+    "mapshotUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion_2025/tracks/10667ad9-c82d-4f08-a719-d661360b0eb1.png",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES F",
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "M7 H",
+        "SE F",
+        "SE H"
+    ],
+        "temps_cible": [9, 21]
+}

@@ -1,0 +1,55 @@
+{
+    "category": "",
+    "color": "#ffcd00",
+    "distance": 178000,
+    "elevationGain": 10500,
+    "finishPlace": "Stade de la Redoute",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 27,
+        "placeName": "Petite Île"
+    },
+    "fullName": "Diagonale des fous",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "GRR",
+    "shortName": "Diagonale des fous",
+    "startDate": "2025-10-16T22:00:00.000+04:00",
+    "startPlace": "St Pierre Ravine Blanche",
+    "startWeather": {
+        "icon": "CLEAR_SKY_DAY",
+        "temperature": 27,
+        "placeName": "Saint-Pierre"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion_2025/tracks/aa5d99be-ddca-4b2d-893d-d48e3a223464.json",
+    "mapshotUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion_2025/tracks/ccd76fe6-a8a9-41c5-925a-749c3a807947.png",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "M7 F",
+        "M7 H",
+        "M8 H",
+        "SE F",
+        "SE H"
+    ],
+       "temps_cible": [27, 61]
+}

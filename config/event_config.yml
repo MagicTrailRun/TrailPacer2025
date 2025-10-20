@@ -1,23 +1,23 @@
 
 Grand Raid de la Réunion:
-  tenant: "grandraid-reunion-oxybol"
+  tenant: "grandraid-reunion"
   races:
     "Diagonale des Fous":
       code: "GRR"
       year: [ 2025]
-      post_course_year : 2024
+      post_course_year : 2025
     "Trail de Bourbon":
       code: "TDB"
       year: [ 2025]
-      post_course_year : 2024
+      post_course_year : 2025
     "Mascareignes":
       code: "MAS"
       year: [ 2025]
-      post_course_year : 2024
+      post_course_year : 2025
     "Metis Trail":
       code: "MTR"
       year: [ 2025]
-      post_course_year : 2024
+      post_course_year : 2025
 # HOKA LES TEMPLIERS:
 #   tenant: 'templiers'
 #   races: 

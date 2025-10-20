@@ -1,0 +1,53 @@
+{
+    "category": "",
+    "color": "#2825cf",
+    "distance": 103000,
+    "elevationGain": 6000,
+    "finishPlace": "Stade de la Redoute",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 27,
+        "placeName": "Petite Île"
+    },
+    "fullName": "Trail de Bourbon",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "TDB",
+    "shortName": "Trail de Bourbon",
+    "startDate": "2025-10-17T21:00:08.000+04:00",
+    "startPlace": "Cilaos (Stade)",
+    "startWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 19,
+        "placeName": "Cilaos"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion_2025/tracks/85cd786f-a6d9-4730-ba2e-ea093f246823.json",
+    "mapshotUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion_2025/tracks/8c0d4c32-039f-4879-953b-1e5ed5a4ff5f.png",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 H",
+        "M7 F",
+        "M7 H",
+        "SE F",
+        "SE H"
+    ],
+        "temps_cible": [13, 40]
+}

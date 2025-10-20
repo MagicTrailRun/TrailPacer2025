@@ -1,0 +1,56 @@
+{
+    "category": "",
+    "color": "#fc8230",
+    "distance": 50000,
+    "elevationGain": 2500,
+    "finishPlace": "Stade de la Redoute",
+    "finishWeather": {
+        "icon": "BROKEN_CLOUDS_DAY",
+        "temperature": 27,
+        "placeName": "Petite Île"
+    },
+    "fullName": "Metis Trail",
+    "hasMessage": false,
+    "meanIndex": 0,
+    "noMap": false,
+    "raceId": "MTR",
+    "shortName": "Metis Trail",
+    "startDate": "2025-10-18T06:38:00.000+04:00",
+    "startPlace": "Saint Paul",
+    "startWeather": {
+        "icon": "SCATTERED_CLOUDS_DAY",
+        "temperature": 22,
+        "placeName": "Saint-Paul"
+    },
+    "status": "FINISHED",
+    "trackUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion_2025/tracks/b9c81c41-f072-44cf-b786-f0df5153eefd.json",
+    "mapshotUrl": "https://api.v3.livetrail.net/upload/grandraid-reunion_2025/tracks/bf5bda9b-9ce4-42cf-a726-4415053b247c.png",
+    "sex_list": [
+        "FEMALE",
+        "MALE"
+    ],
+    "category_list": [
+        "ES F",
+        "ES H",
+        "M0 F",
+        "M0 H",
+        "M1 F",
+        "M1 H",
+        "M2 F",
+        "M2 H",
+        "M3 F",
+        "M3 H",
+        "M4 F",
+        "M4 H",
+        "M5 F",
+        "M5 H",
+        "M6 F",
+        "M6 H",
+        "M7 F",
+        "M7 H",
+        "M8 H",
+        "SE F",
+        "SE H"
+    ],
+        "temps_cible" : [6,13]
+}

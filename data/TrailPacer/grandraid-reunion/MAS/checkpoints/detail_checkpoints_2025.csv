@@ -1,0 +1,13 @@
+checkpoint,distance_cum_m,altitude_m,dplus_secteur_m,dplus_cum_m,dmoins_cum_m,barriere_horaire,ouverture,fermeture,fermeture_v2,partiel_km,pointage_electronique,assistance_personnelle,ravitaillement,repas_chaud,medecin,infirmier,kine,podologue,secouriste,osteopathe,barriere_horaire_d
+Hell-Bourg,0.0,996,0,0,0,0.0,Jeudi 22h00,Vendredi 1h00,Vendredi 1h10,0.0,O,Non,Oui,,,,,,,,2025-10-17 01:00:00
+Merles,15800.0,1808,1050,1346,534,7.75,Vendredi 3h00,Vendredi 08h45,Vendredi 8h55,7.9,O,Non,Oui,,,,,,,,2025-10-17 08:45:00
+Sen. Scout,18000.0,1635,18,1364,725,9.25,Vendredi 3h30,Vendredi 10h15,Vendredi 10h25,2.2,O,Non,Non,,,,,,,,2025-10-17 10:15:00
+Aurère,26700.0,914,206,1640,1722,12.5,Vendredi 5h00,Vendredi 13h30,Vendredi 13h40,2.7,O,Non,Oui,,,,,,,,2025-10-17 13:30:00
+Deux Bras,33000.0,258,3,1689,2427,,Vendredi 6h30,Vendredi 18h00,Vendredi 18h10,1.5,O,Non,Oui,,,,,,,,2025-10-17 18:00:00
+Dos d'Ane,38000.0,818,701,2390,2568,,Vendredi 8h00,Vendredi 20h20,Vendredi 20h30,5.0,X,Non,Non,X,,,,,,,2025-10-17 20:20:00
+Ratinaud,41300.0,439,4,2394,2950,,Vendredi 8h30,Vendredi 22h00,Vendredi 22h10,3.3,X,Non,OUi,X,,,,,,,2025-10-17 22:00:00
+Possession,49500.0,3,3,2586,3578,14.75,Vendredi 05h30,Vendredi 15h45,Vendredi 15h55,2.1,O,Non,Oui,,,,,,,,2025-10-17 15:45:00
+Chaloupe,56800.0,9,352,2938,3924,17.0,Vendredi 6h30,Vendredi 18h00,Vendredi 18h10,7.3,O,Non,Oui,,,,,,,,2025-10-17 18:00:00
+Colorado,66200.0,682,365,3775,4089,19.3333,Vendredi 8h00,Vendredi 20h20,Vendredi 20h30,5.0,O,Non,Oui,,,,,,,,2025-10-17 20:20:00
+La Vigie,71785,346,3927,4611,
+St Denis,73200.0,53,30,3813,4756,21.0,Vendredi 08h30,Vendredi 22h00,Vendredi 22h10,3.0,,Non,Oui,,,,,,,,2025-10-17 22:00:00
