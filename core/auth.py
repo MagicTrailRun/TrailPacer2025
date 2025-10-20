@@ -29,6 +29,8 @@ def supabase_login():
 
     st.write("")  # petit espace
 
+    
+
     if st.session_state['user'] is None:
 
         # -------------------------
@@ -78,7 +80,7 @@ def supabase_login():
                             if user.user:
                                 st.session_state['user'] = user.user
                                 st.success(f"Bienvenue {email} !")
-                                st.experimental_rerun()
+                                st.rerun()
                             else:
                                 st.error("Email ou mot de passe invalide")
                         except Exception as e:
@@ -96,7 +98,7 @@ def supabase_login():
                                 )
                                 st.success("Compte créé ! Vérifiez votre email pour confirmer.")
                                 st.session_state['auth_mode'] = None
-                                st.experimental_rerun()
+                                st.rerun()
                             else:
                                 st.error("Erreur lors de l'inscription")
                         except Exception as e:
@@ -110,5 +112,5 @@ def supabase_login():
         if st.sidebar.button("Se déconnecter"):
             supabase.auth.sign_out()
             st.session_state['user'] = None
-            st.experimental_rerun()
+            st.rerun()
 
