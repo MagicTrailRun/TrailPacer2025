@@ -347,6 +347,13 @@ def color_ecart(val):
         return "color:green"
     else:
         return "color:red"
+def color_ecart_neg(val):
+    if val == "temps non enregistré":
+        return "color:gray"
+    if str(val).startswith("-"):
+        return "color:red"
+    else:
+        return "color:green"
 
 def color_troncon(val):
     """Applique une couleur de fond selon le type de tronçon."""
@@ -879,7 +886,8 @@ def compare_coefficient_variation(df_cv, nom1, nom2, bib1, bib2):
     # Affichage
     st.dataframe(
         df_comp.style
-            .map(color_ecart, subset=["Écart coeff.", "Écart vitesse (km/h)"])
+            .map(color_ecart, subset=["Écart coeff."])
+            .map(color_ecart_neg, subset=["Écart vitesse (km/h)"])
             .set_table_attributes('style="width:100%"'),
         hide_index=True,
         column_config=column_config
