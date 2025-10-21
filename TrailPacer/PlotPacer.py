@@ -103,29 +103,23 @@ class PacingPlotter():
         
     def get_df_splits(self, bibs, df_abs, names):
         if len(names) == 1:
-            split_ref,col_split_ref= (round(df_abs['ref_pacing']*self.reduction), 'ref_pacing')
+            split_ref,col_split_ref= (df_abs['ref_pacing'], 'ref_pacing')
             df = (df_abs
                 .apply(lambda x: x - (split_ref))
                 .drop(columns=[col_split_ref])
                 .apply(lambda x: x.apply(lambda x: self.printable_hms(x, print_0=False)))
                 )
+            
         else :
             col=names[0]
-            split_ref,col_split_ref= df_abs[col], col
+            split_ref,col_split_ref= df_abs[col], col  
             df = (df_abs
                     .apply(lambda x:  (split_ref)-x)
                     .drop(columns=[col_split_ref])
                     .apply(lambda x: x.apply(lambda x: self.printable_hms(x, print_0=False)))
                     )
-
         return df, col_split_ref
         
-    def get_ref_pacing_(self, temps_cible):
-        self.df_ref_pacing['ref_pacing'] = (self.df_ref_pacing['temps_ref_norm']
-                                            .mul(temps_cible)
-                                            .cumsum())
-        return self.df_ref_pacing[['ref_pacing', 'dist_total']]
-    
     
     def get_ref_pacing(self, temps_cible):
         df = self.df_ref_pacing.copy()
@@ -158,15 +152,13 @@ class PacingPlotter():
         runner_pacings = (self.df_times_bibs
                          .T
                         / pd.Timedelta(hours=1))
-        
-        temps_cible = (runner_pacings.loc[self.finish].mean()
+        finish_time = (runner_pacings.loc[self.finish].mean()
                        if temps_cible is None
                        else temps_cible)
         
-        
-        ref_pacing = self.get_ref_pacing(temps_cible=(temps_cible))
+        ref_pacing = self.get_ref_pacing(temps_cible=(round(finish_time*self.reduction)))
         df = runner_pacings.join(ref_pacing)
-        return df, temps_cible, names
+        return df, finish_time, names
     
 
     @staticmethod
@@ -241,9 +233,10 @@ class PacingPlotter():
               .sort_values('dist_total'))
         #self.df = df
         reference_pacing = df.ref_pacing
+ 
         df_plotted_relative_pacings = (df
                                        .apply(lambda x: x.div(reference_pacing))
-                                       .mul(finish_time)
+                                       .mul(round(finish_time*self.reduction))
                                          )
         return (df_plotted_relative_pacings,
                 df.droplevel('dist_total'),
@@ -589,7 +582,7 @@ class PacingPlotter():
         self._init_color_cycle()
         if not isinstance(bib, list):
             return self.plot([bib], temps_cible)
-        bibs = [i if isinstance(i, int) else self.mapping_bibloc[i] for i in bib]
+        bibs = [i if isinstance(i, int) else self.mapping_bib.loc[i] for i in bib]
 
         return self._plot(bibs, temps_cible)
     
