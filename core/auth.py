@@ -108,7 +108,7 @@ def supabase_login():
 
     else:
         # Utilisateur connecté
-        st.sidebar.write(f"Connecté : {st.session_state['user'].get('email','Email non disponible')}")
+        st.sidebar.write(f"Connecté : {st.session_state['user'].email}")
         if st.sidebar.button("Se déconnecter"):
             supabase.auth.sign_out()
             st.session_state['user'] = None
