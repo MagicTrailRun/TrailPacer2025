@@ -615,14 +615,14 @@ def show_post_course_table(info, config_df, df_cv, bib):
     post_course_detail(df_splits)
 
 
-    # metrics_options = {
-    #     "Écart vs peloton (%)": "écart_local_%",
-    #     "Écart vs élites (%)": "écart_elite_%",
-    #     "Écart vs index (%)": "écart_index_%",
-    #     "Écart vs peloton (h)": "écart_local_h",
-    #     "Écart vs élites (h)": "écart_elite_h",
-    #     "Écart vs index (h)": "écart_index_h",
-    # }
+    metrics_options = {
+        "Écart vs peloton (%)": "écart_local_%",
+        "Écart vs élites (%)": "écart_elite_%",
+        "Écart vs index (%)": "écart_index_%",
+        "Écart vs peloton (h)": "écart_local_h",
+        "Écart vs élites (h)": "écart_elite_h",
+        "Écart vs index (h)": "écart_index_h",
+    }
 
     # metric_label = st.selectbox(
     #     "📊 Choisir la métrique à afficher :",
@@ -917,9 +917,11 @@ def plot_spider_pacing(splits: dict, bib: str, runner: dict, key: str = "écart_
 
     # --- Construire le DataFrame ---
     
-   
+ 
 
     df_chart = splits[["portion_name", key]].copy()
+    print(splits.columns)
+    print(df_chart)
     df_chart["portion_name"] = df_chart["portion_name"].str.replace("→", "→\n")  # lisibilité
 
     # --- Préparer les données pour le radar ---
@@ -937,7 +939,7 @@ def plot_spider_pacing(splits: dict, bib: str, runner: dict, key: str = "écart_
         r=values,
         theta=categories,
         fill='toself',
-        name=f"{key} (coureur)",
+        name=f"coureur",
         line=dict(color="royalblue", width=3)
     ))
 
@@ -946,7 +948,7 @@ def plot_spider_pacing(splits: dict, bib: str, runner: dict, key: str = "écart_
         r=[0]*len(categories),
         theta=categories,
         mode='lines',
-        name='Peloton',
+        name=f'{key}',
         line=dict(color="gray", dash='dash')
     ))
 

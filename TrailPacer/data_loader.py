@@ -161,6 +161,5 @@ def select_event():
 
         file_hash = os.path.getmtime(track_file_json) if track_file_json.exists() else None
         df_gpx, has_terrain_type = get_df_for_gpx(event_code, course_code, year, file_hash)
-        df_gpx, has_terrain_type = get_df_for_gpx(event_code, course_code, year)
         st.session_state["df_gpx"] = df_gpx
         st.session_state["has_terrain_type"] = has_terrain_type
