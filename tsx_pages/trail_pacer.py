@@ -9,6 +9,7 @@ from TrailPacer.explore_race import explore_race
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
 from TrailPacer.post_course import show_post_course
 from TrailPacer.plan_pacing import show_plan_pacing
+from core.fitness_connect import connect_strava, connect_garmin
 from config.styles import apply_custom_css
 import traceback
 import streamlit.components.v1 as components
@@ -33,14 +34,15 @@ def show():
     show_hero_banner(event, course, event_code, df)
 
 
-    plan_course1, explorer3, postcourse4, pacing2, avis5, qui6 , cnil7= st.tabs([
+    plan_course1, explorer3, postcourse4, pacing2, avis5, qui6 , cnil7, connect8= st.tabs([
         "Plan de course",
         "Explorer les courses",
         "Analyse post-course",
          "Le pacing selon TrailPacer",
         "Suivre le projet",
         "Qui sommes-nous?",
-        "Politique de confidentialité"
+        "Politique de confidentialité",
+        "Appareils connectés"
 
     ])
      
@@ -83,6 +85,13 @@ def show():
 
     with cnil7 :
         cnil()
+
+    
+    with connect8:
+        st.header("Appareiller mes comptes Strava et Garmin")
+        st.write("Connectez vos comptes pour synchroniser vos activités et analyses post-course.")
+        connect_strava()
+        connect_garmin()
 
 if __name__ == "__main__":
     show()
