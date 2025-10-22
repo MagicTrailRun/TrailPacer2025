@@ -84,7 +84,7 @@ def supabase_login():
                             else:
                                 st.error("Email ou mot de passe invalide")
                         except Exception as e:
-                            st.error(f"Erreur : {e}")
+                            st.error("Email ou mot de passe invalide")
 
                 elif st.session_state['auth_mode'] == "signup":
                     if st.button("S'inscrire"):
@@ -92,7 +92,7 @@ def supabase_login():
                             user = supabase.auth.sign_up({"email": email, "password": password})
                             if user.user:
                                 create_user_profile(
-                                    user_id=user.user.id,
+                                    internal_id=user.user.id,
                                     email=email,
                                     name=name or None
                                 )
