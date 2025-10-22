@@ -21,7 +21,7 @@ def connect_strava():
     st.markdown(f"[🔗 Connecter mon compte Strava]({auth_url})")
 
     # Gestion du callback : si le paramètre "code" est dans l'URL
-    query_params = st.experimental_get_query_params()
+    query_params = st.query_params()
     if "code" in query_params:
         code = query_params["code"][0]
         # Échange code contre tokens
@@ -85,7 +85,7 @@ def connect_garmin():
     )
     st.markdown(f"[🔗 Connecter mon compte Garmin]({auth_url})")
 
-    query_params = st.experimental_get_query_params()
+    query_params = st.query_params()
     if "code" in query_params:
         code = query_params["code"][0]
         token_response = requests.post(GARMIN_TOKEN_URL, data={
