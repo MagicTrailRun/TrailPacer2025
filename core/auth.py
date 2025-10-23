@@ -6,7 +6,7 @@ def supabase_login():
     if 'user' not in st.session_state:
         user = supabase.auth.get_user()
         if user:
-            st.session_state["user"] = user
+            st.session_state["user"] = user.user
         else:
             st.session_state['user'] = None
     
