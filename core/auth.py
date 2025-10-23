@@ -4,7 +4,11 @@ from core.mongo_client import create_user_profile
 
 def supabase_login():
     if 'user' not in st.session_state:
-        st.session_state['user'] = None
+        user = supabase.auth.get_user()
+        if user:
+            st.session_state["user"] = user
+        else:
+            st.session_state['user'] = None
     
     if 'auth_mode' not in st.session_state:
         st.session_state['auth_mode'] = None  # None, "login", "signup"
