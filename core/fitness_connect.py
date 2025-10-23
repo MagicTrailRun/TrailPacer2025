@@ -82,7 +82,7 @@ def connect_strava():
 
         # Sauvegarde dans MongoDB
         save_integration(
-            internal_id=st.session_state['user']['id'],
+            internal_id=st.session_state['user'].id,
             platform="strava",
             tokens={
                 "external_id": str(athlete["id"]),
@@ -162,7 +162,7 @@ def connect_garmin():
 
         # Sauvegarde dans MongoDB
         save_integration(
-            internal_id=st.session_state['user']['id'],
+            internal_id=st.session_state['user'].id,
             platform="garmin",
             tokens={
                 "external_id": user_id_garmin,
