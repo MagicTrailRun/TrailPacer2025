@@ -41,7 +41,7 @@ def _clear_query_params():
 # ==========================
 STRAVA_CLIENT_ID = os.getenv("STRAVA_CLIENT_ID", "170263")
 STRAVA_CLIENT_SECRET = os.getenv("STRAVA_CLIENT_SECRET", "6abf41a2581b5d14d88811d1496d593ca36f55e4")
-STRAVA_REDIRECT_URI = os.getenv("STRAVA_REDIRECT_URI", "http://localhost:8501")
+STRAVA_REDIRECT_URI = os.getenv("STRAVA_REDIRECT_URI", "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/")
 
 def connect_strava():
     auth_url = (
@@ -102,7 +102,7 @@ def connect_strava():
 # ==========================
 GARMIN_CLIENT_ID = os.getenv("GARMIN_CLIENT_ID", "77baf226-a45b-4304-b705-a8fda39a7c53")
 GARMIN_CLIENT_SECRET = os.getenv("GARMIN_CLIENT_SECRET", "IPW4Jew8lxWIL957SA5SSVX8aFm6GrMP/ghFP0IkD6M")
-GARMIN_REDIRECT_URI = os.getenv("GARMIN_REDIRECT_URI", "http://localhost:8501/callback")
+GARMIN_REDIRECT_URI = os.getenv("GARMIN_REDIRECT_URI", "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/")
 GARMIN_AUTH_URL = "https://connect.garmin.com/oauth2Confirm"
 GARMIN_TOKEN_URL = "https://diauth.garmin.com/di-oauth2-service/oauth/token"
 
