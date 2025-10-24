@@ -22,10 +22,7 @@ def create_user_profile(internal_id, email, name=None):
         "internal_id": internal_id,
         "mail": email,
         "name": name,
-        "integrations": {
-            "strava": None,
-            "garmin": None
-        },
+        "integrations": {},
         "created_at": now,
         "updated_at": now
     }
