@@ -1,0 +1,361 @@
+bib,name,segment_time,rank,sex,year,secteur,end_checkpoint,start_checkpoint,filtrer_valeur_aberrante
+177,Emmanuel COLLOMB,01:02:55,1,MALE,2022,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2728,Baptiste CHASSAGNE,01:10:13,2,MALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1186,Matthis LEAU,01:11:08,3,MALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2605,Aurelien DUNAND-PALLAZ,01:11:09,4,MALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1778,Maël NIVINOU,01:11:10,5,MALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1551,Yannick NOËL,01:11:14,6,MALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1747,Rémi GILLIE,01:11:16,7,MALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+310,Mathieu DESSERPRIT,01:11:17,8,MALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1961,Fabrice PAYET,01:11:22,9,MALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1534,Guilherme LOURENÇO,01:11:26,10,MALE,2022,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2610,Ben DHIMAN,01:11:28,11,MALE,2022,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1820,Jean - Philippe TSCHUMI,01:11:29,12,MALE,2022,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1950,Courtney DAUWALTER,01:14:25,1,FEMALE,2022,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2628,Katie SCHIDE,01:14:31,2,FEMALE,2023,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+299,Blandine L HIRONDEL,01:15:13,3,FEMALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2428,Sarah VIEUILLE,01:16:53,4,FEMALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2220,Anne-Lise ROUSSET SEGURET,01:17:14,5,FEMALE,2022,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2588,Sarah VIEUILLE,01:18:25,6,FEMALE,2022,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2806,Julia HARNIE,01:19:26,7,FEMALE,2023,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2085,Manon BOHARD,01:19:57,8,FEMALE,2024,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2693,Emilie MAROTEAUX,01:21:42,9,FEMALE,2023,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2037,Anne CHAMPAGNE,01:22:24,10,FEMALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2741,Johanna ANTILA,01:22:40,11,FEMALE,2025,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+1584,Sylvaine CUSSOT,01:23:00,12,FEMALE,2022,Départ → Domaine à Vidot,Dom Vidot,St Pierre,False
+2728,Baptiste CHASSAGNE,04:31:49,1,MALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+1551,Yannick NOËL,04:37:09,2,MALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+926,Ben DHIMAN,04:40:07,3,MALE,2024,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+317,Mathieu BLANCHARD,04:40:48,4,MALE,2024,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2605,Aurelien DUNAND-PALLAZ,04:42:26,5,MALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2893,Jean - Philippe TSCHUMI,04:42:55,6,MALE,2024,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+1747,Rémi GILLIE,04:43:06,7,MALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+1961,Fabrice PAYET,04:46:34,8,MALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+1003,Jérôme VANDERSCHAEGHE,04:46:40,9,MALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2845,Martin KERN,04:48:00,10,MALE,2024,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2732,Ludovic POMMERET,04:48:13,11,MALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2125,Jean-Marie THEVENARD,04:50:00,12,MALE,2024,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+299,Blandine L HIRONDEL,05:01:17,1,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2428,Sarah VIEUILLE,05:14:04,2,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2085,Manon BOHARD,05:34:56,3,FEMALE,2024,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2037,Anne CHAMPAGNE,05:40:44,4,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+1343,Marion ZARADZKI,05:41:32,5,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+1663,Maryline NAKACHE,05:46:19,6,FEMALE,2024,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+380,Amélie HUCHET,05:46:21,7,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2741,Johanna ANTILA,05:46:55,8,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2314,Manon CAMPANO,05:50:29,9,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2290,Aline COQUARD,05:51:40,10,FEMALE,2024,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+2329,Angelique Victoria LESPORT,05:57:30,11,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+921,Marie DOHIN,05:58:16,12,FEMALE,2025,Départ → Nez de Bœuf,Nez boeuf,St Pierre,False
+1551,Yannick NOËL,01:53:18,1,MALE,2025,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2728,Baptiste CHASSAGNE,01:57:54,2,MALE,2025,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2893,Jean - Philippe TSCHUMI,02:01:16,3,MALE,2024,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+1820,Jean - Philippe TSCHUMI,02:01:54,4,MALE,2022,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+1328,Aurélien DUNAND-PALLAZ,02:02:10,5,MALE,2023,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+317,Mathieu BLANCHARD,02:04:25,6,MALE,2024,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2125,Jean-Marie THEVENARD,02:05:10,7,MALE,2024,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+926,Ben DHIMAN,02:05:18,8,MALE,2024,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2845,Martin KERN,02:07:56,9,MALE,2024,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+1989,Maxime CAZAJOUS,02:08:19,10,MALE,2024,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2199,Vincent ESMIOL,02:08:53,11,MALE,2024,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2605,Aurelien DUNAND-PALLAZ,02:09:28,12,MALE,2025,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+1950,Courtney DAUWALTER,02:09:39,1,FEMALE,2022,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+299,Blandine L HIRONDEL,02:15:07,2,FEMALE,2025,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2628,Katie SCHIDE,02:17:03,3,FEMALE,2023,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2460,Camille BRUYAS,02:18:48,4,FEMALE,2023,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2220,Anne-Lise ROUSSET SEGURET,02:22:02,5,FEMALE,2022,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2693,Emilie MAROTEAUX,02:27:48,6,FEMALE,2023,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2428,Sarah VIEUILLE,02:30:27,7,FEMALE,2025,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2085,Manon BOHARD,02:31:11,8,FEMALE,2024,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+111,Eva SPERGER,02:32:42,9,FEMALE,2023,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2314,Manon CAMPANO,02:32:42,10,FEMALE,2025,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+2037,Anne CHAMPAGNE,02:33:05,11,FEMALE,2025,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+1692,Maud COMBARIEU,02:33:35,12,FEMALE,2025,Mare à boue → Croisée Kerveguen,Croisée,Mare Boue,False
+1502,Jean-François CAUCHON,00:35:10,1,MALE,2023,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+299,Blandine L HIRONDEL,00:36:06,1,FEMALE,2025,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2618,Diego PAZOS,00:36:11,2,MALE,2024,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+1820,Jean - Philippe TSCHUMI,00:36:27,3,MALE,2022,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2847,Beñat MARMISSOLLE,00:36:36,4,MALE,2022,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2605,Aurelien DUNAND-PALLAZ,00:36:39,5,MALE,2025,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+1003,Jérôme VANDERSCHAEGHE,00:36:46,6,MALE,2025,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+1989,Maxime CAZAJOUS,00:36:47,7,MALE,2024,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2732,Ludovic POMMERET,00:36:48,8,MALE,2025,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+1328,Aurélien DUNAND-PALLAZ,00:36:55,9,MALE,2023,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2664,Flo GAY-HUGUES,00:37:01,10,MALE,2022,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+926,Ben DHIMAN,00:37:04,11,MALE,2024,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2893,Jean - Philippe TSCHUMI,00:37:13,12,MALE,2024,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2693,Emilie MAROTEAUX,00:41:51,2,FEMALE,2023,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2220,Anne-Lise ROUSSET SEGURET,00:42:51,3,FEMALE,2022,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2628,Katie SCHIDE,00:44:00,4,FEMALE,2023,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+833,Zélie PIGNON,00:44:53,5,FEMALE,2023,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+111,Eva SPERGER,00:45:10,6,FEMALE,2023,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2460,Camille BRUYAS,00:45:53,7,FEMALE,2023,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+1034,Laure DE JACQUELOT,00:46:01,8,FEMALE,2023,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2085,Manon BOHARD,00:46:21,9,FEMALE,2024,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2518,Zélie PIGNON,00:46:50,10,FEMALE,2025,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+1950,Courtney DAUWALTER,00:47:00,11,FEMALE,2022,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2428,Sarah VIEUILLE,00:47:04,12,FEMALE,2025,Croisée Kerveguen → Le bloc,Le Bloc,Croisée,False
+2728,Baptiste CHASSAGNE,01:06:10,1,MALE,2025,Taïbit → Marla,Marla,Sentier T,False
+2893,Jean - Philippe TSCHUMI,01:08:12,2,MALE,2024,Taïbit → Marla,Marla,Sentier T,False
+317,Mathieu BLANCHARD,01:09:32,3,MALE,2024,Taïbit → Marla,Marla,Sentier T,False
+926,Ben DHIMAN,01:12:01,4,MALE,2024,Taïbit → Marla,Marla,Sentier T,False
+2605,Aurelien DUNAND-PALLAZ,01:14:54,5,MALE,2025,Taïbit → Marla,Marla,Sentier T,False
+1551,Yannick NOËL,01:15:09,6,MALE,2025,Taïbit → Marla,Marla,Sentier T,False
+1003,Jérôme VANDERSCHAEGHE,01:15:15,7,MALE,2025,Taïbit → Marla,Marla,Sentier T,False
+2732,Ludovic POMMERET,01:19:05,8,MALE,2025,Taïbit → Marla,Marla,Sentier T,False
+1961,Fabrice PAYET,01:19:19,9,MALE,2025,Taïbit → Marla,Marla,Sentier T,False
+299,Blandine L HIRONDEL,01:19:21,1,FEMALE,2025,Taïbit → Marla,Marla,Sentier T,False
+2618,Diego PAZOS,01:19:49,10,MALE,2024,Taïbit → Marla,Marla,Sentier T,False
+2495,Jean Pierre GRONDIN,01:20:02,11,MALE,2025,Taïbit → Marla,Marla,Sentier T,False
+2199,Vincent ESMIOL,01:20:18,12,MALE,2024,Taïbit → Marla,Marla,Sentier T,False
+2085,Manon BOHARD,01:28:16,2,FEMALE,2024,Taïbit → Marla,Marla,Sentier T,False
+1663,Maryline NAKACHE,01:33:14,3,FEMALE,2024,Taïbit → Marla,Marla,Sentier T,False
+2037,Anne CHAMPAGNE,01:33:24,4,FEMALE,2025,Taïbit → Marla,Marla,Sentier T,False
+380,Amélie HUCHET,01:38:17,5,FEMALE,2025,Taïbit → Marla,Marla,Sentier T,False
+1036,Pauline GRARDEL,01:38:55,6,FEMALE,2024,Taïbit → Marla,Marla,Sentier T,False
+2428,Sarah VIEUILLE,01:39:10,7,FEMALE,2025,Taïbit → Marla,Marla,Sentier T,False
+464,Wenfei XIE,01:40:04,8,FEMALE,2024,Taïbit → Marla,Marla,Sentier T,False
+921,Marie DOHIN,01:42:53,9,FEMALE,2025,Taïbit → Marla,Marla,Sentier T,False
+421,Flavie BRUYNEEL,01:45:34,10,FEMALE,2024,Taïbit → Marla,Marla,Sentier T,False
+2867,Julie MARINI,01:45:58,11,FEMALE,2024,Taïbit → Marla,Marla,Sentier T,False
+2204,Linda GUINOISEAU,01:47:13,12,FEMALE,2025,Taïbit → Marla,Marla,Sentier T,False
+2728,Baptiste CHASSAGNE,01:18:08,1,MALE,2025,Merles → Aurère,Aurère,Merles,False
+2893,Jean - Philippe TSCHUMI,01:18:31,2,MALE,2024,Merles → Aurère,Aurère,Merles,False
+317,Mathieu BLANCHARD,01:19:40,3,MALE,2024,Merles → Aurère,Aurère,Merles,False
+926,Ben DHIMAN,01:20:48,4,MALE,2024,Merles → Aurère,Aurère,Merles,False
+2605,Aurelien DUNAND-PALLAZ,01:21:50,5,MALE,2025,Merles → Aurère,Aurère,Merles,False
+1551,Yannick NOËL,01:22:20,6,MALE,2025,Merles → Aurère,Aurère,Merles,False
+2618,Diego PAZOS,01:22:57,7,MALE,2024,Merles → Aurère,Aurère,Merles,False
+1003,Jérôme VANDERSCHAEGHE,01:25:43,8,MALE,2025,Merles → Aurère,Aurère,Merles,False
+2845,Martin KERN,01:29:05,9,MALE,2024,Merles → Aurère,Aurère,Merles,False
+1961,Fabrice PAYET,01:30:20,10,MALE,2025,Merles → Aurère,Aurère,Merles,False
+2199,Vincent ESMIOL,01:30:27,11,MALE,2024,Merles → Aurère,Aurère,Merles,False
+2732,Ludovic POMMERET,01:30:30,12,MALE,2025,Merles → Aurère,Aurère,Merles,False
+299,Blandine L HIRONDEL,01:31:02,1,FEMALE,2025,Merles → Aurère,Aurère,Merles,False
+2314,Manon CAMPANO,01:44:42,2,FEMALE,2025,Merles → Aurère,Aurère,Merles,False
+2085,Manon BOHARD,01:45:28,3,FEMALE,2024,Merles → Aurère,Aurère,Merles,False
+1663,Maryline NAKACHE,01:50:15,4,FEMALE,2024,Merles → Aurère,Aurère,Merles,False
+1036,Pauline GRARDEL,01:51:15,5,FEMALE,2024,Merles → Aurère,Aurère,Merles,False
+2428,Sarah VIEUILLE,01:53:18,6,FEMALE,2025,Merles → Aurère,Aurère,Merles,False
+2037,Anne CHAMPAGNE,01:57:13,7,FEMALE,2025,Merles → Aurère,Aurère,Merles,False
+1692,Maud COMBARIEU,01:59:26,8,FEMALE,2025,Merles → Aurère,Aurère,Merles,False
+61,Silvia TRIGUEROS,02:00:37,9,FEMALE,2025,Merles → Aurère,Aurère,Merles,False
+921,Marie DOHIN,02:00:49,10,FEMALE,2025,Merles → Aurère,Aurère,Merles,False
+1939,Anais MACIAN,02:02:15,11,FEMALE,2024,Merles → Aurère,Aurère,Merles,False
+2867,Julie MARINI,02:02:19,12,FEMALE,2024,Merles → Aurère,Aurère,Merles,False
+2728,Baptiste CHASSAGNE,01:39:11,1,MALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+317,Mathieu BLANCHARD,01:39:51,2,MALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2605,Aurelien DUNAND-PALLAZ,01:41:39,3,MALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+926,Ben DHIMAN,01:42:17,4,MALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2893,Jean - Philippe TSCHUMI,01:43:10,5,MALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+1551,Yannick NOËL,01:47:38,6,MALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+1003,Jérôme VANDERSCHAEGHE,01:50:30,7,MALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2732,Ludovic POMMERET,01:53:32,8,MALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+299,Blandine L HIRONDEL,01:53:49,1,FEMALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2481,René ROVERA,01:54:19,9,MALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2845,Martin KERN,01:56:49,10,MALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2618,Diego PAZOS,01:56:50,11,MALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+1747,Rémi GILLIE,01:56:57,12,MALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2085,Manon BOHARD,02:18:50,2,FEMALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2314,Manon CAMPANO,02:20:25,3,FEMALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+1036,Pauline GRARDEL,02:22:26,4,FEMALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2290,Aline COQUARD,02:26:54,5,FEMALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2037,Anne CHAMPAGNE,02:28:25,6,FEMALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+464,Wenfei XIE,02:29:12,7,FEMALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+1663,Maryline NAKACHE,02:31:48,8,FEMALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2428,Sarah VIEUILLE,02:37:31,9,FEMALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+255,Sylvaine CUSSOT,02:40:37,10,FEMALE,2024,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2741,Johanna ANTILA,02:44:00,11,FEMALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+502,Yanid ARANGO,02:44:50,12,FEMALE,2025,Orangers → Maïdo,Tête dure,Ilet Oran,False
+2728,Baptiste CHASSAGNE,01:42:00,1,MALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+317,Mathieu BLANCHARD,01:42:49,2,MALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2893,Jean - Philippe TSCHUMI,01:45:13,3,MALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+1003,Jérôme VANDERSCHAEGHE,01:47:22,4,MALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+1961,Fabrice PAYET,01:50:05,5,MALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+1747,Rémi GILLIE,01:50:16,6,MALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+1551,Yannick NOËL,01:50:40,7,MALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2732,Ludovic POMMERET,01:52:00,8,MALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2618,Diego PAZOS,01:55:07,9,MALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+926,Ben DHIMAN,01:55:08,10,MALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2605,Aurelien DUNAND-PALLAZ,01:55:49,11,MALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2199,Vincent ESMIOL,01:56:02,12,MALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+299,Blandine L HIRONDEL,01:57:33,1,FEMALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2314,Manon CAMPANO,02:29:26,2,FEMALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+1036,Pauline GRARDEL,02:38:54,3,FEMALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2037,Anne CHAMPAGNE,02:41:15,4,FEMALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+1663,Maryline NAKACHE,02:41:22,5,FEMALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2085,Manon BOHARD,02:44:16,6,FEMALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+317,Jeanne PENFORNIS,02:45:39,7,FEMALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+699,Margot MOGIN,02:47:04,8,FEMALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+61,Silvia TRIGUEROS,02:47:05,9,FEMALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+921,Marie DOHIN,02:51:39,10,FEMALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+502,Yanid ARANGO,02:56:31,11,FEMALE,2025,Maïdo → Savannah,Ilet Savan,Tête dure,False
+2376,Pauline BARABAN,02:57:45,12,FEMALE,2024,Maïdo → Savannah,Ilet Savan,Tête dure,False
+317,Mathieu BLANCHARD,00:57:22,1,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+2728,Baptiste CHASSAGNE,00:59:33,2,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+1961,Fabrice PAYET,01:00:15,3,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+685,Gabriel PLACOTARIS,01:01:50,4,MALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+2206,Sébastien LOMBARD,01:02:15,5,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+2732,Ludovic POMMERET,01:02:40,6,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+2847,Beñat MARMISSOLLE,01:02:54,7,MALE,2022,Possession → Chaloupe,Chaloupe,Possession,False
+2605,Aurelien DUNAND-PALLAZ,01:02:57,8,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+2199,Fabrice PAYET,01:03:16,9,MALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+2610,Ben DHIMAN,01:04:11,10,MALE,2022,Possession → Chaloupe,Chaloupe,Possession,False
+1820,Jean - Philippe TSCHUMI,01:04:14,11,MALE,2022,Possession → Chaloupe,Chaloupe,Possession,False
+1551,Yannick NOËL,01:04:24,12,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+1950,Courtney DAUWALTER,01:10:28,1,FEMALE,2022,Possession → Chaloupe,Chaloupe,Possession,False
+299,Blandine L HIRONDEL,01:11:10,2,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+502,Yanid ARANGO,01:11:43,3,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+938,Lise PEIPOCH,01:18:52,4,FEMALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+2168,Joanne BERGUES,01:21:29,5,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+2460,Camille BRUYAS,01:22:03,6,FEMALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+925,Marion ZARADZKI,01:22:26,7,FEMALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+707,Elodie MITHRIDATE,01:23:25,8,FEMALE,2022,Possession → Chaloupe,Chaloupe,Possession,False
+2329,Angelique Victoria LESPORT,01:24:39,9,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+2518,Zélie PIGNON,01:24:50,10,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+2628,Katie SCHIDE,01:25:30,11,FEMALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+660,Marion FORTIN,01:26:14,12,FEMALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+1788,Noa OHMS,01:18:02,1,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+649,Sacha FOUCHER,01:25:06,2,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+2732,Ludovic POMMERET,01:25:43,3,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+2728,Baptiste CHASSAGNE,01:25:57,4,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+317,Mathieu BLANCHARD,01:26:06,5,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+2610,Ben DHIMAN,01:26:49,6,MALE,2022,Chaloupe → Colorado,Colorado,Chaloupe,False
+2199,Fabrice PAYET,01:28:38,7,MALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+997,Antoine COMPAROT,01:31:20,8,MALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+2354,Frederic BERRICHON,01:31:30,9,MALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+1452,Mael THOMASSIN,01:31:36,10,MALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+1038,Maxime JOURDE,01:31:41,11,MALE,2022,Chaloupe → Colorado,Colorado,Chaloupe,False
+2734,Mathieu MARECHAL,01:31:51,12,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+1950,Courtney DAUWALTER,01:35:07,1,FEMALE,2022,Chaloupe → Colorado,Colorado,Chaloupe,False
+502,Yanid ARANGO,01:41:48,2,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+2329,Angelique Victoria LESPORT,01:43:29,3,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+2741,Johanna ANTILA,01:47:10,4,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+2460,Camille BRUYAS,01:48:52,5,FEMALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+1036,Pauline GRARDEL,01:48:59,6,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+2628,Katie SCHIDE,01:49:50,7,FEMALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+1343,Marion ZARADZKI,01:50:11,8,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+921,Marie DOHIN,01:50:46,9,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+1294,Pauline WINER,01:51:37,10,FEMALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+2168,Joanne BERGUES,01:53:10,11,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+339,Emily VAUDAN,01:53:23,12,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+2847,Beñat MARMISSOLLE,00:35:56,1,MALE,2022,Colorado → Redoute,St Denis,Colorado,False
+2360,Stéphane BÈGUE,00:37:15,2,MALE,2022,Colorado → Redoute,St Denis,Colorado,False
+495,Antoine GUILLON,00:38:54,3,MALE,2022,Colorado → Redoute,St Denis,Colorado,False
+2734,Mathieu MARECHAL,00:39:15,4,MALE,2024,Colorado → Redoute,St Denis,Colorado,False
+997,Antoine COMPAROT,00:39:25,5,MALE,2023,Colorado → Redoute,St Denis,Colorado,False
+153,Jerome CLABE,00:39:38,6,MALE,2022,Colorado → Redoute,St Denis,Colorado,False
+2766,David MAILLOT,00:39:43,7,MALE,2023,Colorado → Redoute,St Denis,Colorado,False
+1991,Didier VALENTE,00:40:04,8,MALE,2022,Colorado → Redoute,St Denis,Colorado,False
+2726,Emile BONNEAU,00:40:04,9,MALE,2024,Colorado → Redoute,St Denis,Colorado,False
+2232,Flavio FRANCISCO,00:40:39,10,MALE,2022,Colorado → Redoute,St Denis,Colorado,False
+706,Grégory LAMOLY,00:40:44,11,MALE,2022,Colorado → Redoute,St Denis,Colorado,False
+1038,Maxime JOURDE,00:40:59,12,MALE,2022,Colorado → Redoute,St Denis,Colorado,False
+1950,Courtney DAUWALTER,00:48:50,1,FEMALE,2022,Colorado → Redoute,St Denis,Colorado,False
+833,Zélie PIGNON,00:49:10,2,FEMALE,2023,Colorado → Redoute,St Denis,Colorado,False
+1036,Pauline GRARDEL,00:52:17,3,FEMALE,2024,Colorado → Redoute,St Denis,Colorado,False
+2848,Marcelle VIENNE,00:52:27,4,FEMALE,2023,Colorado → Redoute,St Denis,Colorado,False
+2329,Angelique Victoria LESPORT,00:53:03,5,FEMALE,2025,Colorado → Redoute,St Denis,Colorado,False
+1343,Marion ZARADZKI,00:53:34,6,FEMALE,2025,Colorado → Redoute,St Denis,Colorado,False
+2700,Stéphanie SAMPER,00:53:35,7,FEMALE,2023,Colorado → Redoute,St Denis,Colorado,False
+2057,Anne Lyse MOLY,00:54:50,8,FEMALE,2023,Colorado → Redoute,St Denis,Colorado,False
+78,Hélène SCOUFLAIRE,00:54:55,9,FEMALE,2023,Colorado → Redoute,St Denis,Colorado,False
+1759,Solène NICOL,00:55:11,10,FEMALE,2022,Colorado → Redoute,St Denis,Colorado,False
+2290,Myrielle HOAREAU,00:55:15,11,FEMALE,2022,Colorado → Redoute,St Denis,Colorado,False
+938,Lise PEIPOCH,00:55:27,12,FEMALE,2023,Colorado → Redoute,St Denis,Colorado,False
+317,Mathieu BLANCHARD,05:27:32,1,MALE,2024,Marla → Maido,Tête dure,Marla,False
+2893,Jean - Philippe TSCHUMI,05:30:45,2,MALE,2024,Marla → Maido,Tête dure,Marla,False
+2728,Baptiste CHASSAGNE,05:31:09,3,MALE,2025,Marla → Maido,Tête dure,Marla,False
+926,Ben DHIMAN,05:39:39,4,MALE,2024,Marla → Maido,Tête dure,Marla,False
+2605,Aurelien DUNAND-PALLAZ,05:51:26,5,MALE,2025,Marla → Maido,Tête dure,Marla,False
+1551,Yannick NOËL,05:54:29,6,MALE,2025,Marla → Maido,Tête dure,Marla,False
+1003,Jérôme VANDERSCHAEGHE,06:12:10,7,MALE,2025,Marla → Maido,Tête dure,Marla,False
+2618,Diego PAZOS,06:14:18,8,MALE,2024,Marla → Maido,Tête dure,Marla,False
+2732,Ludovic POMMERET,06:17:53,9,MALE,2025,Marla → Maido,Tête dure,Marla,False
+2845,Martin KERN,06:19:04,10,MALE,2024,Marla → Maido,Tête dure,Marla,False
+299,Blandine L HIRONDEL,06:24:26,1,FEMALE,2025,Marla → Maido,Tête dure,Marla,False
+1961,Fabrice PAYET,06:28:48,11,MALE,2025,Marla → Maido,Tête dure,Marla,False
+2481,René ROVERA,06:29:41,12,MALE,2024,Marla → Maido,Tête dure,Marla,False
+2085,Manon BOHARD,07:19:50,2,FEMALE,2024,Marla → Maido,Tête dure,Marla,False
+2314,Manon CAMPANO,07:45:57,3,FEMALE,2025,Marla → Maido,Tête dure,Marla,False
+1663,Maryline NAKACHE,07:50:47,4,FEMALE,2024,Marla → Maido,Tête dure,Marla,False
+1036,Pauline GRARDEL,07:57:44,5,FEMALE,2024,Marla → Maido,Tête dure,Marla,False
+2037,Anne CHAMPAGNE,08:07:22,6,FEMALE,2025,Marla → Maido,Tête dure,Marla,False
+2428,Sarah VIEUILLE,08:21:43,7,FEMALE,2025,Marla → Maido,Tête dure,Marla,False
+464,Wenfei XIE,08:26:21,8,FEMALE,2024,Marla → Maido,Tête dure,Marla,False
+2290,Aline COQUARD,08:28:40,9,FEMALE,2024,Marla → Maido,Tête dure,Marla,False
+921,Marie DOHIN,08:37:51,10,FEMALE,2025,Marla → Maido,Tête dure,Marla,False
+1692,Maud COMBARIEU,09:02:50,11,FEMALE,2025,Marla → Maido,Tête dure,Marla,False
+61,Silvia TRIGUEROS,09:04:43,12,FEMALE,2025,Marla → Maido,Tête dure,Marla,False
+627,Jean Pascal COISSER,00:19:36,1,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+2319,Charles PERIN,00:20:05,2,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+2182,Dorian HOUZÉ,00:21:06,3,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+2640,Victor DUHAMEL,00:21:28,4,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1990,Guillaume CANDELI,00:21:29,5,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+2545,Titouan ANDRÉ,00:21:33,6,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+143,Simon WIDMANN,00:21:40,7,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+179,Orlando ACADINE,00:21:44,8,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1805,Simon STEFENEL GROUILLARD,00:22:08,9,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1624,Sacha LAGESSE,00:22:47,10,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+529,Mickaël RAMIN,00:22:51,11,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+348,Yohan MERIC,00:22:52,12,MALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+2329,Angelique Victoria LESPORT,00:26:36,1,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+2167,Noémie BATAILLE,00:26:47,2,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1960,Laura BERRUER,00:26:54,3,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1343,Marion ZARADZKI,00:27:07,4,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+2518,Zélie PIGNON,00:28:03,5,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+2168,Joanne BERGUES,00:28:51,6,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+95,Alexandra DUVERNE,00:28:55,7,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1692,Maud COMBARIEU,00:29:14,8,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1934,Johanna SMITH,00:29:16,9,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+897,Anne-Caroline KUSNIERZ,00:29:26,10,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+339,Emily VAUDAN,00:29:27,11,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1955,Lucille MALGOUYRES,00:29:43,12,FEMALE,2025,La Vigie → Redoute,St Denis,La Vigie,False
+1328,Aurélien DUNAND-PALLAZ,05:12:11,1,MALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2847,Beñat MARMISSOLLE,05:17:13,2,MALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2282,Jean - Philippe TSCHUMI,05:19:14,3,MALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2851,Francois DHAENE,05:19:17,4,MALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+88,Germain GRANGIER,05:19:18,5,MALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2435,Alexis SEVENNEC,05:19:27,6,MALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2146,Lambert SANTELLI,05:19:32,7,MALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+1211,Judicael SAUTRON,05:21:32,8,MALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+1406,Yannick NOËL,05:24:21,9,MALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2352,Germain GRANGIER,05:24:22,10,MALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2610,Ben DHIMAN,05:24:25,11,MALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+1723,Anthony PIPITONE,05:25:16,12,MALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+1950,Courtney DAUWALTER,05:26:02,1,FEMALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2628,Katie SCHIDE,05:31:27,2,FEMALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2220,Anne-Lise ROUSSET SEGURET,05:42:45,3,FEMALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2460,Camille BRUYAS,05:58:24,4,FEMALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2588,Sarah VIEUILLE,06:06:20,5,FEMALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+299,Blandine L HIRONDEL,06:09:33,6,FEMALE,2025,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+111,Eva SPERGER,06:09:35,7,FEMALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2693,Emilie MAROTEAUX,06:13:00,8,FEMALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2806,Julia HARNIE,06:19:39,9,FEMALE,2023,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2430,Anna CARLSSON,06:20:21,10,FEMALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+2428,Sarah VIEUILLE,06:23:12,11,FEMALE,2025,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+1584,Sylvaine CUSSOT,06:36:18,12,FEMALE,2022,1er quart (jusqu'à Mare à Boue),Mare Boue,St Pierre,False
+317,Mathieu BLANCHARD,04:15:31,1,MALE,2024,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2847,Beñat MARMISSOLLE,04:19:28,2,MALE,2022,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+1820,Jean - Philippe TSCHUMI,04:24:45,3,MALE,2022,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2199,Fabrice PAYET,04:27:08,4,MALE,2023,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2610,Ben DHIMAN,04:28:10,5,MALE,2022,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2732,Ludovic POMMERET,04:31:27,6,MALE,2025,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2728,Baptiste CHASSAGNE,04:31:38,7,MALE,2025,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+1961,Fabrice PAYET,04:36:48,8,MALE,2025,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+495,Antoine GUILLON,04:37:24,9,MALE,2022,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+1328,Aurélien DUNAND-PALLAZ,04:37:55,10,MALE,2023,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+685,Gabriel PLACOTARIS,04:38:32,11,MALE,2023,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2766,David MAILLOT,04:41:54,12,MALE,2023,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+1950,Courtney DAUWALTER,04:46:26,1,FEMALE,2022,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+502,Yanid ARANGO,05:22:17,2,FEMALE,2025,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2329,Angelique Victoria LESPORT,05:34:12,3,FEMALE,2025,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+299,Blandine L HIRONDEL,05:35:49,4,FEMALE,2025,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+1036,Pauline GRARDEL,05:49:56,5,FEMALE,2024,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2460,Camille BRUYAS,05:52:17,6,FEMALE,2023,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2628,Katie SCHIDE,05:55:05,7,FEMALE,2023,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2220,Anne-Lise ROUSSET SEGURET,06:01:15,8,FEMALE,2022,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2848,Marcelle VIENNE,06:02:30,9,FEMALE,2023,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2741,Johanna ANTILA,06:02:42,10,FEMALE,2025,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+707,Elodie MITHRIDATE,06:07:15,11,FEMALE,2022,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False
+2693,Emilie MAROTEAUX,06:09:08,12,FEMALE,2023,Dernier quart (Ratineau à Redoute),St Denis,Ratinaud,False

@@ -1,0 +1,265 @@
+bib,name,segment_time,rank,sex,year,secteur,end_checkpoint,start_checkpoint,filtrer_valeur_aberrante
+3759,Alexandre DEPECHE,01:43:28,1,MALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4160,Rivosoa Hobilalaina ANDRIANIRINA,01:43:49,2,MALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4302,Nirina HAJA,01:45:38,3,MALE,2025,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4186,Rivosoa Hobilalaina ANDRIANIRINA,01:45:39,4,MALE,2025,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4457,Matis FUGIER,01:46:18,5,MALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3354,Orlan AYADEN,01:47:42,6,MALE,2025,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3921,Orlan AYADEN,01:47:55,7,MALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3643,Moritz AUF DER HEIDE,01:48:00,8,MALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3212,Arthur GOURBIERE,01:48:43,9,MALE,2025,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3393,Matis FUGIER,01:48:44,10,MALE,2023,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4609,Ludovic JASMIN,01:49:00,11,MALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4139,Adrien Karim CHOUCHOU,01:49:04,12,MALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3845,Axelle HENRY,01:59:23,1,FEMALE,2023,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4081,Victoria DEVOUGE,02:05:54,2,FEMALE,2022,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3285,Laure REBUFFET,02:06:38,3,FEMALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4004,Morgane SATGE,02:08:39,4,FEMALE,2025,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3394,Amélie HUCHET,02:09:53,5,FEMALE,2022,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4073,Maëlys DEVOS,02:13:04,6,FEMALE,2025,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4034,Pauline DURAND,02:13:04,7,FEMALE,2025,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3294,Camille ANCIAUX,02:14:49,8,FEMALE,2023,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3304,Melanie HAUSS,02:15:20,9,FEMALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4365,Chloé MERIEL,02:15:24,10,FEMALE,2025,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+4298,Claire DAUCHEZ,02:15:24,11,FEMALE,2023,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3731,Thaïs PIBOULEAU,02:16:18,12,FEMALE,2024,Hell-Bourg → Merles,Merles,Hell-Bourg,False
+3759,Alexandre DEPECHE,00:10:49,1,MALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+4160,Rivosoa Hobilalaina ANDRIANIRINA,00:11:02,2,MALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+3354,Orlan AYADEN,00:11:47,3,MALE,2025,Merles → Sen. Scout,Sen. Scout,Merles,False
+3865,Nicolas COURT,00:12:15,4,MALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+3365,Noël GIORDANO,00:12:17,5,MALE,2022,Merles → Sen. Scout,Sen. Scout,Merles,False
+4276,Loïc BOYER,00:12:17,6,MALE,2022,Merles → Sen. Scout,Sen. Scout,Merles,False
+3643,Moritz AUF DER HEIDE,00:12:21,7,MALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+3921,Orlan AYADEN,00:12:33,8,MALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+4457,Matis FUGIER,00:12:35,9,MALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+3393,Matis FUGIER,00:12:42,10,MALE,2023,Merles → Sen. Scout,Sen. Scout,Merles,False
+4204,Paolo VELLE,00:12:46,11,MALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+3968,Nicolas MARCY,00:12:48,12,MALE,2025,Merles → Sen. Scout,Sen. Scout,Merles,False
+3845,Axelle HENRY,00:13:13,1,FEMALE,2023,Merles → Sen. Scout,Sen. Scout,Merles,False
+3285,Laure REBUFFET,00:14:35,2,FEMALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+3394,Amélie HUCHET,00:15:07,3,FEMALE,2022,Merles → Sen. Scout,Sen. Scout,Merles,False
+4004,Morgane SATGE,00:15:47,4,FEMALE,2025,Merles → Sen. Scout,Sen. Scout,Merles,False
+3304,Melanie HAUSS,00:15:48,5,FEMALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+4073,Maëlys DEVOS,00:15:49,6,FEMALE,2025,Merles → Sen. Scout,Sen. Scout,Merles,False
+3507,Claire JACQUET,00:15:54,7,FEMALE,2025,Merles → Sen. Scout,Sen. Scout,Merles,False
+4527,Margaux BEYRE,00:15:57,8,FEMALE,2024,Merles → Sen. Scout,Sen. Scout,Merles,False
+3462,Agathe GEANDREAU,00:16:06,9,FEMALE,2025,Merles → Sen. Scout,Sen. Scout,Merles,False
+3294,Camille ANCIAUX,00:16:13,10,FEMALE,2023,Merles → Sen. Scout,Sen. Scout,Merles,False
+4034,Pauline DURAND,00:16:29,11,FEMALE,2025,Merles → Sen. Scout,Sen. Scout,Merles,False
+3013,Hortense BEGUE,00:16:37,12,FEMALE,2022,Merles → Sen. Scout,Sen. Scout,Merles,False
+3759,Alexandre DEPECHE,00:52:48,1,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4160,Rivosoa Hobilalaina ANDRIANIRINA,00:55:54,2,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4457,Matis FUGIER,00:58:04,3,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3921,Orlan AYADEN,00:58:21,4,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3393,Matis FUGIER,00:58:33,5,MALE,2023,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4398,Nicolas MARCY,00:58:39,6,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3365,Noël GIORDANO,00:58:55,7,MALE,2022,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4152,Emmanuel HADOUX,00:58:56,8,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4276,Loïc BOYER,00:58:59,9,MALE,2022,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3172,Jean Charles BRETON,00:59:17,10,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4204,Paolo VELLE,00:59:24,11,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4609,Ludovic JASMIN,00:59:26,12,MALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3845,Axelle HENRY,01:04:43,1,FEMALE,2023,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3285,Laure REBUFFET,01:07:36,2,FEMALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4081,Victoria DEVOUGE,01:07:56,3,FEMALE,2022,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4094,Morgane LEFEUVRE,01:12:54,4,FEMALE,2025,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4073,Maëlys DEVOS,01:13:02,5,FEMALE,2025,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3294,Camille ANCIAUX,01:13:04,6,FEMALE,2023,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4298,Claire DAUCHEZ,01:13:08,7,FEMALE,2023,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3394,Amélie HUCHET,01:13:16,8,FEMALE,2022,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3750,Lucie CUISSET,01:13:37,9,FEMALE,2025,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4004,Morgane SATGE,01:14:20,10,FEMALE,2025,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+3852,Chloé MERIEL,01:14:37,11,FEMALE,2023,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4259,Camille PELTIER,01:14:45,12,FEMALE,2024,Sen. Scout → Aurère,Aurère,Sen. Scout,False
+4160,Rivosoa Hobilalaina ANDRIANIRINA,00:37:20,1,MALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+3393,Matis FUGIER,00:39:04,2,MALE,2023,Aurère → Deux Bras,Deux Bras,Aurère,False
+3304,Emmanuel HADOUX,00:39:34,3,MALE,2022,Aurère → Deux Bras,Deux Bras,Aurère,False
+3759,Alexandre DEPECHE,00:39:42,4,MALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+4204,Paolo VELLE,00:39:50,5,MALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+4457,Matis FUGIER,00:39:56,6,MALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+3172,Jean Charles BRETON,00:40:04,7,MALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+3365,Noël GIORDANO,00:40:20,8,MALE,2022,Aurère → Deux Bras,Deux Bras,Aurère,False
+4276,Loïc BOYER,00:40:20,9,MALE,2022,Aurère → Deux Bras,Deux Bras,Aurère,False
+4398,Nicolas MARCY,00:40:24,10,MALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+3050,Nicolas DRAPPIER,00:40:34,11,MALE,2025,Aurère → Deux Bras,Deux Bras,Aurère,False
+4506,Antoine COMPAROT,00:40:43,12,MALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+3845,Axelle HENRY,00:44:25,1,FEMALE,2023,Aurère → Deux Bras,Deux Bras,Aurère,False
+4190,Adeline VITRY,00:47:54,2,FEMALE,2022,Aurère → Deux Bras,Deux Bras,Aurère,False
+3750,Lucie CUISSET,00:48:37,3,FEMALE,2025,Aurère → Deux Bras,Deux Bras,Aurère,False
+4081,Victoria DEVOUGE,00:48:38,4,FEMALE,2022,Aurère → Deux Bras,Deux Bras,Aurère,False
+3285,Laure REBUFFET,00:48:47,5,FEMALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+4259,Camille PELTIER,00:48:49,6,FEMALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+4109,Louise BENEVENT,00:49:15,7,FEMALE,2025,Aurère → Deux Bras,Deux Bras,Aurère,False
+3294,Camille ANCIAUX,00:49:30,8,FEMALE,2023,Aurère → Deux Bras,Deux Bras,Aurère,False
+3394,Amélie HUCHET,00:49:43,9,FEMALE,2022,Aurère → Deux Bras,Deux Bras,Aurère,False
+3731,Thaïs PIBOULEAU,00:49:45,10,FEMALE,2024,Aurère → Deux Bras,Deux Bras,Aurère,False
+3013,Hortense BEGUE,00:49:47,11,FEMALE,2022,Aurère → Deux Bras,Deux Bras,Aurère,False
+3507,Claire JACQUET,00:50:35,12,FEMALE,2025,Aurère → Deux Bras,Deux Bras,Aurère,False
+4457,Matis FUGIER,00:55:39,1,MALE,2024,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+4632,Loïc BOYER,00:56:40,2,MALE,2023,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3416,Orlan AYADEN,00:56:43,3,MALE,2023,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+4513,Moises JIMENEZ,00:57:31,4,MALE,2022,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3354,Orlan AYADEN,00:58:32,5,MALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3304,Emmanuel HADOUX,00:58:38,6,MALE,2022,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+4302,Nirina HAJA,00:58:54,7,MALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3759,Alexandre DEPECHE,00:58:56,8,MALE,2024,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3329,Logan ETTER,00:59:05,9,MALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3393,Matis FUGIER,00:59:15,10,MALE,2023,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+4506,Antoine COMPAROT,00:59:32,11,MALE,2024,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3050,Nicolas DRAPPIER,00:59:41,12,MALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3845,Axelle HENRY,01:02:25,1,FEMALE,2023,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3394,Amélie HUCHET,01:07:58,2,FEMALE,2022,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3436,Marine SECHET,01:08:25,3,FEMALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3285,Laure REBUFFET,01:09:14,4,FEMALE,2024,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3507,Claire JACQUET,01:10:02,5,FEMALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+4073,Maëlys DEVOS,01:10:27,6,FEMALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3013,Hortense BEGUE,01:10:32,7,FEMALE,2022,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+4004,Morgane SATGE,01:11:53,8,FEMALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3234,Anne-Laure ROUX,01:12:11,9,FEMALE,2022,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+4094,Morgane LEFEUVRE,01:12:17,10,FEMALE,2025,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3294,Camille ANCIAUX,01:12:25,11,FEMALE,2023,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3731,Thaïs PIBOULEAU,01:12:28,12,FEMALE,2024,Deux Bras → Dos d'Ane,Dos d'Ane,Deux Bras,False
+3304,Emmanuel HADOUX,00:15:27,1,MALE,2022,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4186,Rivosoa Hobilalaina ANDRIANIRINA,00:15:54,2,MALE,2025,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3172,Jean Charles BRETON,00:15:54,3,MALE,2024,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3354,Orlan AYADEN,00:16:04,4,MALE,2025,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3365,Noël GIORDANO,00:16:10,5,MALE,2022,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3242,Mathis FLAMANT,00:16:11,6,MALE,2025,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4204,Paolo VELLE,00:16:12,7,MALE,2024,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4632,Loïc BOYER,00:16:18,8,MALE,2023,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3416,Orlan AYADEN,00:16:20,9,MALE,2023,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3745,Jonathan HOARAU,00:16:20,10,MALE,2025,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4513,Moises JIMENEZ,00:16:27,11,MALE,2022,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4506,Antoine COMPAROT,00:16:40,12,MALE,2024,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3845,Axelle HENRY,00:17:37,1,FEMALE,2023,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3285,Laure REBUFFET,00:18:22,2,FEMALE,2024,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4094,Morgane LEFEUVRE,00:19:08,3,FEMALE,2025,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4527,Margaux BEYRE,00:19:24,4,FEMALE,2024,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3972,Mar SORIANO MARTINEZ,00:19:45,5,FEMALE,2022,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3394,Amélie HUCHET,00:19:52,6,FEMALE,2022,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3294,Camille ANCIAUX,00:19:55,7,FEMALE,2023,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4081,Victoria DEVOUGE,00:19:57,8,FEMALE,2022,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3102,Armelle BONNET,00:20:32,9,FEMALE,2022,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+3436,Marine SECHET,00:20:48,10,FEMALE,2025,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4365,Chloé MERIEL,00:20:49,11,FEMALE,2025,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4478,Chloé COMBES,00:20:50,12,FEMALE,2024,Dos d'Ane → Ratinaud,Ratinaud,Dos d'Ane,False
+4632,Loïc BOYER,00:52:15,1,MALE,2023,Ratinaud → Possession,Possession,Ratinaud,False
+4160,Rivosoa Hobilalaina ANDRIANIRINA,00:53:23,2,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+4513,Moises JIMENEZ,00:54:09,3,MALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+3365,Noël GIORDANO,00:54:23,4,MALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+3304,Emmanuel HADOUX,00:54:55,5,MALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+3354,Orlan AYADEN,00:55:02,6,MALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+4398,Nicolas MARCY,00:55:52,7,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+3172,Jean Charles BRETON,00:56:02,8,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+4302,Nirina HAJA,00:56:09,9,MALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+3393,Matis FUGIER,00:56:25,10,MALE,2023,Ratinaud → Possession,Possession,Ratinaud,False
+4457,Matis FUGIER,00:56:30,11,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+4204,Paolo VELLE,00:57:05,12,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+3845,Axelle HENRY,01:01:02,1,FEMALE,2023,Ratinaud → Possession,Possession,Ratinaud,False
+4081,Victoria DEVOUGE,01:07:57,2,FEMALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+3013,Hortense BEGUE,01:08:35,3,FEMALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+3394,Amélie HUCHET,01:09:18,4,FEMALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+3294,Camille ANCIAUX,01:10:14,5,FEMALE,2023,Ratinaud → Possession,Possession,Ratinaud,False
+4094,Morgane LEFEUVRE,01:10:33,6,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+3285,Laure REBUFFET,01:11:06,7,FEMALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+3436,Marine SECHET,01:11:49,8,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+4004,Morgane SATGE,01:11:49,9,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+3874,Charlotte LANTENOIS,01:11:53,10,FEMALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+3234,Anne-Laure ROUX,01:12:41,11,FEMALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+4476,Maïlys CARRÉRO,01:12:53,12,FEMALE,2022,Ratinaud → Possession,Possession,Ratinaud,False
+4302,Nirina HAJA,00:49:00,1,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+3354,Orlan AYADEN,00:49:09,2,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+4506,Antoine COMPAROT,00:49:34,3,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+4398,Nicolas MARCY,00:50:41,4,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+3691,Alexandre DEPECHE,00:50:50,5,MALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+4632,Loïc BOYER,00:52:11,6,MALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+4457,Matis FUGIER,00:52:13,7,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+3759,Alexandre DEPECHE,00:53:05,8,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+4020,Gauthier DURET,00:53:10,9,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+3212,Arthur GOURBIERE,00:53:44,10,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+4160,Rivosoa Hobilalaina ANDRIANIRINA,00:54:06,11,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+3172,Jean Charles BRETON,00:54:22,12,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+3436,Marine SECHET,01:01:53,1,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+3845,Axelle HENRY,01:02:23,2,FEMALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+4073,Maëlys DEVOS,01:03:38,3,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+3285,Laure REBUFFET,01:04:04,4,FEMALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+3394,Amélie HUCHET,01:06:30,5,FEMALE,2022,Possession → Chaloupe,Chaloupe,Possession,False
+3294,Camille ANCIAUX,01:06:50,6,FEMALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+3507,Claire JACQUET,01:08:11,7,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+4094,Morgane LEFEUVRE,01:08:21,8,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+3781,Sophie BLARD,01:08:48,9,FEMALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+4215,Alexandra LASSIAILLE,01:09:34,10,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+4109,Louise BENEVENT,01:10:58,11,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+4057,Florence CHARLOT,01:10:59,12,FEMALE,2023,Possession → Chaloupe,Chaloupe,Possession,False
+4398,Nicolas MARCY,01:10:53,1,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+4506,Antoine COMPAROT,01:13:04,2,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+3172,Jean Charles BRETON,01:13:25,3,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+3759,Alexandre DEPECHE,01:14:31,4,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+3354,Orlan AYADEN,01:16:55,5,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+4457,Matis FUGIER,01:18:33,6,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+4609,Ludovic JASMIN,01:18:49,7,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+4632,Loïc BOYER,01:19:58,8,MALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+3212,Arthur GOURBIERE,01:20:09,9,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+4302,Nirina HAJA,01:21:45,10,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+4186,Rivosoa Hobilalaina ANDRIANIRINA,01:21:47,11,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+4376,Mathieu COQUIERE,01:21:47,12,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+3845,Axelle HENRY,01:29:30,1,FEMALE,2023,Chaloupe → Colorado,Colorado,Chaloupe,False
+3285,Laure REBUFFET,01:30:18,2,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+3436,Marine SECHET,01:31:52,3,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+3406,Laura GAMBLIN,01:31:54,4,FEMALE,2022,Chaloupe → Colorado,Colorado,Chaloupe,False
+4073,Maëlys DEVOS,01:32:10,5,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+4527,Margaux BEYRE,01:33:33,6,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+4094,Morgane LEFEUVRE,01:35:16,7,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+3507,Claire JACQUET,01:35:29,8,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+3731,Thaïs PIBOULEAU,01:35:48,9,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+3394,Amélie HUCHET,01:38:11,10,FEMALE,2022,Chaloupe → Colorado,Colorado,Chaloupe,False
+3874,Charlotte LANTENOIS,01:38:44,11,FEMALE,2022,Chaloupe → Colorado,Colorado,Chaloupe,False
+3234,Anne-Laure ROUX,01:40:29,12,FEMALE,2022,Chaloupe → Colorado,Colorado,Chaloupe,False
+3365,Noël GIORDANO,00:30:30,1,MALE,2022,Colorado → St Denis,St Denis,Colorado,False
+4398,Nicolas MARCY,00:30:41,2,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+4506,Antoine COMPAROT,00:31:19,3,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+3691,Alexandre DEPECHE,00:31:45,4,MALE,2023,Colorado → St Denis,St Denis,Colorado,False
+4361,Loic GAUVIN,00:32:50,5,MALE,2022,Colorado → St Denis,St Denis,Colorado,False
+3172,Jean Charles BRETON,00:33:03,6,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+4632,Loïc BOYER,00:33:48,7,MALE,2023,Colorado → St Denis,St Denis,Colorado,False
+3759,Alexandre DEPECHE,00:34:11,8,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+3056,Jean Charles BRETON,00:34:25,9,MALE,2023,Colorado → St Denis,St Denis,Colorado,False
+4510,Jean Jérôme MUSSARD,00:35:41,10,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+4513,Moises JIMENEZ,00:35:59,11,MALE,2022,Colorado → St Denis,St Denis,Colorado,False
+4246,Nicolas MARCY,00:36:15,12,MALE,2023,Colorado → St Denis,St Denis,Colorado,False
+3394,Amélie HUCHET,00:39:30,1,FEMALE,2022,Colorado → St Denis,St Denis,Colorado,False
+3845,Axelle HENRY,00:40:56,2,FEMALE,2023,Colorado → St Denis,St Denis,Colorado,False
+3285,Laure REBUFFET,00:41:51,3,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+3746,Charlotte FUMARD,00:43:15,4,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+3874,Charlotte LANTENOIS,00:43:23,5,FEMALE,2022,Colorado → St Denis,St Denis,Colorado,False
+4081,Victoria DEVOUGE,00:43:40,6,FEMALE,2022,Colorado → St Denis,St Denis,Colorado,False
+3369,Laetitia AUBRY,00:43:50,7,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+3972,Mar SORIANO MARTINEZ,00:43:58,8,FEMALE,2022,Colorado → St Denis,St Denis,Colorado,False
+3907,Julie Marie Nelly BACCO,00:44:24,9,FEMALE,2022,Colorado → St Denis,St Denis,Colorado,False
+3718,Claire RIMBAULT,00:46:08,10,FEMALE,2022,Colorado → St Denis,St Denis,Colorado,False
+4057,Florence CHARLOT,00:46:33,11,FEMALE,2023,Colorado → St Denis,St Denis,Colorado,False
+4460,Laetitia JORET,00:46:50,12,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+4186,Rivosoa Hobilalaina ANDRIANIRINA,00:20:26,1,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4302,Nirina HAJA,00:21:33,2,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3212,Arthur GOURBIERE,00:22:08,3,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3354,Orlan AYADEN,00:22:34,4,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3181,Guillaume CAMBON,00:22:52,5,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3294,Guillaume FELT,00:23:13,6,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3560,Patrice CHAN SEEM,00:23:42,7,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3242,Mathis FLAMANT,00:23:57,8,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4020,Gauthier DURET,00:24:19,9,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4432,Titouan FORT,00:25:02,10,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4147,Charles MOTTE,00:25:03,11,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3436,Marine SECHET,00:25:04,1,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4094,Morgane LEFEUVRE,00:25:04,2,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3415,Corentin LOUIS,00:25:20,12,MALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3550,Charlotte GOUTEYRON,00:26:46,3,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4073,Maëlys DEVOS,00:26:56,4,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4365,Chloé MERIEL,00:28:12,5,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4109,Louise BENEVENT,00:28:55,6,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3507,Claire JACQUET,00:29:35,7,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3140,Claire CRIDELICH,00:29:43,8,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3628,Angie LE SCOARNEC,00:29:52,9,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3542,Daphné JESTIN,00:29:52,10,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+4004,Morgane SATGE,00:30:20,11,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
+3643,Chloé PRIMAULT,00:30:33,12,FEMALE,2025,La Vigie (seulement 2025),La Vigie,Colorado,False
