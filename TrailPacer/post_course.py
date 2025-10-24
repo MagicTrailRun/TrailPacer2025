@@ -265,15 +265,14 @@ def _show_individual_analysis(results, config_df, df_cv,
 def _show_comparison_analysis(results, config_df, df_cv, event_code, course_code, year,course_name):
     try: 
         st.header('Comparaison de deux finishers')
-        st.info("Veuillez sélectionner exactement deux dossards pour la comparaison.")
-
-        options = ["--"] + [
+        options = [
             f"{info.get('rank_scratch','DNF')} - {info.get('name','Inconnu')} (Doss. {bib})"
             for bib, info in sorted(results.items(), key=lambda x: x[1].get("rank_scratch", 9999))
         ]
-        selected = st.multiselect("Sélection", options, max_selections=2)
+        selected = st.multiselect("Sélection", options, max_selections=2,placeholder="Veuillez sélectionner exactement deux dossards pour la comparaison.")
 
-        if len(selected) != 2 or "--" in selected:
+        if len(selected) != 2 :
+
             return
 
         def extract_bib(option):
@@ -614,15 +613,16 @@ def show_post_course_table(info, config_df, df_cv, bib):
 
     post_course_detail(df_splits)
 
-
-    metrics_options = {
-        "Écart vs peloton (%)": "écart_local_%",
-        "Écart vs élites (%)": "écart_elite_%",
-        "Écart vs index (%)": "écart_index_%",
-        "Écart vs peloton (h)": "écart_local_h",
-        "Écart vs élites (h)": "écart_elite_h",
-        "Écart vs index (h)": "écart_index_h",
-    }
+    # pourcentage_par_secteur(df_splits)
+    # plot_cascade_pourcentage(df_splits)
+    # metrics_options = {
+    #     "Écart vs peloton (%)": "écart_local_%",
+    #     "Écart vs élites (%)": "écart_elite_%",
+    #     "Écart vs index (%)": "écart_index_%",
+    #     "Écart vs peloton (h)": "écart_local_h",
+    #     "Écart vs élites (h)": "écart_elite_h",
+    #     "Écart vs index (h)": "écart_index_h",
+    # }
 
     # metric_label = st.selectbox(
     #     "📊 Choisir la métrique à afficher :",
@@ -966,3 +966,183 @@ def plot_spider_pacing(splits: dict, bib: str, runner: dict, key: str = "écart_
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
+
+
+
+
+
+def plot_cascade_pourcentage(df):
+    # ===============================
+    # CALCULS
+    # ===============================
+    total_runner = df["runner_h"].sum()
+    total_elite = df["median_elite_h"].sum()
+
+    df["% Coureur"] = df["runner_h"] / total_runner * 100
+    df["% Élite"] = df["median_elite_h"] / total_elite * 100
+    df["Cumul Coureur (%)"] = df["runner_h"].cumsum() / total_runner * 100
+    df["Cumul Elite (%)"] = df["median_elite_h"].cumsum() / total_elite * 100
+
+    # ===============================
+    # FIGURE
+    # ===============================
+    fig = go.Figure()
+
+    # Cascade du coureur
+    fig.add_trace(go.Waterfall(
+        name="Coureur",
+        orientation="v",
+        measure=["relative"] * len(df) + ["total"],
+        x=list(df["portion_name"]) + ["Total"],
+        y=list(df["% Coureur"]) + [0],
+        text=[f"{v:.1f}%" for v in df["% Coureur"]] + [""],
+        textposition="outside",
+        increasing={"marker": {"color": "royalblue"}},
+        totals={"marker": {"color": "darkblue"}}
+    ))
+
+    # # Cascade de l’élite
+    # fig.add_trace(go.Waterfall(
+    #     name="Élite",
+    #     orientation="v",
+    #     measure=["relative"] * len(df) + ["total"],
+    #     x=list(df["portion_name"]) + ["Total"],
+    #     y=list(df["% Élite"]) + [0],
+    #     text=[f"{v:.1f}%" for v in df["% Élite"]] + [""],
+    #     textposition="outside",
+    #     increasing={"marker": {"color": "seagreen"}},
+    #     totals={"marker": {"color": "darkgreen"}},
+    #     offset=0.2  # léger décalage visuel
+    # ))
+
+    # Ligne cumulée
+    fig.add_trace(go.Scatter(
+        name="Cumul Elite (%)",
+        x=df["portion_name"],
+        y=df["Cumul Elite (%)"],
+        mode="lines+markers",
+        line=dict(color="orange", width=2, dash="dot"),
+        yaxis="y2"
+    ))
+    fig.add_trace(go.Scatter(
+        name="Cumul Coureur (%)",
+        x=df["portion_name"],
+        y=df["Cumul Coureur (%)"],
+        mode="lines+markers",
+        line=dict(color="darkblue", width=2, dash="dot"),
+        yaxis="y2"
+    ))
+
+
+    # ===============================
+    # LAYOUT
+    # ===============================
+    fig.update_layout(
+        title="Répartition du temps par tronçon (Cascade + Cumul)",
+        xaxis_title="Tronçons",
+        yaxis_title="Contribution au temps total (%)",
+        template="plotly_white",
+        height=650,
+        barmode="group",
+        xaxis_tickangle=-45,
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        margin=dict(l=60, r=60, t=80, b=80),
+        yaxis2=dict(
+            overlaying="y",
+            side="right",
+            title="Cumul du temps (%)",
+            range=[0, 100],
+            showgrid=False
+        )
+    )
+
+    # ===============================
+    # STREAMLIT
+    # ===============================
+    st.plotly_chart(fig, use_container_width=True)
+
+    # Texte synthétique
+    st.markdown(f"""
+    - **Tronçon le plus lent :** {df.loc[df['runner_h'].idxmax(), 'portion_name']}
+    - **Écart moyen aux élites :** {(df['% Coureur'] - df['% Élite']).mean():.2f} %
+    - **Part cumulée finale :** {df['Cumul Coureur (%)'].iloc[-1]:.1f} %
+    """)
+
+
+def pourcentage_par_secteur(df):
+    total_runner = df["runner_h"].sum()
+    total_local = df["median_local_h"].sum()
+    total_elite = df["median_elite_h"].sum()
+
+    # Pourcentage du total pour chaque type
+    df["% Coureur"] = df["runner_h"] / total_runner * 100
+    df["% Peloton"] = df["median_local_h"] / total_local * 100
+    df[f"% Elite"] = df["median_elite_h"] / total_elite * 100
+    df["part_cumulée_%"]=df["runner_h"].cumsum()/ total_runner * 100
+    df["part_cumulée_elite_%"]=df["median_elite_h"].cumsum()/ total_elite * 100
+    # =====================================================================
+    # PLOT : barres empilées comparatives
+    # =====================================================================
+    fig = go.Figure()
+
+    # Barres de répartition
+    for col, color in zip(["% Coureur", "% Peloton", "% Elite"], ["royalblue", "darkorange", "seagreen"]):
+        fig.add_trace(go.Bar(
+            x=df["portion_name"],
+            y=df[col],
+            name=col.replace("% ", ""),
+            marker_color=color
+        ))
+
+    # Courbes cumulées
+    fig.add_trace(go.Scatter(
+        x=df["portion_name"],
+        y=df["part_cumulée_%"],
+        name="Cumulé Coureur (%)",
+        mode="lines+markers",
+        yaxis="y2",
+        line=dict(color="royalblue", dash="dot")
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=df["portion_name"],
+        y=df["part_cumulée_elite_%"],
+        name="Cumulé Élite (%)",
+        mode="lines+markers",
+        yaxis="y2",
+        line=dict(color="seagreen", dash="dot")
+    ))
+
+    # ===============================
+    # Layout
+    # ===============================
+    fig.update_layout(
+        title="Répartition du % temps par tronçon",
+        xaxis_title="Tronçons",
+        yaxis_title="Part du temps total (%)",
+        barmode="group",
+        bargap=0.25,
+        template="plotly_white",
+        height=600,
+        xaxis=dict(tickangle=-45, tickfont=dict(size=9), showgrid=False),
+        yaxis=dict(showgrid=True, gridwidth=0.5, gridcolor="lightgray"),
+        yaxis2=dict(overlaying="y", side="right", title="Cumul du temps (%)", range=[0, 100]),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+    )
+
+    # ===============================
+    # Affichage Streamlit
+    # ===============================
+    st.plotly_chart(fig, use_container_width=True)
+
+    df["écart_elite_%"] = ( df["% Coureur"] - df["% Elite"]) / df["% Elite"]* 100
+
+    worst_segment = df.loc[df["écart_elite_%"].idxmax(), "portion_name"]
+    best_segment = df.loc[df["écart_elite_%"].idxmin(), "portion_name"]
+
+
+    st.markdown(f"""
+    -  **Tronçon le plus lent vs élites :** `{worst_segment}` """)
+
+   
