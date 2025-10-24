@@ -270,10 +270,12 @@ def _show_comparison_analysis(results, config_df, df_cv, event_code, course_code
             for bib, info in sorted(results.items(), key=lambda x: x[1].get("rank_scratch", 9999))
         ]
         selected = st.multiselect("Sélection", options,placeholder="Veuillez sélectionner exactement deux dossards pour la comparaison.")
+        if len(selected) < 2:
+            st.stop()
 
-        if len(selected) != 2 :
+        if len(selected) > 2 :
             st.write("Veuillez sélectionner exactement deux dossards pour la comparaison.")
-            return
+            st.stop()
 
         def extract_bib(option):
             return int(option.split("(Doss. ")[1].split(")")[0])
