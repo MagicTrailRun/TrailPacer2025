@@ -1,19 +1,22 @@
 import streamlit as st
-from core.supabase_client import get_supabase_client
+from core.supabase_client import supabase
 from core.mongo_client import create_user_profile
 from core.mongo_client import db
 
 def supabase_login():
-    supabase= get_supabase_client()
 
+    # -------------------------
+    # Gestion utilisateur actuel
+    # -------------------------
     user = supabase.auth.get_user()
     if user:
         st.session_state["user"] = user.user
     else:
-        st.session_state['user'] = None
-    
-    if 'auth_mode' not in st.session_state:
-        st.session_state['auth_mode'] = None  # None, "login", "signup", "forgot"
+        st.session_state["user"] = None
+
+    # Modes possibles : None, "login", "signup", "forgot"
+    if "auth_mode" not in st.session_state:
+        st.session_state["auth_mode"] = None
 
     # -------------------------
     # Bannière d'accueil
@@ -30,60 +33,83 @@ def supabase_login():
             </p>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
-    st.write("")  # petit espace
-
-    def reset_password(email):
-        try:
-            supabase.auth.reset_password_for_email(email)
-            st.success("✅ Un lien de réinitialisation a été envoyé à votre email.")
-        except Exception as e:
-            st.error(f"❌ Impossible d'envoyer le lien : {e}")
+    st.write("")
 
     # -------------------------
-    # Utilisateur non connecté
+    # Si aucun utilisateur connecté
     # -------------------------
-    if st.session_state['user'] is None:
+    if st.session_state["user"] is None:
 
-        # Choix login / signup
-        if st.session_state['auth_mode'] is None:
+        # -------------------------
+        # Page d’accueil (choix login/signup)
+        # -------------------------
+        if st.session_state["auth_mode"] is None:
             col1, col2 = st.columns(2)
             with col1:
                 if st.button("Se connecter"):
-                    st.session_state['auth_mode'] = "login"
+                    st.session_state["auth_mode"] = "login"
+                    st.rerun()
             with col2:
                 if st.button("S'inscrire"):
-                    st.session_state['auth_mode'] = "signup"
+                    st.session_state["auth_mode"] = "signup"
+                    st.rerun()
             st.stop()
 
+        # -------------------------
+        # Page "Mot de passe oublié"
+        # -------------------------
+        if st.session_state["auth_mode"] == "forgot":
+            col_left, col_center, col_right = st.columns([1, 2, 1])
+            with col_center:
+                st.subheader("🔁 Réinitialiser le mot de passe")
+                email = st.text_input("Email")
+
+                if st.button("Envoyer le lien de réinitialisation"):
+                    try:
+                        supabase.auth.reset_password_for_email(email)
+                        st.success("✅ Un lien de réinitialisation a été envoyé à votre adresse email.")
+                    except Exception as e:
+                        st.error(f"❌ Erreur : {e}")
+
+                if st.button("⬅️ Retour à la connexion"):
+                    st.session_state["auth_mode"] = "login"
+                    st.rerun()
+
+            st.stop()
+
+        # -------------------------
         # Formulaire centré
+        # -------------------------
         col_left, col_center, col_right = st.columns([1, 2, 1])
         with col_center:
 
-            mode = st.session_state['auth_mode']
-            st.subheader("Connexion" if mode=="login" else "Créer un compte" if mode=="signup" else "Mot de passe oublié")
+            mode = st.session_state["auth_mode"]
+
+            st.subheader("Connexion" if mode == "login" else "Créer un compte")
             st.write("")
 
-            # Champs communs
             email = st.text_input("Email")
-            password = st.text_input("Mot de passe", type="password") if mode != "forgot" else None
+            password = st.text_input("Mot de passe", type="password")
 
-            # Champs inscription
-            name = st.text_input("Prénom et Nom") if mode=="signup" else None
+            name = None
+            if mode == "signup":
+                name = st.text_input("Prénom et Nom")
 
             st.write("")
 
-            # Boutons
-            col_btn_left, col_btn_center, col_btn_right = st.columns([1,2,1])
+            col_btn_left, col_btn_center, col_btn_right = st.columns([1, 2, 1])
             with col_btn_center:
+
+                # --- Connexion ---
                 if mode == "login":
                     if st.button("Se connecter"):
                         try:
-                            res = supabase.auth.sign_in_with_password({"email": email, "password": password})
-                            if res.user:
-                                st.session_state['user'] = res.user
+                            user = supabase.auth.sign_in_with_password({"email": email, "password": password})
+                            if user.user:
+                                st.session_state["user"] = user.user
                                 st.success(f"Bienvenue {email} !")
                                 st.rerun()
                             else:
@@ -91,24 +117,31 @@ def supabase_login():
                         except Exception:
                             st.error("Email ou mot de passe invalide")
 
+                    # 🔹 Bouton mot de passe oublié
                     if st.button("Mot de passe oublié ?"):
-                        st.session_state['auth_mode'] = "forgot"
+                        st.session_state["auth_mode"] = "forgot"
                         st.rerun()
 
+                    # 🔹 Bouton retour
+                    if st.button("⬅️ Retour"):
+                        st.session_state["auth_mode"] = None
+                        st.rerun()
+
+                # --- Inscription ---
                 elif mode == "signup":
                     if st.button("S'inscrire"):
                         try:
-                            res = supabase.auth.sign_up({"email": email, "password": password})
-                            if res.user:
+                            user = supabase.auth.sign_up({"email": email, "password": password})
+                            if user.user:
                                 existing = db["users"].find_one({"mail": email})
                                 if not existing:
                                     create_user_profile(
-                                        internal_id=res.user.id,
+                                        internal_id=user.user.id,
                                         email=email,
-                                        name=name or None
+                                        name=name or None,
                                     )
                                     st.success(f"Bienvenue {name or email} ! Votre compte a été créé et connecté.")
-                                    st.session_state['auth_mode'] = None
+                                    st.session_state["auth_mode"] = None
                                     st.rerun()
                                 else:
                                     st.info("Un profil existe déjà pour cet email — aucun nouveau profil créé.")
@@ -117,20 +150,19 @@ def supabase_login():
                         except Exception as e:
                             st.error(f"Erreur : {e}")
 
-                elif mode == "forgot":
-                    if st.button("Envoyer le lien"):
-                        reset_password(email)
-
-                # Bouton retour pour signup ou forgot
-                if mode in ["signup", "forgot"]:
+                    # 🔹 Bouton retour
                     if st.button("⬅️ Retour"):
-                        st.session_state['auth_mode'] = "login"
+                        st.session_state["auth_mode"] = None
                         st.rerun()
 
+            st.markdown("</div>", unsafe_allow_html=True)
+
+    # -------------------------
+    # Si utilisateur connecté
+    # -------------------------
     else:
-        # Utilisateur connecté
         st.sidebar.write(f"Connecté : {st.session_state['user'].email}")
         if st.sidebar.button("Se déconnecter"):
             supabase.auth.sign_out()
-            st.session_state['user'] = None
+            st.session_state["user"] = None
             st.rerun()
