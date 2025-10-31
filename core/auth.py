@@ -11,12 +11,25 @@ def supabase_login():
 
     # --- Détection d'un lien de réinitialisation envoyé par Supabase ---
     params = st.query_params
+
+    # Vérifie si c’est un lien de réinitialisation de mot de passe
     if "type" in params and params.get("type") == "recovery" and "access_token" in params:
-        access_token = params.get("access_token")
-        # On initialise la session temporaire pour permettre la mise à jour du mot de passe
-        supabase.auth.set_session(access_token, None)
-        st.session_state["auth_mode"] = "reset_password"
-        st.rerun()
+        token_hash = params.get("access_token")
+
+        # On vérifie le token auprès de Supabase pour obtenir une session temporaire
+        resp = supabase.auth.verify_otp({
+            "token_hash": token_hash,
+            "type": "recovery"
+        })
+
+        if resp.session:
+            # Stocke l'utilisateur et passe en mode réinitialisation
+            st.session_state["user"] = resp.session.user
+            st.session_state["auth_mode"] = "reset_password"
+            st.rerun()
+        else:
+            st.error("Le lien de réinitialisation est invalide ou a expiré.")
+
 
 
     
