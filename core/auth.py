@@ -9,7 +9,12 @@ def supabase_login():
     # -------------------------
     # Lien réinitialisation depuis email
     # -------------------------
-    if "type" in params and params.get("type") == "recovery" and "access_token" in params:
+    if (
+        "type" in params and params.get("type") == "recovery"
+        and "access_token" in params
+        and st.session_state.get("recovery_verified") is not True
+    ):
+
         token_hash = params.get("access_token")
         try:
             resp = supabase.auth.verify_otp({
@@ -19,6 +24,7 @@ def supabase_login():
             if resp.session:
                 st.session_state["user"] = resp.session.user
                 st.session_state["auth_mode"] = "reset_password"
+                st.session_state["recovery_verified"] = True
                 st.success("Lien valide ! Vous pouvez maintenant choisir un nouveau mot de passe.")
             else:
                 st.error("Le lien de réinitialisation est invalide ou a expiré.")
