@@ -79,6 +79,10 @@ def show_beta_banner():
                     <p class="banner-subtitle">
                         Vos retours sont essentiels pour améliorer l’outil. Pour toute remarque ou suggestion, écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> ou utilisez l’espace commentaire ci-dessous.
                     </p>
+                    <p class="banner-subtitle">
+                        Vous pouvez également appareiller votre compte Garmin ou Strava afin que nous récupérions vos données
+                        pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite. Merci de votre aide.
+                    </p>
                 </div>
             </div>
         </div>
