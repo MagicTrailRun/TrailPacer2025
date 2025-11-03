@@ -10,6 +10,8 @@ def supabase_login():
     # -------------------------
 
     # --- Détection d'un lien de réinitialisation envoyé par Supabase ---
+    st.session_state["auth_mode"] = None
+    
     params = st.query_params
 
     # Vérifie si c’est un lien de réinitialisation de mot de passe
