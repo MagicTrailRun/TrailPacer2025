@@ -48,21 +48,23 @@ def supabase_login():
     # -------------------------
     # Bannière d'accueil
     # -------------------------
-    st.markdown(
-        """
-        <div style='background-color:#4CAF50; padding:20px; border-radius:10px; color:white; text-align:center;'>
-            <h2>Bienvenue sur la bêta de Trail Pacer !</h2>
-            <p>
-            Nous vous demandons maintenant de créer un compte pour contrôler qui a accès à la bêta, 
-            ainsi que pour personnaliser l'expérience. <br><br>
-            Vous pouvez également appareiller votre compte Garmin ou Strava afin que nous récupérions vos données 
-            pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite. Merci de votre aide.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    st.write("")
+
+    if st.session_state.get("user") is None or st.session_state.get("auth_mode") == "reset_password":
+        st.markdown(
+            """
+            <div style='background-color:#4CAF50; padding:20px; border-radius:10px; color:white; text-align:center;'>
+                <h2>Bienvenue sur la bêta de Trail Pacer !</h2>
+                <p>
+                Nous vous demandons maintenant de créer un compte pour contrôler qui a accès à la bêta, 
+                ainsi que pour personnaliser l'expérience. <br><br>
+                Vous pouvez également appareiller votre compte Garmin ou Strava afin que nous récupérions vos données 
+                pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite. Merci de votre aide.
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.write("")
 
     # -------------------------
     # Si utilisateur connecté
