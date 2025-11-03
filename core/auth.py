@@ -36,6 +36,33 @@ def supabase_login():
             st.error('f"Impossible de vérifier le lien : {e}')
             st.stop()
 
+    
+    # --- Page de réinitialisation après clic sur le mail ---
+    if st.session_state["auth_mode"] == "reset_password":
+        col_left, col_center, col_right = st.columns([1, 2, 1])
+        with col_center:
+            st.subheader("🔒 Nouveau mot de passe")
+            new_password = st.text_input("Nouveau mot de passe", type="password")
+            confirm_password = st.text_input("Confirmez le mot de passe", type="password")
+
+            if st.button("Valider le nouveau mot de passe"):
+                if new_password != confirm_password:
+                        st.error("Les mots de passe ne correspondent pas.")
+                else:
+                    try:
+                        supabase.auth.update_user({"password": new_password})
+                        st.success("✅ Mot de passe mis à jour avec succès. Vous pouvez maintenant vous reconnecter.")
+                        st.session_state["auth_mode"] = "login"
+                        st.rerun()
+                    except Exception as e:
+                        st.error(f"❌ Erreur : {e}")
+
+            if st.button("⬅️ Retour à la connexion"):
+                st.session_state["auth_mode"] = "login"
+                st.rerun()
+
+        st.stop()
+
 
 
     
