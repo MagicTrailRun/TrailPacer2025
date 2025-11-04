@@ -42,6 +42,8 @@ def _clear_query_params():
 STRAVA_CLIENT_ID = os.getenv("STRAVA_CLIENT_ID", "170263")
 STRAVA_CLIENT_SECRET = os.getenv("STRAVA_CLIENT_SECRET", "6abf41a2581b5d14d88811d1496d593ca36f55e4")
 STRAVA_REDIRECT_URI = os.getenv("STRAVA_REDIRECT_URI", "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/")
+STRAVA_DEAUTHORIZE_URL = "https://www.strava.com/oauth/deauthorize"
+
 
 def connect_strava():
     auth_url = (
@@ -97,6 +99,30 @@ def connect_strava():
         _clear_query_params()
 
 
+
+
+def revoke_strava_token(access_token: str) -> bool:
+    """
+    Révoque le token Strava (déconnexion côté Strava).
+
+    Args:
+        access_token (str): Access token Strava (obligatoire).
+
+    Returns:
+        bool: True si succès, False sinon.
+    """
+    try:
+        response = requests.post(
+            STRAVA_DEAUTHORIZE_URL,
+            headers={"Authorization": f"Bearer {access_token}"}
+        )
+        return response.status_code == 200
+
+    except Exception:
+        return False
+
+
+
 # ==========================
 # ---------- GARMIN ----------
 # ==========================
@@ -105,6 +131,7 @@ GARMIN_CLIENT_SECRET = os.getenv("GARMIN_CLIENT_SECRET", "IPW4Jew8lxWIL957SA5SSV
 GARMIN_REDIRECT_URI = os.getenv("GARMIN_REDIRECT_URI", "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/")
 GARMIN_AUTH_URL = "https://connect.garmin.com/oauth2Confirm"
 GARMIN_TOKEN_URL = "https://diauth.garmin.com/di-oauth2-service/oauth/token"
+GARMIN_DEAUTHORIZE_URL = "https://apis.garmin.com/wellness-api/rest/user/registration"
 
 def generate_code_verifier(length: int = 64) -> str:
     allowed = string.ascii_letters + string.digits + "-._~"
@@ -175,3 +202,24 @@ def connect_garmin():
 
         # Nettoyage de l’URL
         _clear_query_params()
+
+
+
+def revoke_garmin_token(access_token: str) -> bool:
+    """
+    Révoque l'accès Garmin côté Garmin (déconnexion complète).
+
+    Args:
+        access_token (str): Access token Garmin.
+
+    Returns:
+        bool: True si succès, False sinon.
+    """
+    try:
+        response = requests.delete(
+            GARMIN_DEAUTHORIZE_URL,
+            headers={"Authorization": f"Bearer {access_token}"}
+        )
+        return response.status_code == 200
+    except Exception:
+        return False

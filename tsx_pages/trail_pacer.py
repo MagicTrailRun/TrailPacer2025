@@ -9,6 +9,7 @@ from TrailPacer.explore_race import explore_race
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
 from TrailPacer.post_course import show_post_course
 from TrailPacer.plan_pacing import show_plan_pacing
+from TrailPacer.device_connected import device_connected
 from core.fitness_connect import connect_strava, connect_garmin
 from config.styles import apply_custom_css
 import traceback
@@ -88,10 +89,7 @@ def show():
 
     
     with connect8:
-        st.header("Appareiller mes comptes Strava et Garmin")
-        st.write("Connectez vos comptes pour synchroniser vos activités et analyses post-course.")
-        connect_strava()
-        connect_garmin()
+        device_connected()
 
 if __name__ == "__main__":
     show()

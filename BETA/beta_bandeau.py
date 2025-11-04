@@ -12,7 +12,7 @@ def show_beta_banner():
                 width: 96%;
                 background: #e3f2fd; /* bleu clair uniforme */
                 border: 1px solid #90caf9;
-                padding: 18px 25px;
+                padding: 25px 25px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -20,6 +20,7 @@ def show_beta_banner():
                 box-shadow: 0 3px 10px rgba(0,0,0,0.05);
                 border-radius: 12px;
                 margin-bottom: 15px;
+                min-height: 180px;
             }
             
             .banner-left {
