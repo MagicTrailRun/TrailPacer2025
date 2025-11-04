@@ -1,45 +1,50 @@
 import streamlit as st
 from core.supabase_client import supabase
-from core.mongo_client import create_user_profile
+from core.mongo_client import create_user_profile, list_integrations
 from core.mongo_client import db
 from core.fitness_connect import connect_strava, connect_garmin
 
 
 # --- Sidebar avec appariement ---
-def _show_sidebar():
+def show_sidebar():
     st.sidebar.title("Trail Pacer")
     user = st.session_state.get("user")
 
-    if user:
-        st.sidebar.write(f"Connecté : {user.email}")
-
-        # Déconnexion Trail Pacer
-        if st.sidebar.button("Se déconnecter"):
-            supabase.auth.sign_out()
-            st.session_state["user"] = None
-            st.rerun()
-
-        st.sidebar.markdown("---")
-        st.sidebar.subheader("Appareils à appareiller")
-
-        # Récupération de l'état en base
-        strava_connected = db["users"].find_one({"mail": user.email}).get("strava_connected", False)
-        garmin_connected = db["users"].find_one({"mail": user.email}).get("garmin_connected", False)
-
-        # Bouton appariement Strava
-        if not strava_connected and st.sidebar.button("Strava"):
-            connect_strava()
-            st.success("Strava appareillé")
-            st.rerun()
-
-        # Bouton appariement Garmin
-        if not garmin_connected and st.sidebar.button("Garmin"):
-            connect_garmin()
-            st.success("Garmin appareillé")
-            st.rerun()
-
-    else:
+    if not user:
         st.sidebar.info("Connectez-vous pour apparier vos appareils")
+        return
+
+    email = user.email
+    st.sidebar.write(f"Connecté : {email}")
+
+    # Déconnexion Trail Pacer
+    if st.sidebar.button("Se déconnecter"):
+        supabase.auth.sign_out()
+        st.session_state["user"] = None
+        st.rerun()
+
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("Appareils à appareiller")
+
+    internal_id = user.id
+    integrations = list_integrations(internal_id)  # {"strava": True/False, "garmin": True/False}
+
+    # --- Strava (affiché uniquement si non connecté) ---
+    if not integrations.get("strava", False):
+        if st.sidebar.button("🧡 Appairer Strava"):
+            connect_strava()  # Tu appelles ta fonction existante
+            st.success("Strava appairé avec succès ✅")
+            st.rerun()
+
+    # --- Garmin (affiché uniquement si non connecté) ---
+    if not integrations.get("garmin", False):
+        if st.sidebar.button("🔵 Appairer Garmin"):
+            connect_garmin()
+            st.success("Garmin appairé avec succès ✅")
+            st.rerun()
+
+    st.sidebar.markdown("---")
+
 
 
 
