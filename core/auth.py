@@ -31,7 +31,7 @@ def show_sidebar():
 
     # --- Strava (affiché uniquement si non connecté) ---
     if not integrations.get("strava", False):
-        strava_logo = st.sidebar.image("TrailPacer/image/strava_logo.png", use_container_width=True)
+        strava_logo = st.sidebar.image("../TrailPacer/image/strava_logo.png", use_container_width=True)
         if st.sidebar.button(" ", key="pair_strava_logo"):
             connect_strava()  # Tu appelles ta fonction existante
             st.success("Strava appairé avec succès ✅")
@@ -39,7 +39,7 @@ def show_sidebar():
 
     # --- Garmin (affiché uniquement si non connecté) ---
     if not integrations.get("garmin", False):
-        garmin_logo = st.sidebar.image("TrailPacer/image/garmin_logo.png", use_container_width=True)
+        garmin_logo = st.sidebar.image("../TrailPacer/image/garmin_logo.png", use_container_width=True)
         if st.sidebar.button(" ", key="pair_garmin_logo"):
             connect_garmin()
             st.success("Garmin appairé avec succès ✅")
