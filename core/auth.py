@@ -115,7 +115,7 @@ def supabase_login():
     # Si utilisateur connecté
     # -------------------------
     if st.session_state.get("user") is not None and st.session_state.get("auth_mode") != "reset_password":
-        _show_sidebar()
+        show_sidebar()
         return  # tout le reste est pour les non-connectés
 
     # -------------------------
