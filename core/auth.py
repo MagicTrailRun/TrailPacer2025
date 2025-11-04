@@ -24,24 +24,29 @@ def show_sidebar():
         st.rerun()
 
     st.sidebar.markdown("---")
-    st.sidebar.subheader("Appareils à appareiller")
+    st.sidebar.subheader("Connectez vos appareils")
 
     internal_id = user.id
     integrations = list_integrations(internal_id)  # {"strava": True/False, "garmin": True/False}
 
     # --- Strava (affiché uniquement si non connecté) ---
     if not integrations.get("strava", False):
-        if st.sidebar.button("🧡 Appairer Strava"):
+        strava_logo = st.sidebar.image("TrailPacer/image/strava_logo.png", use_container_width=True)
+        if st.sidebar.button(" ", key="pair_strava_logo"):
             connect_strava()  # Tu appelles ta fonction existante
             st.success("Strava appairé avec succès ✅")
             st.rerun()
 
     # --- Garmin (affiché uniquement si non connecté) ---
     if not integrations.get("garmin", False):
-        if st.sidebar.button("🔵 Appairer Garmin"):
+        garmin_logo = st.sidebar.image("TrailPacer/image/garmin_logo.png", use_container_width=True)
+        if st.sidebar.button(" ", key="pair_garmin_logo"):
             connect_garmin()
             st.success("Garmin appairé avec succès ✅")
             st.rerun()
+    
+    if not integrations.get("garmin", False) and not integrations.get("strava", False):
+        st.sidebar.write("Vous avez déjà connecté tous vos appareils")
 
     st.sidebar.markdown("---")
 
