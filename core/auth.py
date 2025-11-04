@@ -6,7 +6,7 @@ from core.fitness_connect import connect_strava, connect_garmin
 
 
 # --- Sidebar avec appariement ---
-def _show_sidebar(self):
+def _show_sidebar():
     st.sidebar.title("Trail Pacer")
     user = st.session_state.get("user")
 
