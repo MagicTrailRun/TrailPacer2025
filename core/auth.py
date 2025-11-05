@@ -2,7 +2,7 @@ import streamlit as st
 from core.supabase_client import supabase
 from core.mongo_client import create_user_profile, list_integrations
 from core.mongo_client import db
-from core.fitness_connect import connect_strava, connect_garmin
+from core.fitness_connect import connect_strava, connect_garmin, handle_strava_callback, handle_garmin_callback
 
 
 # --- Sidebar avec appariement ---
@@ -31,19 +31,13 @@ def show_sidebar():
 
     # --- Strava (affiché uniquement si non connecté) ---
     if not integrations.get("strava", False):
-        strava_logo = st.sidebar.image("TrailPacer/image/strava_logo.png", use_container_width=True)
-        if st.sidebar.button(" ", key="pair_strava_logo"):
-            connect_strava()  # Tu appelles ta fonction existante
-            st.success("Strava appairé avec succès ✅")
-            st.rerun()
+        auth_strava_url = connect_strava()
+        st.sidebar.markdown(f"[![Strava](TrailPacer/image/strava_logo.png)]({auth_strava_url})", unsafe_allow_html=True)
 
     # --- Garmin (affiché uniquement si non connecté) ---
     if not integrations.get("garmin", False):
-        garmin_logo = st.sidebar.image("TrailPacer/image/garmin_logo.png", use_container_width=True)
-        if st.sidebar.button(" ", key="pair_garmin_logo"):
-            connect_garmin()
-            st.success("Garmin appairé avec succès ✅")
-            st.rerun()
+        auth_garmin_url=connect_garmin()
+        st.sidebar.markdown(f"[![Garmin](TrailPacer/image/garmin_logo.png)]({auth_garmin_url})", unsafe_allow_html=True)
     
     if integrations.get("garmin", False) and integrations.get("strava", False):
         st.sidebar.write("Vous avez déjà connecté tous vos appareils")
