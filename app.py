@@ -11,6 +11,7 @@ from BETA.beta_bandeau import show_beta_banner
 from Quest.sex_quest import show_quest_banner
 from BETA.beta_bandeau import show_beta_banner
 from core.auth import supabase_login
+from core.fitness_connect import handle_garmin_callback, handle_strava_callback
 class TSXApplication:
     """Application principale TSX Trail"""
     def __init__(self):
@@ -66,6 +67,8 @@ class TSXApplication:
         self._show_sidebar()
         main_container = st.container()
         with main_container:
+            handle_strava_callback()
+            handle_garmin_callback()
             self._display_waning_if_beta()
             self.show_banner()
             current_page = self.session_manager.get_current_page()

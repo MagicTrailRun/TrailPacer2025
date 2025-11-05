@@ -54,10 +54,17 @@ def connect_strava():
         "&scope=read,profile:read_all,activity:read_all"
         "&approval_prompt=force"
     )
-    st.markdown(f"[🔗 Connecter mon compte Strava]({auth_url})")
+
+    return auth_url
+
+
+def handle_strava_callback():
 
     qparams = _get_query_params()
     code = _get_single_param(qparams, "code")
+
+    if not code:
+        return
 
     if code:
         # Échange du code contre des tokens
@@ -153,8 +160,10 @@ def connect_garmin():
         f"&code_challenge={CODE_CHALLENGE}"
         "&code_challenge_method=S256"
     )
-    st.markdown(f"[🔗 Connecter mon compte Garmin]({auth_url})")
+    return auth_url
 
+def handle_garmin_callback():
+    
     qparams = _get_query_params()
     code = _get_single_param(qparams, "code")
 
