@@ -53,6 +53,7 @@ def connect_strava():
         f"&redirect_uri={STRAVA_REDIRECT_URI}"
         "&scope=read,profile:read_all,activity:read_all"
         "&approval_prompt=force"
+        f"&state=strava"
     )
 
     return auth_url
@@ -61,6 +62,8 @@ def connect_strava():
 def handle_strava_callback():
 
     qparams = _get_query_params()
+    if qparams.get("state")!="strava":
+        return
     code = _get_single_param(qparams, "code")
 
     if not code:
@@ -159,12 +162,15 @@ def connect_garmin():
         f"&redirect_uri={GARMIN_REDIRECT_URI}"
         f"&code_challenge={CODE_CHALLENGE}"
         "&code_challenge_method=S256"
+        f"&state=garmin"
     )
     return auth_url
 
 def handle_garmin_callback():
-    
+
     qparams = _get_query_params()
+    if qparams.get("state")!="garmin":
+        return
     code = _get_single_param(qparams, "code")
 
     if code:

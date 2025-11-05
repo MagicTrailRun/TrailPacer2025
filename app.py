@@ -64,11 +64,11 @@ class TSXApplication:
 
 
     def _show_main_interface(self):
+        handle_strava_callback()
+        handle_garmin_callback()
         self._show_sidebar()
         main_container = st.container()
         with main_container:
-            handle_strava_callback()
-            handle_garmin_callback()
             self._display_waning_if_beta()
             self.show_banner()
             current_page = self.session_manager.get_current_page()
