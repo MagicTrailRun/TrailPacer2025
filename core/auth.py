@@ -29,49 +29,41 @@ def show_sidebar():
     internal_id = user.id
     integrations = list_integrations(internal_id)  # {"strava": True/False, "garmin": True/False}
 
-     # --- Strava (affiché uniquement si non connecté) ---
+     # --- Bouton Strava (orange/blanc) ---
     if not integrations.get("strava", False):
-        auth_strava_url = connect_strava()  # Génère le lien OAuth Strava
+        auth_strava_url = connect_strava()  # Retourne l'URL OAuth
         st.sidebar.markdown(
             f"""
-            <a href="{auth_strava_url}" target="_blank" style="text-decoration:none;">
-                <div style="
-                    display:flex;
-                    align-items:center;
-                    padding:5px 10px;
-                    background-color:#fc4c02;
-                    color:white;
-                    border-radius:8px;
-                    width:100%;
-                    justify-content:center;
-                ">
-                    <img src="TrailPacer/image/strava_logo.png" width="24" style="margin-right:10px;">
-                    Strava
-                </div>
+            <a href="{auth_strava_url}" style="
+                display:block;
+                text-align:center;
+                padding:10px;
+                background-color:#fc4c02;
+                color:white;
+                text-decoration:none;
+                border-radius:5px;
+                font-weight:bold;">
+                Connecter Strava
             </a>
             """,
             unsafe_allow_html=True
         )
 
-    # --- Garmin (affiché uniquement si non connecté) ---
+    # --- Bouton Garmin (bleu/blanc) ---
     if not integrations.get("garmin", False):
-        auth_garmin_url = connect_garmin()  # Génère le lien OAuth Garmin
+        auth_garmin_url = connect_garmin()  # Retourne l'URL OAuth
         st.sidebar.markdown(
             f"""
-            <a href="{auth_garmin_url}" target="_blank" style="text-decoration:none;">
-                <div style="
-                    display:flex;
-                    align-items:center;
-                    padding:5px 10px;
-                    background-color:#00a0df;
-                    color:white;
-                    border-radius:8px;
-                    width:100%;
-                    justify-content:center;
-                ">
-                    <img src="TrailPacer/image/garmin_logo.png" width="24" style="margin-right:10px;">
-                    Garmin
-                </div>
+            <a href="{auth_garmin_url}" style="
+                display:block;
+                text-align:center;
+                padding:10px;
+                background-color:#0073cf;
+                color:white;
+                text-decoration:none;
+                border-radius:5px;
+                font-weight:bold;">
+                Connecter Garmin
             </a>
             """,
             unsafe_allow_html=True
