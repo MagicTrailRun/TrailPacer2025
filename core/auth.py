@@ -32,12 +32,27 @@ def show_sidebar():
     # --- Strava (affiché uniquement si non connecté) ---
     if not integrations.get("strava", False):
         auth_strava_url = connect_strava()
-        st.sidebar.markdown(f"[![Strava](TrailPacer/image/strava_logo.png)]({auth_strava_url})", unsafe_allow_html=True)
+        st.sidebar.markdown(
+            f"""
+            <a href="{auth_strava_url}">
+                <img src="TrailPacer/image/strava_logo.png" width="120">
+            </a>
+            """,
+            unsafe_allow_html=True
+        )
 
     # --- Garmin (affiché uniquement si non connecté) ---
     if not integrations.get("garmin", False):
         auth_garmin_url=connect_garmin()
-        st.sidebar.markdown(f"[![Garmin](TrailPacer/image/garmin_logo.png)]({auth_garmin_url})", unsafe_allow_html=True)
+        st.sidebar.markdown(
+            f"""
+            <a href="{auth_garmin_url}">
+                <img src="TrailPacer/image/garmin_logo.png" width="120">
+            </a>
+            """,
+            unsafe_allow_html=True
+        )
+
     
     if integrations.get("garmin", False) and integrations.get("strava", False):
         st.sidebar.write("Vous avez déjà connecté tous vos appareils")
