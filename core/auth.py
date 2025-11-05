@@ -29,29 +29,28 @@ def show_sidebar():
     internal_id = user.id
     integrations = list_integrations(internal_id)  # {"strava": True/False, "garmin": True/False}
 
-    # --- Strava (affiché uniquement si non connecté) ---
-    if not integrations.get("strava", False):
-        auth_strava_url = connect_strava()
-        st.sidebar.markdown(
-            f"""
-            <a href="{auth_strava_url}">
-                <img src="TrailPacer/image/strava_logo.png" width="120">
-            </a>
-            """,
-            unsafe_allow_html=True
-        )
+    # Conteneur pour logos
+    st.sidebar.markdown("<div style='display: flex; flex-direction: column; gap: 15px;'>", unsafe_allow_html=True)
 
-    # --- Garmin (affiché uniquement si non connecté) ---
-    if not integrations.get("garmin", False):
-        auth_garmin_url=connect_garmin()
-        st.sidebar.markdown(
-            f"""
-            <a href="{auth_garmin_url}">
-                <img src="TrailPacer/image/garmin_logo.png" width="120">
+    # Strava
+    if not integrations.get("strava", False):
+        auth_strava_url = connect_strava()  # juste le lien d'auth
+        st.sidebar.markdown(f"""
+            <a href="{auth_strava_url}" target="_blank" style="text-align:center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Strava_logo.png" width="60" alt="Strava">
             </a>
-            """,
-            unsafe_allow_html=True
-        )
+        """, unsafe_allow_html=True)
+
+    # Garmin
+    if not integrations.get("garmin", False):
+        auth_garmin_url = connect_garmin()  # juste le lien d'auth
+        st.sidebar.markdown(f"""
+            <a href="{auth_garmin_url}" target="_blank" style="text-align:center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Garmin_logo.svg" width="60" alt="Garmin">
+            </a>
+        """, unsafe_allow_html=True)
+
+    st.sidebar.markdown("</div>", unsafe_allow_html=True)
 
     
     if integrations.get("garmin", False) and integrations.get("strava", False):
