@@ -29,31 +29,55 @@ def show_sidebar():
     internal_id = user.id
     integrations = list_integrations(internal_id)  # {"strava": True/False, "garmin": True/False}
 
-    # Conteneur pour logos
-    st.sidebar.markdown("<div style='display: flex; flex-direction: column; gap: 15px;'>", unsafe_allow_html=True)
-
-    # Strava
+     # --- Strava (affiché uniquement si non connecté) ---
     if not integrations.get("strava", False):
-        auth_strava_url = connect_strava()  # juste le lien d'auth
-        st.sidebar.markdown(f"""
-            <a href="{auth_strava_url}" target="_blank" style="text-align:center;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Strava_logo.png" width="60" alt="Strava">
+        auth_strava_url = connect_strava()  # Génère le lien OAuth Strava
+        st.sidebar.markdown(
+            f"""
+            <a href="{auth_strava_url}" target="_blank" style="text-decoration:none;">
+                <div style="
+                    display:flex;
+                    align-items:center;
+                    padding:5px 10px;
+                    background-color:#fc4c02;
+                    color:white;
+                    border-radius:8px;
+                    width:100%;
+                    justify-content:center;
+                ">
+                    <img src="TrailPacer/image/strava_logo.png" width="24" style="margin-right:10px;">
+                    Strava
+                </div>
             </a>
-        """, unsafe_allow_html=True)
+            """,
+            unsafe_allow_html=True
+        )
 
-    # Garmin
+    # --- Garmin (affiché uniquement si non connecté) ---
     if not integrations.get("garmin", False):
-        auth_garmin_url = connect_garmin()  # juste le lien d'auth
-        st.sidebar.markdown(f"""
-            <a href="{auth_garmin_url}" target="_blank" style="text-align:center;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Garmin_logo.svg" width="60" alt="Garmin">
+        auth_garmin_url = connect_garmin()  # Génère le lien OAuth Garmin
+        st.sidebar.markdown(
+            f"""
+            <a href="{auth_garmin_url}" target="_blank" style="text-decoration:none;">
+                <div style="
+                    display:flex;
+                    align-items:center;
+                    padding:5px 10px;
+                    background-color:#00a0df;
+                    color:white;
+                    border-radius:8px;
+                    width:100%;
+                    justify-content:center;
+                ">
+                    <img src="TrailPacer/image/garmin_logo.png" width="24" style="margin-right:10px;">
+                    Garmin
+                </div>
             </a>
-        """, unsafe_allow_html=True)
+            """,
+            unsafe_allow_html=True
+        )
 
-    st.sidebar.markdown("</div>", unsafe_allow_html=True)
-
-    
-    if integrations.get("garmin", False) and integrations.get("strava", False):
+    if integrations.get("strava", False) and integrations.get("garmin", False):
         st.sidebar.write("Vous avez déjà connecté tous vos appareils")
 
     st.sidebar.markdown("---")
