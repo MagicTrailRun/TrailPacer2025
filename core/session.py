@@ -2,7 +2,7 @@
 import streamlit as st
 from streamlit.runtime.scriptrunner import get_script_run_ctx
 import uuid
-from typing import Any, Optional
+from typing import Dict, Any, Optional
 from core.page_registry import PageRegistry
 
 class SessionManager:
@@ -35,13 +35,13 @@ class SessionManager:
         # 1. Créer un ID unique pour cette session navigateur
         cls._ensure_session_id()
         
-        # 2. Marquer la session comme initialisée (sans réinitialiser user)
-        # Supabase gère ses propres cookies, on le laisse faire
+        # 2. Forcer nouvelle authentification pour nouvelle session
         if cls.SESSION_INITIALIZED not in st.session_state:
             st.session_state[cls.SESSION_INITIALIZED] = True
-            # user sera restauré par _restore_session_from_supabase() dans auth.py
+            st.session_state[cls.USER] = None
+            st.session_state[cls.AUTH_MODE] = None
         
-        # 3. Valeurs par défaut pour les autres clés
+        # 3. Valeurs par défaut
         default_values = {
             cls.CURRENT_PAGE: PageRegistry.get_default_page(),
             cls.AUTH_MODE: None,
@@ -142,15 +142,3 @@ class SessionManager:
     def get_session_id(cls) -> str:
         """Retourne l'ID de session unique"""
         return st.session_state.get(cls.SESSION_ID, "unknown")
-    
-    @classmethod
-    def get_debug_info(cls) -> dict:
-        """Retourne les informations de debug de la session"""
-        user = cls.get_user()
-        return {
-            'session_id': cls.get_session_id(),
-            'is_authenticated': cls.is_authenticated(),
-            'user_email': user.email if user and hasattr(user, 'email') else None,
-            'auth_mode': cls.get_auth_mode(),
-            'current_page': cls.get_current_page(),
-        }
