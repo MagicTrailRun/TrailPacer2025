@@ -29,15 +29,13 @@ class SessionManager:
         'RESET_PASSWORD': 'reset_password'
     }
 
-    # Instance unique de CookieManager pour éviter les conflits de clé
-    _cookie_manager = None
+    # Clé statique pour CookieManager
+    _COOKIE_MANAGER_KEY = "session_cookie_manager"
 
     @classmethod
     def _get_cookie_manager(cls):
-        """Retourne une instance unique de CookieManager"""
-        if cls._cookie_manager is None:
-            cls._cookie_manager = CookieManager(key=f"cookie_manager_{uuid.uuid4()}")
-        return cls._cookie_manager
+        """Retourne une instance de CookieManager avec une clé statique"""
+        return CookieManager(key=cls._COOKIE_MANAGER_KEY)
 
     @classmethod
     def initialize_session(cls):
@@ -120,7 +118,7 @@ class SessionManager:
         # Supprime aussi le cookie
         cookies = cls._get_cookie_manager()
         cookies.delete("session_id")
-        cls._cookie_manager = None  # Réinitialise l'instance pour la prochaine session
+
     # ==========================================
     # GESTION DU MODE D'AUTHENTIFICATION
     # ==========================================
