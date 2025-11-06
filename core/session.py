@@ -56,15 +56,11 @@ class SessionManager:
     @classmethod
     def _ensure_session_id(cls):
         """Crée un ID unique pour cette session navigateur"""
-        cookies = CookieManager()
-        session_id = cookies.get("session_id")
-        if session_id is None:
+        if cls.SESSION_ID not in st.session_state:
             ctx = get_script_run_ctx()
             session_id = ctx.session_id if ctx else str(uuid.uuid4())
             st.session_state[cls.SESSION_ID] = session_id
             cls._set_session_cookie(session_id)
-        else :
-            st.session_state[cls.SESSION_ID] = session_id
     
     @classmethod
     def _set_session_cookie(cls, session_id: str):
