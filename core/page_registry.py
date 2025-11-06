@@ -19,19 +19,7 @@ class PageRegistry:
             "description": "Calculez votre allure idéale",
             "requires_auth": True,
         },
-        # Futures pages :
-        # "📊 Analyses": {
-        #     "function": analytics.show,
-        #     "icon": "📊",
-        #     "description": "Analysez vos performances",
-        #     "requires_auth": True,
-        # },
-        # "👤 Profil": {
-        #     "function": profile.show,
-        #     "icon": "👤",
-        #     "description": "Gérez votre profil",
-        #     "requires_auth": True,
-        # },
+
     }
     
     @classmethod
