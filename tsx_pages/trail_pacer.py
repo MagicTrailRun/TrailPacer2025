@@ -50,7 +50,7 @@ def show():
     st.markdown("------------")
 
     with trailpacer : 
-        plan_course1, explorer3, postcourse4, pacing2, avis5, qui6 , cnil7, connect8= st.tabs([
+        plan_course1, explorer3, postcourse4, pacing2= st.tabs([
         "Plan de course",
         "Explorer les courses",
         "Analyse post-course",
