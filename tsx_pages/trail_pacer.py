@@ -24,7 +24,7 @@ def show():
     apply_custom_css()
 
     
-    show_hero_banner(event, course, event_code, df)
+    #show_hero_banner(event, course, event_code, df)
 
 
     # plan_course1, explorer3, postcourse4, pacing2, avis5, qui6 , cnil7, connect8= st.tabs([
