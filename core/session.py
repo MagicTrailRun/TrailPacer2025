@@ -4,11 +4,11 @@ from streamlit.runtime.scriptrunner import get_script_run_ctx
 import uuid
 from typing import Dict, Any, Optional
 from core.page_registry import PageRegistry
-from streamlit_cookies_manager import CookieManager 
+from streamlit_cookies_manager import CookieManager
 
 class SessionManager:
     """Gestionnaire centralisé de l'état de session et authentification"""
-    
+
     # ==========================================
     # CLÉS DE SESSION
     # ==========================================
@@ -18,7 +18,7 @@ class SessionManager:
     SESSION_ID = 'session_id'
     SESSION_INITIALIZED = 'session_initialized'
     RECOVERY_VERIFIED = 'recovery_verified'
-    
+
     # ==========================================
     # MODES D'AUTHENTIFICATION
     # ==========================================
@@ -32,40 +32,48 @@ class SessionManager:
     @classmethod
     def initialize_session(cls):
         """Initialise les variables de session si elles n'existent pas"""
-        
-        # 1. Créer un ID unique pour cette session navigateur
-        cls._ensure_session_id()
-        
-        # 2. Forcer nouvelle authentification pour nouvelle session
+        # 1. Vérifie si un cookie session_id existe déjà
+        cookies = CookieManager()
+        session_id = cookies.get("session_id")
+
+        # 2. Si pas de cookie, crée un nouvel ID de session
+        if session_id is None:
+            cls._ensure_session_id()
+        else:
+            # Utilise l'ID de session existant
+            st.session_state[cls.SESSION_ID] = session_id
+
+        # 3. Forcer nouvelle authentification pour nouvelle session
         if cls.SESSION_INITIALIZED not in st.session_state:
             st.session_state[cls.SESSION_INITIALIZED] = True
             st.session_state[cls.USER] = None
             st.session_state[cls.AUTH_MODE] = None
-        
-        # 3. Valeurs par défaut
+
+        # 4. Valeurs par défaut
         default_values = {
             cls.CURRENT_PAGE: PageRegistry.get_default_page(),
             cls.AUTH_MODE: None,
             cls.RECOVERY_VERIFIED: False,
         }
-        
+
         for key, default_value in default_values.items():
             if key not in st.session_state:
                 st.session_state[key] = default_value
-    
-    @classmethod
-    def _ensure_session_id(cls):
-        """Crée un ID unique pour cette session navigateur"""
+
         cookies = CookieManager()
         session_id = cookies.get("session_id")
-        if session_id is None:
-            ctx = get_script_run_ctx()
-            session_id = ctx.session_id if ctx else str(uuid.uuid4())
-            st.session_state[cls.SESSION_ID] = session_id
-            cls._set_session_cookie(session_id)
-        else :
-            st.session_state[cls.SESSION_ID] = session_id
-    
+        st.write(f"Cookie session_id actuel : {session_id}")
+
+    @classmethod
+    def _ensure_session_id(cls):
+        """Crée un ID unique pour cette session navigateur et définit le cookie"""
+        ctx = get_script_run_ctx()
+        session_id = ctx.session_id if ctx else str(uuid.uuid4())
+        st.session_state[cls.SESSION_ID] = session_id
+
+        # Définit le cookie de session sécurisé
+        cls._set_session_cookie(session_id)
+
     @classmethod
     def _set_session_cookie(cls, session_id: str):
         """Définit un cookie HTTP-only et sécurisé pour la session"""
@@ -75,33 +83,36 @@ class SessionManager:
             session_id,
             max_age=86400,  # 1 jour
             httponly=True,
+            secure=True,    # Assure-toi que ton app est en HTTPS
             samesite="Lax"
         )
-    
+
     # ==========================================
     # GESTION DE L'UTILISATEUR
     # ==========================================
-    
+
     @classmethod
     def get_user(cls) -> Optional[Any]:
         """Retourne l'utilisateur connecté ou None"""
         return st.session_state.get(cls.USER)
-    
+
     @classmethod
     def set_user(cls, user: Any):
         """Définit l'utilisateur connecté"""
         st.session_state[cls.USER] = user
-    
+
     @classmethod
     def is_authenticated(cls) -> bool:
         """Vérifie si un utilisateur est connecté"""
         return st.session_state.get(cls.USER) is not None
-    
+
     @classmethod
     def logout(cls):
         """Déconnecte l'utilisateur et nettoie la session"""
         st.session_state.clear()
-    
+        # Supprime aussi le cookie
+        cookies = CookieManager()
+        cookies.delete("session_id")
     # ==========================================
     # GESTION DU MODE D'AUTHENTIFICATION
     # ==========================================
