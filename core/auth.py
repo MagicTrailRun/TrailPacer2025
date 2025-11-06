@@ -1,67 +1,65 @@
 # core/auth.py
 import streamlit as st
+from typing import Optional
 from core.session import SessionManager
-from core.supabase_client import supabase
+from core.supabase_client import get_supabase_client
 from core.mongo_client import create_user_profile, list_integrations, db
 from core.fitness_connect import connect_strava, connect_garmin
 
 def supabase_login():
-    """Gestion complète de l'authentification Supabase"""
-    
+    """Authentifie et restaure automatiquement la session utilisateur."""
+    supabase = get_supabase_client()
     params = st.query_params
-    
-    # -------------------------
-    # 1. GÉRER LIEN DE RÉCUPÉRATION
-    # -------------------------
-    if _handle_recovery_link(params):
+
+    # 1️⃣ Gérer le lien de récupération
+    if _handle_recovery_link(params, supabase):
         return
-    
-    # -------------------------
-    # 2. VALIDER SESSION EXISTANTE (CRITIQUE!)
-    # -------------------------
+
+    # 2️⃣ Restaurer la session depuis cookie / token local
+    _restore_session_from_supabase(supabase)
+
+    # 3️⃣ Valider la session si existante
     if SessionManager.is_authenticated():
-        _validate_existing_session()
-    
-    # -------------------------
-    # 3. AFFICHER INTERFACE APPROPRIÉE
-    # -------------------------
+        _validate_existing_session(supabase)
+
+    # 4️⃣ Interface
     if SessionManager.is_authenticated() and not SessionManager.is_resetting_password():
         return
-    
-    _show_auth_interface()
+    _show_auth_interface(supabase)
 
 
-def _handle_recovery_link(params) -> bool:
-    """Gère le lien de récupération depuis l'email"""
-    if (
-        "type" in params 
-        and params.get("type") == "recovery"
-        and "access_token" in params
-        and not SessionManager.is_recovery_verified()
-    ):
-        token_hash = params.get("access_token")
-        try:
-            resp = supabase.auth.verify_otp({
-                "token_hash": token_hash,
-                "type": "recovery"
-            })
-            if resp.session:
-                SessionManager.set_user(resp.session.user)
-                SessionManager.set_auth_mode(SessionManager.AUTH_MODES['RESET_PASSWORD'])
-                SessionManager.set_recovery_verified(True)
-                st.success("Lien valide ! Vous pouvez maintenant choisir un nouveau mot de passe.")
-            else:
-                st.error("Le lien de réinitialisation est invalide ou a expiré.")
-                st.stop()
-        except Exception as e:
-            st.error(f"Impossible de vérifier le lien : {e}")
-            st.stop()
-        return True
-    return False
+# ============ RESTAURATION ET VALIDATION ============
+
+def _restore_session_from_supabase(supabase):
+    """Restaure la session depuis st.session_state ou cookie."""
+    if SessionManager.is_authenticated():
+        return
+
+    # Priorité 1 : session en mémoire
+    token = st.session_state.get("supabase_token")
+    refresh_token = st.session_state.get("supabase_refresh_token")
+
+    # Priorité 2 : cookie navigateur (si on a persisté)
+    if not token:
+        token = st.experimental_get_cookie("sb_access_token")
+        refresh_token = st.experimental_get_cookie("sb_refresh_token")
+
+    if not token:
+        return  # pas de session connue
+
+    try:
+        # Essayer de recharger la session
+        supabase.auth.set_session(access_token=token, refresh_token=refresh_token)
+        user = supabase.auth.get_user()
+        if user and user.user:
+            SessionManager.set_user(user.user)
+    except Exception:
+        # Token invalide → on nettoie
+        SessionManager.logout()
 
 
-def _validate_existing_session():
-    """Valide que la session utilisateur est toujours valide"""
+def _validate_existing_session(supabase):
+    """Vérifie que le token est toujours valide."""
     try:
         user = supabase.auth.get_user()
         if not user or not user.user:
@@ -70,34 +68,55 @@ def _validate_existing_session():
         SessionManager.logout()
 
 
-def _show_auth_interface():
-    """Affiche l'interface d'authentification appropriée"""
+# ============ LIEN DE RÉCUPÉRATION ============
+
+def _handle_recovery_link(params, supabase) -> bool:
+    if (
+        "type" in params 
+        and params.get("type") == "recovery"
+        and "access_token" in params
+        and not SessionManager.is_recovery_verified()
+    ):
+        token_hash = params.get("access_token")
+        try:
+            resp = supabase.auth.verify_otp({"token_hash": token_hash, "type": "recovery"})
+            if resp.session:
+                SessionManager.set_user(resp.session.user)
+                SessionManager.set_auth_mode(SessionManager.AUTH_MODES['RESET_PASSWORD'])
+                SessionManager.set_recovery_verified(True)
+                st.success("Lien valide ! Vous pouvez choisir un nouveau mot de passe.")
+            else:
+                st.error("Lien invalide ou expiré.")
+                st.stop()
+        except Exception as e:
+            st.error(f"Erreur : {e}")
+            st.stop()
+        return True
+    return False
+
+
+# ============ INTERFACE D'AUTHENTIFICATION ============
+
+def _show_auth_interface(supabase):
     _show_welcome_banner()
-    
     mode = SessionManager.get_auth_mode()
-    
+
     if mode == SessionManager.AUTH_MODES['RESET_PASSWORD']:
-        _show_reset_password_form()
+        _show_reset_password_form(supabase)
     elif mode == SessionManager.AUTH_MODES['FORGOT']:
-        _show_forgot_password_form()
+        _show_forgot_password_form(supabase)
     elif mode is None:
         _show_auth_choice()
     else:
-        _show_login_signup_form(mode)
+        _show_login_signup_form(supabase, mode)
 
 
 def _show_welcome_banner():
-    """Affiche la bannière de bienvenue"""
     st.markdown(
         """
         <div style='background-color:#4CAF50; padding:20px; border-radius:10px; color:white; text-align:center;'>
             <h2>Bienvenue sur la bêta de Trail Pacer !</h2>
-            <p>
-            Nous vous demandons maintenant de créer un compte pour contrôler qui a accès à la bêta, 
-            ainsi que pour personnaliser l'expérience. <br><br>
-            Vous pouvez également appareiller votre compte Garmin ou Strava afin que nous récupérions vos données 
-            pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite. Merci de votre aide.
-            </p>
+            <p>Veuillez créer un compte pour accéder à la bêta et connecter vos appareils Strava/Garmin.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -106,10 +125,9 @@ def _show_welcome_banner():
 
 
 def _show_auth_choice():
-    """Affiche le choix entre connexion et inscription"""
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("Se connecter", use_container_width=True):
+        if st.button("Se connecter", use_container_width=True, type="primary"):
             SessionManager.set_auth_mode(SessionManager.AUTH_MODES['LOGIN'])
             st.rerun()
     with col2:
@@ -119,123 +137,88 @@ def _show_auth_choice():
     st.stop()
 
 
-def _show_reset_password_form():
-    """Formulaire de réinitialisation du mot de passe"""
+def _show_login_signup_form(supabase, mode: str):
     col_left, col_center, col_right = st.columns([1, 2, 1])
     with col_center:
-        st.subheader("🔒 Nouveau mot de passe")
-        new_password = st.text_input("Nouveau mot de passe", type="password", key="new_pwd")
-        confirm_password = st.text_input("Confirmez le mot de passe", type="password", key="confirm_pwd")
-        
-        if st.button("Valider le nouveau mot de passe"):
-            if new_password != confirm_password:
-                st.error("Les mots de passe ne correspondent pas.")
-            else:
-                try:
-                    supabase.auth.update_user({"password": new_password})
-                    st.success("✅ Mot de passe mis à jour avec succès.")
-                    SessionManager.set_auth_mode(SessionManager.AUTH_MODES['LOGIN'])
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"❌ Erreur : {e}")
-        
-        if st.button("⬅️ Retour à la connexion"):
-            SessionManager.set_auth_mode(SessionManager.AUTH_MODES['LOGIN'])
-            st.rerun()
-    st.stop()
+        is_login = mode == SessionManager.AUTH_MODES['LOGIN']
+        st.subheader("Connexion" if is_login else "Créer un compte")
 
-
-def _show_forgot_password_form():
-    """Formulaire de mot de passe oublié"""
-    col_left, col_center, col_right = st.columns([1, 2, 1])
-    with col_center:
-        st.subheader("🔁 Réinitialiser le mot de passe")
-        email = st.text_input("Email", key="forgot_email")
-        
-        if st.button("Envoyer le lien de réinitialisation"):
-            try:
-                supabase.auth.reset_password_for_email(
-                    email,
-                    options={"redirectTo": "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/"}
-                )
-                st.success("✅ Un lien de réinitialisation a été envoyé à votre adresse email.")
-            except Exception as e:
-                st.error(f"❌ Erreur : {e}")
-        
-        if st.button("⬅️ Retour à la connexion"):
-            SessionManager.set_auth_mode(SessionManager.AUTH_MODES['LOGIN'])
-            st.rerun()
-    st.stop()
-
-
-def _show_login_signup_form(mode: str):
-    """Formulaire de connexion ou inscription"""
-    col_left, col_center, col_right = st.columns([1, 2, 1])
-    with col_center:
-        st.subheader("Connexion" if mode == SessionManager.AUTH_MODES['LOGIN'] else "Créer un compte")
-        
         email = st.text_input("Email", key=f"{mode}_email")
         password = st.text_input("Mot de passe", type="password", key=f"{mode}_password")
-        name = st.text_input("Prénom et Nom", key="signup_name") if mode == SessionManager.AUTH_MODES['SIGNUP'] else None
+        name = st.text_input("Nom complet") if not is_login else None
 
-        col_btn_left, col_btn_center, col_btn_right = st.columns([1, 2, 1])
-        with col_btn_center:
-            if mode == SessionManager.AUTH_MODES['LOGIN']:
-                _handle_login_form(email, password)
-            elif mode == SessionManager.AUTH_MODES['SIGNUP']:
-                _handle_signup_form(email, password, name)
+        if is_login:
+            _handle_login_form(supabase, email, password)
+        else:
+            _handle_signup_form(supabase, email, password, name)
 
 
-def _handle_login_form(email: str, password: str):
-    """Gère le formulaire de connexion"""
-    if st.button("Se connecter", use_container_width=True):
-        try:
-            user = supabase.auth.sign_in_with_password({"email": email, "password": password})
-            if user.user:
-                SessionManager.set_user(user.user)
-                SessionManager.set_auth_mode(None)
-                st.success(f"Bienvenue {email} !")
-                st.rerun()
-            else:
-                st.error("Email ou mot de passe invalide")
-        except Exception:
-            st.error("Email ou mot de passe invalide")
-    
-    if st.button("Mot de passe oublié ?"):
-        SessionManager.set_auth_mode(SessionManager.AUTH_MODES['FORGOT'])
-        st.rerun()
-    
-    if st.button("⬅️ Retour"):
+def _handle_login_form(supabase, email, password):
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Se connecter", use_container_width=True, type="primary"):
+            if not email or not password:
+                st.error("Veuillez remplir tous les champs.")
+                return
+            try:
+                user = supabase.auth.sign_in_with_password({"email": email, "password": password})
+                if user and user.user:
+                    SessionManager.set_user(user.user)
+                    SessionManager.set_auth_mode(None)
+                    # Stocker tokens
+                    st.session_state["supabase_token"] = user.session.access_token
+                    st.session_state["supabase_refresh_token"] = user.session.refresh_token
+                    # Optionnel : cookies navigateur
+                    st.experimental_set_cookie("sb_access_token", user.session.access_token)
+                    st.experimental_set_cookie("sb_refresh_token", user.session.refresh_token)
+                    st.success(f"Bienvenue {email} !")
+                    st.rerun()
+                else:
+                    st.error("Email ou mot de passe invalide.")
+            except Exception:
+                st.error("Email ou mot de passe invalide.")
+    with col2:
+        if st.button("Mot de passe oublié ?", use_container_width=True):
+            SessionManager.set_auth_mode(SessionManager.AUTH_MODES['FORGOT'])
+            st.rerun()
+
+    if st.button("⬅️ Retour", use_container_width=True):
         SessionManager.set_auth_mode(None)
         st.rerun()
 
 
-def _handle_signup_form(email: str, password: str, name: str):
-    """Gère le formulaire d'inscription"""
-    if st.button("S'inscrire", use_container_width=True):
+def _handle_signup_form(supabase, email, password, name: Optional[str]):
+    if st.button("S'inscrire", use_container_width=True, type="primary"):
+        if not email or not password:
+            st.error("Veuillez remplir tous les champs.")
+            return
+        elif len(password) < 6:
+            st.error("Le mot de passe doit contenir au moins 6 caractères.")
+            return
+
         try:
             user = supabase.auth.sign_up({"email": email, "password": password})
             if user.user:
                 existing = db["users"].find_one({"mail": email})
                 if not existing:
-                    create_user_profile(
-                        internal_id=user.user.id,
-                        email=email,
-                        name=name or None,
-                    )
+                    create_user_profile(internal_id=user.user.id, email=email, name=name or None)
+
                 SessionManager.set_user(user.user)
-                st.success(f"Bienvenue {name or email} ! Votre compte a été créé.")
                 SessionManager.set_auth_mode(None)
+                st.session_state["supabase_token"] = user.session.access_token
+                st.session_state["supabase_refresh_token"] = user.session.refresh_token
+                st.experimental_set_cookie("sb_access_token", user.session.access_token)
+                st.experimental_set_cookie("sb_refresh_token", user.session.refresh_token)
+                st.success(f"Bienvenue {name or email} !")
                 st.rerun()
             else:
-                st.error("Erreur lors de l'inscription")
+                st.error("Erreur lors de l'inscription.")
         except Exception as e:
             st.error(f"Erreur : {e}")
-    
-    if st.button("⬅️ Retour"):
+
+    if st.button("⬅️ Retour", use_container_width=True):
         SessionManager.set_auth_mode(None)
         st.rerun()
-
 
 def show_sidebar():
     """Affiche les informations utilisateur dans la sidebar"""

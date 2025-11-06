@@ -77,12 +77,13 @@ class SessionManager:
     def is_authenticated(cls) -> bool:
         """Vérifie si un utilisateur est connecté"""
         return st.session_state.get(cls.USER) is not None
-    
     @classmethod
     def logout(cls):
-        """Déconnecte l'utilisateur et nettoie la session"""
+        """Déconnecte l'utilisateur et nettoie la session (sans casser le client Supabase)"""
+        keep_keys = ["supabase_client", "session_id"]
+        preserved = {k: v for k, v in st.session_state.items() if k in keep_keys}
         st.session_state.clear()
-    
+        st.session_state.update(preserved)
     # ==========================================
     # GESTION DU MODE D'AUTHENTIFICATION
     # ==========================================
