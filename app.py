@@ -87,7 +87,7 @@ class TSXApplication:
         show_sidebar()
         
         # Sélection d'événement
-        select_event()
+        #select_event()
         
         # Messages utilisateur
         self._show_user_message()

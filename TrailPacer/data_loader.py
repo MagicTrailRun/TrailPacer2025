@@ -122,44 +122,44 @@ def select_event():
     EVENT_CONFIG = st.session_state.get("EVENT_CONFIG", {})
     if not EVENT_CONFIG:
         st.error("Aucune configuration d'événement trouvée")
-        st.stop()
+        
 
-    with st.sidebar:
+    
 
-        event = st.selectbox("🎯 Choisir un événement", list(EVENT_CONFIG.keys()))
+    event = st.selectbox("🎯 Choisir un événement", list(EVENT_CONFIG.keys()))
 
-        course = st.selectbox("🏃 Choisir une course", list(EVENT_CONFIG[event]["races"].keys()))
+    course = st.selectbox("🏃 Choisir une course", list(EVENT_CONFIG[event]["races"].keys()))
 
-        year = st.selectbox("📅 Année", EVENT_CONFIG[event]["races"][course]["year"])
+    year = st.selectbox("📅 Année", EVENT_CONFIG[event]["races"][course]["year"])
 
-        st.success(f"Vous avez choisi **{event} – {course} – {year}**")
+    st.success(f"Vous avez choisi **{event} – {course} – {year}**")
 
-        # Sauvegarde en session_state
-        st.session_state["event"] = event
-        st.session_state["course"] = course
-        st.session_state["year"] = year
-        st.session_state["event_code"] = EVENT_CONFIG[event]['tenant']
-        st.session_state["course_code"] = EVENT_CONFIG[event]['races'][course]["code"]
-        st.session_state["post_course_year"]= EVENT_CONFIG[event]["races"][course]["post_course_year"]
-        event_code=st.session_state["event_code"]
-        course_code=st.session_state["course_code"]
-        config = get_config(f"data/TrailPacer/{event_code}/{course_code}/config/config_{year}.json")
-        st.session_state["config"]=config
-        df = load_data(event=event_code,race=course_code, year=year)
-        st.session_state['df']=df
-        tracks_dir = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/")
-        track_file_json = tracks_dir / f"track_{year}.json"
-        track_tile_csv = tracks_dir / f"track_{year}.csv"
-        track_file_gpx = tracks_dir / f"gpx_{year}.gpx"
+    # Sauvegarde en session_state
+    st.session_state["event"] = event
+    st.session_state["course"] = course
+    st.session_state["year"] = year
+    st.session_state["event_code"] = EVENT_CONFIG[event]['tenant']
+    st.session_state["course_code"] = EVENT_CONFIG[event]['races'][course]["code"]
+    st.session_state["post_course_year"]= EVENT_CONFIG[event]["races"][course]["post_course_year"]
+    event_code=st.session_state["event_code"]
+    course_code=st.session_state["course_code"]
+    config = get_config(f"data/TrailPacer/{event_code}/{course_code}/config/config_{year}.json")
+    st.session_state["config"]=config
+    df = load_data(event=event_code,race=course_code, year=year)
+    st.session_state['df']=df
+    tracks_dir = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/")
+    track_file_json = tracks_dir / f"track_{year}.json"
+    track_tile_csv = tracks_dir / f"track_{year}.csv"
+    track_file_gpx = tracks_dir / f"gpx_{year}.gpx"
 
-        # On calcule un "file_hash" basé sur la date de modification
-        file_hash = None
-        for f in [track_file_json, track_tile_csv, track_file_gpx]:
-            if f.exists():
-                file_hash = os.path.getmtime(f)
-                break
+    # On calcule un "file_hash" basé sur la date de modification
+    file_hash = None
+    for f in [track_file_json, track_tile_csv, track_file_gpx]:
+        if f.exists():
+            file_hash = os.path.getmtime(f)
+            break
 
-        file_hash = os.path.getmtime(track_file_json) if track_file_json.exists() else None
-        df_gpx, has_terrain_type = get_df_for_gpx(event_code, course_code, year, file_hash)
-        st.session_state["df_gpx"] = df_gpx
-        st.session_state["has_terrain_type"] = has_terrain_type
+    file_hash = os.path.getmtime(track_file_json) if track_file_json.exists() else None
+    df_gpx, has_terrain_type = get_df_for_gpx(event_code, course_code, year, file_hash)
+    st.session_state["df_gpx"] = df_gpx
+    st.session_state["has_terrain_type"] = has_terrain_type
