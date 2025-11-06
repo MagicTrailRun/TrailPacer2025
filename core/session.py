@@ -4,6 +4,7 @@ from streamlit.runtime.scriptrunner import get_script_run_ctx
 import uuid
 from typing import Dict, Any, Optional
 from core.page_registry import PageRegistry
+from streamlit_cookies_manager import CookieManager 
 
 class SessionManager:
     """Gestionnaire centralisé de l'état de session et authentification"""
@@ -57,7 +58,21 @@ class SessionManager:
         """Crée un ID unique pour cette session navigateur"""
         if cls.SESSION_ID not in st.session_state:
             ctx = get_script_run_ctx()
-            st.session_state[cls.SESSION_ID] = ctx.session_id if ctx else str(uuid.uuid4())
+            session_id = ctx.session_id if ctx else str(uuid.uuid4())
+            st.session_state[cls.SESSION_ID] = session_id
+            cls._set_session_cookie(session_id)
+    
+    @classmethod
+    def _set_session_cookie(cls, session_id: str):
+        """Définit un cookie HTTP-only et sécurisé pour la session"""
+        cookies = CookieManager()
+        cookies.set(
+            "session_id",
+            session_id,
+            max_age=86400,  # 1 jour
+            httponly=True,
+            samesite="Lax"
+        )
     
     # ==========================================
     # GESTION DE L'UTILISATEUR
