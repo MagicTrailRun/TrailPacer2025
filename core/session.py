@@ -35,11 +35,12 @@ class SessionManager:
         # 1. Créer un ID unique pour cette session navigateur
         cls._ensure_session_id()
         
-        # 2. Forcer nouvelle authentification pour nouvelle session
+        # 2. ✅ CHANGEMENT : Ne plus forcer user = None
+        # On laisse Supabase gérer la persistance via ses cookies
         if cls.SESSION_INITIALIZED not in st.session_state:
             st.session_state[cls.SESSION_INITIALIZED] = True
-            st.session_state[cls.USER] = None
-            st.session_state[cls.AUTH_MODE] = None
+            # ✅ Ne PAS réinitialiser user ici
+            # Il sera récupéré par _restore_session_from_supabase()
         
         # 3. Valeurs par défaut
         default_values = {

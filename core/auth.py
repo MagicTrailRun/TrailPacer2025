@@ -17,18 +17,46 @@ def supabase_login():
         return
     
     # -------------------------
-    # 2. VALIDER SESSION EXISTANTE (CRITIQUE!)
+    # 2. ✅ RESTAURER LA SESSION DEPUIS SUPABASE (pour les refresh)
+    # -------------------------
+    _restore_session_from_supabase()
+    
+    # -------------------------
+    # 3. VALIDER SESSION EXISTANTE
     # -------------------------
     if SessionManager.is_authenticated():
         _validate_existing_session()
     
     # -------------------------
-    # 3. AFFICHER INTERFACE APPROPRIÉE
+    # 4. AFFICHER INTERFACE APPROPRIÉE
     # -------------------------
     if SessionManager.is_authenticated() and not SessionManager.is_resetting_password():
         return
     
     _show_auth_interface()
+
+
+def _restore_session_from_supabase():
+    """
+    ✅ NOUVELLE FONCTION : Restaure la session depuis les cookies Supabase
+    Appelée UNE SEULE FOIS au début, pour gérer les refresh de page
+    """
+    # Si on a déjà un user en session, ne rien faire
+    if SessionManager.is_authenticated():
+        return
+    
+    try:
+        # Tenter de récupérer la session depuis les cookies Supabase
+        user = supabase.auth.get_user()
+        
+        if user and user.user:
+            # ✅ Session trouvée dans les cookies, restaurer
+            SessionManager.set_user(user.user)
+            # Note: On ne log rien pour ne pas polluer l'interface
+        # Si pas de user, c'est normal (première visite ou déconnecté)
+    except Exception:
+        # Erreur silencieuse, l'utilisateur devra se reconnecter
+        pass
 
 
 def _handle_recovery_link(params) -> bool:
@@ -65,8 +93,10 @@ def _validate_existing_session():
     try:
         user = supabase.auth.get_user()
         if not user or not user.user:
+            # Token expiré
             SessionManager.logout()
     except Exception:
+        # Erreur de validation
         SessionManager.logout()
 
 
