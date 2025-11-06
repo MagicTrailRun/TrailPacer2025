@@ -23,7 +23,51 @@ print("___________________________________________")
 def show(): 
     apply_custom_css()
 
-    
+    st.markdown("""
+<style>
+/* ----------- STYLE GLOBAL TABS ----------- */
+div[data-baseweb="tab-list"] {
+    justify-content: center; /* centre les tabs */
+    gap: 2rem;               /* espace entre eux */
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+/* ----------- TEXTE DES TABS ----------- */
+button[data-baseweb="tab"] {
+    font-size: 1.05em;
+    font-weight: 600;
+    color: #666;
+    background-color: transparent !important;
+    border: none !important;
+    transition: color 0.3s ease;
+}
+
+button[data-baseweb="tab"]:hover {
+    color: #ff5c5c; /* hover rouge TrailPacer */
+}
+
+/* ----------- TAB ACTIF ----------- */
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #ff2f2f;
+    border-bottom: 3px solid #ff2f2f !important;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+/* ----------- Lignes séparatrices douces ----------- */
+div[data-baseweb="tab-border"] {
+    border: none !important;
+}
+
+/* ----------- ESPACEMENT ENTRE GROUPES D'ONGLETS ----------- */
+.block-container {
+    padding-top: 1rem;
+}
+</style>
+""", unsafe_allow_html=True)
+
     #show_hero_banner(event, course, event_code, df)
 
 
@@ -50,11 +94,6 @@ def show():
     st.markdown("------------")
 
     with trailpacer : 
-        plan_course1, explorer3, postcourse4, pacing2= st.tabs([
-        "Plan de course",
-        "Explorer les courses",
-        "Analyse post-course",
-         "Le pacing selon TrailPacer"])
         st.subheader("Sélection de l'événement")
 
         select_event()
@@ -62,6 +101,7 @@ def show():
         if not all(k in st.session_state for k in required_keys):
             st.info("➡️ Veuillez d'abord sélectionner un événement et une course.")
             st.stop()
+            
         year=st.session_state.get("year",2025)
         event_code=st.session_state["event_code"]
         course_code=st.session_state["course_code"]
@@ -69,6 +109,13 @@ def show():
         course=st.session_state["course"]
         config=st.session_state["config"]
         df=st.session_state["df"]
+
+        plan_course1, explorer3, postcourse4, pacing2= st.tabs([
+        "Plan de course",
+        "Explorer les courses",
+        "Analyse post-course",
+         "Le pacing selon TrailPacer"])
+
  
         with plan_course1:
             show_plan_pacing()

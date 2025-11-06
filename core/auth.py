@@ -268,34 +268,23 @@ def show_sidebar():
         # Bouton Strava
         if not integrations.get("strava", False):
             auth_strava_url = connect_strava()
-            # st.markdown(
-            #     f"""
-            #     <a href="{auth_strava_url}" style="
-            #         display:block;
-            #         text-align:center;
-            #         padding:10px;
-            #         background-color:#fc4c02;
-            #         color:white;
-            #         text-decoration:none;
-            #         border-radius:5px;
-            #         font-weight:bold;">
-            #         Connecter Strava
-            #     </a>
-            #     """,
-            #     unsafe_allow_html=True
-            # )
             st.markdown(
-                f"""<div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
-                    <a href={auth_strava_url}" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    style="transition: transform 0.2s;"
-                    onmouseover="this.style.transform='scale(1.1)'"
-                    onmouseout="this.style.transform='scale(1)'">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Strava_icon.png" 
-                            width="30" height="30" alt="Strava">
-                    </a>
-                </div>""")
+                f"""
+                <a href="{auth_strava_url}" style="
+                    display:block;
+                    text-align:center;
+                    padding:10px;
+                    background-color:#fc4c02;
+                    color:white;
+                    text-decoration:none;
+                    border-radius:5px;
+                    font-weight:bold;">
+                    Connecter Strava
+                </a>
+                """,
+                unsafe_allow_html=True
+            )
+
 
         
         # Bouton Garmin
