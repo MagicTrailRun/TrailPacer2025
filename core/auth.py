@@ -1,9 +1,11 @@
 # core/auth.py
 import streamlit as st
+from typing import Optional
 from core.session import SessionManager
 from core.supabase_client import supabase
 from core.mongo_client import create_user_profile, list_integrations, db
 from core.fitness_connect import connect_strava, connect_garmin
+
 
 def supabase_login():
     """Gestion complète de l'authentification Supabase"""
@@ -17,13 +19,18 @@ def supabase_login():
         return
     
     # -------------------------
-    # 2. VALIDER SESSION EXISTANTE (CRITIQUE!)
+    # 2. RESTAURER LA SESSION DEPUIS SUPABASE (pour les refresh)
+    # -------------------------
+    _restore_session_from_supabase()
+    
+    # -------------------------
+    # 3. VALIDER SESSION EXISTANTE
     # -------------------------
     if SessionManager.is_authenticated():
         _validate_existing_session()
     
     # -------------------------
-    # 3. AFFICHER INTERFACE APPROPRIÉE
+    # 4. AFFICHER INTERFACE APPROPRIÉE
     # -------------------------
     if SessionManager.is_authenticated() and not SessionManager.is_resetting_password():
         return
@@ -31,8 +38,30 @@ def supabase_login():
     _show_auth_interface()
 
 
+def _restore_session_from_supabase():
+    """
+    Restaure la session depuis les cookies Supabase
+    Appelée UNE SEULE FOIS au début, pour gérer les refresh de page
+    """
+    # Si on a déjà un user en session, ne rien faire
+    if SessionManager.is_authenticated():
+        return
+    
+    try:
+        # Tenter de récupérer la session depuis les cookies Supabase
+        user = supabase.auth.get_user()
+        
+        if user and user.user:
+            # ✅ Session trouvée dans les cookies, restaurer
+            SessionManager.set_user(user.user)
+        # Si pas de user, c'est normal (première visite ou déconnecté)
+    except Exception:
+        # Erreur silencieuse, l'utilisateur devra se reconnecter
+        pass
+
+
 def _handle_recovery_link(params) -> bool:
-    """Gère le lien de récupération depuis l'email"""
+    """Gère le lien de récupération depuis l'email. Retourne True si traité."""
     if (
         "type" in params 
         and params.get("type") == "recovery"
@@ -65,17 +94,22 @@ def _validate_existing_session():
     try:
         user = supabase.auth.get_user()
         if not user or not user.user:
+            # Token expiré ou invalide
             SessionManager.logout()
     except Exception:
+        # Erreur de validation, déconnecter
         SessionManager.logout()
 
 
 def _show_auth_interface():
     """Affiche l'interface d'authentification appropriée"""
+    
+    # Bannière d'accueil
     _show_welcome_banner()
     
     mode = SessionManager.get_auth_mode()
     
+    # Router vers la bonne interface
     if mode == SessionManager.AUTH_MODES['RESET_PASSWORD']:
         _show_reset_password_form()
     elif mode == SessionManager.AUTH_MODES['FORGOT']:
@@ -109,7 +143,7 @@ def _show_auth_choice():
     """Affiche le choix entre connexion et inscription"""
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("Se connecter", use_container_width=True):
+        if st.button("Se connecter", use_container_width=True, type="primary"):
             SessionManager.set_auth_mode(SessionManager.AUTH_MODES['LOGIN'])
             st.rerun()
     with col2:
@@ -127,9 +161,11 @@ def _show_reset_password_form():
         new_password = st.text_input("Nouveau mot de passe", type="password", key="new_pwd")
         confirm_password = st.text_input("Confirmez le mot de passe", type="password", key="confirm_pwd")
         
-        if st.button("Valider le nouveau mot de passe"):
+        if st.button("Valider le nouveau mot de passe", use_container_width=True, type="primary"):
             if new_password != confirm_password:
                 st.error("Les mots de passe ne correspondent pas.")
+            elif len(new_password) < 6:
+                st.error("Le mot de passe doit contenir au moins 6 caractères.")
             else:
                 try:
                     supabase.auth.update_user({"password": new_password})
@@ -139,7 +175,7 @@ def _show_reset_password_form():
                 except Exception as e:
                     st.error(f"❌ Erreur : {e}")
         
-        if st.button("⬅️ Retour à la connexion"):
+        if st.button("⬅️ Retour à la connexion", use_container_width=True):
             SessionManager.set_auth_mode(SessionManager.AUTH_MODES['LOGIN'])
             st.rerun()
     st.stop()
@@ -152,17 +188,20 @@ def _show_forgot_password_form():
         st.subheader("🔁 Réinitialiser le mot de passe")
         email = st.text_input("Email", key="forgot_email")
         
-        if st.button("Envoyer le lien de réinitialisation"):
-            try:
-                supabase.auth.reset_password_for_email(
-                    email,
-                    options={"redirectTo": "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/"}
-                )
-                st.success("✅ Un lien de réinitialisation a été envoyé à votre adresse email.")
-            except Exception as e:
-                st.error(f"❌ Erreur : {e}")
+        if st.button("Envoyer le lien de réinitialisation", use_container_width=True, type="primary"):
+            if not email:
+                st.error("Veuillez entrer votre adresse email.")
+            else:
+                try:
+                    supabase.auth.reset_password_for_email(
+                        email,
+                        options={"redirectTo": "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/"}
+                    )
+                    st.success("✅ Un lien de réinitialisation a été envoyé à votre adresse email.")
+                except Exception as e:
+                    st.error(f"❌ Erreur : {e}")
         
-        if st.button("⬅️ Retour à la connexion"):
+        if st.button("⬅️ Retour à la connexion", use_container_width=True):
             SessionManager.set_auth_mode(SessionManager.AUTH_MODES['LOGIN'])
             st.rerun()
     st.stop()
@@ -172,67 +211,80 @@ def _show_login_signup_form(mode: str):
     """Formulaire de connexion ou inscription"""
     col_left, col_center, col_right = st.columns([1, 2, 1])
     with col_center:
-        st.subheader("Connexion" if mode == SessionManager.AUTH_MODES['LOGIN'] else "Créer un compte")
+        is_login = mode == SessionManager.AUTH_MODES['LOGIN']
+        st.subheader("Connexion" if is_login else "Créer un compte")
         
         email = st.text_input("Email", key=f"{mode}_email")
         password = st.text_input("Mot de passe", type="password", key=f"{mode}_password")
-        name = st.text_input("Prénom et Nom", key="signup_name") if mode == SessionManager.AUTH_MODES['SIGNUP'] else None
+        name = st.text_input("Prénom et Nom", key="signup_name") if not is_login else None
 
-        col_btn_left, col_btn_center, col_btn_right = st.columns([1, 2, 1])
-        with col_btn_center:
-            if mode == SessionManager.AUTH_MODES['LOGIN']:
-                _handle_login_form(email, password)
-            elif mode == SessionManager.AUTH_MODES['SIGNUP']:
-                _handle_signup_form(email, password, name)
+        if is_login:
+            _handle_login_form(email, password)
+        else:
+            _handle_signup_form(email, password, name)
 
 
 def _handle_login_form(email: str, password: str):
     """Gère le formulaire de connexion"""
-    if st.button("Se connecter", use_container_width=True):
-        try:
-            user = supabase.auth.sign_in_with_password({"email": email, "password": password})
-            if user.user:
-                SessionManager.set_user(user.user)
-                SessionManager.set_auth_mode(None)
-                st.success(f"Bienvenue {email} !")
-                st.rerun()
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        if st.button("Se connecter", use_container_width=True, type="primary"):
+            if not email or not password:
+                st.error("Veuillez remplir tous les champs.")
             else:
-                st.error("Email ou mot de passe invalide")
-        except Exception:
-            st.error("Email ou mot de passe invalide")
+                try:
+                    user = supabase.auth.sign_in_with_password({"email": email, "password": password})
+                    if user.user:
+                        SessionManager.set_user(user.user)
+                        SessionManager.set_auth_mode(None)
+                        st.success(f"Bienvenue {email} !")
+                        st.rerun()
+                    else:
+                        st.error("Email ou mot de passe invalide")
+                except Exception as e:
+                    st.error("Email ou mot de passe invalide")
     
-    if st.button("Mot de passe oublié ?"):
-        SessionManager.set_auth_mode(SessionManager.AUTH_MODES['FORGOT'])
-        st.rerun()
+    with col2:
+        if st.button("Mot de passe oublié ?", use_container_width=True):
+            SessionManager.set_auth_mode(SessionManager.AUTH_MODES['FORGOT'])
+            st.rerun()
     
-    if st.button("⬅️ Retour"):
+    if st.button("⬅️ Retour", use_container_width=True):
         SessionManager.set_auth_mode(None)
         st.rerun()
 
 
-def _handle_signup_form(email: str, password: str, name: str):
+def _handle_signup_form(email: str, password: str, name: Optional[str]):
     """Gère le formulaire d'inscription"""
-    if st.button("S'inscrire", use_container_width=True):
-        try:
-            user = supabase.auth.sign_up({"email": email, "password": password})
-            if user.user:
-                existing = db["users"].find_one({"mail": email})
-                if not existing:
-                    create_user_profile(
-                        internal_id=user.user.id,
-                        email=email,
-                        name=name or None,
-                    )
-                SessionManager.set_user(user.user)
-                st.success(f"Bienvenue {name or email} ! Votre compte a été créé.")
-                SessionManager.set_auth_mode(None)
-                st.rerun()
-            else:
-                st.error("Erreur lors de l'inscription")
-        except Exception as e:
-            st.error(f"Erreur : {e}")
+    if st.button("S'inscrire", use_container_width=True, type="primary"):
+        if not email or not password:
+            st.error("Veuillez remplir tous les champs.")
+        elif len(password) < 6:
+            st.error("Le mot de passe doit contenir au moins 6 caractères.")
+        else:
+            try:
+                user = supabase.auth.sign_up({"email": email, "password": password})
+                if user.user:
+                    # Vérifier si le profil existe déjà
+                    existing = db["users"].find_one({"mail": email})
+                    if not existing:
+                        create_user_profile(
+                            internal_id=user.user.id,
+                            email=email,
+                            name=name or None,
+                        )
+                    
+                    SessionManager.set_user(user.user)
+                    st.success(f"Bienvenue {name or email} ! Votre compte a été créé.")
+                    SessionManager.set_auth_mode(None)
+                    st.rerun()
+                else:
+                    st.error("Erreur lors de l'inscription")
+            except Exception as e:
+                st.error(f"Erreur : {e}")
     
-    if st.button("⬅️ Retour"):
+    if st.button("⬅️ Retour", use_container_width=True):
         SessionManager.set_auth_mode(None)
         st.rerun()
 
@@ -247,10 +299,10 @@ def show_sidebar():
         user = SessionManager.get_user()
         email = user.email if hasattr(user, 'email') else 'Utilisateur'
         
-        st.write(f"Connecté : {email}")
+        st.success(f"👤 {email}")
         
         # Bouton de déconnexion
-        if st.button("Se déconnecter", use_container_width=True):
+        if st.button("🚪 Se déconnecter", use_container_width=True, type="secondary"):
             try:
                 supabase.auth.sign_out()
             except:
@@ -268,42 +320,32 @@ def show_sidebar():
         # Bouton Strava
         if not integrations.get("strava", False):
             auth_strava_url = connect_strava()
-            # st.markdown(
-            #     f"""
-            #     <a href="{auth_strava_url}" style="
-            #         display:block;
-            #         text-align:center;
-            #         padding:10px;
-            #         background-color:#fc4c02;
-            #         color:white;
-            #         text-decoration:none;
-            #         border-radius:5px;
-            #         font-weight:bold;">
-            #         Connecter Strava
-            #     </a>
-            #     """,
-            #     unsafe_allow_html=True
-            # )
             st.markdown(
-                f"""<div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
-                    <a href={auth_strava_url}" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    style="transition: transform 0.2s;"
-                    onmouseover="this.style.transform='scale(1.1)'"
-                    onmouseout="this.style.transform='scale(1)'">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Strava_icon.png" 
-                            width="30" height="30" alt="Strava">
-                    </a>
-                </div>""")
-
+                f"""
+                <a href="{auth_strava_url}" target="_blank" style="
+                    display:block;
+                    text-align:center;
+                    padding:10px;
+                    margin-bottom:10px;
+                    background-color:#fc4c02;
+                    color:white;
+                    text-decoration:none;
+                    border-radius:5px;
+                    font-weight:bold;">
+                    🏃 Connecter Strava
+                </a>
+                """,
+                unsafe_allow_html=True
+            )
+        else:
+            st.success("✅ Strava connecté")
         
         # Bouton Garmin
         if not integrations.get("garmin", False):
             auth_garmin_url = connect_garmin()
             st.markdown(
                 f"""
-                <a href="{auth_garmin_url}" style="
+                <a href="{auth_garmin_url}" target="_blank" style="
                     display:block;
                     text-align:center;
                     padding:10px;
@@ -312,13 +354,12 @@ def show_sidebar():
                     text-decoration:none;
                     border-radius:5px;
                     font-weight:bold;">
-                    Connecter Garmin
+                    ⌚ Connecter Garmin
                 </a>
                 """,
                 unsafe_allow_html=True
             )
-        
-        if integrations.get("strava") and integrations.get("garmin"):
-            st.write("Vous avez déjà connecté tous vos appareils")
+        else:
+            st.success("✅ Garmin connecté")
         
         st.markdown("---")
