@@ -35,12 +35,23 @@ def _clear_query_params():
     except Exception:
         pass
 
+def calcul_expires_at(expires_in: int):
+        """
+        Génére le timestamp UTC d'expiration du token à partir de la durée de validité du token
+        Args:
+            expires_in (int): durée de validité du token
+            
+        Returns:
+            Int: Timestamp UTC d'expiration du token
+        """
+        # On retire 600 secondes au cas ou il y a eu de la latence sur le réseau
+        return datetime.now(timezone.utc).timestamp()+expires_in-600
 
 # ==========================
 # ---------- STRAVA ----------
 # ==========================
-STRAVA_CLIENT_ID = os.getenv("STRAVA_CLIENT_ID", "170263")
-STRAVA_CLIENT_SECRET = os.getenv("STRAVA_CLIENT_SECRET", "6abf41a2581b5d14d88811d1496d593ca36f55e4")
+STRAVA_CLIENT_ID = os.getenv("STRAVA_CLIENT_ID")
+STRAVA_CLIENT_SECRET = os.getenv("STRAVA_CLIENT_SECRET")
 STRAVA_REDIRECT_URI = os.getenv("STRAVA_REDIRECT_URI", "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/")
 STRAVA_DEAUTHORIZE_URL = "https://www.strava.com/oauth/deauthorize"
 
@@ -136,8 +147,8 @@ def revoke_strava_token(access_token: str) -> bool:
 # ==========================
 # ---------- GARMIN ----------
 # ==========================
-GARMIN_CLIENT_ID = os.getenv("GARMIN_CLIENT_ID", "77baf226-a45b-4304-b705-a8fda39a7c53")
-GARMIN_CLIENT_SECRET = os.getenv("GARMIN_CLIENT_SECRET", "IPW4Jew8lxWIL957SA5SSVX8aFm6GrMP/ghFP0IkD6M")
+GARMIN_CLIENT_ID = os.getenv("GARMIN_CLIENT_ID")
+GARMIN_CLIENT_SECRET = os.getenv("GARMIN_CLIENT_SECRET")
 GARMIN_REDIRECT_URI = os.getenv("GARMIN_REDIRECT_URI", "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/")
 GARMIN_AUTH_URL = "https://connect.garmin.com/oauth2Confirm"
 GARMIN_TOKEN_URL = "https://diauth.garmin.com/di-oauth2-service/oauth/token"
@@ -210,7 +221,7 @@ def handle_garmin_callback():
                 "external_id": user_id_garmin,
                 "access_token": tokens.get("access_token"),
                 "refresh_token": tokens.get("refresh_token"),
-                "expires_at": tokens.get("expires_in"),
+                "expires_at": calcul_expires_at(tokens.get("expires_in")),
             }
         )
         st.success("✅ Compte Garmin connecté et sauvegardé !")
