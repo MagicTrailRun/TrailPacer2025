@@ -29,35 +29,27 @@ class SessionManager:
         'RESET_PASSWORD': 'reset_password'
     }
 
-    # Instance unique de CookieManager pour éviter les conflits de clé
-    _cookie_manager = None
-
-    @classmethod
-    def _get_cookie_manager(cls):
-        """Retourne une instance unique de CookieManager"""
-        if cls._cookie_manager is None:
-            cls._cookie_manager = CookieManager(key=f"cookie_manager_{uuid.uuid4()}")
-        return cls._cookie_manager
-
     @classmethod
     def initialize_session(cls):
         """Initialise les variables de session si elles n'existent pas"""
-        cookies = cls._get_cookie_manager()
+        # 1. Vérifie si un cookie session_id existe déjà
+        cookies = CookieManager()
         session_id = cookies.get("session_id")
 
-        # Si pas de cookie, crée un nouvel ID de session
+        # 2. Si pas de cookie, crée un nouvel ID de session
         if session_id is None:
             cls._ensure_session_id()
         else:
+            # Utilise l'ID de session existant
             st.session_state[cls.SESSION_ID] = session_id
 
-        # Forcer nouvelle authentification pour nouvelle session
+        # 3. Forcer nouvelle authentification pour nouvelle session
         if cls.SESSION_INITIALIZED not in st.session_state:
             st.session_state[cls.SESSION_INITIALIZED] = True
             st.session_state[cls.USER] = None
             st.session_state[cls.AUTH_MODE] = None
 
-        # Valeurs par défaut
+        # 4. Valeurs par défaut
         default_values = {
             cls.CURRENT_PAGE: PageRegistry.get_default_page(),
             cls.AUTH_MODE: None,
@@ -68,9 +60,9 @@ class SessionManager:
             if key not in st.session_state:
                 st.session_state[key] = default_value
 
-        # Affiche le cookie actuel pour le débogage
-        current_session_id = cookies.get("session_id")
-        st.write(f"Cookie session_id actuel : {current_session_id}")
+        cookies = CookieManager()
+        session_id = cookies.get("session_id")
+        st.write(f"Cookie session_id actuel : {session_id}")
 
     @classmethod
     def _ensure_session_id(cls):
@@ -78,20 +70,21 @@ class SessionManager:
         ctx = get_script_run_ctx()
         session_id = ctx.session_id if ctx else str(uuid.uuid4())
         st.session_state[cls.SESSION_ID] = session_id
+
+        # Définit le cookie de session sécurisé
         cls._set_session_cookie(session_id)
 
     @classmethod
     def _set_session_cookie(cls, session_id: str):
         """Définit un cookie HTTP-only et sécurisé pour la session"""
-        cookies = cls._get_cookie_manager()
+        cookies = CookieManager()
         cookies.set(
             "session_id",
             session_id,
             max_age=86400,  # 1 jour
             httponly=True,
             secure=True,    # Assure-toi que ton app est en HTTPS
-            samesite="Lax",
-            path="/"
+            samesite="Lax"
         )
 
     # ==========================================
@@ -118,9 +111,8 @@ class SessionManager:
         """Déconnecte l'utilisateur et nettoie la session"""
         st.session_state.clear()
         # Supprime aussi le cookie
-        cookies = cls._get_cookie_manager()
+        cookies = CookieManager()
         cookies.delete("session_id")
-        cls._cookie_manager = None  # Réinitialise l'instance pour la prochaine session
     # ==========================================
     # GESTION DU MODE D'AUTHENTIFICATION
     # ==========================================
