@@ -21,13 +21,13 @@ def show_quest_banner():
             justify-content: space-between;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-radius: 15px;
+            border-radius: 8px;
         }}
         
         .banner-left {{
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             flex: 1;
         }}
         

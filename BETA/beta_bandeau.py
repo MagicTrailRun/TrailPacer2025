@@ -12,21 +12,21 @@ def show_beta_banner():
                 width: 100%;
                 background: #e3f2fd; /* bleu clair uniforme */
                 border: 1px solid #90caf9;
-                padding: 25px 25px;
+                padding: 12px 20px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-                border-radius: 12px;
-                margin-bottom: 15px;
-                min-height: 180px;
+                border-radius: 5px;
+                margin-bottom: 5px;
+                min-height: auto;
             }
             
             .beta-banner-left {
                 display: flex;
                 align-items: center;
-                gap: 15px;
+                gap: 10x;
                 flex: 1;
             }
             
@@ -35,10 +35,10 @@ def show_beta_banner():
             }
             
             .beta-banner-title {
-                font-size: 20px;
-                font-weight: 700;
+                font-size: 16px;
+                font-weight: 600;
                 color: #0d47a1;
-                margin-bottom: 6px;
+                margin-bottom: 4px;
             }
             
             .beta-banner-subtitle {

@@ -113,9 +113,9 @@ def _load_post_course_data(event_code, course_code, year):
                 missing_files.append(str(file_path))
         
         if missing_files:
-            st.warning("📄 Fichiers manquants:")
-            for file in missing_files:
-                st.write(f"- {file}")
+            # st.warning("📄 Fichiers manquants:")
+            # for file in missing_files:
+            #     st.write(f"- {file}")
             return None
         
         # Chargement des données
