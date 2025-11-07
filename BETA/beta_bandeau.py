@@ -8,8 +8,8 @@ def show_beta_banner():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            ..beta-banner {
-                width: 95%;
+            .beta-banner {
+                width: 100%;
                 background: #e3f2fd; /* bleu clair uniforme */
                 border: 1px solid #90caf9;
                 padding: 25px 25px;

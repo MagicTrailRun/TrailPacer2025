@@ -37,8 +37,8 @@ def show():
 
     with trailpacer : 
 
-        st.subheader("Sélection de l'événement")
         with st.container(border=True):
+            st.subheader("Sélection de l'événement")
             select_event()
         required_keys = ["event", "course", "year", "df", "config"]
         if not all(k in st.session_state for k in required_keys):
@@ -53,7 +53,6 @@ def show():
         config=st.session_state["config"]
         df=st.session_state["df"]
 
-        st.markdown(f"## **{course} {year}**")
     
         plan_course1, explorer3, postcourse4, pacing2= st.tabs([
         "Plan de course",
@@ -93,7 +92,6 @@ def show():
     with avis5:
         st.markdown("###  Suivre le projet")
         st.markdown("Partagez votre expérience et découvrez l’équipe derrière TrailPacer.")
-        st.divider()
 
         # Conteneur principal avec espacement
         with st.container():

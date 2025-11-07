@@ -11,7 +11,7 @@ def show_quest_banner():
     html_code = f"""
     <style>
         .banner {{
-            width: 95%;
+            width: 100%;
             margin: 0 auto 20px auto;
             background: linear-gradient(135deg, #f8f4ff 0%, #f0e6ff 100%);
             border: 1px solid #e8d5ff;
