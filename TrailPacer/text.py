@@ -228,7 +228,6 @@ def pacing():
 
 
 def quisommesnous():
-    st.header("Qui sommes-nous?")
     txt = """
 <div style="font-family: 'Segoe UI', sans-serif; color:#333; line-height:1.5;">
 
@@ -263,9 +262,6 @@ Devant l’intérêt suscité auprès d’autres coureurs, il a choisi de transf
 
 
 def votreavis():
-
-    st.header("📢 Votre avis nous intéresse !")
-
    
     st.subheader("Dites-nous ce que vous aimeriez voir")
     st.markdown(

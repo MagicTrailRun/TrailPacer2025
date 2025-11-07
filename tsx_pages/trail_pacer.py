@@ -36,9 +36,10 @@ def show():
      
 
     with trailpacer : 
-        st.subheader("Sélection de l'événement")
 
-        select_event()
+        st.subheader("Sélection de l'événement")
+        with st.container(border=True):
+            select_event()
         required_keys = ["event", "course", "year", "df", "config"]
         if not all(k in st.session_state for k in required_keys):
             st.info("➡️ Veuillez d'abord sélectionner un événement et une course.")
@@ -52,6 +53,11 @@ def show():
         config=st.session_state["config"]
         df=st.session_state["df"]
 
+
+        st.divider()
+        st.markdown(f"### Analyses pour **{course} - {year}**")
+        st.markdown("<p style='color:#999;font-size:13px;'>Naviguez entre les différentes analyses ci-dessous.</p>", unsafe_allow_html=True)        
+        
         plan_course1, explorer3, postcourse4, pacing2= st.tabs([
         "Plan de course",
         "Explorer les courses",
@@ -87,11 +93,19 @@ def show():
                 pacing()
  
 
-    with avis5 :
+    with avis5:
+        st.markdown("###  Suivre le projet")
+        st.markdown("Partagez votre expérience et découvrez l’équipe derrière TrailPacer.")
+        st.divider()
 
-        votreavis()
-        quisommesnous()
-        
+        # Conteneur principal avec espacement
+        with st.container():
+            with st.expander("Votre avis nous intéresse", expanded=False):
+                votreavis()
+
+            with st.expander("Qui sommes-nous ?", expanded=False):
+                quisommesnous()
+
 
     with cnil7 :
         cnil()
