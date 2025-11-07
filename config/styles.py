@@ -56,11 +56,6 @@ def apply_custom_css():
             font-weight: 600 !important;
         }
 
-        /* Espace entre les onglets */
-        div[data-baseweb="tab-list"] {
-            gap: 2rem !important;
-        }
-
         /* 🚨 Warning affiché uniquement sur mobile */
         @media (max-width: 768px) {
             .mobile-warning {
@@ -105,3 +100,66 @@ def apply_custom_css():
         '<div class="mobile-warning">📱 Pour une meilleure expérience, visitez le site sur un ordinateur</div>',
         unsafe_allow_html=True
     )
+    st.markdown("""
+    <style>
+    /* ======================= TABS NIVEAU 1 ======================= */
+    div[data-baseweb="tab-list"] {
+        justify-content: center;
+        gap: 2rem;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 0.3rem;
+        margin-bottom: 1rem;
+    }
+
+    button[data-baseweb="tab"] {
+        font-size: 1.05em;
+        font-weight: 600;
+        color: #666;
+        background-color: transparent !important;
+        border: none !important;
+        transition: color 0.3s ease;
+    }
+
+    button[data-baseweb="tab"]:hover {
+        color: #2e7d32; /* vert hover TrailPacer */
+    }
+
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: #1b5e20; /* vert actif plus foncé */
+        border-bottom: 3px solid #1b5e20 !important;
+        border-radius: 0;
+        transition: all 0.3s ease;
+    }
+
+    /* ======================= TABS NIVEAU 2 ======================= */
+    div[data-testid="stHorizontalBlock"] div[data-baseweb="tab-list"] {
+        justify-content: flex-start;
+        gap: 1.5rem;
+        border-bottom: 1px solid #eee;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+    }
+
+    div[data-testid="stHorizontalBlock"] button[data-baseweb="tab"] {
+        font-size: 0.95em;
+        font-weight: 500;
+        color: #777;
+    }
+
+    div[data-testid="stHorizontalBlock"] button[data-baseweb="tab"]:hover {
+        color: #2e7d32;
+    }
+
+    div[data-testid="stHorizontalBlock"] button[data-baseweb="tab"][aria-selected="true"] {
+        color: #1b5e20;
+        border-bottom: 2px solid #1b5e20 !important;
+    }
+
+    /* ======================= CONTAINER ======================= */
+    .block-container {
+        padding-top: 1rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+

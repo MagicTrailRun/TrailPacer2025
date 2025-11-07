@@ -11,7 +11,6 @@ from TrailPacer.post_course import show_post_course
 from TrailPacer.plan_pacing import show_plan_pacing
 from TrailPacer.device_connected import device_connected
 from core.fitness_connect import connect_strava, connect_garmin
-from config.styles import apply_custom_css
 import traceback
 import streamlit.components.v1 as components
 from TrailPacer.data_loader import select_event
@@ -21,77 +20,20 @@ print("___________________________________________")
 
 
 def show(): 
-    apply_custom_css()
-
-    st.markdown("""
-<style>
-/* ----------- STYLE GLOBAL TABS ----------- */
-div[data-baseweb="tab-list"] {
-    justify-content: center; /* centre les tabs */
-    gap: 2rem;               /* espace entre eux */
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 0.3rem;
-    margin-bottom: 1rem;
-}
-
-/* ----------- TEXTE DES TABS ----------- */
-button[data-baseweb="tab"] {
-    font-size: 1.05em;
-    font-weight: 600;
-    color: #666;
-    background-color: transparent !important;
-    border: none !important;
-    transition: color 0.3s ease;
-}
-
-button[data-baseweb="tab"]:hover {
-    color: #ff5c5c; /* hover rouge TrailPacer */
-}
-
-/* ----------- TAB ACTIF ----------- */
-button[data-baseweb="tab"][aria-selected="true"] {
-    color: #ff2f2f;
-    border-bottom: 3px solid #ff2f2f !important;
-    border-radius: 0;
-    transition: all 0.3s ease;
-}
-
-/* ----------- Lignes séparatrices douces ----------- */
-div[data-baseweb="tab-border"] {
-    border: none !important;
-}
-
-/* ----------- ESPACEMENT ENTRE GROUPES D'ONGLETS ----------- */
-.block-container {
-    padding-top: 1rem;
-}
-</style>
-""", unsafe_allow_html=True)
-
-    #show_hero_banner(event, course, event_code, df)
+    
+    show_hero_banner()
 
 
-    # plan_course1, explorer3, postcourse4, pacing2, avis5, qui6 , cnil7, connect8= st.tabs([
-    #     "Plan de course",
-    #     "Explorer les courses",
-    #     "Analyse post-course",
-    #      "Le pacing selon TrailPacer",
-    #     "Suivre le projet",
-    #     "Qui sommes-nous?",
-    #     "Politique de confidentialité",
-    #     "Appareils connectés"
 
-    # ])
-    trailpacer, avis5, qui6 , cnil7, connect8= st.tabs([
+
+    trailpacer, avis5 , cnil7, connect8= st.tabs([
         "TrailPacer",
         "Suivre le projet",
-        "Qui sommes-nous?",
         "Politique de confidentialité",
         "Appareils connectés"
 
     ])
      
-    st.markdown("------------")
 
     with trailpacer : 
         st.subheader("Sélection de l'événement")
@@ -148,8 +90,6 @@ div[data-baseweb="tab-border"] {
     with avis5 :
 
         votreavis()
-
-    with qui6 :
         quisommesnous()
         
 

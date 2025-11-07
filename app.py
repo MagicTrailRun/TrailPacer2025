@@ -70,16 +70,12 @@ class TSXApplication:
         # Contenu principal
         main_container = st.container()
         with main_container:
-            self._display_warning_if_beta()
-            self.show_banner()
+            self._display_if_beta()
+            show_quest_banner()
             
             current_page = SessionManager.get_current_page()
             self.page_router.render_page(current_page)
     
-    def show_banner(self):
-        """Affiche la bannière de quête"""
-        html_code = show_quest_banner()
-        st.components.v1.html(html_code)
     
     def _show_sidebar(self):
         """Affiche la barre latérale"""
@@ -107,12 +103,12 @@ class TSXApplication:
                 email_form()
                 commentaire_form()
     
-    def _display_warning_if_beta(self):
+    def _display_if_beta(self):
         """Affiche la bannière beta si nécessaire"""
         app_env = os.getenv("APP_ENV", "prod")
         if app_env == "beta":
             txt_beta = show_beta_banner()
-            st.components.v1.html(txt_beta)
+            txt_beta
 
 
 if __name__ == "__main__":

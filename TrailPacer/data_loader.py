@@ -80,40 +80,71 @@ def info_social_media():
             unsafe_allow_html=True
         )
         
-
 def select_event():
-    
-    # --- CSS custom pour styliser les selectbox
+    # --- CSS custom pour le container et les selects
     st.markdown("""
     <style>
-    /* Conteneur général du selectbox */
+    /* --------- CONTAINER PRINCIPAL --------- */
+    .event-container {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 16px;
+        padding: 2rem 2.5rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        margin: 1.5rem 0 2rem 0;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .event-container:hover {
+        box-shadow: 0 6px 22px rgba(46,125,50,0.25);
+    }
+
+    /* --------- TITRE --------- */
+    .event-container h3 {
+        color: #2E7D32;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+        text-align: center;
+    }
+
+    /* --------- SELECTBOX --------- */
     div[data-baseweb="select"] {
-        background-color: #f9f9f9;      /* fond clair */
-        border: 2px solid #e0e0e0;      /* bord fin */
-        border-radius: 12px;            /* arrondi */
+        background-color: #f9f9f9;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
         padding: 6px 10px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-        transition: all 0.3s ease-in-out;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        transition: all 0.25s ease;
     }
 
-    /* Hover effect */
     div[data-baseweb="select"]:hover {
-        border: 2px solid #007bff;      /* bleu au survol */
-        box-shadow: 0 4px 12px rgba(0,123,255,0.25);
+        border: 2px solid #2E7D32;
+        box-shadow: 0 4px 10px rgba(46,125,50,0.25);
     }
 
-    /* Texte */
     div[data-baseweb="select"] span {
         font-size: 1.05em;
         font-weight: 500;
         color: #333;
     }
 
-    /* Label au-dessus du selectbox */
-    .css-10trblm, label {
-        font-size: 1.1em !important;
-        font-weight: bold !important;
-        color: #444 !important;
+    /* --------- LABELS --------- */
+    label {
+        font-size: 1.05em !important;
+        font-weight: 600 !important;
+        color: #1B5E20 !important;
+    }
+
+    /* --------- MESSAGE DE VALIDATION --------- */
+    .success-message {
+        background-color: #E8F5E9;
+        color: #1B5E20;
+        border-radius: 10px;
+        padding: 0.8rem 1rem;
+        margin-top: 1rem;
+        border-left: 5px solid #2E7D32;
+        font-weight: 500;
+        text-align: center;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -122,31 +153,39 @@ def select_event():
     EVENT_CONFIG = st.session_state.get("EVENT_CONFIG", {})
     if not EVENT_CONFIG:
         st.error("Aucune configuration d'événement trouvée")
-        
+        return
 
-    
+    # --- CONTENU DU CONTAINER
+    st.markdown('<div class="event-container">', unsafe_allow_html=True)
+    st.markdown("<h3>🎯 Sélectionnez votre événement Trail</h3>", unsafe_allow_html=True)
 
-    event = st.selectbox("🎯 Choisir un événement", list(EVENT_CONFIG.keys()))
-
-    course = st.selectbox("🏃 Choisir une course", list(EVENT_CONFIG[event]["races"].keys()))
-
+    event = st.selectbox("🏔️ Événement", list(EVENT_CONFIG.keys()))
+    course = st.selectbox("🏃‍♀️ Course", list(EVENT_CONFIG[event]["races"].keys()))
     year = st.selectbox("📅 Année", EVENT_CONFIG[event]["races"][course]["year"])
 
-    st.success(f"Vous avez choisi **{event} – {course} – {year}**")
+    st.markdown(
+        f'<div class="success-message">✅ Vous avez choisi <strong>{event}</strong> – <strong>{course}</strong> – <strong>{year}</strong></div>',
+        unsafe_allow_html=True
+    )
 
-    # Sauvegarde en session_state
+    st.markdown('</div>', unsafe_allow_html=True)  # fermeture du container
+
+    # --- Sauvegarde en session_state
     st.session_state["event"] = event
     st.session_state["course"] = course
     st.session_state["year"] = year
     st.session_state["event_code"] = EVENT_CONFIG[event]['tenant']
     st.session_state["course_code"] = EVENT_CONFIG[event]['races'][course]["code"]
-    st.session_state["post_course_year"]= EVENT_CONFIG[event]["races"][course]["post_course_year"]
-    event_code=st.session_state["event_code"]
-    course_code=st.session_state["course_code"]
+    st.session_state["post_course_year"] = EVENT_CONFIG[event]["races"][course]["post_course_year"]
+
+    event_code = st.session_state["event_code"]
+    course_code = st.session_state["course_code"]
     config = get_config(f"data/TrailPacer/{event_code}/{course_code}/config/config_{year}.json")
-    st.session_state["config"]=config
-    df = load_data(event=event_code,race=course_code, year=year)
-    st.session_state['df']=df
+    st.session_state["config"] = config
+
+    df = load_data(event=event_code, race=course_code, year=year)
+    st.session_state['df'] = df
+
     tracks_dir = Path(f"data/TrailPacer/{event_code}/{course_code}/tracks/")
     track_file_json = tracks_dir / f"track_{year}.json"
     track_tile_csv = tracks_dir / f"track_{year}.csv"
@@ -159,7 +198,6 @@ def select_event():
             file_hash = os.path.getmtime(f)
             break
 
-    file_hash = os.path.getmtime(track_file_json) if track_file_json.exists() else None
     df_gpx, has_terrain_type = get_df_for_gpx(event_code, course_code, year, file_hash)
     st.session_state["df_gpx"] = df_gpx
     st.session_state["has_terrain_type"] = has_terrain_type

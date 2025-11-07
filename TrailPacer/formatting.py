@@ -182,8 +182,11 @@ def format_hr_to_time(x):
     return f'{x//60}h{x%60:02d}'
 
 
-def show_hero_banner(event, course, event_code, df):
-    img_base64 = get_base64_image(f"TrailPacer/image/{event_code.lower()}.png")
+def show_hero_banner(event=None, course=None, event_code=None):
+    if event is None :
+        img_base64=get_base64_image(f"TrailPacer/image/banner_image.png")
+    else :
+        img_base64 = get_base64_image(f"TrailPacer/image/{event_code.lower()}.png")
     background_style = (
         f"background-image: url('data:image/png;base64,{img_base64}');"
         if img_base64
@@ -246,6 +249,3 @@ def show_hero_banner(event, course, event_code, df):
         unsafe_allow_html=True,
     )
 
-    if df.empty:
-        st.error("⚠️ Impossible de charger les données pour cet événement.")
-        return
