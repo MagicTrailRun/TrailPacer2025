@@ -75,12 +75,11 @@ def show():
         with postcourse4:
             post_course_year=st.session_state["post_course_year"]
             try:
-                # 1️⃣ Essai sur l'année sélectionnée
-                
+
                 show_post_course(course, event_code, course_code, post_course_year)
 
             except Exception as e:
-                st.error("❌ Cette page n'est pas encore disponible pour la course sélectionnée !")
+                #st.error("❌ Cette page n'est pas encore disponible pour la course sélectionnée !")
                 print(f"[DEBUG] Erreur lors de show_post_course pour l'année {post_course_year} : {e}")
                 traceback.print_exc()
 

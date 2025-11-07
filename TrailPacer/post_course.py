@@ -63,7 +63,6 @@ def show_post_course(course_name,event_code, course_code, year):
 
         
         if data is None:
-            st.error("❌ Page non disponible pour cette course")
             st.info("Les données d'analyse post-course ne sont pas encore disponibles.")
             return
             
