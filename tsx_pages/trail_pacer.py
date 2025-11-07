@@ -23,14 +23,6 @@ def show():
     
     show_hero_banner()
 
-    trailpacer, avis5 , cnil7, connect8= st.tabs([
-        "TrailPacer",
-        "Suivre le projet",
-        "Politique de confidentialité",
-        "Appareils connectés"
-
-    ])
-
     trailpacer, avis5,cnil7, connect8 = st.columns(4)
     
     with trailpacer:
@@ -68,6 +60,7 @@ def show():
     elif st.session_state.get("onglet") == "Appareils connectés":
         device_connected()
 
+    else : trail_pacer_display()
 
 
 def trail_pacer_display():
