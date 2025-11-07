@@ -228,10 +228,9 @@ def pacing():
 
 
 def quisommesnous():
+    st.header("Qui sommes-nous?")
     txt = """
 <div style="font-family: 'Segoe UI', sans-serif; color:#333; line-height:1.5;">
-
-<h2 style="font-size:22px; color:#222;">Qui sommes-nous ?</h2>
 
 <p><b>Trail Pacer</b>, c'est une équipe passionnée de trail et de science, réunissant des compétences en data science, médecine et recherche. 
 Cet outil a vu le jour grâce à l’expertise complémentaire de  :

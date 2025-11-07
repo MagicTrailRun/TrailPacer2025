@@ -1,0 +1,144 @@
+/* ======================= GLOBAL ======================= */
+html, body, [class*="css"] {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.block-container {
+    padding-top: 1rem;
+}
+
+/* ======================= SIDEBAR ======================= */
+.sidebar .sidebar-content {
+    background-color: #f0f2f6;
+}
+
+/* ======================= TITRES ======================= */
+h1, h2, h3, h4 {
+    color: #2E7D32;
+}
+
+/* ======================= BOUTONS ======================= */
+button {
+    border-radius: 5px !important;
+}
+
+.stButton>button {
+    margin: 0.5rem 0;
+}
+
+/* ======================= ALERTES ======================= */
+.stAlert {
+    border-left: 5px solid #2E7D32;
+}
+
+/* ======================= MARGES ======================= */
+.css-1aumxhk {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.stTitle {
+    margin-bottom: 1rem;
+}
+
+/* ======================= TABS ======================= */
+div[data-baseweb="tab-list"] {
+    justify-content: center;
+    gap: 2rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+button[data-baseweb="tab"] {
+    font-size: 1.05em;
+    font-weight: 600;
+    color: #666;
+    background-color: transparent !important;
+    border: none !important;
+    transition: color 0.3s ease;
+}
+
+button[data-baseweb="tab"]:hover {
+    color: #2e7d32;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #1b5e20;
+    border-bottom: 3px solid #1b5e20 !important;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+/* Tabs secondaires */
+div[data-testid="stHorizontalBlock"] div[data-baseweb="tab-list"] {
+    justify-content: flex-start;
+    gap: 1.5rem;
+    border-bottom: 1px solid #eee;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+div[data-testid="stHorizontalBlock"] button[data-baseweb="tab"] {
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #777;
+}
+
+div[data-testid="stHorizontalBlock"] button[data-baseweb="tab"]:hover {
+    color: #2e7d32;
+}
+
+div[data-testid="stHorizontalBlock"] button[data-baseweb="tab"][aria-selected="true"] {
+    color: #1b5e20;
+    border-bottom: 2px solid #1b5e20 !important;
+}
+
+/* ======================= TABLES ======================= */
+table {
+    margin-left: 0 !important; /* colle les tables à gauche */
+    margin-right: auto !important;
+    width: auto;
+}
+
+table:first-of-type {
+    width: 95% !important; /* agrandit la première table */
+}
+
+/* ======================= MOBILE ======================= */
+@media (max-width: 768px) {
+    .block-container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    h1, h2, h3 {
+        font-size: 1.2rem !important;
+    }
+    .stButton button {
+        width: 100% !important;
+    }
+    .stTextInput>div>div>input {
+        font-size: 16px !important; /* évite le zoom iOS */
+    }
+
+    [data-testid="stHorizontalBlock"] {
+        flex-direction: column !important;
+    }
+
+    .mobile-warning {
+        display: block !important;
+        background-color: #fff3cd;
+        border-left: 6px solid #ff9800;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        color: #856404;
+        font-weight: bold;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-warning {
+        display: none !important;
+    }
+}

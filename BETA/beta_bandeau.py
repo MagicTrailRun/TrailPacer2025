@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit as st
 
 def show_beta_banner():
     html_code = """
@@ -154,4 +153,4 @@ def show_beta_banner():
     </body>
     </html>
     """
-    return html_code
+    st.markdown(html_code, unsafe_allow_html=True)

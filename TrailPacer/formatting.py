@@ -182,9 +182,10 @@ def format_hr_to_time(x):
     return f'{x//60}h{x%60:02d}'
 
 
-def show_hero_banner(event=None, course=None, event_code=None):
+def show_hero_banner(event=None, course="", event_code=""):
     if event is None :
         img_base64=get_base64_image(f"TrailPacer/image/banner_image.png")
+
     else :
         img_base64 = get_base64_image(f"TrailPacer/image/{event_code.lower()}.png")
     background_style = (
