@@ -42,7 +42,7 @@ button {
 
 /* ======================= TABS ======================= */
 div[data-baseweb="tab-list"] {
-    justify-content: center;
+    justify-content: left;
     gap: 2rem;
     border-bottom: 2px solid #ddd;
     padding-bottom: 0.3rem;
@@ -52,7 +52,7 @@ div[data-baseweb="tab-list"] {
 button[data-baseweb="tab"] {
     font-size: 1.05em;
     font-weight: 600;
-    color: #666;
+    color: #000000;
     background-color: transparent !important;
     border: none !important;
     transition: color 0.3s ease;
@@ -71,7 +71,7 @@ button[data-baseweb="tab"][aria-selected="true"] {
 
 /* Tabs secondaires */
 div[data-testid="stHorizontalBlock"] div[data-baseweb="tab-list"] {
-    justify-content: flex-start;
+    justify-content: left;
     gap: 1.5rem;
     border-bottom: 1px solid #eee;
     margin-top: 0.5rem;
@@ -82,7 +82,7 @@ div[data-testid="stHorizontalBlock"] div[data-baseweb="tab-list"] {
 div[data-testid="stHorizontalBlock"] button[data-baseweb="tab"] {
     font-size: 0.95em;
     font-weight: 500;
-    color: #777;
+    color: #0f0f0f;
 }
 
 div[data-testid="stHorizontalBlock"] button[data-baseweb="tab"]:hover {
@@ -102,7 +102,7 @@ table {
 }
 
 table:first-of-type {
-    width: 95% !important; /* agrandit la première table */
+    width: 100% !important; /* agrandit la première table */
 }
 
 /* ======================= MOBILE ======================= */

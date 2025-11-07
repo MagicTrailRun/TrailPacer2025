@@ -132,7 +132,6 @@ def select_event():
 
     year = st.selectbox("📅 Année", EVENT_CONFIG[event]["races"][course]["year"])
 
-    st.success(f"Vous avez choisi **{event} – {course} – {year}**")
 
     # Sauvegarde en session_state
     st.session_state["event"] = event

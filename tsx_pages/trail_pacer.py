@@ -53,16 +53,13 @@ def show():
         config=st.session_state["config"]
         df=st.session_state["df"]
 
-
-        st.divider()
-        st.markdown(f"### Analyses pour **{course} - {year}**")
-        st.markdown("<p style='color:#999;font-size:13px;'>Naviguez entre les différentes analyses ci-dessous.</p>", unsafe_allow_html=True)        
-        
+        st.markdown(f"## **{course} {year}**")
+    
         plan_course1, explorer3, postcourse4, pacing2= st.tabs([
         "Plan de course",
-        "Explorer les courses",
+        "Explorer la course",
         "Analyse post-course",
-         "Le pacing selon TrailPacer"])
+        "Le pacing selon TrailPacer"])
 
  
         with plan_course1:
