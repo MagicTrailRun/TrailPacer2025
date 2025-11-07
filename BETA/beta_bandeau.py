@@ -8,81 +8,80 @@ def show_beta_banner():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            .beta-banner {
+        * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .banner {
                 width: 100%;
                 background: #e3f2fd; /* bleu clair uniforme */
                 border: 1px solid #90caf9;
-                padding: 12px 20px;
+                padding: 18px 25px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-                border-radius: 5px;
-                margin-bottom: 5px;
-                min-height: auto;
+                margin-bottom: 15px;
             }
             
-            .beta-banner-left {
+            .banner-left {
                 display: flex;
                 align-items: center;
-                gap: 10x;
+                gap: 15px;
                 flex: 1;
             }
             
-            .beta-banner-content {
+            .banner-content {
                 flex: 1;
             }
             
-            .beta-banner-title {
-                font-size: 16px;
-                font-weight: 600;
+            .banner-title {
+                font-size: 20px;
+                font-weight: 700;
                 color: #0d47a1;
-                margin-bottom: 4px;
+                margin-bottom: 6px;
             }
             
-            .beta-banner-subtitle {
+            .banner-subtitle {
                 font-size: 14px;
                 color: #1e3a8a;
                 line-height: 1.6;
             }
 
-            .beta-email-link {
+            .email-link {
                 color: #1565c0;
                 text-decoration: none;
                 font-weight: 600;
             }
 
-            .beta-email-link:hover {
+            .email-link:hover {
                 text-decoration: underline;
             }
 
             @media (max-width: 768px) {
-                .beta-banner {
+                .banner {
                     flex-direction: column;
                     gap: 15px;
                     text-align: center;
                 }
-                .beta-banner-title {
+                .banner-title {
                     font-size: 18px;
                 }
-                .beta-banner-subtitle {
+                .banner-subtitle {
                     font-size: 13px;
                 }
             }
         </style>
     </head>
     <body>
-        <div class="beta-banner">
-            <div class="beta-banner-left">
-                <div class="beta-banner-content">
-                    <h2 class="beta-banner-title">  Merci de participer à la version BETA de TrailPacer !</h2>
-                    <p class="beta-banner-subtitle">
+        <div class="banner">
+            <div class="banner-left">
+                <div class="banner-content">
+                    <h2 class="banner-title">  Merci de participer à la version BETA de TrailPacer !</h2>
+                    <p class="banner-subtitle">
                         Vos retours sont essentiels pour améliorer l’outil. Pour toute remarque ou suggestion, écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> ou utilisez l’espace commentaire ci-dessous.
-                    </p>
-                    <p class="beta-banner-subtitle">
-                        Vous pouvez également appareiller votre compte Garmin ou Strava afin que nous récupérions vos données
-                        pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite. Merci de votre aide.
                     </p>
                 </div>
             </div>

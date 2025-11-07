@@ -22,7 +22,39 @@ print("___________________________________________")
 def show(): 
     
     show_hero_banner()
+    st.markdown("""
+<style>
+/* Onglets personnalisés */
+div.stButton > button {
+    background-color: #f0f2f6;  /* gris clair pour inactif */
+    color: #000;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 8px 8px 0 0; /* arrondi en haut seulement */
+    border: 1px solid #ddd;
+    border-bottom: 1px solid transparent;
+    padding: 8px 0;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    width: 100% !important;
+}
 
+/* Hover */
+div.stButton > button:hover {
+    background-color: #e0f2f1;
+    cursor: pointer;
+}
+
+/* Onglet actif */
+div.stButton > button.active-tab {
+    background-color: #2e7d32;  /* vert foncé */
+    color: white;
+    border-color: #2e7d32;
+    border-bottom: 3px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+</style>
+""", unsafe_allow_html=True)
     trailpacer, avis5,cnil7, connect8 = st.columns(4)
     
     with trailpacer:
@@ -41,8 +73,20 @@ def show():
     
     # Affichage en fonction du choix
     if st.session_state.get("onglet") == "TrailPacer":
+        st.markdown("""
+    <script>
+    const btn = window.parent.document.querySelectorAll('div.stButton > button')[0];
+    btn.classList.add('active-tab');
+    </script>
+    """, unsafe_allow_html=True)
         trail_pacer_display()
     elif st.session_state.get("onglet") == "Suivre le projet":
+        st.markdown("""
+    <script>
+    const btn = window.parent.document.querySelectorAll('div.stButton > button')[1];
+    btn.classList.add('active-tab');
+    </script>
+    """, unsafe_allow_html=True)
         st.markdown("###  Suivre le projet")
         st.markdown("Partagez votre expérience et découvrez l’équipe derrière TrailPacer.")
 
@@ -55,9 +99,21 @@ def show():
                 quisommesnous()
 
     elif st.session_state.get("onglet") == "Politique de confidentialité":
+        st.markdown("""
+    <script>
+    const btn = window.parent.document.querySelectorAll('div.stButton > button')[0];
+    btn.classList.add('active-tab');
+    </script>
+    """, unsafe_allow_html=True)
         cnil()
 
     elif st.session_state.get("onglet") == "Appareils connectés":
+        st.markdown("""
+    <script>
+    const btn = window.parent.document.querySelectorAll('div.stButton > button')[0];
+    btn.classList.add('active-tab');
+    </script>
+    """, unsafe_allow_html=True)
         device_connected()
 
     else : trail_pacer_display()
