@@ -18,85 +18,96 @@ from TrailPacer.data_loader import select_event
 
 print("___________________________________________")
 
+def show(): 
 
-def show():
     show_hero_banner()
-
-    # --- CSS spécifique aux onglets
+    
+    # Conteneur avec classe unique pour cibler seulement ces boutons
     st.markdown("""
-    <style>
-    /* Container pour les onglets */
-    div#tabs-container {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
+<style>
+/* Style pour les boutons de navigation uniquement (via leur key) */
+button[kind="primary"][data-testid="baseButton-primary"],
+button[data-testid="baseButton-primary"] {
+    /* On cible d'abord tous les boutons, puis on utilise les keys */
+}
 
-    div#tabs-container button {
-        flex: 1;
-        padding: 10px 0;
-        font-weight: 600;
-        font-size: 0.95rem;
-        border-radius: 12px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        background: linear-gradient(135deg, #2e7d32, #81c784);
-        color: white;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    }
+/* Ciblage spécifique via les keys des boutons */
+div[data-testid="column"] button[kind="primary"] {
+    background: linear-gradient(135deg, #2e7d32, #81c784) !important;
+    color: green !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    border-radius: 12px !important;
+    padding: 10px 0 !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1) !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+}
 
-    div#tabs-container button:hover {
-        background: linear-gradient(135deg, #388e3c, #a5d6a7);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 12px rgba(0,0,0,0.15);
-    }
+/* Hover */
+div[data-testid="column"] button[kind="primary"]:hover {
+    background: linear-gradient(135deg, #388e3c, #a5d6a7) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15) !important;
+}
 
-    div#tabs-container button.active-tab {
-        background: linear-gradient(135deg, #1b5e20, #66bb6a);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        transform: translateY(-1px);
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    # --- Onglets HTML
-    st.markdown('<div id="tabs-container"></div>', unsafe_allow_html=True)
+/* Active (clic) */
+div[data-testid="column"] button[kind="primary"]:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1) !important;
+}
+</style>
+""", unsafe_allow_html=True)
     
-    tabs = ["TrailPacer", "Suivre le projet", "Politique de confidentialité", "Appareils connectés"]
-    
-    # Initialisation de l'onglet
-    if "onglet" not in st.session_state:
-        st.session_state["onglet"] = tabs[0]
+    # Conteneur avec ID unique pour cibler spécifiquement ces boutons
+    with st.container():
+        st.markdown('<div id="navigation-tabs">', unsafe_allow_html=True)
+        
+        trailpacer, avis5, cnil7, connect8 = st.columns(4)
+        
+        with trailpacer:
+            if st.button("TrailPacer", key="nav_trailpacer", use_container_width=True, type="primary"):
+                st.session_state["onglet"] = "TrailPacer"
+        
+        with avis5:
+            if st.button("Suivre le projet", key="nav_suivre", use_container_width=True, type="primary"):
+                st.session_state["onglet"] = "Suivre le projet"
+        
+        with cnil7:
+            if st.button("Politique de confidentialité", key="nav_cnil", use_container_width=True, type="primary"):
+                st.session_state["onglet"] = "Politique de confidentialité"
+        
+        with connect8:
+            if st.button("Appareils connectés", key="nav_connect", use_container_width=True, type="primary"):
+                st.session_state["onglet"] = "Appareils connectés"
+        
+      
+        
+        # Affichage en fonction du choix
+        if st.session_state.get("onglet") == "TrailPacer":
+            st.markdown('AHG')
+            #trail_pacer_display()
+        elif st.session_state.get("onglet") == "Suivre le projet":
+            st.markdown("###  Suivre le projet")
+            st.markdown("Partagez votre expérience et découvrez l'équipe derrière TrailPacer.")
 
-    # Création des boutons via columns pour largeur égale
-    cols = st.columns(len(tabs))
-    for idx, tab_name in enumerate(tabs):
-        with cols[idx]:
-            # Active class
-            class_attr = "active-tab" if st.session_state["onglet"] == tab_name else ""
-            if st.button(tab_name, key=f"tab_{idx}", use_container_width=True):
-                st.session_state["onglet"] = tab_name
+            with st.container():
+                with st.expander("Votre avis nous intéresse", expanded=False):
+                    votreavis()
 
-    # --- Affichage du contenu selon l'onglet actif
-    if st.session_state["onglet"] == "TrailPacer":
-        trail_pacer_display()
+                with st.expander("Qui sommes-nous ?", expanded=False):
+                    quisommesnous()
 
-    elif st.session_state["onglet"] == "Suivre le projet":
-        st.markdown("### Suivre le projet")
-        st.markdown("Partagez votre expérience et découvrez l’équipe derrière TrailPacer.")
-        with st.container():
-            with st.expander("Votre avis nous intéresse", expanded=False):
-                votreavis()
-            with st.expander("Qui sommes-nous ?", expanded=False):
-                quisommesnous()
+        elif st.session_state.get("onglet") == "Politique de confidentialité":
+            cnil()
+       
 
-    elif st.session_state["onglet"] == "Politique de confidentialité":
-        cnil()
+        elif st.session_state.get("onglet") == "Appareils connectés":
+            device_connected()
 
-    elif st.session_state["onglet"] == "Appareils connectés":
-        device_connected()
-
+        else:
+            trail_pacer_display()
+        st.markdown('</div>', unsafe_allow_html=True)
 
 
 def trail_pacer_display():
