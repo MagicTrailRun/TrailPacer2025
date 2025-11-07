@@ -21,7 +21,7 @@ def device_connected():
                 token = get_access_token(internal_id, "strava")
                 if token:
                     revoke_strava_token(token)  # Révocation côté Strava
-                delete_integration(internal_id, "strava")  # Suppression en base
+                #delete_integration(internal_id, "strava")  # Suppression en base
                 st.success("Strava désapparié")
                 st.rerun()
 
@@ -35,6 +35,6 @@ def device_connected():
                 token = get_access_token(internal_id, "garmin")
                 if token:
                     revoke_garmin_token(token)  # Révocation côté Garmin
-                delete_integration(internal_id, "garmin")
+                #delete_integration(internal_id, "garmin")
                 st.success("Garmin désapparié")
                 st.rerun()
