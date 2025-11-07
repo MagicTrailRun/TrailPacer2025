@@ -24,37 +24,39 @@ def show():
     show_hero_banner()
     st.markdown("""
 <style>
-/* Onglets personnalisés */
+/* Style global pour tous les boutons Streamlit */
 div.stButton > button {
-    background-color: #f0f2f6;  /* gris clair pour inactif */
-    color: #000;
+    background: linear-gradient(135deg, #2e7d32, #81c784);
+    color: white;
     font-weight: 600;
     font-size: 0.95rem;
-    border-radius: 8px 8px 0 0; /* arrondi en haut seulement */
-    border: 1px solid #ddd;
-    border-bottom: 1px solid transparent;
-    padding: 8px 0;
-    box-shadow: none;
+    border-radius: 12px;
+    padding: 10px 0;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     transition: all 0.2s ease;
-    width: 100% !important;
+    width: 100% !important; /* pour use_container_width=True */
 }
 
 /* Hover */
 div.stButton > button:hover {
-    background-color: #e0f2f1;
-    cursor: pointer;
+    background: linear-gradient(135deg, #388e3c, #a5d6a7);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
 }
 
-/* Onglet actif */
+/* Active (clic) */
+div.stButton > button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Optionnel : bouton actif selon onglet */
 div.stButton > button.active-tab {
-    background-color: #2e7d32;  /* vert foncé */
-    color: white;
-    border-color: #2e7d32;
-    border-bottom: 3px solid white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #1b5e20, #66bb6a);
 }
 </style>
 """, unsafe_allow_html=True)
+
     trailpacer, avis5,cnil7, connect8 = st.columns(4)
     
     with trailpacer:
@@ -73,20 +75,8 @@ div.stButton > button.active-tab {
     
     # Affichage en fonction du choix
     if st.session_state.get("onglet") == "TrailPacer":
-        st.markdown("""
-    <script>
-    const btn = window.parent.document.querySelectorAll('div.stButton > button')[0];
-    btn.classList.add('active-tab');
-    </script>
-    """, unsafe_allow_html=True)
         trail_pacer_display()
     elif st.session_state.get("onglet") == "Suivre le projet":
-        st.markdown("""
-    <script>
-    const btn = window.parent.document.querySelectorAll('div.stButton > button')[1];
-    btn.classList.add('active-tab');
-    </script>
-    """, unsafe_allow_html=True)
         st.markdown("###  Suivre le projet")
         st.markdown("Partagez votre expérience et découvrez l’équipe derrière TrailPacer.")
 
@@ -99,21 +89,11 @@ div.stButton > button.active-tab {
                 quisommesnous()
 
     elif st.session_state.get("onglet") == "Politique de confidentialité":
-        st.markdown("""
-    <script>
-    const btn = window.parent.document.querySelectorAll('div.stButton > button')[0];
-    btn.classList.add('active-tab');
-    </script>
-    """, unsafe_allow_html=True)
+
         cnil()
 
     elif st.session_state.get("onglet") == "Appareils connectés":
-        st.markdown("""
-    <script>
-    const btn = window.parent.document.querySelectorAll('div.stButton > button')[0];
-    btn.classList.add('active-tab');
-    </script>
-    """, unsafe_allow_html=True)
+
         device_connected()
 
     else : trail_pacer_display()

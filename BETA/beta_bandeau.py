@@ -90,4 +90,4 @@ def show_beta_banner():
     </html>
     """
 
-    st.markdown(html_code, unsafe_allow_html=True)
+    st.components.v1.html(html_code)
