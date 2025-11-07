@@ -4,6 +4,7 @@ from core.session import SessionManager
 from core.supabase_client import supabase
 from core.mongo_client import create_user_profile, list_integrations, db
 from core.fitness_connect import connect_strava, connect_garmin
+from TrailPacer.formatting import show_hero_banner
 
 def supabase_login():
     """Gestion complète de l'authentification Supabase"""
@@ -88,20 +89,13 @@ def _show_auth_interface():
 
 def _show_welcome_banner():
     """Affiche la bannière de bienvenue"""
-    st.markdown(
-        """
-        <div style='background-color:#517516ff; padding:20px; border-radius:10px; color:white; text-align:center;'>
-            <h2>Bienvenue sur la bêta de Trail Pacer !</h2>
-            <p>
-            Nous vous demandons maintenant de créer un compte pour contrôler qui a accès à la bêta, 
-            ainsi que pour personnaliser l'expérience. <br><br>
+    title="Bienvenue sur la bêta de Trail Pacer !"
+    text="""Nous vous demandons maintenant de créer un compte pour contrôler qui a accès à la bêta, 
+            ainsi que pour personnaliser l'expérience. 
             Vous pouvez également appareiller votre compte Garmin ou Strava afin que nous récupérions vos données 
-            pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite. Merci de votre aide.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+            pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite. Merci de votre aide."""
+    show_hero_banner(title=title, text=text)
+
     st.write("")
 
 

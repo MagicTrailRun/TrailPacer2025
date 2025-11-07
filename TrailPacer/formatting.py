@@ -232,6 +232,16 @@ def show_hero_banner(title="TrailPacer", text="", subtitle="", image_path="Trail
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             margin-bottom: 1.5rem;
         }}
+        .hero-overlay {{
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+        }}
+        .hero-content {{
+            position: relative;
+            z-index: 2;
+        }}
         .hero h1 {{
             font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 800;
@@ -263,16 +273,12 @@ def show_hero_banner(title="TrailPacer", text="", subtitle="", image_path="Trail
             color: #a5d6a7;
             text-decoration: underline;
         }}
-        .hero-overlay {{
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.3);
-            border-radius: 16px;
-        }}
+
         </style>
 
         <div class="hero" role="banner" aria-label="Bannière {title}">
             <div class="hero-overlay"></div>
+             <div class="hero-content">
             <h1>{title}</h1>
             <h2>{text}</h2>
             <div class="subtitle">{subtitle}</div>
