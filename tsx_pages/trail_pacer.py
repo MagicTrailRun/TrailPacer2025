@@ -48,8 +48,7 @@ def show():
         
         # Affichage en fonction du choix
         if st.session_state.get("onglet") == "TrailPacer":
-            st.markdown('AHG')
-            #trail_pacer_display()
+            trail_pacer_display()
         elif st.session_state.get("onglet") == "Suivre le projet":
             st.markdown("###  Suivre le projet")
             st.markdown("Partagez votre expérience et découvrez l'équipe derrière TrailPacer.")

@@ -181,19 +181,31 @@ def format_hr_to_time(x):
     x = int(x*60)
     return f'{x//60}h{x%60:02d}'
 
-
-def show_hero_banner(event="", course="", event_code=""):
-    if event=="":
-        img_base64=get_base64_image(f"TrailPacer/image/banner_image.png")
-        event=  """Merci de participer à la version BETA de TrailPacer !"""
-
-        course=""" Vos retours sont essentiels pour améliorer l’outil. Pour toute remarque ou suggestion, écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> ou utilisez l’espace commentaire ci-dessous.
-                        Vous pouvez désormais appareiller votre compte Garmin ou Strava afin que nous récupérions vos données
-                        pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite.
-                """
-
-    else :
-        img_base64 = get_base64_image(f"TrailPacer/image/{event_code.lower()}.png")
+def show_hero_banner(title="TrailPacer", text="", subtitle="", image_path="TrailPacer/image/banner_image.png"):
+    """
+    Affiche une bannière héro avec image de fond, titre et texte.
+    
+    Args:
+        title (str): Titre principal de la bannière
+        text (str): Texte secondaire (peut contenir du HTML)
+        subtitle (str): Sous-titre optionnel
+        image_path (str): Chemin vers l'image de fond
+    """
+    # Valeurs par défaut pour la version BETA
+    if text == "":
+        text = """Merci de participer à la version BETA de TrailPacer !"""
+    
+    if subtitle == "":
+        subtitle = """Vos retours sont essentiels pour améliorer l'outil. Pour toute remarque ou suggestion, 
+                      écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> 
+                      ou utilisez l'espace commentaire ci-dessous. Vous pouvez désormais appareiller votre compte Garmin 
+                      ou Strava afin que nous récupérions vos données pour mettre en place de nouveaux modèles et analyses 
+                      qui arriveront par la suite."""
+    
+    # Récupération de l'image
+    img_base64 = get_base64_image(image_path)
+    
+    # Style de fond (image ou dégradé par défaut)
     background_style = (
         f"background-image: url('data:image/png;base64,{img_base64}');"
         if img_base64
@@ -223,36 +235,48 @@ def show_hero_banner(event="", course="", event_code=""):
         .hero h1 {{
             font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 800;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
             margin: 0;
             color: white;
-            font-size: 3em;
-            font-weight: bold;
-            text-shadow: 2px 2px 8px #000;
         }}
-        .hero h2, .hero h3 {{
+        .hero h2 {{
             font-size: clamp(1.3rem, 2.5vw, 2rem);
             color: white;
-            font-size: 2em;
             font-weight: 500;
-            text-shadow: 2px 2px 6px #000;
-            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            margin: 0.5rem 0;
+        }}
+        .hero .subtitle {{
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            color: white;
+            line-height: 1.6;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            max-width: 90%;
+            padding: 0 1rem;
+        }}
+        .hero .email-link {{
+            color: #81c784;
+            text-decoration: none;
+            font-weight: 600;
+        }}
+        .hero .email-link:hover {{
+            color: #a5d6a7;
+            text-decoration: underline;
         }}
         .hero-overlay {{
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0);
+            background: rgba(0,0,0,0.3);
             border-radius: 16px;
         }}
         </style>
 
-        <div class="hero" role="banner" aria-label="En-tête événement {event} style="margin:0; padding:0;">">
+        <div class="hero" role="banner" aria-label="Bannière {title}">
             <div class="hero-overlay"></div>
-            <h1>TrailPacer</h1>
-            <h2>{event}</h2>
-            <h3>{course}</h3>
+            <h1>{title}</h1>
+            <h2>{text}</h2>
+            <div class="subtitle">{subtitle}</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
-
