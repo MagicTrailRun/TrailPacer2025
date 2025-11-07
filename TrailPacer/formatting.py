@@ -191,16 +191,6 @@ def show_hero_banner(title="TrailPacer", text="", subtitle="", image_path="Trail
         subtitle (str): Sous-titre optionnel
         image_path (str): Chemin vers l'image de fond
     """
-    # Valeurs par défaut pour la version BETA
-    if text == "":
-        text = """Merci de participer à la version BETA de TrailPacer !"""
-    
-    if subtitle == "":
-        subtitle = """Vos retours sont essentiels pour améliorer l'outil. Pour toute remarque ou suggestion, 
-                      écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> 
-                      ou utilisez l'espace commentaire ci-dessous. Vous pouvez désormais appareiller votre compte Garmin 
-                      ou Strava afin que nous récupérions vos données pour mettre en place de nouveaux modèles et analyses 
-                      qui arriveront par la suite."""
     
     # Récupération de l'image
     img_base64 = get_base64_image(image_path)
@@ -254,14 +244,14 @@ def show_hero_banner(title="TrailPacer", text="", subtitle="", image_path="Trail
             color: white;
             font-weight: 500;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-            margin: 0.5rem 0;
+           margin: 0;
         }}
         .hero .subtitle {{
             font-size: clamp(0.9rem, 1.5vw, 1.1rem);
             color: white;
             line-height: 1.6;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-            max-width: 90%;
+            max-width: 100%;
             padding: 0 1rem;
         }}
         .hero .email-link {{

@@ -90,11 +90,11 @@ def _show_auth_interface():
 def _show_welcome_banner():
     """Affiche la bannière de bienvenue"""
     title="Bienvenue sur la bêta de Trail Pacer !"
-    text="""Nous vous demandons maintenant de créer un compte pour contrôler qui a accès à la bêta, 
+    subtitle="""Nous vous demandons maintenant de créer un compte pour contrôler qui a accès à la bêta, 
             ainsi que pour personnaliser l'expérience. 
             Vous pouvez également appareiller votre compte Garmin ou Strava afin que nous récupérions vos données 
             pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite. Merci de votre aide."""
-    show_hero_banner(title=title, text=text)
+    show_hero_banner(title=title, subtitle=subtitle)
 
     st.write("")
 

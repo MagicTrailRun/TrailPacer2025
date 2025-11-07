@@ -19,8 +19,13 @@ from TrailPacer.data_loader import select_event
 print("___________________________________________")
 
 def show(): 
-
-    show_hero_banner()
+    text = """Merci de participer à la version BETA de TrailPacer !"""
+    subtitle = """Vos retours sont essentiels pour améliorer l'outil. Pour toute remarque ou suggestion, 
+                      écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> 
+                      ou utilisez l'espace commentaire ci-dessous. Vous pouvez désormais appareiller votre compte Garmin 
+                      ou Strava afin que nous récupérions vos données pour mettre en place de nouveaux modèles et analyses 
+                      qui arriveront par la suite."""
+    show_hero_banner(text=text,subtitle=subtitle)
     
     # Conteneur avec classe unique pour cibler seulement ces boutons
     with st.container():
