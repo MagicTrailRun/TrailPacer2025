@@ -23,43 +23,6 @@ def show():
     show_hero_banner()
     
     # Conteneur avec classe unique pour cibler seulement ces boutons
-    st.markdown("""
-<style>
-/* Style pour les boutons de navigation uniquement (via leur key) */
-button[kind="primary"][data-testid="baseButton-primary"],
-button[data-testid="baseButton-primary"] {
-    /* On cible d'abord tous les boutons, puis on utilise les keys */
-}
-
-/* Ciblage spécifique via les keys des boutons */
-div[data-testid="column"] button[kind="primary"] {
-    background: linear-gradient(135deg, #2e7d32, #81c784) !important;
-    color: green !important;
-    font-weight: 600 !important;
-    font-size: 0.95rem !important;
-    border-radius: 12px !important;
-    padding: 10px 0 !important;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1) !important;
-    transition: all 0.2s ease !important;
-    border: none !important;
-}
-
-/* Hover */
-div[data-testid="column"] button[kind="primary"]:hover {
-    background: linear-gradient(135deg, #388e3c, #a5d6a7) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.15) !important;
-}
-
-/* Active (clic) */
-div[data-testid="column"] button[kind="primary"]:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1) !important;
-}
-</style>
-""", unsafe_allow_html=True)
-    
-    # Conteneur avec ID unique pour cibler spécifiquement ces boutons
     with st.container():
         st.markdown('<div id="navigation-tabs">', unsafe_allow_html=True)
         

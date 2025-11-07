@@ -106,8 +106,8 @@ class TSXApplication:
     def _display_if_beta(self):
         """Affiche la bannière beta si nécessaire"""
         app_env = os.getenv("APP_ENV", "prod")
-        if app_env == "beta":
-            show_beta_banner()
+        # if app_env == "beta":
+        #     show_beta_banner()
 
 
 

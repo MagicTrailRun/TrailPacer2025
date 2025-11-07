@@ -90,7 +90,7 @@ def _show_welcome_banner():
     """Affiche la bannière de bienvenue"""
     st.markdown(
         """
-        <div style='background-color:#4CAF50; padding:20px; border-radius:10px; color:white; text-align:center;'>
+        <div style='background-color:#517516ff; padding:20px; border-radius:10px; color:white; text-align:center;'>
             <h2>Bienvenue sur la bêta de Trail Pacer !</h2>
             <p>
             Nous vous demandons maintenant de créer un compte pour contrôler qui a accès à la bêta, 

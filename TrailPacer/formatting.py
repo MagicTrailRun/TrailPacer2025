@@ -185,6 +185,12 @@ def format_hr_to_time(x):
 def show_hero_banner(event="", course="", event_code=""):
     if event=="":
         img_base64=get_base64_image(f"TrailPacer/image/banner_image.png")
+        event=  """Merci de participer à la version BETA de TrailPacer !"""
+
+        course=""" Vos retours sont essentiels pour améliorer l’outil. Pour toute remarque ou suggestion, écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> ou utilisez l’espace commentaire ci-dessous.
+                        Vous pouvez désormais appareiller votre compte Garmin ou Strava afin que nous récupérions vos données
+                        pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite.
+                """
 
     else :
         img_base64 = get_base64_image(f"TrailPacer/image/{event_code.lower()}.png")
