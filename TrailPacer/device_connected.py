@@ -1,6 +1,6 @@
 
 import streamlit as st
-from core.mongo_client import list_integrations, delete_integration, get_access_token
+from core.mongo_client import list_integrations, delete_integration, get_access_token, send_deregistration_garmin
 from core.fitness_connect import revoke_strava_token, revoke_garmin_token
 
 
@@ -18,7 +18,7 @@ def device_connected():
         if integrations.get("strava", False):
             if st.button("Désapparier Strava"):
                 # Récupération du token
-                token = get_access_token(internal_id, "strava")
+                token, strava_id = get_access_token(internal_id, "strava")
                 if token:
                     revoke_strava_token(token)  # Révocation côté Strava
                 #delete_integration(internal_id, "strava")  # Suppression en base
@@ -32,9 +32,10 @@ def device_connected():
     with col2:
         if integrations.get("garmin", False):
             if st.button("Désapparier Garmin"):
-                token = get_access_token(internal_id, "garmin")
+                token, garmin_id = get_access_token(internal_id, "garmin")
                 if token:
                     revoke_garmin_token(token)  # Révocation côté Garmin
+                    send_deregistration_garmin(garmin_id)
                 #delete_integration(internal_id, "garmin")
                 st.success("Garmin désapparié")
                 st.rerun()

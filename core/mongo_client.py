@@ -1,9 +1,11 @@
 from pymongo import MongoClient
 import os
 from datetime import datetime, timezone
+import requests
 
 MONGO_URI = os.getenv("MONGO_URI")
 MONGO_DB = "Magic_Trail"
+BACKEND_URL = os.getenv("BACKEND_URL")
 
 client = MongoClient(MONGO_URI)
 db = client[MONGO_DB]
@@ -115,7 +117,34 @@ def get_access_token(internal_id, platform):
         {"integrations." + platform: 1, "_id": 0}
     )
     if user and "integrations" in user and platform in user["integrations"]:
-        return user["integrations"][platform].get("access_token")
+        return (user["integrations"][platform].get("access_token"), user["integrations"][platform].get("external_id"))
     return None
 
 
+
+
+def send_deregistration_garmin(user_id: str,
+                        url: str = BACKEND_URL,
+                        headers: dict | None = None,
+                        timeout: float = 10.0) -> requests.Response:
+    """
+    Envoie un webhook 'deregistration' minimal au backend.
+
+    Args:
+        user_id: userId Garmin à inclure dans le payload.
+        url: URL complète de l'endpoint backend.
+        headers: headers supplémentaires (ex: {"Authorization": "Bearer ..."}). Si None, Content-Type est géré automatiquement par requests.
+        timeout: timeout en secondes pour la requête HTTP.
+
+    Returns:
+        requests.Response: réponse HTTP du backend.
+    """
+    payload = {
+        "deregistrations": [
+            {"userId": user_id}
+        ]
+    }
+
+    # use requests.json param to set Content-Type and serialize
+    resp = requests.post(url, json=payload, headers=headers, timeout=timeout)
+    return resp
