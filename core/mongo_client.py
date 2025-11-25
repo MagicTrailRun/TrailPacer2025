@@ -179,7 +179,7 @@ def send_connection_webhook(user_id: str,
 
 
     
-    payload = {"userId": user_id, "access_token": access_token, "linked_time": datetime.now(timezone.utc)}
+    payload = {"userId": user_id, "access_token": access_token}
 
     # use requests.json param to set Content-Type and serialize
     resp = requests.post(url, json=payload, headers=headers, timeout=timeout)
