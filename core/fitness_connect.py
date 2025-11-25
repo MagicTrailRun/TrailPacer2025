@@ -1,9 +1,10 @@
 import streamlit as st
 import requests
 import os
+import time
 import secrets, string, hashlib, base64
 from datetime import datetime, timezone
-from core.mongo_client import save_integration
+from core.mongo_client import save_integration, send_connection_webhook
 
 
 # ==========================
@@ -116,6 +117,9 @@ def handle_strava_callback():
         )
         st.success("✅ Compte Strava connecté et sauvegardé !")
 
+        time.sleep(0.300)
+        send_connection_webhook(str(athlete["id"]), tokens["access_token"], "strava")
+
         # Nettoyage de l’URL
         _clear_query_params()
 
@@ -225,6 +229,9 @@ def handle_garmin_callback():
             }
         )
         st.success("✅ Compte Garmin connecté et sauvegardé !")
+
+        time.sleep(0.300)
+        send_connection_webhook(user_id_garmin, tokens.get("access_token"), "garmin")
 
         # Nettoyage de l’URL
         _clear_query_params()

@@ -5,7 +5,9 @@ import requests
 
 MONGO_URI = os.getenv("MONGO_URI")
 MONGO_DB = "Magic_Trail"
-BACKEND_URL = os.getenv("BACKEND_URL")
+BACKEND_DEREGISTRATION_URL = os.getenv("BACKEND_DEREGSITRATION_URL")
+BACKEND_STRAVA_IS_LINKED_URL = os.getenv("BACKEND_STRAVA_IS_LINKED_URL")
+BACKEND_GARMIN_IS_LINKED_URL = os.getenv("BACKEND_GARMIN_IS_LINKED_URL")
 
 client = MongoClient(MONGO_URI)
 db = client[MONGO_DB]
@@ -124,7 +126,7 @@ def get_access_token(internal_id, platform):
 
 
 def send_deregistration_garmin(user_id: str,
-                        url: str = BACKEND_URL,
+                        url: str = BACKEND_DEREGISTRATION_URL,
                         headers: dict | None = None,
                         timeout: float = 10.0) -> requests.Response:
     """
@@ -144,6 +146,38 @@ def send_deregistration_garmin(user_id: str,
             {"userId": user_id}
         ]
     }
+
+    # use requests.json param to set Content-Type and serialize
+    resp = requests.post(url, json=payload, headers=headers, timeout=timeout)
+    return resp
+
+
+
+def send_connection_webhook(user_id: str,
+                        access_token: str,
+                        device : str,
+                        headers: dict | None = None,
+                        timeout: float = 10.0) -> requests.Response:
+    """
+    Envoie un webhook 'connexion' minimal au backend.
+
+    Args:
+        user_id: userId du device à inclure dans le payload.
+        url: URL complète de l'endpoint backend.
+        headers: headers supplémentaires (ex: {"Authorization": "Bearer ..."}). Si None, Content-Type est géré automatiquement par requests.
+        timeout: timeout en secondes pour la requête HTTP.
+
+    Returns:
+        requests.Response: réponse HTTP du backend.
+    """
+
+    if device == "strava":
+        url = BACKEND_STRAVA_IS_LINKED_URL
+    if device == "garmin":
+        url = BACKEND_GARMIN_IS_LINKED_URL
+
+    
+    payload = {"userId": user_id, "access_token": access_token}
 
     # use requests.json param to set Content-Type and serialize
     resp = requests.post(url, json=payload, headers=headers, timeout=timeout)
