@@ -173,11 +173,13 @@ def send_connection_webhook(user_id: str,
 
     if device == "strava":
         url = BACKEND_STRAVA_IS_LINKED_URL
+
     if device == "garmin":
         url = BACKEND_GARMIN_IS_LINKED_URL
 
+
     
-    payload = {"userId": user_id, "access_token": access_token}
+    payload = {"userId": user_id, "access_token": access_token, "linked_time": datetime.now(timezone.utc)}
 
     # use requests.json param to set Content-Type and serialize
     resp = requests.post(url, json=payload, headers=headers, timeout=timeout)
