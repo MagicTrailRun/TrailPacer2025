@@ -301,6 +301,10 @@ def show_sidebar():
                 """,
                 unsafe_allow_html=True
             )
+
+
+        if not integrations.get("garmin", False) or not integrations.get("strava", False):
+            st.write("Pour finaliser la synchronisation, reconnectez-vous à Trail Pacer après avoir connecté votre appareil")
         
         if integrations.get("strava") and integrations.get("garmin"):
             st.write("Vous avez déjà connecté tous vos appareils")

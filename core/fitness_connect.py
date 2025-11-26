@@ -117,7 +117,7 @@ def handle_strava_callback():
         )
         st.success("✅ Compte Strava connecté et sauvegardé !")
 
-        time.sleep(0.300)
+        time.sleep(0.500)
         send_connection_webhook(str(athlete["id"]), tokens["access_token"], "strava")
 
         # Nettoyage de l’URL
@@ -230,7 +230,7 @@ def handle_garmin_callback():
         )
         st.success("✅ Compte Garmin connecté et sauvegardé !")
 
-        time.sleep(0.300)
+        time.sleep(0.500)
         send_connection_webhook(user_id_garmin, tokens.get("access_token"), "garmin")
 
         # Nettoyage de l’URL
