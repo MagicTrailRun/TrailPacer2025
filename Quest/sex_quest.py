@@ -158,4 +158,4 @@ def show_quest_banner() :
     </html>
 
     """.format(logo_base64=logo_base64)
-    st.components.v1.html(html_code+html_main)
+    return(html_code+html_main)

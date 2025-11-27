@@ -63,6 +63,7 @@ def show_post_course(course_name,event_code, course_code, year):
 
         
         if data is None:
+            st.error("❌ Page non disponible pour cette course")
             st.info("Les données d'analyse post-course ne sont pas encore disponibles.")
             return
             
@@ -113,9 +114,9 @@ def _load_post_course_data(event_code, course_code, year):
                 missing_files.append(str(file_path))
         
         if missing_files:
-            # st.warning("📄 Fichiers manquants:")
-            # for file in missing_files:
-            #     st.write(f"- {file}")
+            st.warning("📄 Fichiers manquants:")
+            for file in missing_files:
+                st.write(f"- {file}")
             return None
         
         # Chargement des données

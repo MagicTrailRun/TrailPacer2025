@@ -321,18 +321,13 @@ def add_gradient_segments(fig, df_col,terrain_colors,description_type,terrain_ad
         ))
 
 
-def create_col_profile(df_track,df_segments, end, start=None,has_terrain_type=False):
-    mask = df_segments["checkpoint"] == end
+def create_col_profile(df_track,df_segments, col_name, has_terrain_type=False):
+    mask = df_segments["checkpoint"] == col_name
     if not mask.any():
         return go.Figure(), {}
     distance_end = df_segments.loc[mask, "distance"].values[0]
     idx_end = df_segments.index[df_segments["distance"] == distance_end][0]
-    if start :
-        mask_start=df_segments["checkpoint"] == start
-        distance_start = df_segments.loc[mask_start, "distance"].values[0]
-    else :
-        idx_end = df_segments.index[df_segments["distance"] == distance_end][0]
-        distance_start = 0 if idx_end == 0 else df_segments.loc[idx_end-1, "distance"]
+    distance_start = 0 if idx_end == 0 else df_segments.loc[idx_end-1, "distance"]
     df_col = df_track[(df_track["distance"] >= distance_start) & 
                          (df_track["distance"] <= distance_end)].copy().reset_index()
     
@@ -443,7 +438,7 @@ def create_col_profile(df_track,df_segments, end, start=None,has_terrain_type=Fa
     altitude_min = df_col['altitude'].min()
     fig.update_layout(
         plot_bgcolor= "#D1D4D8", paper_bgcolor= "#D1D4D8",
-        title=dict(text=f"Profil altimétrique - <b> {start} → {end}</b> ", x=0.5,
+        title=dict(text=f"Profil altimétrique - <b>{col_name}</b> ", x=0.5,
                    font=dict(size=24,color='black'), xanchor="center"),
         xaxis=dict(title="Distance (km)", color='black', showgrid=True, gridcolor="rgba(255,255,255,0.1)"),
         yaxis=dict(title="Altitude (m)", color='black', showgrid=True, gridcolor="rgba(255,255,255,0.1)",
@@ -461,11 +456,10 @@ def create_col_profile(df_track,df_segments, end, start=None,has_terrain_type=Fa
     }
 
     pente_metrics = {
-        "Pente min": df_col['pente'].quantile(0.05),
+        "Pente min": df_col['pente'].min(),
         "Pente médiane": df_col['pente'].median(),
-        "Pente max": df_col['pente'].quantile(0.95)
+        "Pente max": df_col['pente'].max()
     }
-
 
     metrics = [alt_metrics, pente_metrics]
     return fig, metrics
