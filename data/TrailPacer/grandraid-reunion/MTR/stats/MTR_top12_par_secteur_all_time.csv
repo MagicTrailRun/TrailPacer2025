@@ -1,0 +1,169 @@
+bib,name,segment_time,rank,sex,year,secteur,end_checkpoint,start_checkpoint,filtrer_valeur_aberrante
+7454,Brian FRANÇOIS FILS,00:53:29,1,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7109,Corentin FOURNI,00:56:49,2,MALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7479,Leo SERCA,00:57:30,3,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7613,Joseph Jean Damien RAVINA,00:58:27,4,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7032,Yoann MARTIN,00:59:21,5,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7519,Julien HOAREAU,00:59:43,6,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7586,Jean Patrice PAYET,00:59:59,7,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7201,Yannick IMBROSCIANO,01:00:06,8,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7503,Christopher CAMACHETTY,01:01:13,9,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7026,Yannick IMBROSCIANO,01:01:20,10,MALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7512,Patrick JABERG,01:01:25,11,MALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7284,Leo SERCA,01:02:04,12,MALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7373,Marcelle PUY,01:07:01,1,FEMALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7455,Anne Marie JOHN,01:09:53,2,FEMALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7531,Lucie TRAISSAC,01:09:57,3,FEMALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7354,Céline LOUIS,01:12:24,4,FEMALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7615,Ludivine RABUEL,01:14:26,5,FEMALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7024,Miora RAZANAKOLONA,01:15:59,6,FEMALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7252,Sabrina SAUVE,01:16:20,7,FEMALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7258,Elise DUCHEZ,01:16:43,8,FEMALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7090,Estelle LAMARQUE,01:18:23,9,FEMALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7474,Marie QUILLEVERE,01:18:32,10,FEMALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7017,Nambinintsoa RAVAOARISOA,01:19:32,11,FEMALE,2025,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7055,Marie ALEKSANDROWICZ,01:21:36,12,FEMALE,2024,Ilet Savan → Ratinaud,Ratinaud,Ilet Savan,False
+7441,Stéphane SERY,00:51:41,1,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7087,Cédric BOYER,00:51:56,2,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7454,Brian FRANÇOIS FILS,00:55:52,3,MALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7613,Joseph Jean Damien RAVINA,00:56:37,4,MALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7032,Yoann MARTIN,00:57:44,5,MALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7109,Corentin FOURNI,00:57:58,6,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7479,Leo SERCA,00:59:55,7,MALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7503,Christopher CAMACHETTY,01:00:22,8,MALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7519,Julien HOAREAU,01:00:26,9,MALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7153,Jonathan COTTE,01:00:39,10,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7284,Leo SERCA,01:01:35,11,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7026,Yannick IMBROSCIANO,01:02:27,12,MALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7455,Anne Marie JOHN,01:05:56,1,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7531,Lucie TRAISSAC,01:06:14,2,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7373,Marcelle PUY,01:07:41,3,FEMALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7017,Nambinintsoa RAVAOARISOA,01:10:42,4,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7354,Céline LOUIS,01:11:22,5,FEMALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7258,Elise DUCHEZ,01:14:01,6,FEMALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7615,Ludivine RABUEL,01:15:36,7,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7024,Miora RAZANAKOLONA,01:16:14,8,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7483,Caroline CHEUL,01:18:40,9,FEMALE,2025,Ratinaud → Possession,Possession,Ratinaud,False
+7252,Sabrina SAUVE,01:19:34,10,FEMALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7413,Celia SEYCHELLES,01:21:29,11,FEMALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7062,Emilie DIETRICH,01:22:36,12,FEMALE,2024,Ratinaud → Possession,Possession,Ratinaud,False
+7613,Joseph Jean Damien RAVINA,00:55:34,1,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7032,Yoann MARTIN,00:55:56,2,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7026,Yannick IMBROSCIANO,00:57:57,3,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7201,Yannick IMBROSCIANO,00:58:00,4,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7479,Leo SERCA,00:58:13,5,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7491,Grégoire RUYSSEN,00:58:28,6,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7454,Brian FRANÇOIS FILS,00:59:23,7,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7153,Jonathan COTTE,00:59:37,8,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7519,Julien HOAREAU,01:00:04,9,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7503,Christopher CAMACHETTY,01:00:07,10,MALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7411,Jean-Pierre CHOW-SHI-YEE,01:00:58,11,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7552,Tristan ROUX,01:01:30,12,MALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7455,Anne Marie JOHN,01:04:33,1,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7373,Marcelle PUY,01:04:56,2,FEMALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7572,Emma METRO,01:06:14,3,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7024,Miora RAZANAKOLONA,01:06:44,4,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7252,Sabrina SAUVE,01:08:27,5,FEMALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7354,Céline LOUIS,01:08:42,6,FEMALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7531,Lucie TRAISSAC,01:09:38,7,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7017,Nambinintsoa RAVAOARISOA,01:10:26,8,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7474,Marie QUILLEVERE,01:10:33,9,FEMALE,2024,Possession → Chaloupe,Chaloupe,Possession,False
+7615,Ludivine RABUEL,01:10:39,10,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7417,Marie PERSÉE,01:15:54,11,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7252,Marie SEROC,01:16:56,12,FEMALE,2025,Possession → Chaloupe,Chaloupe,Possession,False
+7613,Joseph Jean Damien RAVINA,01:17:39,1,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7032,Yoann MARTIN,01:22:52,2,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7454,Brian FRANÇOIS FILS,01:25:23,3,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7519,Julien HOAREAU,01:26:25,4,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7479,Leo SERCA,01:26:28,5,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7468,Guillaume SCHLIFFER,01:26:41,6,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7005,Benoit MARC,01:26:44,7,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7455,Anne Marie JOHN,01:28:46,1,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7355,Thibaud GERLACH,01:28:47,8,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7503,Christopher CAMACHETTY,01:29:05,9,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7572,Emma METRO,01:30:39,2,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7552,Tristan ROUX,01:31:39,10,MALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+7470,Pierre ESTEVIN,01:32:59,11,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7201,Yannick IMBROSCIANO,01:33:00,12,MALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7024,Miora RAZANAKOLONA,01:36:33,3,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7615,Ludivine RABUEL,01:36:51,4,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7531,Lucie TRAISSAC,01:37:42,5,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7509,Andrea HASLEBACHER,01:38:24,6,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7373,Marcelle PUY,01:39:15,7,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+7252,Sabrina SAUVE,01:39:46,8,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+7354,Céline LOUIS,01:43:10,9,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+7474,Marie QUILLEVERE,01:43:29,10,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+7280,Ophélie TAILLEUR,01:47:19,11,FEMALE,2024,Chaloupe → Colorado,Colorado,Chaloupe,False
+7481,Leslie BOURIEL,01:47:42,12,FEMALE,2025,Chaloupe → Colorado,Colorado,Chaloupe,False
+7491,Grégoire RUYSSEN,00:35:59,1,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7153,Jonathan COTTE,00:36:03,2,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7552,Tristan ROUX,00:37:32,3,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7109,Corentin FOURNI,00:37:46,4,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7032,Yoann MARTIN,00:38:44,5,MALE,2025,Colorado → St Denis,St Denis,Colorado,False
+7454,Brian FRANÇOIS FILS,00:39:20,6,MALE,2025,Colorado → St Denis,St Denis,Colorado,False
+7613,Joseph Jean Damien RAVINA,00:40:07,7,MALE,2025,Colorado → St Denis,St Denis,Colorado,False
+7427,Brice Antoine DIJOUX,00:40:36,8,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7503,Christopher CAMACHETTY,00:40:37,9,MALE,2025,Colorado → St Denis,St Denis,Colorado,False
+7479,Leo SERCA,00:41:15,10,MALE,2025,Colorado → St Denis,St Denis,Colorado,False
+7411,Jean-Pierre CHOW-SHI-YEE,00:41:40,11,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7156,Julien WEISSENBACHER,00:41:42,12,MALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7455,Anne Marie JOHN,00:43:36,1,FEMALE,2025,Colorado → St Denis,St Denis,Colorado,False
+7373,Marcelle PUY,00:44:14,2,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7258,Elise DUCHEZ,00:46:36,3,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7531,Lucie TRAISSAC,00:46:43,4,FEMALE,2025,Colorado → St Denis,St Denis,Colorado,False
+7024,Miora RAZANAKOLONA,00:48:17,5,FEMALE,2025,Colorado → St Denis,St Denis,Colorado,False
+7252,Sabrina SAUVE,00:48:20,6,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7415,Anne-Claire BENARD,00:48:32,7,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7062,Emilie DIETRICH,00:48:35,8,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7245,Lisa BOILLETOT,00:48:43,9,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7200,Noéline CAROFF,00:48:49,10,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7280,Ophélie TAILLEUR,00:49:33,11,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7158,Valerie RIVIERE,00:50:09,12,FEMALE,2024,Colorado → St Denis,St Denis,Colorado,False
+7032,Yoann MARTIN,00:20:55,1,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7479,Leo SERCA,00:20:57,2,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7454,Brian FRANÇOIS FILS,00:21:21,3,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7613,Joseph Jean Damien RAVINA,00:22:41,4,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7503,Christopher CAMACHETTY,00:22:45,5,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7355,Thibaud GERLACH,00:23:25,6,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7455,Anne Marie JOHN,00:23:28,1,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7586,Jean Patrice PAYET,00:23:43,7,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7500,Nicolas CHARRETIER,00:23:52,8,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7005,Benoit MARC,00:23:59,9,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7476,Korentin GUEZENEC,00:24:01,10,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7468,Guillaume SCHLIFFER,00:24:21,11,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7576,Hugo CORTEN,00:24:34,12,MALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7531,Lucie TRAISSAC,00:25:20,2,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7572,Emma METRO,00:25:37,3,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7024,Miora RAZANAKOLONA,00:25:58,4,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7509,Andrea HASLEBACHER,00:25:58,5,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7615,Ludivine RABUEL,00:26:48,6,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7017,Nambinintsoa RAVAOARISOA,00:27:51,7,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7417,Marie PERSÉE,00:28:41,8,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7061,Manuella SERY,00:28:51,9,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7341,Fanny ROUET,00:29:24,10,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7481,Leslie BOURIEL,00:29:48,11,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7264,Elodie TIREL UMLAUF,00:30:33,12,FEMALE,2025,Colorado → La Vigie,La Vigie,Colorado,False
+7613,Joseph Jean Damien RAVINA,00:17:26,1,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7032,Yoann MARTIN,00:17:49,2,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7503,Christopher CAMACHETTY,00:17:52,3,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7454,Brian FRANÇOIS FILS,00:17:59,4,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7586,Jean Patrice PAYET,00:19:48,5,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7455,Anne Marie JOHN,00:20:08,1,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7479,Leo SERCA,00:20:18,6,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7500,Nicolas CHARRETIER,00:20:42,7,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7531,Lucie TRAISSAC,00:21:23,2,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7519,Julien HOAREAU,00:21:26,8,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7627,Christophe WAI-LUNE,00:21:29,9,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7196,Marc PUECH,00:21:35,10,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7593,Loïc TOULCANON,00:21:36,11,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7265,Samuel PAYET,00:21:38,12,MALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7024,Miora RAZANAKOLONA,00:22:19,3,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7017,Nambinintsoa RAVAOARISOA,00:23:44,4,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7417,Marie PERSÉE,00:24:36,5,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7483,Caroline CHEUL,00:24:39,6,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7264,Elodie TIREL UMLAUF,00:25:21,7,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7096,Claire VILLARD,00:25:28,8,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7572,Emma METRO,00:25:31,9,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7034,Fabiola FENELON,00:26:29,10,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7368,Elsa KNOSP,00:26:42,11,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False
+7252,Marie SEROC,00:26:45,12,FEMALE,2025,La Vigie → St Denis,St Denis,La Vigie,False

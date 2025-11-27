@@ -8,8 +8,13 @@ def show_beta_banner():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+        * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
             .banner {
-                width: 96%;
+                width: 100%;
                 background: #e3f2fd; /* bleu clair uniforme */
                 border: 1px solid #90caf9;
                 padding: 18px 25px;
@@ -18,7 +23,6 @@ def show_beta_banner():
                 justify-content: space-between;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-                border-radius: 12px;
                 margin-bottom: 15px;
             }
             
@@ -79,6 +83,10 @@ def show_beta_banner():
                     <p class="banner-subtitle">
                         Vos retours sont essentiels pour améliorer l’outil. Pour toute remarque ou suggestion, écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> ou utilisez l’espace commentaire ci-dessous.
                     </p>
+                    <p class="banner-subtitle">
+                        Vous pouvez désormais appareiller votre compte Garmin ou Strava afin que nous récupérions vos données
+                        pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite.
+                    </p>
                 </div>
             </div>
         </div>
@@ -86,4 +94,4 @@ def show_beta_banner():
     </html>
     """
 
-    return html_code
+    st.components.v1.html(html_code)

@@ -9,16 +9,81 @@ from TrailPacer.explore_race import explore_race
 from TrailPacer.text import pacing, quisommesnous, votreavis, cnil
 from TrailPacer.post_course import show_post_course
 from TrailPacer.plan_pacing import show_plan_pacing
-from config.styles import apply_custom_css
+from TrailPacer.device_connected import device_connected
+from core.fitness_connect import connect_strava, connect_garmin
 import traceback
 import streamlit.components.v1 as components
+from TrailPacer.data_loader import select_event
 
 
 print("___________________________________________")
 
-
 def show(): 
-    apply_custom_css()
+    title = """Merci de participer à la version BETA de TrailPacer ! """
+    text=""" Vous pouvez désormais appareiller votre compte Garmin ou Strava afin que nous récupérions vos données pour mettre en place de nouveaux modèles et analyses qui arriveront par la suite."""
+    subtitle = """Vos retours sont essentiels pour améliorer l'outil. Pour toute remarque ou suggestion, 
+                      écrivez-nous à <a class="email-link" href="mailto:trailpacer.ia@gmail.com">trailpacer.ia@gmail.com</a> 
+                      ou utilisez l'espace commentaire ci-dessous. """
+    show_hero_banner(title=title,text=text,subtitle=subtitle)
+    
+    # Conteneur avec classe unique pour cibler seulement ces boutons
+    with st.container():
+        st.markdown('<div id="navigation-tabs">', unsafe_allow_html=True)
+        
+        trailpacer, avis5, cnil7, connect8 = st.columns(4)
+        
+        with trailpacer:
+            if st.button("TrailPacer", key="nav_trailpacer", use_container_width=True, type="primary"):
+                st.session_state["onglet"] = "TrailPacer"
+        
+        with avis5:
+            if st.button("Suivre le projet", key="nav_suivre", use_container_width=True, type="primary"):
+                st.session_state["onglet"] = "Suivre le projet"
+        
+        with cnil7:
+            if st.button("Politique de confidentialité", key="nav_cnil", use_container_width=True, type="primary"):
+                st.session_state["onglet"] = "Politique de confidentialité"
+        
+        with connect8:
+            if st.button("Appareils connectés", key="nav_connect", use_container_width=True, type="primary"):
+                st.session_state["onglet"] = "Appareils connectés"
+        
+      
+        
+        # Affichage en fonction du choix
+        if st.session_state.get("onglet") == "TrailPacer":
+            trail_pacer_display()
+        elif st.session_state.get("onglet") == "Suivre le projet":
+            st.markdown("###  Suivre le projet")
+            st.markdown("Partagez votre expérience et découvrez l'équipe derrière TrailPacer.")
+
+            with st.container():
+                with st.expander("Votre avis nous intéresse", expanded=False):
+                    votreavis()
+
+                with st.expander("Qui sommes-nous ?", expanded=False):
+                    quisommesnous()
+
+        elif st.session_state.get("onglet") == "Politique de confidentialité":
+            cnil()
+       
+
+        elif st.session_state.get("onglet") == "Appareils connectés":
+            device_connected()
+
+        else:
+            trail_pacer_display()
+        st.markdown('</div>', unsafe_allow_html=True)
+
+
+def trail_pacer_display():
+    with st.container(border=True):
+        st.subheader("Sélection de l'événement")
+        select_event()
+    required_keys = ["event", "course", "year", "df", "config"]
+    if not all(k in st.session_state for k in required_keys):
+        st.info("➡️ Veuillez d'abord sélectionner un événement et une course.")
+        st.stop()  
     year=st.session_state.get("year",2025)
     event_code=st.session_state["event_code"]
     course_code=st.session_state["course_code"]
@@ -26,63 +91,30 @@ def show():
     course=st.session_state["course"]
     config=st.session_state["config"]
     df=st.session_state["df"]
-    if not all(k in st.session_state for k in ["event", "course", "year", "df", "config"]):
-        st.warning("⚠️ Merci de sélectionner un événement et une course dans le menu de gauche")
-        st.stop()
-    
-    show_hero_banner(event, course, event_code, df)
 
+    plan_course1, explorer3, postcourse4, pacing2= st.tabs([
+    "Plan de course",
+    "Explorer la course",
+    "Analyse post-course",
+    "Le pacing selon TrailPacer"])
 
-    plan_course1, explorer3, postcourse4, pacing2, avis5, qui6 , cnil7= st.tabs([
-        "Plan de course",
-        "Explorer les courses",
-        "Analyse post-course",
-         "Le pacing selon TrailPacer",
-        "Suivre le projet",
-        "Qui sommes-nous?",
-        "Politique de confidentialité"
-
-    ])
-     
-    st.markdown("------------")
     with plan_course1:
-       show_plan_pacing()
-
-        
-
+        show_plan_pacing()
     with explorer3 : 
         explore_race()
-
-
-
-
     with postcourse4:
         post_course_year=st.session_state["post_course_year"]
         try:
-            # 1️⃣ Essai sur l'année sélectionnée
-            
+
             show_post_course(course, event_code, course_code, post_course_year)
 
         except Exception as e:
-            st.error("❌ Cette page n'est pas encore disponible pour la course sélectionnée !")
+            #st.error("❌ Cette page n'est pas encore disponible pour la course sélectionnée !")
             print(f"[DEBUG] Erreur lors de show_post_course pour l'année {post_course_year} : {e}")
             traceback.print_exc()
-
-
     with pacing2 : 
             pacing()
- 
 
-    with avis5 :
-
-        votreavis()
-
-    with qui6 :
-        quisommesnous()
-        
-
-    with cnil7 :
-        cnil()
 
 if __name__ == "__main__":
     show()

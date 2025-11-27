@@ -231,8 +231,6 @@ def quisommesnous():
     txt = """
 <div style="font-family: 'Segoe UI', sans-serif; color:#333; line-height:1.5;">
 
-<h2 style="font-size:22px; color:#222;">Qui sommes-nous ?</h2>
-
 <p><b>Trail Pacer</b>, c'est une équipe passionnée de trail et de science, réunissant des compétences en data science, médecine et recherche. 
 Cet outil a vu le jour grâce à l’expertise complémentaire de  :
 <hr style="border:0; border-top:1px solid #ccc;">
@@ -264,9 +262,6 @@ Devant l’intérêt suscité auprès d’autres coureurs, il a choisi de transf
 
 
 def votreavis():
-
-    st.header("📢 Votre avis nous intéresse !")
-
    
     st.subheader("Dites-nous ce que vous aimeriez voir")
     st.markdown(
