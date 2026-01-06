@@ -1,6 +1,6 @@
 
 import streamlit as st
-from core.mongo_client import list_integrations, delete_integration, get_access_token, send_deregistration_garmin
+from core.mongo_client import list_integrations, delete_integration, get_access_token, send_deregistration_garmin, send_deregistration_strava
 from core.fitness_connect import revoke_strava_token, revoke_garmin_token
 
 
@@ -21,6 +21,7 @@ def device_connected():
                 token, strava_id = get_access_token(internal_id, "strava")
                 if token:
                     revoke_strava_token(token)  # Révocation côté Strava
+                    send_deregistration_strava(strava_id)
                 #delete_integration(internal_id, "strava")  # Suppression en base
                 st.success("Strava désapparié")
                 st.rerun()
