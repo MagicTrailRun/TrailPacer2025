@@ -154,6 +154,7 @@ def revoke_strava_token(access_token: str) -> bool:
 GARMIN_CLIENT_ID = os.getenv("GARMIN_CLIENT_ID")
 GARMIN_CLIENT_SECRET = os.getenv("GARMIN_CLIENT_SECRET")
 GARMIN_REDIRECT_URI = st.context.url
+GARMIN_AUTH_URL = "https://connect.garmin.com/oauth2Confirm"
 GARMIN_TOKEN_URL = "https://diauth.garmin.com/di-oauth2-service/oauth/token"
 GARMIN_DEAUTHORIZE_URL = "https://apis.garmin.com/wellness-api/rest/user/registration"
 
