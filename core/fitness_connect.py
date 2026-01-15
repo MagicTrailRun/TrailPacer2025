@@ -53,7 +53,7 @@ def calcul_expires_at(expires_in: int):
 # ==========================
 STRAVA_CLIENT_ID = os.getenv("STRAVA_CLIENT_ID")
 STRAVA_CLIENT_SECRET = os.getenv("STRAVA_CLIENT_SECRET")
-STRAVA_REDIRECT_URI = os.environ.get('STREAMLIT_SERVER_BASE_URL_PATH', "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/")+".streamlit.app"
+STRAVA_REDIRECT_URI = st.context.url
 STRAVA_DEAUTHORIZE_URL = "https://www.strava.com/oauth/deauthorize"
 
 
@@ -153,8 +153,7 @@ def revoke_strava_token(access_token: str) -> bool:
 # ==========================
 GARMIN_CLIENT_ID = os.getenv("GARMIN_CLIENT_ID")
 GARMIN_CLIENT_SECRET = os.getenv("GARMIN_CLIENT_SECRET")
-GARMIN_REDIRECT_URI = os.environ.get('STREAMLIT_SERVER_BASE_URL_PATH', "https://magictrailrun-trailpacer2025-app-featauthentification-nkgwld.streamlit.app/")+".streamlit.app"
-GARMIN_AUTH_URL = "https://connect.garmin.com/oauth2Confirm"
+GARMIN_REDIRECT_URI = st.context.url
 GARMIN_TOKEN_URL = "https://diauth.garmin.com/di-oauth2-service/oauth/token"
 GARMIN_DEAUTHORIZE_URL = "https://apis.garmin.com/wellness-api/rest/user/registration"
 
