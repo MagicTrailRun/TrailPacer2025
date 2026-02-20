@@ -2,7 +2,7 @@
 import streamlit as st
 from core.session import SessionManager
 from core.supabase_client import supabase
-from core.mongo_client import create_user_profile, list_integrations, db
+from core.mongo_client import create_user_profile, list_integrations
 from core.fitness_connect import connect_strava, connect_garmin
 from TrailPacer.formatting import show_hero_banner
 
@@ -211,7 +211,8 @@ def _handle_signup_form(email: str, password: str, name: str):
         try:
             user = supabase.auth.sign_up({"email": email, "password": password})
             if user.user:
-                existing = db["users"].find_one({"mail": email})
+                response = supabase.table("users").select("id").eq("email", email).single().execute()
+                existing = response.data is not None
                 if not existing:
                     create_user_profile(
                         internal_id=user.user.id,

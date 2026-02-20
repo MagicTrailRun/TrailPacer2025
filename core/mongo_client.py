@@ -1,7 +1,7 @@
 import os
 from datetime import datetime, timezone
 import requests
-from supabase_client import supabase
+from core.supabase_client import supabase
 
 BACKEND_GARMIN_DEREGISTRATION_URL = os.getenv("BACKEND_GARMIN_DEREGISTRATION_URL")
 BACKEND_STRAVA_DEREGISTRATION_URL = os.getenv("BACKEND_STRAVA_DEREGISTRATION_URL")
