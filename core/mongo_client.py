@@ -36,13 +36,14 @@ def save_integration(internal_id, platform, tokens):
         external_id, access_token, refresh_token, expires_at
     """
     now = datetime.now(timezone.utc).isoformat()
+
     data = {
         "user_id": str(internal_id),
         "provider": platform,
         "external_user_id": tokens.get("external_id"),
         "access_token": tokens.get("access_token"),
         "refresh_token": tokens.get("refresh_token"),
-        "expires_at": tokens.get("expires_at"),
+        "expires_at": datetime.fromtimestamp(tokens["expires_at"],tz=timezone.utc).isoformat(),
         "connected_at": now
     }
 
