@@ -47,7 +47,7 @@ def save_integration(internal_id, platform, tokens):
         "connected_at": now
     }
 
-    response = supabase.table("user_integrations").upsert(
+    response = supabase.table("integrations").upsert(
         data,
         on_conflict="internal_id,platform"
     ).execute()
@@ -56,7 +56,7 @@ def save_integration(internal_id, platform, tokens):
 
 # 🔍 Lister les intégrations connectées sous forme de dict
 def list_integrations(internal_id):
-    response = supabase.table("user_integrations") \
+    response = supabase.table("integrations") \
         .select("platform") \
         .eq("internal_id", internal_id) \
         .execute()
@@ -87,7 +87,7 @@ def delete_integration(internal_id, platform):
     Returns:
         bool: True si suppression effectuée, False sinon
     """
-    response = supabase.table("user_integrations") \
+    response = supabase.table("integrations") \
         .delete() \
         .eq("internal_id", internal_id) \
         .eq("platform", platform) \
@@ -106,7 +106,7 @@ def get_access_token(internal_id, platform):
     Returns:
         str | None: access_token si trouvé, None sinon.
     """
-    response = supabase.table("user_integrations") \
+    response = supabase.table("integrations") \
         .select("access_token, external_id") \
         .eq("internal_id", internal_id) \
         .eq("platform", platform) \
