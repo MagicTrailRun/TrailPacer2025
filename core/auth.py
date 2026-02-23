@@ -212,6 +212,10 @@ def _handle_signup_form(email: str, password: str, name: str):
             user = supabase.auth.sign_up({"email": email, "password": password})
             if user.user:
                 response = supabase.table("users").select("id").eq("email", email).maybe_single().execute()
+                # Vérification sûre
+                if response.error:
+                    st.error(f"Erreur Supabase : {response.error.message}")
+                    return
                 existing = response.data is not None
                 if not existing:
                     create_user_profile(
