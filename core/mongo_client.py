@@ -17,7 +17,7 @@ def create_user_profile(internal_id, email, name=None):
     - integrations.strava et integrations.garmin initialisés à None
     - created_at, updated_at
     """
-    now = datetime.now(timezone.utc)
+    now = datetime.now(timezone.utc).isoformat()
 
     supabase.table("users").upsert({
         "internal_id": internal_id,
@@ -36,9 +36,9 @@ def save_integration(internal_id, platform, tokens):
     tokens: dictionnaire contenant au minimum :
         external_id, access_token, refresh_token, expires_at
     """
-    now = datetime.now(timezone.utc)
+    now = datetime.now(timezone.utc).isoformat()
     data = {
-        "user_id": internal_id,
+        "user_id": str(internal_id),
         "provider": platform,
         "external_user_id": tokens.get("external_id"),
         "access_token": tokens.get("access_token"),
