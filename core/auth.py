@@ -210,6 +210,8 @@ def _handle_signup_form(email: str, password: str, name: str):
     if st.button("S'inscrire", use_container_width=True):
         try:
             user = supabase.auth.sign_up({"email": email, "password": password})
+            res = supabase.table("users").select("*").limit(1).execute()
+            print(res)
             if user.user:
                 response = supabase.table("users").select("id").eq("email", email).maybe_single().execute()
                 # Vérification sûre
