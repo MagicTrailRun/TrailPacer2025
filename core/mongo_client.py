@@ -38,9 +38,9 @@ def save_integration(internal_id, platform, tokens):
     """
     now = datetime.now(timezone.utc)
     data = {
-        "internal_id": internal_id,
-        "platform": platform,
-        "external_id": tokens.get("external_id"),
+        "user_id": internal_id,
+        "provider": platform,
+        "external_user_id": tokens.get("external_id"),
         "access_token": tokens.get("access_token"),
         "refresh_token": tokens.get("refresh_token"),
         "expires_at": tokens.get("expires_at"),
@@ -49,7 +49,7 @@ def save_integration(internal_id, platform, tokens):
 
     response = supabase.table("integrations").upsert(
         data,
-        on_conflict="internal_id,platform"
+        on_conflict="user_id,provider"
     ).execute()
     return bool(response.data)
 
@@ -57,8 +57,8 @@ def save_integration(internal_id, platform, tokens):
 # 🔍 Lister les intégrations connectées sous forme de dict
 def list_integrations(internal_id):
     response = supabase.table("integrations") \
-        .select("platform") \
-        .eq("internal_id", internal_id) \
+        .select("provider") \
+        .eq("user_id", internal_id) \
         .execute()
 
     # Par défaut, tout est False
@@ -68,7 +68,7 @@ def list_integrations(internal_id):
         return integrations_status
 
     for row in response.data:
-        platform = row.get("platform")
+        platform = row.get("provider")
         if platform in integrations_status:
             integrations_status[platform] = True
     return integrations_status
@@ -89,8 +89,8 @@ def delete_integration(internal_id, platform):
     """
     response = supabase.table("integrations") \
         .delete() \
-        .eq("internal_id", internal_id) \
-        .eq("platform", platform) \
+        .eq("user_id", internal_id) \
+        .eq("provider", platform) \
         .execute()
     return len(response.data) > 0
 
@@ -107,16 +107,16 @@ def get_access_token(internal_id, platform):
         str | None: access_token si trouvé, None sinon.
     """
     response = supabase.table("integrations") \
-        .select("access_token, external_id") \
-        .eq("internal_id", internal_id) \
-        .eq("platform", platform) \
+        .select("access_token, external_user_id") \
+        .eq("user_id", internal_id) \
+        .eq("provider", platform) \
         .single() \
         .execute()
 
     if response.data:
         return (
             response.data["access_token"],
-            response.data["external_id"]
+            response.data["external_user_id"]
         )
 
     return None
