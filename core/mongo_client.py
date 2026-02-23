@@ -22,7 +22,7 @@ def create_user_profile(internal_id, email, name=None):
     supabase.table("users").upsert({
         "internal_id": internal_id,
         "email": email,
-        "first name": name,
+        "first_name": name,
         "created_at": now,
         "updated_at": now
     }).execute()
