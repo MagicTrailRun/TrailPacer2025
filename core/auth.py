@@ -217,7 +217,6 @@ def _handle_signup_form(email: str, password: str, name: str):
                 existing = response.data is not None and len(response.data) > 0
                 if not existing:
                     create_user_profile(
-                        internal_id=user.user.id,
                         email=email,
                         name=name or None,
                     )
