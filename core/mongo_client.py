@@ -10,7 +10,7 @@ BACKEND_GARMIN_IS_LINKED_URL = os.getenv("BACKEND_GARMIN_IS_LINKED_URL")
 
 
 # 💾 Crée un profil utilisateur
-def create_user_profile(email, name=None):
+def create_user_profile(internal_id, email, name=None):
     """
     Crée un profil utilisateur avec les champs :
     - internal_id, mail, name
@@ -20,6 +20,7 @@ def create_user_profile(email, name=None):
     now = datetime.now(timezone.utc).isoformat()
 
     supabase.table("users").upsert({
+        "id": internal_id, 
         "email": email,
         "first_name": name,
         "created_at": now,
