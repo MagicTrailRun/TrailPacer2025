@@ -68,6 +68,8 @@ def connect_strava():
         f"&state=strava"
     )
 
+    st.write(st.context.url)
+
     return auth_url
 
 
