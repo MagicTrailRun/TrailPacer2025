@@ -118,8 +118,8 @@ def handle_strava_callback():
         )
         st.success("✅ Compte Strava connecté et sauvegardé !")
 
-        time.sleep(0.500)
-        send_connection_webhook(str(athlete["id"]), tokens["access_token"], "strava")
+        #time.sleep(0.500)
+        #send_connection_webhook(str(athlete["id"]), tokens["access_token"], "strava")
 
         # Nettoyage de l’URL
         _clear_query_params()
