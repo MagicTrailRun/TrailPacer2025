@@ -53,7 +53,7 @@ def calcul_expires_at(expires_in: int):
 # ==========================
 STRAVA_CLIENT_ID = os.getenv("STRAVA_CLIENT_ID")
 STRAVA_CLIENT_SECRET = os.getenv("STRAVA_CLIENT_SECRET")
-STRAVA_REDIRECT_URI = st.context.url
+STRAVA_REDIRECT_URI = "https://trailpacer2025-xjbhdq4xxkrspjbsxo6tfw.streamlit.app/"
 STRAVA_DEAUTHORIZE_URL = "https://www.strava.com/oauth/deauthorize"
 
 
